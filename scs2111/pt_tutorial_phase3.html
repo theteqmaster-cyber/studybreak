@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Tutorial Phase 3: Industry IT Mindset & Solvers | SCS2111 Attachment Prep</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">PT Tutorial Phase 3: Industry IT Mindset</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge" style="background:linear-gradient(135deg, var(--accent-green), var(--primary-cyan));">ATTACHMENT PREP</span>
+        <span class="logo-title">Packet Tracer Tutorial 3: Industry IT Mindset</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="pt_tutorial_phase2.html">← PT Phase 2</a></li>
+        <li><a href="index.html">Course Hub</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span class="badge badge-green">On-the-Job Attachment Preparation</span>
+            <span class="badge badge-cyan">Packet Tracer Phase 3 of 3</span>
+        </div>
+        
+        <h1>Packet Tracer Phase 3: Industry IT Mindset & Attachment Scenario Solvers</h1>
+        <p>Thinking like an enterprise network engineer: Structured troubleshooting playbooks, SOPs, and workplace issue resolution.</p>
+
+        <div class="callout callout-work">
+            <div class="callout-title">💼 The Industry IT Engineering Mindset</div>
+            <p style="margin:0;">When users complain that <em>"the network is down"</em>, experienced IT engineers do not guess or randomly click around. They follow a systematic **Bottom-Up OSI Layer Diagnostic SOP** (Layer 1 Physical $\rightarrow$ Layer 2 Data Link $\rightarrow$ Layer 3 Network $\rightarrow$ Layer 7 Application) to pinpoint the exact root cause in minutes.</p>
+        </div>
+
+        <h2>1. The 4-Tier Enterprise Network Architecture Breakdown</h2>
+
+        <div class="card">
+            <div class="grid-2">
+                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--primary-cyan); margin-bottom:0.4rem;">1. Core Layer (Core Switches / Routers)</h4>
+                    <p style="font-size:0.85rem;">High-speed 10Gbps/40Gbps backbone layer. Responsible for fast packet switching between building distributions and WAN ISP firewalls without packet filtering bottleneck.</p>
+                </div>
+                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-purple); margin-bottom:0.4rem;">2. Distribution Layer (Layer 3 Switches)</h4>
+                    <p style="font-size:0.85rem;">Combines access switch connections, enforces inter-VLAN routing, ACL security policies, and QoS traffic prioritization.</p>
+                </div>
+                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-green); margin-bottom:0.4rem;">3. Access Layer (PoE Managed Switches)</h4>
+                    <p style="font-size:0.85rem;">Connects end-user PCs, IP desktop phones, WAPs, and CCTV security cameras. Enforces VLAN access port assignments and Port Security.</p>
+                </div>
+                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-amber); margin-bottom:0.4rem;">4. Perimeter Edge (Firewall & Fiber Box)</h4>
+                    <p style="font-size:0.85rem;">Inspects incoming stateful traffic, runs IDS/IPS penetration defenses, and terminates primary/secondary ISP WAN links.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>2. Attachment Troubleshooting SOP Playbooks</h2>
+
+        <!-- TICKET 1 -->
+        <div class="card">
+            <span class="badge badge-amber">Field Ticket 01</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">User PC Receives APIPA Address (169.254.x.x) - No Network Access</h3>
+            <p style="font-size:0.88rem;"><strong>Scenario:</strong> A workstation in the Finance office cannot open internal portal pages. Running <code>ipconfig /all</code> shows an IP address of <code>169.254.42.88</code>.</p>
+            
+            <div class="callout callout-info" style="font-size:0.88rem;">
+                <strong>Engineering Diagnosis:</strong> APIPA (Automatic Private IP Addressing) indicates that Layer 1 and 2 links are physically connected, but the PC failed to receive a response from the DHCP server (DORA sequence failed).
+            </div>
+
+            <div class="code-block" style="margin:0.5rem 0;">
+                <div class="code-header"><span>Step-by-Step CLI SOP Resolution</span></div>
+                <pre><code style="color:var(--accent-green);">
+Step 1: Verify switch access port status and VLAN membership:
+        Switch# show interface FastEthernet 0/8
+        Switch# show vlan brief
+        ! If port is in wrong VLAN, reassign:
+        Switch(config-if)# switchport access vlan 10
+
+Step 2: Check if DHCP pool on router is exhausted:
+        Router# show ip dhcp binding
+        Router# show ip dhcp pool ADMIN_POOL
+
+Step 3: If DHCP server is on a different subnet, verify IP Helper Address on router interface:
+        Router(config-subif)# interface GigabitEthernet 0/0/0.10
+        Router(config-subif)# ip helper-address 10.1.1.254  ! IP of central DHCP server
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- TICKET 2 -->
+        <div class="card">
+            <span class="badge badge-purple">Field Ticket 02</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">Network Sluggishness Caused by Unmanaged Switch Loop (STP Storm)</h3>
+            <p style="font-size:0.88rem;"><strong>Scenario:</strong> An employee brought a cheap unmanaged 4-port desktop switch from home and plugged both ends into office wall jacks, causing a broadcast loop storm that froze the enterprise switch.</p>
+            
+            <div class="callout callout-warning" style="font-size:0.88rem;">
+                <strong>Engineering Diagnosis:</strong> Unmanaged switches do not process Spanning Tree BPDUs. Plugging both ends into wall jacks creates a loop that floods the switch CPU with infinite broadcast frames.
+            </div>
+
+            <div class="code-block" style="margin:0.5rem 0;">
+                <div class="code-header"><span>Step-by-Step CLI SOP Resolution</span></div>
+                <pre><code style="color:var(--accent-green);">
+Step 1: Identify high-bandwidth loop port using switch port stats:
+        Switch# show interfaces status
+        Switch# show spanning-tree summary
+
+Step 2: Enable BPDU Guard on all access ports so ports automatically shut down if a rogue switch is attached:
+        Switch(config)# interface range FastEthernet 0/1 - 24
+        Switch(config-if-range)# spanning-tree portfast
+        Switch(config-if-range)# spanning-tree bpduguard enable
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- TICKET 3 -->
+        <div class="card highlight">
+            <span class="badge badge-cyan">Field Ticket 03</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">Primary Fiber WAN Internet Cut - Executing Emergency ISP Failover</h3>
+            <p style="font-size:0.88rem;"><strong>Scenario:</strong> Construction outside campus cut the primary Liquid Fiber optic line. All internet browsing drops across all departments.</p>
+            
+            <div class="callout callout-work" style="font-size:0.88rem;">
+                <strong>Engineering Diagnosis:</strong> Inspect the core fiber transceiver converter box in the network cabinet. Link/RX LED is dark. Firewall static route must switch to secondary TelOne ISP link.
+            </div>
+
+            <div class="code-block" style="margin:0.5rem 0;">
+                <div class="code-header"><span>Step-by-Step CLI SOP Resolution</span></div>
+                <pre><code style="color:var(--accent-green);">
+Step 1: Check WAN interface status on perimeter firewall/router:
+        Firewall# show ip interface brief
+        ! Interface GigabitEthernet 0/0/1 (Primary Fiber) is down/down.
+
+Step 2: Verify active routing table:
+        Firewall# show ip route
+        ! Confirm floating static route automatically switched default route to Secondary WAN:
+        ! S* 0.0.0.0/0 [10/0] via 198.51.100.1 (TelOne Secondary Gateway)
+
+Step 3: Test ping connectivity to public DNS:
+        Firewall# ping 8.8.8.8
+        ! Open high-priority ticket with primary fiber provider while monitoring backup link bandwidth.
+                </code></pre>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

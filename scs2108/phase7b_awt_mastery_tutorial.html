@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 7B: AWT Mastery & Practical Exam Blueprint | SCS2108</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --accent-cyan: #06b6d4;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 0.5rem; }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(59, 130, 246, 0.15); color: var(--primary-light); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .section-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
+        .distinction-alert { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1)); border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 8px; margin: 1.5rem 0; }
+        .distinction-title { font-weight: 700; color: var(--primary-light); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.4rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.92rem; }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: rgba(255, 255, 255, 0.03); color: var(--primary-light); font-family: 'Outfit', sans-serif; font-weight: 600; }
+        .code-block { background: #0d1117; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; font-family: 'Fira Code', monospace; font-size: 0.88rem; color: #e6edf3; display: block; white-space: pre; overflow-x: auto; margin: 1.25rem 0; }
+        .quiz-box { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .btn-toggle { background: var(--primary); color: #fff; font-weight: 700; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-top: 1rem; }
+        .answer-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed rgba(59, 130, 246, 0.3); color: var(--text-muted); }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: 0.5rem; }
+        .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace; font-weight: 600; background: rgba(255, 255, 255, 0.08); color: var(--accent-cyan); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #60a5fa;">SCS2108</span> | <span style="color: #fff;">Phase Study Card</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="phase7_gui_awt_swing.html" class="nav-link">← Phase 7: GUI Basics</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <span class="phase-badge">Phase 07B • AWT Practical Blueprint</span>
+        <a href="phase8_jdbc_servlets.html" class="nav-link">Phase 8: JDBC & Servlets →</a>
+    </div>
+
+    <h1>Phase 7B: Demystifying AWT – Step-by-Step Practical Blueprint</h1>
+    <p class="intro-lead">Mastering Java's Abstract Window Toolkit (<code>java.awt.*</code>) for exam coding questions. Learn component instantiation, layout nesting, event handling, and bulletproof boilerplate templates.</p>
+
+    <!-- SECTION 1 -->
+    <div class="section-card">
+        <h2 class="section-title">1. The AWT Component Arsenal Demystified</h2>
+        <p>In Java AWT, everything inherits from <code>java.awt.Component</code> (or <code>java.awt.Container</code>). Here is the master lookup table of core components frequently required in exam questions:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Java Class</th>
+                    <th>Exam Use Case & Key Methods</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Window Container</strong></td>
+                    <td><code>Frame</code></td>
+                    <td>Top-level window. Default layout: <code>BorderLayout</code>. <br><code>setSize(w, h)</code>, <code>setLayout()</code>, <code>setVisible(true)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Sub-Container</strong></td>
+                    <td><code>Panel</code></td>
+                    <td>Organizes sub-groups of components. Default layout: <code>FlowLayout</code>. <br><code>panel.add(comp)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Static Text</strong></td>
+                    <td><code>Label</code></td>
+                    <td>Displays non-editable text labels. <br><code>new Label("Username:")</code>, <code>setText(str)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Single-Line Input</strong></td>
+                    <td><code>TextField</code></td>
+                    <td>Input box for text or passwords. <br><code>getText()</code>, <code>setText()</code>, <code>setEchoChar('*')</code> (for password)</td>
+                </tr>
+                <tr>
+                    <td><strong>Multi-Line Text</strong></td>
+                    <td><code>TextArea</code></td>
+                    <td>Multi-line scrollable text block. <br><code>append(str)</code>, <code>getText()</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Push Button</strong></td>
+                    <td><code>Button</code></td>
+                    <td>Clickable button. Triggers <code>ActionEvent</code>. <br><code>addActionListener(...)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Checkbox / Radio</strong></td>
+                    <td><code>Checkbox</code></td>
+                    <td>Toggle option. Use with <code>CheckboxGroup</code> for Radio Buttons! <br><code>getState()</code> returns boolean.</td>
+                </tr>
+                <tr>
+                    <td><strong>Dropdown Choice</strong></td>
+                    <td><code>Choice</code></td>
+                    <td>Single-selection dropdown list. <br><code>add("Option 1")</code>, <code>getSelectedItem()</code></td>
+                </tr>
+                <tr>
+                    <td><strong>List Box</strong></td>
+                    <td><code>List</code></td>
+                    <td>Scrollable item list. <br><code>add("Item")</code>, <code>getSelectedItems()</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="distinction-alert">
+            <div class="distinction-title">💡 Examiner Gold Rule: Radio Buttons in AWT</div>
+            AWT does <strong>NOT</strong> have a separate <code>JRadioButton</code> class! In AWT, you create radio buttons by assigning multiple <code>Checkbox</code> objects to a single <strong><code>CheckboxGroup</code></strong>:
+            <div class="code-block">
+CheckboxGroup genderGroup = new CheckboxGroup();
+Checkbox chkMale = new Checkbox("Male", genderGroup, true);   // selected by default
+Checkbox chkFemale = new Checkbox("Female", genderGroup, false);
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-card">
+        <h2 class="section-title">2. Mastering Layout Managers Without Panic</h2>
+        <p>AWT Layout Managers handle positioning automatically across platforms. Do not rely on hardcoded coordinates (`setLayout(null)`) unless specifically requested!</p>
+
+        <div class="code-block">
+┌────────────────────────────────────────────────────────────────────────┐
+│                        BorderLayout (Frame Default)                    │
+│ ┌────────────────────────────────────────────────────────────────────┐ │
+│ │                             NORTH                                  │ │
+│ ├──────────────┬──────────────────────────────────────┬──────────────┤ │
+│ │     WEST     │                CENTER                │     EAST     │ │
+│ │              │   (Nests a JPanel with GridLayout)   │              │ │
+│ ├──────────────┴──────────────────────────────────────┴──────────────┤ │
+│ │                             SOUTH                                  │ │
+│ │           (Nests a JPanel with FlowLayout for Buttons)             │ │
+│ └────────────────────────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h3>The 4 Essential Layouts:</h3>
+        <ul>
+            <li><strong><code>BorderLayout</code></strong>: Divides space into 5 regions (<code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>, <code>WEST</code>, <code>CENTER</code>). Components expand to fill their region. <em>Default for Frame.</em></li>
+            <li><strong><code>FlowLayout</code></strong>: Places components side-by-side left-to-right, wrapping to the next line. <em>Default for Panel.</em></li>
+            <li><strong><code>GridLayout(rows, cols, hgap, vgap)</code></strong>: Divides container into equal rectangular cells. Ideal for forms and calculators!</li>
+            <li><strong>Nested Panel Strategy (Examiner Distinction Secret)</strong>: Use <code>BorderLayout</code> on the main Frame, put input fields in a <code>GridLayout</code> panel in <code>CENTER</code>, and put buttons in a <code>FlowLayout</code> panel in <code>SOUTH</code>!</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section-card">
+        <h2 class="section-title">3. Event Delegation Model Demystified</h2>
+        <p>AWT uses the <strong>Delegation Event Model</strong>. An <em>Event Source</em> (e.g. Button) generates an <em>Event Object</em> (e.g. ActionEvent) and notifies registered <em>Event Listeners</em>.</p>
+
+        <h3>Pattern 1: Window Closing Handler (MANDATORY IN AWT!)</h3>
+        <p>In AWT, clicking the window close button ('X') does <strong>NOT</strong> close the application automatically. You must register a <code>WindowListener</code> or <code>WindowAdapter</code>:</p>
+        <div class="code-block">
+// Using WindowAdapter (Saves writing 7 empty interface methods!)
+addWindowListener(new WindowAdapter() {
+    @Override
+    public void windowClosing(WindowEvent e) {
+        dispose(); // Release window resources
+        System.exit(0); // Terminate JVM
+    }
+});
+        </div>
+
+        <h3>Pattern 2: Button Click Handler (ActionListener)</h3>
+        <div class="code-block">
+// Anonymous Inner Class Pattern (Recommended for exam speed)
+btnSubmit.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = txtName.getText();
+        lblStatus.setText("Welcome, " + name + "!");
+    }
+});
+        </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section-card">
+        <h2 class="section-title">4. Complete Exam-Ready AWT Code Template</h2>
+        <p>Memorize this clean, bulletproof structure to write any AWT GUI exam question in under 10 minutes:</p>
+
+        <div class="code-block">
+import java.awt.*;
+import java.awt.event.*;
+
+public class StudentRegistrationForm extends Frame implements ActionListener {
+    // 1. Declare Components as Instance Fields
+    private Label lblTitle, lblName, lblCourse, lblStatus;
+    private TextField txtName;
+    private Choice choiceCourse;
+    private Button btnSubmit, btnClear;
+
+    public StudentRegistrationForm() {
+        // 2. Set Frame Title and Main Layout
+        super("NUST Student Registration System");
+        setLayout(new BorderLayout(10, 10));
+
+        // 3. Header Panel (NORTH)
+        lblTitle = new Label("Student Registration Form", Label.CENTER);
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
+        add(lblTitle, BorderLayout.NORTH);
+
+        // 4. Form Fields Panel (CENTER using 2x2 GridLayout)
+        Panel formPanel = new Panel(new GridLayout(2, 2, 10, 10));
+        
+        lblName = new Label("Full Name:");
+        txtName = new TextField(20);
+        
+        lblCourse = new Label("Select Course:");
+        choiceCourse = new Choice();
+        choiceCourse.add("SCS2108 - OOP");
+        choiceCourse.add("SCS2101 - Data Structures");
+        choiceCourse.add("SCS2104 - Database Systems");
+
+        formPanel.add(lblName);
+        formPanel.add(txtName);
+        formPanel.add(lblCourse);
+        formPanel.add(choiceCourse);
+
+        add(formPanel, BorderLayout.CENTER);
+
+        // 5. Button Panel (SOUTH using FlowLayout)
+        Panel buttonPanel = new Panel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        btnSubmit = new Button("Submit");
+        btnClear = new Button("Clear");
+        lblStatus = new Label("Status: Ready");
+
+        // Register Action Listeners
+        btnSubmit.addActionListener(this);
+        btnClear.addActionListener(this);
+
+        buttonPanel.add(btnSubmit);
+        buttonPanel.add(btnClear);
+        buttonPanel.add(lblStatus);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // 6. Window Closing Handler
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        // 7. Frame Sizing & Visibility
+        setSize(450, 250);
+        setLocationRelativeTo(null); // Center on screen
+        setVisible(true);
+    }
+
+    // 8. Event Handler Method
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnSubmit) {
+            String name = txtName.getText().trim();
+            String course = choiceCourse.getSelectedItem();
+            if (name.isEmpty()) {
+                lblStatus.setText("Status: Error! Name cannot be empty.");
+            } else {
+                lblStatus.setText("Status: Registered " + name + " for " + course);
+            }
+        } else if (e.getSource() == btnClear) {
+            txtName.setText("");
+            lblStatus.setText("Status: Form cleared.");
+        }
+    }
+
+    public static void main(String[] args) {
+        new StudentRegistrationForm();
+    }
+}
+        </div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section-card">
+        <h2 class="section-title">5. 6 Examiner Traps & Distinction Hacks</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Examiner Trap</th>
+                    <th>Why It Fails</th>
+                    <th>Distinction Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Clicking 'X' does not close window</td>
+                    <td>AWT Frame has no default close operation like Swing's <code>EXIT_ON_CLOSE</code>.</td>
+                    <td>Must add <code>addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });</code></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Window appears completely blank</td>
+                    <td>Forgot <code>setVisible(true)</code> or called it before adding components.</td>
+                    <td>Always call <code>setVisible(true)</code> at the <strong>very end</strong> of constructor after all components are added.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Components overlap or take up entire window</td>
+                    <td>Adding multiple components to <code>BorderLayout</code> region without specifying location, or defaulting to <code>CENTER</code>.</td>
+                    <td>Use nested <code>Panel</code> objects with <code>GridLayout</code> or <code>FlowLayout</code> inside <code>BorderLayout</code> regions.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Creating Radio Buttons using `JRadioButton` in AWT</td>
+                    <td>`JRadioButton` belongs to Swing (`javax.swing.*`), not AWT!</td>
+                    <td>Use <code>Checkbox</code> associated with a <code>CheckboxGroup</code>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Password field shows plain text</td>
+                    <td>Using standard <code>TextField</code> without setting echo character.</td>
+                    <td>Call <code>pwdField.setEchoChar('*');</code> on the <code>TextField</code>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Password read comparison fails</td>
+                    <td>Calling <code>getText()</code> on password field without trimming whitespace.</td>
+                    <td>Use <code>txtPwd.getText().trim()</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-box">
+        <h3 style="color: var(--primary-light); font-family: 'Outfit', sans-serif;">⚡ Quick Self-Test</h3>
+        <p style="margin-top: 0.5rem; font-size: 0.95rem;">Q: Explain why <code>WindowAdapter</code> is preferred over implementing <code>WindowListener</code> directly in an AWT Frame class.</p>
+        
+        <button class="btn-toggle" onclick="toggleAnswer('q7b')">Show Model Answer</button>
+        <div id="q7b" class="answer-content">
+            <strong>Answer:</strong><br>
+            <code>WindowListener</code> is an interface containing <strong>7 abstract methods</strong> (<code>windowOpened</code>, <code>windowClosing</code>, <code>windowClosed</code>, <code>windowIconified</code>, <code>windowDeiconified</code>, <code>windowActivated</code>, <code>windowDeactivated</code>). If you implement the interface directly, you are forced to override all 7 methods, leading to redundant empty method bodies.<br><br>
+            <code>WindowAdapter</code> is an abstract adapter class that provides empty default implementations for all 7 methods. Extending <code>WindowAdapter</code> allows you to override <strong>only</strong> the method you need (e.g. <code>windowClosing</code>), keeping exam code concise and error-free.
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="phase7_gui_awt_swing.html" class="nav-link">← Phase 7: GUI Basics</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <a href="phase8_jdbc_servlets.html" class="nav-link">Next: Phase 8 - JDBC & Servlets →</a>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+(function() {
+    const phaseId = 'phase7b';
+    const views = JSON.parse(localStorage.getItem('scs2108_views') || '{}');
+    views[phaseId] = (views[phaseId] || 0) + 1;
+    localStorage.setItem('scs2108_views', JSON.stringify(views));
+})();
+</script>
+
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyūkei (休憩) | Unified Study & Exam Campaign</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- LocalStorage Telemetry Engine -->
+    <script src="js/app.js"></script>
+    <style>
+        :root {
+            --bg-dark: #07090e;
+            --card-bg: rgba(11, 17, 30, 0.52);
+            --card-bg-hover: rgba(15, 23, 42, 0.68);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --card-border-glow: rgba(245, 158, 11, 0.5);
+            --border-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            --primary-accent: #f59e0b;
+            --emerald: #10b981;
+            --cyan: #06b6d4;
+            --indigo: #6366f1;
+            --rose: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --glass-blur: 14px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* --- SPLASH SCREEN OVERLAY STYLES --- */
+        #kyukei-splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999;
+            background-color: rgba(7, 9, 14, 0.94);
+            background-image: 
+                linear-gradient(to bottom, rgba(7, 9, 14, 0.8), rgba(7, 9, 14, 0.92)),
+                url('assets/kyukei_wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+        }
+
+        #kyukei-splash-overlay.hidden {
+            opacity: 0;
+            transform: scale(1.04);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-content-card {
+            text-align: center;
+            padding: 2.2rem 2rem;
+            max-width: 420px;
+            width: 90%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25), 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.2);
+            border-radius: 28px;
+            animation: splashPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes splashPop {
+            from { opacity: 0; transform: scale(0.88) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .splash-img-wrapper {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 1.25rem;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 158, 11, 0.25);
+            border: 2px solid rgba(245, 158, 11, 0.45);
+            animation: splashFloat 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes splashFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .splash-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .splash-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .splash-tagline {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        /* --- CIRCULAR PROGRESS RING --- */
+        .splash-ring-container {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .splash-ring-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .splash-ring-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 6;
+        }
+
+        .splash-ring-circle {
+            fill: none;
+            stroke: url(#splashGrad);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 213.6;
+            stroke-dashoffset: 213.6;
+            animation: splashRingProgress 5s linear forwards;
+        }
+
+        @keyframes splashRingProgress {
+            0% { stroke-dashoffset: 213.6; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .splash-skip-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .splash-skip-btn:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(to bottom, rgba(7, 9, 14, 0.45), rgba(7, 9, 14, 0.62)),
+                url('assets/wallpaper.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .brand-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1.5px solid rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+        }
+
+        /* --- GLOPKIT AMBIENT GLOW ORBS --- */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.18;
+        }
+
+        .ambient-orb-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: orbFloat1 18s ease-in-out infinite alternate;
+        }
+
+        .ambient-orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation: orbFloat2 22s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbFloat1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 80px) scale(1.1); }
+        }
+
+        @keyframes orbFloat2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-80px, -60px) scale(1.15); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.75rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- HEADER (GLOPKIT GLASS ENGINE) --- */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 12px 35px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 1.35rem 2rem;
+            margin-bottom: 1.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-icon {
+            font-size: 2.3rem;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.4));
+        }
+
+        .brand-title {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: var(--primary-accent);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .campaign-badge {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            padding: 0.65rem 1.25rem;
+            border-radius: 14px;
+        }
+
+        .timer-box {
+            text-align: right;
+        }
+
+        .timer-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .timer-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #60a5fa;
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Glopkit LED Dot Indicator */
+        .gk-led-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            display: inline-block;
+            box-shadow: 0 0 10px currentColor;
+            animation: gkLedPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes gkLedPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .status-pill.red { background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; box-shadow: 0 0 15px rgba(244, 63, 94, 0.25); }
+        .status-pill.yellow { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.25); }
+        .status-pill.green { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.25); }
+
+        /* --- GLASS SECTIONS & CARDS --- */
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 1.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .concept-card {
+            text-decoration: none;
+            color: inherit;
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 10px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 18px;
+            padding: 1.65rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--card-border-glow);
+            box-shadow: var(--border-highlight), 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2);
+            background: var(--card-bg-hover);
+        }
+
+        .card-phase {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--primary-accent);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            color: #fff;
+        }
+
+        .card-desc {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 12px;
+        }
+
+        /* --- SUMMARY CARDS --- */
+        .summary-cards-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .mini-stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 8px 20px rgba(0, 0, 0, 0.35);
+            border-radius: 16px;
+            padding: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .mini-stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(245, 158, 11, 0.45);
+            box-shadow: var(--border-highlight), 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.15);
+            background: var(--card-bg-hover);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-code {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .stat-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fg {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0.8rem 0.8rem 2rem 0.8rem;
+            }
+
+            .app-header {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem;
+                border-radius: 16px;
+                margin-bottom: 1.2rem;
+            }
+
+            .brand-title {
+                font-size: 1.35rem;
+            }
+
+            .brand-subtitle {
+                display: none;
+            }
+
+            .campaign-badge {
+                flex-direction: column !important;
+                align-items: center !important;
+                width: 100% !important;
+                gap: 10px !important;
+                padding: 0.8rem !important;
+                box-sizing: border-box !important;
+            }
+
+            .campaign-timers-row {
+                width: 100% !important;
+                justify-content: space-around !important;
+                gap: 10px !important;
+            }
+
+            .timer-val {
+                font-size: 0.95rem;
+            }
+
+            .status-pill {
+                width: 100% !important;
+                justify-content: center !important;
+                text-align: center !important;
+                font-size: 0.72rem !important;
+                padding: 6px 10px !important;
+                box-sizing: border-box !important;
+            }
+
+            #campaign-heatmap-grid {
+                grid-template-columns: repeat(6, 1fr) !important;
+                gap: 6px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- KYŪKEI TEA BREAK SPLASH OVERLAY -->
+<div id="kyukei-splash-overlay" onclick="dismissSplash()">
+    <div class="splash-content-card" onclick="event.stopPropagation()">
+        <div class="splash-img-wrapper">
+            <img src="assets/splash.png" alt="Kyūkei Tea Break" class="splash-img">
+        </div>
+        <h2 class="splash-title">Kyūkei (休憩)</h2>
+        <p class="splash-tagline">Take a tea break • Recharge your mind • Master your exams</p>
+        
+        <!-- 5-Second Circular SVG Progress Ring -->
+        <div class="splash-ring-container">
+            <svg class="splash-ring-svg" viewBox="0 0 80 80">
+                <defs>
+                    <linearGradient id="splashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f59e0b" />
+                        <stop offset="50%" stop-color="#10b981" />
+                        <stop offset="100%" stop-color="#06b6d4" />
+                    </linearGradient>
+                </defs>
+                <circle class="splash-ring-bg" cx="40" cy="40" r="34"></circle>
+                <circle class="splash-ring-circle" cx="40" cy="40" r="34"></circle>
+            </svg>
+        </div>
+
+        <button type="button" class="splash-skip-btn" onclick="dismissSplash()">Enter Dashboard →</button>
+    </div>
+</div>
+
+<!-- Ambient Glow Orbs -->
+<div class="ambient-orb ambient-orb-1"></div>
+<div class="ambient-orb ambient-orb-2"></div>
+
+<div class="container">
+    <!-- APP HEADER (Brand, Timers & Overall Status) -->
+    <header class="app-header">
+        <div class="brand-section">
+            <span class="brand-icon">⚔️</span>
+            <div>
+                <h1 class="brand-title">Kyūkei (休憩)</h1>
+                <div class="brand-subtitle">The Art of War — Exam Distinction Campaign</div>
+            </div>
+        </div>
+
+        <div class="campaign-badge">
+            <div class="campaign-timers-row" style="display: flex; gap: 1.5rem;">
+                <div class="timer-box">
+                    <div class="timer-label">Study Break Target</div>
+                    <div class="timer-val" id="study-break-countdown">-- Days</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-label">Exam Sprint</div>
+                    <div class="timer-val" style="color: #f43f5e;" id="exam-countdown">17 - 21 Aug</div>
+                </div>
+            </div>
+            <div id="overall-status-pill" class="status-pill red">
+                <span class="gk-led-dot"></span> <span id="status-text">ALERT: UNREAD</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: CAMPAIGN CALENDAR & STREAK (TOP) -->
+    <section style="margin-bottom: 2rem;">
+        <div class="glass-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff;">🗓️ 24-Day Distinction Campaign Calendar (29 Jul – 21 Aug)</h3>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Daily target completion timeline & habit consistency</div>
+                </div>
+                <div id="streak-badge" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.85rem; box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);">
+                    🔥 0-DAY STREAK
+                </div>
+            </div>
+
+            <!-- Heatmap Grid -->
+            <div id="campaign-heatmap-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 8px;">
+                <!-- Dynamically populated tiles -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: TODAY'S TARGET SUMMARY (MIDDLE - 3 PROGRESS CARDS) -->
+    <section style="margin-bottom: 2.5rem;">
+        <div style="margin-bottom: 1.2rem;">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff;">🎯 Today's Target Summary</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Daily progress per module (Target: 3 session opens each)</p>
+        </div>
+        <div class="summary-cards-column" id="course-summary-container">
+            <!-- Dynamically populated 3 course summary cards -->
+        </div>
+    </section>
+
+    <!-- SECTION 3: COURSE STUDY DASHBOARDS (BOTTOM - 3 COURSE CARDS) -->
+    <section style="margin-bottom: 3rem;">
+        <div style="margin-bottom: 1.2rem;">
+            <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 700; color: #fff;">📚 Course Study Dashboards</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Select a course module to access exam drills, study cards, and practical tutorials</p>
+        </div>
+        <div class="card-grid">
+            <!-- SCS2108 Card -->
+            <a href="scs2108/index.html" class="concept-card" style="border-color: rgba(99, 102, 241, 0.35);">
+                <div>
+                    <div class="card-phase" style="color: #818cf8;">SCS2108 • 22 PHASES</div>
+                    <div class="card-title">Object-Oriented Software Concepts & Development</div>
+                    <div class="card-desc">22-Phase complete exam system covering OOP pillars, UML modeling, JVM mechanics, AWT/Swing GUI, JDBC, and past paper sprints.</div>
+                </div>
+                <div class="card-meta">
+                    <span style="color: #818cf8; font-weight: 700;">Open Dashboard →</span>
+                    <span style="font-weight: 700; color: #10b981;">22 Cards Unlocked</span>
+                </div>
+            </a>
+
+            <!-- SCS2111 Card -->
+            <a href="scs2111/index.html" class="concept-card" style="border-color: rgba(6, 182, 212, 0.35);">
+                <div>
+                    <div class="card-phase" style="color: #06b6d4;">SCS2111 • NETWORKING</div>
+                    <div class="card-title">Data Communications & Networking</div>
+                    <div class="card-desc">Protocol stacks, 7-layer OSI reference model, TCP 3-way handshake vs UDP streaming, IP CIDR subnetting, and Cisco Packet Tracer tutorials.</div>
+                </div>
+                <div class="card-meta">
+                    <span style="color: #06b6d4; font-weight: 700;">Open Dashboard →</span>
+                    <span style="font-weight: 700; color: #38bdf8;">Networking Core</span>
+                </div>
+            </a>
+
+            <!-- SCS2110 Card -->
+            <a href="scs2110/index.html" class="concept-card" style="border-color: rgba(245, 158, 11, 0.35);">
+                <div>
+                    <div class="card-phase" style="color: #f59e0b;">SCS2110 • RESEARCH</div>
+                    <div class="card-title">Research Methods</div>
+                    <div class="card-desc">Research design, literature review synthesis, quantitative vs qualitative sampling, design science, data collection & LaTeX formatting.</div>
+                </div>
+                <div class="card-meta">
+                    <span style="color: #f59e0b; font-weight: 700;">Open Dashboard →</span>
+                    <span style="font-weight: 700; color: #f59e0b;">Research Modules</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH SUSPENDED BOTTOM LEFT CREDITS -->
+    <footer style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div class="bottom-credits" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; font-weight: 500; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
+            <div>Prepared by the Teqmaster.</div>
+            <div style="margin-top: 3px;">
+                <a href="https://www.mphathisi.com" target="_blank" rel="noopener noreferrer" style="color: #f59e0b; text-decoration: none; font-weight: 700; text-shadow: 0 0 12px rgba(245, 158, 11, 0.45); transition: color 0.2s;">mphathisi.com</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function updateTimers() {
+        const now = new Date();
+        const studyBreakEnd = new Date('2026-08-16T23:59:59');
+        const examStart = new Date('2026-08-17T00:00:00');
+        const examEnd = new Date('2026-08-21T23:59:59');
+
+        const diffBreakMs = studyBreakEnd - now;
+        const diffBreakDays = Math.max(0, Math.ceil(diffBreakMs / (1000 * 60 * 60 * 24)));
+
+        const countdownEl = document.getElementById('study-break-countdown');
+        const examEl = document.getElementById('exam-countdown');
+
+        if (countdownEl) {
+            if (now > examEnd) {
+                countdownEl.textContent = `COMPLETED`;
+            } else if (now >= examStart && now <= examEnd) {
+                countdownEl.textContent = `EXAM PERIOD!`;
+            } else if (diffBreakDays > 1) {
+                countdownEl.textContent = `${diffBreakDays} Days Left`;
+            } else if (diffBreakDays === 1) {
+                countdownEl.textContent = `1 Day Left`;
+            } else {
+                countdownEl.textContent = `LAST DAY`;
+            }
+        }
+
+        if (examEl) {
+            if (now >= examStart && now <= examEnd) {
+                examEl.textContent = `NOW LIVE (17-21 Aug)`;
+            } else {
+                examEl.textContent = `17 - 21 Aug`;
+            }
+        }
+    }
+
+    function renderSummary() {
+        if (!window.StudyEngine) return;
+        const summary = window.StudyEngine.getSummary();
+        const statusPill = document.getElementById('overall-status-pill');
+        const statusText = document.getElementById('status-text');
+
+        if (statusPill && statusText) {
+            statusPill.className = 'status-pill ' + summary.overall_status;
+            if (summary.overall_status === 'green') {
+                statusText.textContent = 'DISTINCTION READY (' + summary.overall_percent + '%)';
+            } else if (summary.overall_status === 'yellow') {
+                statusText.textContent = 'ON TRACK (' + summary.overall_percent + '%)';
+            } else {
+                statusText.textContent = 'ALERT: UNREAD (' + summary.overall_percent + '%)';
+            }
+        }
+
+        // Render summary cards
+        const container = document.getElementById('course-summary-container');
+        if (container) {
+            container.innerHTML = '';
+            Object.keys(summary.courses).forEach(cId => {
+                const c = summary.courses[cId];
+                let barColor = '#f43f5e';
+                if (c.status === 'yellow') barColor = '#f59e0b';
+                if (c.status === 'green') barColor = '#10b981';
+
+                const card = document.createElement('div');
+                card.className = 'mini-stat-card';
+                card.innerHTML = `
+                    <div class="stat-header">
+                        <span class="stat-code">${c.code}</span>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: ${barColor};">${c.count} / ${c.target} Sessions</span>
+                    </div>
+                    <div class="stat-name">${c.name}</div>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fg" style="width: ${c.percent}%; background: ${barColor};"></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    }
+
+    function renderHeatmap() {
+        if (!window.StudyEngine) return;
+        const heatmap = window.StudyEngine.getCampaignHeatmap();
+        const gridContainer = document.getElementById('campaign-heatmap-grid');
+        const streakBadge = document.getElementById('streak-badge');
+
+        if (streakBadge) {
+            streakBadge.textContent = `🔥 ${heatmap.streak}-DAY STREAK`;
+        }
+
+        if (gridContainer) {
+            gridContainer.innerHTML = '';
+            heatmap.grid.forEach(day => {
+                const dateObj = new Date(day.date + 'T00:00:00');
+                const label = (dateObj.getMonth() + 1) + '/' + dateObj.getDate();
+
+                let bg = 'rgba(255, 255, 255, 0.05)';
+                let border = 'rgba(255, 255, 255, 0.08)';
+                let color = 'var(--text-muted)';
+
+                if (day.status === 'future') {
+                    bg = 'rgba(255, 255, 255, 0.02)';
+                    border = 'rgba(255, 255, 255, 0.04)';
+                    color = '#475569';
+                } else if (day.status === 'green') {
+                    bg = 'rgba(16, 185, 129, 0.2)';
+                    border = 'rgba(16, 185, 129, 0.5)';
+                    color = '#10b981';
+                } else if (day.status === 'yellow') {
+                    bg = 'rgba(245, 158, 11, 0.2)';
+                    border = 'rgba(245, 158, 11, 0.5)';
+                    color = '#f59e0b';
+                } else if (day.status === 'red') {
+                    bg = 'rgba(244, 63, 94, 0.15)';
+                    border = 'rgba(244, 63, 94, 0.3)';
+                    color = '#f43f5e';
+                }
+
+                const tile = document.createElement('div');
+                tile.style.cssText = `
+                    background: ${bg};
+                    border: 1px solid ${border};
+                    border-radius: 10px;
+                    padding: 8px 4px;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 2px;
+                    ${day.is_today ? 'box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); border-color: #f59e0b;' : ''}
+                `;
+                tile.title = `${day.date}: ${day.total_reads} sessions (${day.status.toUpperCase()})`;
+                tile.innerHTML = `
+                    <span style="font-size: 0.68rem; font-weight: 700; color: ${color};">${label}</span>
+                    <span style="font-size: 0.75rem; font-weight: 800; color: #fff;">${day.total_reads}</span>
+                `;
+                gridContainer.appendChild(tile);
+            });
+        }
+    }
+
+    function initSplash() {
+        const splashOverlay = document.getElementById('kyukei-splash-overlay');
+        if (!splashOverlay) return;
+
+        // Frequency control: Only show splash once per browser session
+        if (sessionStorage.getItem('studybreak_splash_shown')) {
+            splashOverlay.style.display = 'none';
+            return;
+        }
+
+        // Auto-dismiss after 5 seconds with smooth transition
+        setTimeout(() => {
+            dismissSplash();
+        }, 5000);
+    }
+
+    function dismissSplash() {
+        const splashOverlay = document.getElementById('kyukei-splash-overlay');
+        if (splashOverlay && !splashOverlay.classList.contains('hidden')) {
+            splashOverlay.classList.add('hidden');
+            sessionStorage.setItem('studybreak_splash_shown', 'true');
+            setTimeout(() => {
+                splashOverlay.style.display = 'none';
+            }, 800);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initSplash();
+        updateTimers();
+        renderSummary();
+        renderHeatmap();
+        setInterval(updateTimers, 60000);
+    });
+</script>
+</body>
+</html>

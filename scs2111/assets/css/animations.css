@@ -1,0 +1,182 @@
+/* Specialized Network & Simulator Animations */
+
+@keyframes packetPulse {
+  0% {
+    left: 0%;
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--primary-cyan);
+  }
+  100% {
+    left: 90%;
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes signalGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(56, 189, 248, 0.4);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.9), 0 0 30px rgba(56, 189, 248, 0.6);
+    border-color: var(--primary-cyan);
+  }
+}
+
+@keyframes bitFlip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(90deg); color: var(--accent-green); }
+  100% { transform: rotateX(0deg); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+/* Interactive Simulator Canvas Styles */
+.simulator-box {
+  background: #040711;
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-track {
+  height: 60px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(56, 189, 248, 0.2);
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 10px;
+  margin: 1rem 0;
+}
+
+.packet-node {
+  width: 36px;
+  height: 36px;
+  background: var(--primary-cyan);
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 12px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 12px var(--primary-cyan);
+}
+
+.node-host {
+  width: 80px;
+  height: 70px;
+  background: rgba(16, 23, 42, 0.9);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.node-host.active {
+  border-color: var(--primary-cyan);
+  animation: signalGlow 2s infinite ease-in-out;
+}
+
+/* OSI Encapsulation Layer Visualizer */
+.osi-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 1rem 0;
+}
+
+.osi-layer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.osi-layer:hover, .osi-layer.active {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--primary-cyan);
+  transform: translateX(6px);
+}
+
+.pdu-badge {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent-amber);
+}
+
+/* Subnet Bit Visualizer Grid */
+.binary-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1rem 0;
+  font-family: var(--font-code);
+}
+
+.bit-box {
+  width: 32px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 23, 42, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.bit-box.net-bit {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+}
+
+.bit-box.host-bit {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.octet-separator {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  padding: 0 4px;
+}

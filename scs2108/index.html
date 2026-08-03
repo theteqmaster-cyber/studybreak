@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCS2108 Distinction Master Plan | 22-Phase Complete Exam System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --bg-card-hover: #1f293d;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent-emerald: #10b981;
+            --accent-pink: #ec4899;
+            --accent-amber: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dim: #6b7280;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding: 2rem 1rem; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; }
+        header::after { content: ''; display: block; width: 140px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent-pink), var(--accent-emerald)); margin: 1.5rem auto 0; border-radius: 2px; }
+        .badge { display: inline-block; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; background: rgba(99, 102, 241, 0.15); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); margin-bottom: 1rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.75rem; }
+        .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+        
+        .section-header { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin: 3rem 0 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-color); padding-bottom: 0.75rem; }
+        .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+        
+        .phase-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: inherit; }
+        .phase-card:hover { transform: translateY(-5px); border-color: var(--border-glow); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15); background: var(--bg-card-hover); }
+        .phase-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--card-accent, var(--primary)), transparent); }
+        .phase-number { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--card-accent, var(--primary-light)); margin-bottom: 0.5rem; }
+        .phase-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+        .phase-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; flex-grow: 1; }
+        .phase-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .btn-start { font-size: 0.88rem; font-weight: 600; color: var(--card-accent, var(--primary-light)); }
+
+        .read-count-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 0.5rem 0.5rem 2rem 0.5rem; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.95rem; }
+            .phase-grid { grid-template-columns: 1fr; }
+            .phase-card { padding: 1.25rem; }
+            #kyukei-nav-bar { padding: 8px 12px !important; }
+            #kyukei-nav-bar div:nth-child(2) { display: none; }
+        }
+
+        footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #60a5fa;">SCS2108</span> | <span style="color: #fff;">Phase Study Card</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+
+<div class="container">
+    <header>
+        <span class="badge">SCS2108 Complete Distinction Blueprint</span>
+        <h1>22-Phase Master Study & Exam System</h1>
+        <p class="subtitle">High-density conceptual breakdowns, code anatomy, constructors demystified, deep dives, 120 interactive exam questions, and exact Wednesday test paper mastery.</p>
+    </header>
+
+    <!-- SECTION 1 -->
+    <div class="section-header">
+        <span style="color: var(--primary-light);">Section 1: Conceptual Foundations (Wednesday Test Core)</span>
+    </div>
+    <div class="phase-grid">
+        <a href="phase1_oop_foundations.html" class="phase-card" data-phase-id="phase1" style="--card-accent: #6366f1;">
+            <div class="phase-number">PHASE 01</div>
+            <div class="phase-title">OOP Foundations & Relationships</div>
+            <div class="phase-desc">4 OOP Pillars, Association, Aggregation (◇), and Composition (◆).</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 1 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase2_uml_modeling.html" class="phase-card" data-phase-id="phase2" style="--card-accent: #10b981;">
+            <div class="phase-number">PHASE 02 • 30% EXAM WEIGHT</div>
+            <div class="phase-title">UML Modeling & Diagrams</div>
+            <div class="phase-desc">Class, Use Case, Sequence, Activity, State, Package, Deployment & OCL.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 2 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase3_java_mechanics_jvm.html" class="phase-card" data-phase-id="phase3" style="--card-accent: #06b6d4;">
+            <div class="phase-number">PHASE 03</div>
+            <div class="phase-title">JVM Architecture & Modifiers</div>
+            <div class="phase-desc">Bytecode, JIT, Garbage Collection, Access Modifiers, static & final.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 3 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase4_abstraction_interfaces_binding.html" class="phase-card" data-phase-id="phase4" style="--card-accent: #ec4899;">
+            <div class="phase-number">PHASE 04</div>
+            <div class="phase-title">Interfaces & Dynamic Binding</div>
+            <div class="phase-desc">Abstract Class vs Interface, Dynamic Binding & Virtual Method Dispatch.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 4 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase5_exception_handling.html" class="phase-card" data-phase-id="phase5" style="--card-accent: #f59e0b;">
+            <div class="phase-number">PHASE 05</div>
+            <div class="phase-title">Exception Handling & Robust Systems</div>
+            <div class="phase-desc">Throwable hierarchy, Checked vs Unchecked exceptions, try-catch-finally.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 5 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-header">
+        <span style="color: var(--accent-emerald);">Section 2: Deep Dives & Code Implementation</span>
+    </div>
+    <div class="phase-grid">
+        <a href="phase9_objects_instances_instantiation.html" class="phase-card" data-phase-id="phase9" style="--card-accent: #6366f1;">
+            <div class="phase-number">PHASE 09</div>
+            <div class="phase-title">Demystifying Objects & Instantiation</div>
+            <div class="phase-desc">House Blueprint analogy: Class vs Instantiation vs Object vs Reference Variable.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 9 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase9b_constructors_demystified.html" class="phase-card" data-phase-id="phase9b" style="--card-accent: #f59e0b;">
+            <div class="phase-number">PHASE 09B</div>
+            <div class="phase-title">Demystifying Constructors in Java</div>
+            <div class="phase-desc">Golden rules, Default vs Parameterized constructors, overloading, this() & super() chaining rules.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 9B →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase10_deep_dive_oop_pillars.html" class="phase-card" data-phase-id="phase10" style="--card-accent: #ec4899;">
+            <div class="phase-number">PHASE 10</div>
+            <div class="phase-title">Deep Dive: Encapsulation, Abstraction & Polymorphism</div>
+            <div class="phase-desc">Real-world analogies (Pill, Accelerator, Universal Remote) to master the 3 pillars.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 10 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase10b_overriding_vs_overloading.html" class="phase-card" data-phase-id="phase10b" style="--card-accent: #ec4899;">
+            <div class="phase-number">PHASE 10B • NEW DEEP DIVE</div>
+            <div class="phase-title">Overriding vs Overloading Demystified</div>
+            <div class="phase-desc">Dynamic Method Dispatch, static vs runtime binding, 6 strict compiler rules, covariant returns & code traces.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 10B →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase10c_exception_handling_deep_dive.html" class="phase-card" data-phase-id="phase10c" style="--card-accent: #f59e0b;">
+            <div class="phase-number">PHASE 10C • NEW DEEP DIVE</div>
+            <div class="phase-title">Exception Handling & Control Flow</div>
+            <div class="phase-desc">Throwable hierarchy, try-catch-finally execution paths, catch ordering, throw vs throws & custom exceptions.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 10C →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase11_classes_in_code.html" class="phase-card" data-phase-id="phase11" style="--card-accent: #06b6d4;">
+            <div class="phase-number">PHASE 11</div>
+            <div class="phase-title">Anatomy of Classes in Code</div>
+            <div class="phase-desc">Line-by-line Java code construction of fields, constructors, getters, setters, methods.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 11 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase12_four_pillars_code_snippets.html" class="phase-card" data-phase-id="phase12" style="--card-accent: #10b981;">
+            <div class="phase-number">PHASE 12</div>
+            <div class="phase-title">4 Pillars Implemented in Code</div>
+            <div class="phase-desc">Executable Java snippets for Encapsulation, Abstraction, Inheritance, Polymorphism.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 12 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section-header">
+        <span style="color: var(--accent-pink);">Section 3: Interactive Exam Drills & Examiner Trick-Busting (120 Questions)</span>
+    </div>
+    <div class="phase-grid">
+        <a href="phase13_exam_drill_1.html" class="phase-card" data-phase-id="phase13" style="--card-accent: #6366f1;">
+            <div class="phase-number">PHASE 13 • 40 EXAM QUESTIONS</div>
+            <div class="phase-title">Exam Drill 1: OOP Principles & Concepts</div>
+            <div class="phase-desc">20 Easy, 10 Medium, 10 Hard/Examiner Trick questions with interactive model answers.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Start Drill 1 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase14_exam_drill_2.html" class="phase-card" data-phase-id="phase14" style="--card-accent: #10b981;">
+            <div class="phase-number">PHASE 14 • 40 EXAM QUESTIONS</div>
+            <div class="phase-title">Exam Drill 2: UML Diagrams & Modeling</div>
+            <div class="phase-desc">20 Easy, 10 Medium, 10 Hard questions covering exact UML notation & scoring.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Start Drill 2 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase15_exam_drill_3.html" class="phase-card" data-phase-id="phase15" style="--card-accent: #f59e0b;">
+            <div class="phase-number">PHASE 15 • 40 EXAM QUESTIONS</div>
+            <div class="phase-title">Exam Drill 3: Java Mechanics, JVM & Exceptions</div>
+            <div class="phase-desc">20 Easy, 10 Medium, 10 Hard questions on JVM, modifiers, interfaces & exceptions.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Start Drill 3 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section-header">
+        <span style="color: var(--accent-amber);">Section 4: Advanced Final Exam Modules</span>
+    </div>
+    <div class="phase-grid">
+        <a href="phase6_collections_generics.html" class="phase-card" data-phase-id="phase6" style="--card-accent: #8b5cf6;">
+            <div class="phase-number">PHASE 06</div>
+            <div class="phase-title">Collections Framework & Generics</div>
+            <div class="phase-desc">List, Set, Map, ArrayList vs LinkedList, HashSet & HashMap, Generics.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 6 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase7_gui_awt_swing.html" class="phase-card" data-phase-id="phase7" style="--card-accent: #3b82f6;">
+            <div class="phase-number">PHASE 07</div>
+            <div class="phase-title">GUI Programming: AWT & Swing</div>
+            <div class="phase-desc">Heavyweight vs Lightweight, Containers, Layout Managers, Event Delegation.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 7 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase7b_awt_mastery_tutorial.html" class="phase-card" data-phase-id="phase7b" style="--card-accent: #06b6d4;">
+            <div class="phase-number">PHASE 07B • PRACTICAL BLUEPRINT</div>
+            <div class="phase-title">Demystifying AWT: Practical Mastery</div>
+            <div class="phase-desc">Step-by-step AWT tutorial, component arsenal, layout nesting, WindowAdapter, and boilerplate code templates.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 7B →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase8_jdbc_servlets.html" class="phase-card" data-phase-id="phase8" style="--card-accent: #10b981;">
+            <div class="phase-number">PHASE 08</div>
+            <div class="phase-title">Database Connectivity (JDBC) & Servlets</div>
+            <div class="phase-desc">Driver Types 1-4, 5 JDBC Steps, PreparedStatement, Servlet Lifecycle.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 8 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase8b_jdbc_login_system.html" class="phase-card" data-phase-id="phase8b" style="--card-accent: #14b8a6;">
+            <div class="phase-number">PHASE 08B • EXAM DRILL</div>
+            <div class="phase-title">JDBC 5-User Login System Mastery</div>
+            <div class="phase-desc">SQL DDL & DML 5-user seeding, PreparedStatement authentication, AWT GUI + JDBC integration & traps.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Phase 8B →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section-header">
+        <span style="color: var(--primary-light);">Section 5: Wednesday Exam Sprint (Exact Test Paper Mastery)</span>
+    </div>
+    <div class="phase-grid">
+        <a href="phase16_wednesday_test_sprint_1.html" class="phase-card" data-phase-id="phase16" style="--card-accent: #6366f1;">
+            <div class="phase-number">PHASE 16 • TEST PAPER PART 1</div>
+            <div class="phase-title">Wednesday Sprint: Questions 1 to 4</div>
+            <div class="phase-desc">Jagged 2D Arrays, Student Interface, Explicit Constructor with Setters & Superclass Inheritance.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Start Sprint Part 1 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="phase17_wednesday_test_sprint_2.html" class="phase-card" data-phase-id="phase17" style="--card-accent: #10b981;">
+            <div class="phase-number">PHASE 17 • TEST PAPER PART 2</div>
+            <div class="phase-title">Wednesday Sprint: Questions 5 to 8</div>
+            <div class="phase-desc">Publishing Class Hierarchy, Multi-Exception Catch Blocks, AWT Student Registration Form GUI & SQLite JDBC.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Start Sprint Part 2 →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        <p>SCS2108 Object-Oriented Software Concepts & Development • NUST Faculty of Applied Sciences</p>
+        <p style="margin-top: 0.4rem; color: var(--text-muted);">All study files stored in <code>panic/</code> folder.</p>
+    </footer>
+</div>
+
+
+
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCS2110 Research Methods | Course Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --bg-card-hover: #1f293d;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(167, 139, 250, 0.3);
+            --accent-purple: #a78bfa;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding: 2rem 1rem; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; }
+        header::after { content: ''; display: block; width: 140px; height: 4px; background: linear-gradient(90deg, #a78bfa, #ec4899); margin: 1.5rem auto 0; border-radius: 2px; }
+        .badge { display: inline-block; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; background: rgba(167, 139, 250, 0.15); color: #c084fc; border: 1px solid rgba(167, 139, 250, 0.3); margin-bottom: 1rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+        .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+        
+        .section-header { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; margin: 3rem 0 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-header::after { content: ''; flex-grow: 1; height: 1px; background: var(--border-color); }
+        
+        .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+        .phase-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; transition: all 0.3s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: inherit; }
+        .phase-card:hover { transform: translateY(-5px); border-color: var(--border-glow); box-shadow: 0 15px 35px rgba(167, 139, 250, 0.15); background: var(--bg-card-hover); }
+        .phase-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #a78bfa, transparent); }
+        .card-drill::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+        .card-material::before { background: linear-gradient(90deg, #38bdf8, #10b981); }
+        .phase-number { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #c084fc; margin-bottom: 0.5rem; }
+        .drill-number { color: #f59e0b; }
+        .material-number { color: #38bdf8; }
+        .phase-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+        .phase-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; flex-grow: 1; }
+        .phase-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .btn-start { font-size: 0.88rem; font-weight: 600; color: #c084fc; }
+        .btn-drill { color: #fbbf24; }
+        .btn-material { color: #38bdf8; }
+        .read-count-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        @media (max-width: 640px) {
+            body { padding: 0.5rem 0.5rem 2rem 0.5rem; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.95rem; }
+            .phase-grid { grid-template-columns: 1fr; }
+            .phase-card { padding: 1.25rem; }
+            #kyukei-nav-bar { padding: 8px 12px !important; }
+            #kyukei-nav-bar div:nth-child(2) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #a78bfa;">SCS2110</span> | <span style="color: #fff;">Research Methods Master Hub</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <header style="margin-top: 2rem;">
+        <span class="badge">SCS2110 Exam Mastery System</span>
+        <h1>Research Methods</h1>
+        <p class="subtitle">Exam-aligned study notes, core modules & 4-phase question sprint system: 10 Material study cards, 8 core modules, and 360 progressive difficulty exam drill questions.</p>
+    </header>
+
+    <!-- SECTION 0: MATERIAL (COURSE OUTLINE STUDY NOTES) -->
+    <div class="section-header">📖 Material: Course Study Notes (Phases 1 - 10)</div>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Comprehensive distinction-grade course outline notes. Study these 10 material cards to master all core concepts and effortlessly solve the exam drill questions.</p>
+
+    <div class="phase-grid" style="margin-bottom: 3rem;">
+        <a href="material_phase1_introduction_problem_formulation.html" class="phase-card card-material" data-phase-id="material_phase1_introduction_problem_formulation">
+            <div class="phase-number material-number">MATERIAL PHASE 01 • NOTE CARD</div>
+            <div class="phase-title">Introduction & Problem Formulation</div>
+            <div class="phase-desc">6 Characteristics of CS research, SE vs. CS Research, Problem Statement anatomy, Aims (What) vs Objectives (How), Hypotheses vs RQs.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase2_proposal_writing_design.html" class="phase-card card-material" data-phase-id="material_phase2_proposal_writing_design">
+            <div class="phase-number material-number">MATERIAL PHASE 02 • NOTE CARD</div>
+            <div class="phase-title">Proposal Writing & Research Design</div>
+            <div class="phase-desc">FINER topic evaluation, Anatomy of a NUST proposal, Research Design frameworks (Exploratory, Experimental), Feasibility & Gantt charts.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase3_literature_review_referencing.html" class="phase-card card-material" data-phase-id="material_phase3_literature_review_referencing">
+            <div class="phase-number material-number">MATERIAL PHASE 03 • NOTE CARD</div>
+            <div class="phase-title">Literature Review, SLR & Referencing</div>
+            <div class="phase-desc">Systematic Literature Review (SLR), 4-Stage PRISMA diagram, ACM/IEEE digital search, Zotero/Mendeley reference tools, Harvard &lt;5 yr rule.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase4_data_collection_sampling.html" class="phase-card card-material" data-phase-id="material_phase4_data_collection_sampling">
+            <div class="phase-number material-number">MATERIAL PHASE 04 • NOTE CARD</div>
+            <div class="phase-title">Data Collection & Sampling Strategies</div>
+            <div class="phase-desc">Probability (Simple Random, Stratified) vs Non-Probability (Convenience, Purposive), Benchmarking controls, MSR repository mining.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase5_data_analysis_interpretation.html" class="phase-card card-material" data-phase-id="material_phase5_data_analysis_interpretation">
+            <div class="phase-number material-number">MATERIAL PHASE 05 • NOTE CARD</div>
+            <div class="phase-title">Data Analysis, Statistics & Qualitative Synthesis</div>
+            <div class="phase-desc">Hypothesis testing ($p &lt; 0.05$), t-tests vs ANOVA vs non-parametric tests, Python SciPy, Braun & Clarke's 6-Stage Thematic Analysis.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase6_methodologies_design_science.html" class="phase-card card-material" data-phase-id="material_phase6_methodologies_design_science">
+            <div class="phase-number material-number">MATERIAL PHASE 06 • NOTE CARD • DEC 2024 Q4/Q5</div>
+            <div class="phase-title">Research Methodologies & Design Science (DSR)</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q4 & Q5 focus: Research vs Software Dev methodologies, Hevner's 3-Cycle DSR framework, Mixed Methods defense.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase7_philosophical_assumptions.html" class="phase-card card-material" data-phase-id="material_phase7_philosophical_assumptions">
+            <div class="phase-number material-number">MATERIAL PHASE 07 • NOTE CARD • DEC 2024 Q2</div>
+            <div class="phase-title">Philosophical Assumptions & Paradigms</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q2 focus: Ontological, Epistemological, Axiomatic assumptions, Positivism vs Interpretivism vs Pragmatism.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase8_ethics_integrity_dilemmas.html" class="phase-card card-material" data-phase-id="material_phase8_ethics_integrity_dilemmas">
+            <div class="phase-number material-number">MATERIAL PHASE 08 • NOTE CARD</div>
+            <div class="phase-title">Research Ethics, Misconduct & Dilemmas</div>
+            <div class="phase-desc">Core ethics (Informed consent, anonymity), 3 Cardinal Sins (Fabrication, Falsification, Plagiarism), GDPR/POPIA privacy & dual-use dilemmas.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase9_reliability_validity_threats.html" class="phase-card card-material" data-phase-id="material_phase9_reliability_validity_threats">
+            <div class="phase-number material-number">MATERIAL PHASE 09 • NOTE CARD • PRACTICE Q5</div>
+            <div class="phase-title">Reliability, Validity & Threat Mitigation</div>
+            <div class="phase-desc">Target analogy, Cronbach's Alpha ($\alpha \ge 0.70$), Internal/External/Construct validity, benchmarking threats, 5-year data retention.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="material_phase10_report_writing_latex_hindex.html" class="phase-card card-material" data-phase-id="material_phase10_report_writing_latex_hindex">
+            <div class="phase-number material-number">MATERIAL PHASE 10 • NOTE CARD • DEC 2024 Q1/Q3/Q6</div>
+            <div class="phase-title">Report Writing, LaTeX, Dissemination & H-Index</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q1, Q3, Q6 focus: NUST 5-chapter report format, LaTeX/Overleaf, arXiv vs Journals, step-by-step h-index calculation.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-material">Read Notes →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 1: CORE COURSE MODULES -->
+    <div class="section-header">📚 Core Course Modules (1 - 8)</div>
+
+    <div class="phase-grid">
+        <a href="module1_research_foundations.html" class="phase-card" data-phase-id="module1_research_foundations">
+            <div class="phase-number">MODULE 01</div>
+            <div class="phase-title">CS Research Foundations</div>
+            <div class="phase-desc">6 Characteristics of CS research, problem formulation, Aims (What) vs Objectives (How), Hypotheses vs RQs.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module2_philosophical_assumptions.html" class="phase-card" data-phase-id="module2_philosophical_assumptions">
+            <div class="phase-number">MODULE 02 • DEC 2024 Q2</div>
+            <div class="phase-title">Philosophical Assumptions & Paradigms</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q2 focus [20 Marks]: Ontological, Epistemological, Axiomatic assumptions & Positivism/Interpretivism.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module3_research_vs_software_methodologies.html" class="phase-card" data-phase-id="module3_research_vs_software_methodologies">
+            <div class="phase-number">MODULE 03 • DEC 2024 Q4 & Q5</div>
+            <div class="phase-title">Research vs Software Methodologies</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q4 & Q5 focus [40 Marks]: Research vs Software Dev methodologies & Mixed Methods Defense.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module4_literature_review_synthesis.html" class="phase-card" data-phase-id="module4_literature_review_synthesis">
+            <div class="phase-number">MODULE 04</div>
+            <div class="phase-title">Literature Review & Synthesis</div>
+            <div class="phase-desc">Systematic Literature Review (SLR), 4-stage PRISMA diagram, IMRaD format limitations, Harvard citation audits (<5 yrs).</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module5_data_collection_sampling.html" class="phase-card" data-phase-id="module5_data_collection_sampling">
+            <div class="phase-number">MODULE 05 • PRACTICE Q7</div>
+            <div class="phase-title">Data Collection & Sampling Strategies</div>
+            <div class="phase-desc">Probability (Simple Random, Stratified) vs Non-Probability (Convenience, Purposive, Snowball) sampling & benchmark controls.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module6_data_analysis_reliability.html" class="phase-card" data-phase-id="module6_data_analysis_reliability">
+            <div class="phase-number">MODULE 06 • PRACTICE Q5</div>
+            <div class="phase-title">Data Analysis, Reliability & Validation</div>
+            <div class="phase-desc">Statistical methods (ANOVA, t-test), Thematic analysis, Reliability vs Validity, Cronbach's Alpha, 5-year data retention.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module7_system_design_in_research.html" class="phase-card" data-phase-id="module7_system_design_in_research">
+            <div class="phase-number">MODULE 07</div>
+            <div class="phase-title">CS System Design Artifacts</div>
+            <div class="phase-desc">Context Diagrams, Use Case Diagrams, Activity Diagrams, ERD Database schemas, and 3-Tier Architecture in Chapter 4.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="module8_report_outlines_ethics_proposal.html" class="phase-card" data-phase-id="module8_report_outlines_ethics_proposal">
+            <div class="phase-number">MODULE 08 • DEC 2024 Q1, Q3, Q6</div>
+            <div class="phase-title">Report Outlines, Ethics & Proposal</div>
+            <div class="phase-desc">Direct Dec 2024 Exam Q1, Q3, Q6 focus [60 Marks]: Outlining Ch 1-5, openEuler driver reporting, Proposal drafting & Ethics.</div>
+            <div class="phase-footer">
+                <span class="btn-start">Open Module →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- SECTION 2: EXAM DRILL SPRINT (PHASES 1 - 4) -->
+    <div class="section-header">⚡ Exam Drill Sprint (Phases 1 - 4)</div>
+
+    <div class="phase-grid">
+        <a href="exam_drill_phase1.html" class="phase-card card-drill" data-phase-id="exam_drill_phase1">
+            <div class="phase-number drill-number">EXAM DRILL PHASE 01 • 90 QUESTIONS</div>
+            <div class="phase-title">Foundations & Philosophical Paradigms</div>
+            <div class="phase-desc">90 Qs (30 Easy, 30 Med, 20 Hard, 10 Examiner Trick): Modules 1 & 2 coverage. Research characteristics, problem statements, hypotheses, epistemology & ontology.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-drill">Start Phase 1 Drill →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="exam_drill_phase2.html" class="phase-card card-drill" data-phase-id="exam_drill_phase2">
+            <div class="phase-number drill-number">EXAM DRILL PHASE 02 • 90 QUESTIONS</div>
+            <div class="phase-title">Methodologies & Literature Review</div>
+            <div class="phase-desc">90 Qs (30 Easy, 30 Med, 20 Hard, 10 Examiner Trick): Modules 3 & 4 coverage. Dec 2024 Q4 & Q5 defenses, SLR, PRISMA framework & Harvard citation rules.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-drill">Start Phase 2 Drill →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="exam_drill_phase3.html" class="phase-card card-drill" data-phase-id="exam_drill_phase3">
+            <div class="phase-number drill-number">EXAM DRILL PHASE 03 • 90 QUESTIONS</div>
+            <div class="phase-title">Sampling, Data Collection & Analysis</div>
+            <div class="phase-desc">90 Qs (30 Easy, 30 Med, 20 Hard, 10 Examiner Trick): Modules 5 & 6 coverage. Practice Q5 & Q7 drills, sampling strategies, ANOVA, t-tests, reliability & 5-year retention.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-drill">Start Phase 3 Drill →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+
+        <a href="exam_drill_phase4.html" class="phase-card card-drill" data-phase-id="exam_drill_phase4">
+            <div class="phase-number drill-number">EXAM DRILL PHASE 04 • 90 QUESTIONS</div>
+            <div class="phase-title">System Design, Report Outlines & Ethics</div>
+            <div class="phase-desc">90 Qs (30 Easy, 30 Med, 20 Hard, 10 Examiner Trick): Modules 7 & 8 coverage. Context/Use Case/Activity/ERDs, Dec 2024 Q1, Q3, Q6 essays & 5 Cardinal Sins.</div>
+            <div class="phase-footer">
+                <span class="btn-start btn-drill">Start Phase 4 Drill →</span>
+                <span class="read-count-badge" title="Times Opened">👁️ <span class="count-num">0</span></span>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+</body>
+</html>

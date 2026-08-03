@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 16: Wednesday Test Sprint Part 1 | SCS2108</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 920px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .section-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .distinction-alert { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1)); border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 8px; margin: 1.5rem 0; }
+        .distinction-title { font-weight: 700; color: var(--primary-light); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .code-block { background: #0d1117; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; font-family: 'Fira Code', monospace; font-size: 0.88rem; color: #e6edf3; display: block; white-space: pre; overflow-x: auto; margin: 1.25rem 0; line-height: 1.5; }
+        .quiz-box { background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; }
+        .btn-toggle { background: var(--primary); color: #fff; font-weight: 700; border: none; padding: 0.55rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.88rem; margin-top: 1rem; transition: all 0.2s; }
+        .btn-toggle:hover { background: #4f46e5; }
+        .answer-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed rgba(99, 102, 241, 0.3); color: var(--text-muted); }
+        .q-number { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--primary-light); }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #60a5fa;">SCS2108</span> | <span style="color: #fff;">Phase Study Card</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="phase15_exam_drill_3.html" class="nav-link">← Phase 15: Exam Drill 3</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <span class="phase-badge">Phase 16 • Wednesday Test Sprint Part 1</span>
+        <a href="phase17_wednesday_test_sprint_2.html" class="nav-link">Phase 17: Sprint Part 2 →</a>
+    </div>
+
+    <h1>Phase 16: Wednesday Test Sprint (Part 1 - Questions 1 to 4)</h1>
+    <p class="intro-lead">Master the exact 4 questions from Part 1 of your Wednesday test paper: Jagged Arrays, Interface Contracts, Explicit Constructors with Setters, and Single-Table Superclass-Subclass Inheritance.</p>
+
+    <!-- Question 1 -->
+    <div class="section-card">
+        <h2 class="section-title"><span class="q-number">Question 1:</span> Jagged 2D Array Initialization & Display</h2>
+        <p style="font-weight: 500;">
+            Write a Java program segment to initialize and display a 2D array called <code>data</code> with three rows that have the following data elements: row 1 <code>{2, 3, 7}</code>, row 2 <code>{7}</code>, and row 3 <code>{9, 6}</code>.
+        </p>
+
+        <button class="btn-toggle" onclick="toggleAnswer('q1_ans')">Show Model Answer & Explanation</button>
+        <div id="q1_ans" class="answer-content">
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">Compilable Model Code:</h4>
+            <div class="code-block">
+public class JaggedArrayDemo {
+    public static void main(String[] args) {
+        // 1. Initialize Jagged 2D Array with varying row lengths
+        int[][] data = {
+            {2, 3, 7}, // Row 0 (length 3)
+            {7},       // Row 1 (length 1)
+            {9, 6}     // Row 2 (length 2)
+        };
+
+        // 2. Display elements using nested loops
+        System.out.println("--- Jagged 2D Array Elements ---");
+        for (int i = 0; i < data.length; i++) {
+            System.out.print("Row " + (i + 1) + ": ");
+            for (int j = 0; j < data[i].length; j++) {
+                System.out.print(data[i][j] + " ");
+            }
+            System.out.println(); // Newline after each row
+        }
+    }
+}
+            </div>
+
+            <div class="distinction-alert">
+                <div class="distinction-title">💡 Distinction Tip: Why data[i].length is Mandatory</div>
+                In Java, 2D arrays are actually <strong>arrays of arrays</strong> on the heap. A <strong>Jagged (or Ragged) array</strong> is a 2D array where each row array has a different length! You MUST use <code>data[i].length</code> inside the inner loop (rather than hardcoding a fixed size like 3). Hardcoding <code>data[0].length</code> for all rows causes an <code>ArrayIndexOutOfBoundsException</code> when reading row 2!
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="section-card">
+        <h2 class="section-title"><span class="q-number">Question 2:</span> University Student Interface Mechanism</h2>
+        <p style="font-weight: 500;">
+            Write a program to display the name, programme, year and registration number of a University student using interface mechanism.
+        </p>
+
+        <button class="btn-toggle" onclick="toggleAnswer('q2_ans')">Show Model Answer & Explanation</button>
+        <div id="q2_ans" class="answer-content">
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">Compilable Model Code:</h4>
+            <div class="code-block">
+// 1. Define the Interface contract
+interface StudentInterface {
+    void displayStudentDetails(); // Abstract method (public & abstract by default)
+}
+
+// 2. Class implementing the Interface contract
+class UniversityStudent implements StudentInterface {
+    private String name;
+    private String programme;
+    private int year;
+    private String regNumber;
+
+    // Constructor to initialize state
+    public UniversityStudent(String name, String programme, int year, String regNumber) {
+        this.name = name;
+        this.programme = programme;
+        this.year = year;
+        this.regNumber = regNumber;
+    }
+
+    // 3. Override interface method with public visibility!
+    @Override
+    public void displayStudentDetails() {
+        System.out.println("========== University Student Details ==========");
+        System.out.println("Name:                " + name);
+        System.out.println("Programme:           " + programme);
+        System.out.println("Year of Study:       " + year);
+        System.out.println("Registration Number: " + regNumber);
+        System.out.println("================================================");
+    }
+}
+
+// 4. Test execution main program
+public class UniversityStudentTest {
+    public static void main(String[] args) {
+        // Polymorphic reference via interface variable!
+        StudentInterface student = new UniversityStudent(
+            "Tinashe Moyo", 
+            "BSc Computer Science (SCS)", 
+            2, 
+            "N02219884B"
+        );
+        
+        student.displayStudentDetails();
+    }
+}
+            </div>
+
+            <div class="distinction-alert">
+                <div class="distinction-title">💡 Examiner Distinction Tip: Interface Access Modifier Rule</div>
+                When implementing an interface method, the overriding method in the class <strong>MUST be marked `public`</strong>! By default, interface methods are implicitly <code>public abstract</code>. If you forget to write <code>public</code> in <code>UniversityStudent</code>, Java assumes package-private visibility, which reduces method visibility and causes a <strong>COMPILE ERROR</strong>!
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="section-card">
+        <h2 class="section-title"><span class="q-number">Question 3:</span> Employee Class with Explicit Constructor & Setters</h2>
+        <p style="font-weight: 500;">
+            Create an <code>Employee</code> class with four instance variables <code>name</code>, <code>age</code>, <code>designation</code> and <code>salary</code>. The class has one explicitly defined constructor, which takes a parameter. The instance variable <code>name</code> is assigned in the constructor. Add methods to assign all the other instance variables of the class. Add a method to print Employee details. Create two objects and test the program.
+        </p>
+
+        <button class="btn-toggle" onclick="toggleAnswer('q3_ans')">Show Model Answer & Explanation</button>
+        <div id="q3_ans" class="answer-content">
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">Compilable Model Code:</h4>
+            <div class="code-block">
+class Employee {
+    // 1. Instance variables
+    private String name;
+    private int age;
+    private String designation;
+    private double salary;
+
+    // 2. Explicitly defined constructor taking 1 parameter (name)
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    // 3. Setter methods to assign the other instance variables
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    // 4. Method to print Employee details
+    public void printEmployeeDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Age:           " + age);
+        System.out.println("Designation:   " + designation);
+        System.out.println("Salary:        $" + salary);
+        System.out.println("------------------------------------");
+    }
+}
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        // Object 1 Instantiation & Setters
+        Employee emp1 = new Employee("Chipo Ndlovu");
+        emp1.setAge(26);
+        emp1.setDesignation("Software Developer");
+        emp1.setSalary(85000.0);
+
+        // Object 2 Instantiation & Setters
+        Employee emp2 = new Employee("Farai Dube");
+        emp2.setAge(34);
+        emp2.setDesignation("Database Administrator");
+        emp2.setSalary(98000.0);
+
+        // Test display
+        System.out.println("--- Employee Record 1 ---");
+        emp1.printEmployeeDetails();
+
+        System.out.println("--- Employee Record 2 ---");
+        emp2.printEmployeeDetails();
+    }
+}
+            </div>
+
+            <div class="distinction-alert">
+                <div class="distinction-title">💡 Examiner Distinction Tip: Default Constructor Removal</div>
+                Because we defined an explicit constructor <code>public Employee(String name)</code>, Java <strong>automatically deleted</strong> the default no-arg constructor. If you attempt <code>Employee emp = new Employee();</code>, compiler throws an error! You MUST pass the `name` parameter upon instantiation.
+            </div>
+        </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="section-card">
+        <h2 class="section-title"><span class="q-number">Question 4:</span> Inheritance (Employee Superclass ➔ Manager Subclass)</h2>
+        <p style="font-weight: 500;">
+            Write a Java program that demonstrates inheritance.<br>
+            Requirements:<br>
+            (i) Create a superclass named <code>Employee</code> with attributes: <code>employeeID</code>, <code>name</code>, <code>salary</code>.<br>
+            (ii) Include a constructor and a method <code>displayEmployee()</code>.<br>
+            (iii) Create a subclass named <code>Manager</code> that extends <code>Employee</code>.<br>
+            (iv) Add an additional attribute <code>department</code>.<br>
+            (v) Include a method <code>displayManager()</code> that displays all employee details including the department.<br>
+            (vi) Create an object of <code>Manager</code> and display its information.
+        </p>
+
+        <button class="btn-toggle" onclick="toggleAnswer('q4_ans')">Show Model Answer & Explanation</button>
+        <div id="q4_ans" class="answer-content">
+            <h4 style="color: #fff; margin-bottom: 0.5rem;">Compilable Model Code:</h4>
+            <div class="code-block">
+// (i) Superclass Employee
+class Employee {
+    protected String employeeID;
+    protected String name;
+    protected double salary;
+
+    // (ii) Superclass Constructor
+    public Employee(String employeeID, String name, double salary) {
+        this.employeeID = employeeID;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // (ii) Method to display employee details
+    public void displayEmployee() {
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Name:        " + name);
+        System.out.println("Salary:      $" + salary);
+    }
+}
+
+// (iii) Subclass Manager extending Employee
+class Manager extends Employee {
+    // (iv) Additional attribute
+    private String department;
+
+    // Subclass Constructor using super(...)
+    public Manager(String employeeID, String name, double salary, String department) {
+        super(employeeID, name, salary); // Invokes Employee constructor (MUST be 1st line!)
+        this.department = department;
+    }
+
+    // (v) Method displayManager() displaying all details
+    public void displayManager() {
+        System.out.println("========== Manager Profile ==========");
+        displayEmployee(); // Calls superclass method to print ID, Name, Salary
+        System.out.println("Department:  " + department);
+        System.out.println("=====================================");
+    }
+}
+
+public class InheritanceDemo {
+    public static void main(String[] args) {
+        // (vi) Create object of Manager and display information
+        Manager mgr = new Manager("MGR-2026-09", "Dr. Tendai Khumalo", 135000.0, "Engineering & ICT");
+        mgr.displayManager();
+    }
+}
+            </div>
+
+            <div class="distinction-alert">
+                <div class="distinction-title">💡 Examiner Distinction Tip: `super(...)` Placement Rule</div>
+                In the `Manager` constructor, `super(employeeID, name, salary)` MUST be the <strong>very first statement</strong> inside the constructor block! If you try to execute `this.department = department;` before calling `super(...)`, the compiler will refuse to compile the program.
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="phase15_exam_drill_3.html" class="nav-link">← Phase 15: Exam Drill 3</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <a href="phase17_wednesday_test_sprint_2.html" class="nav-link">Next: Phase 17 - Sprint Part 2 →</a>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+(function() {
+    const phaseId = 'phase16';
+    const views = JSON.parse(localStorage.getItem('scs2108_views') || '{}');
+    views[phaseId] = (views[phaseId] || 0) + 1;
+    localStorage.setItem('scs2108_views', JSON.stringify(views));
+})();
+</script>
+
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

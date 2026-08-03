@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Drill Phase 2: Protocol Mechanics & Subnetting Math (30%) | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 2 (30%)</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Exam Drill Phase 2 (30% Weighting)</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="exam_drill_phase1.html">← Exam Drill Phase 1</a></li>
+        <li><a href="exam_drill_phase3.html">Exam Drill Phase 3 (20%) →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span class="badge badge-purple">Exam Drill Phase 2 of 4</span>
+            <span class="badge badge-amber">30% Exam Weighting</span>
+        </div>
+        
+        <h1>Phase 2 Exam Drill: Subnetting Math & Protocol Derivations</h1>
+        <p>Deriving network IDs, broadcast addresses, FLSM/VLSM host allocations, binary ANDing, and CIDR prefix conversions.</p>
+
+        <h2>Part 1: FLSM & Subnet Math Calculations</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">P2-Q01</span>
+                <span class="badge badge-green">[10 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">An ISP assigns an organization the IP block <code>192.168.10.0/24</code>. The network engineer must create four (4) equal-sized subnets using Fixed Length Subnet Masking (FLSM). Calculate:</h4>
+            <ol style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
+                <li>The new Subnet Mask in dotted decimal and new CIDR prefix notation [2 Marks].</li>
+                <li>The Network ID for each of the 4 subnets [3 Marks].</li>
+                <li>The Broadcast Address for each of the 4 subnets [3 Marks].</li>
+                <li>The Usable IP Address Range for Subnet 2 [2 Marks].</li>
+            </ol>
+
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q1')" style="margin-bottom:0.6rem;">View Step-by-Step Mathematical Derivation & Scheme</button>
+            
+            <div id="ans-p2q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Step-by-Step Solution & Marking Scheme [10 Marks]</strong>:
+                
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>1. Subnet Mask & CIDR Prefix [2 Marks]:</strong><br>
+                    To make 4 subnets, we borrow $n$ bits where $2^n \ge 4 \rightarrow n = 2$ bits.<br>
+                    New Prefix: $/24 + 2 = \mathbf{/26}$.<br>
+                    Binary Mask: <code>11111111.11111111.11111111.11000000</code> $\rightarrow$ Dotted Decimal: $\mathbf{255.255.255.192}$.
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>2 & 3. Network IDs & Broadcast Addresses [6 Marks]:</strong><br>
+                    Block Size = $256 - 192 = 64$ addresses per subnet.<br>
+                    • <strong>Subnet 1</strong>: Network ID: <code>192.168.10.0</code> | Broadcast: <code>192.168.10.63</code><br>
+                    • <strong>Subnet 2</strong>: Network ID: <code>192.168.10.64</code> | Broadcast: <code>192.168.10.127</code><br>
+                    • <strong>Subnet 3</strong>: Network ID: <code>192.168.10.128</code> | Broadcast: <code>192.168.10.191</code><br>
+                    • <strong>Subnet 4</strong>: Network ID: <code>192.168.10.192</code> | Broadcast: <code>192.168.10.255</code>
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>4. Usable IP Range for Subnet 2 [2 Marks]:</strong><br>
+                    Usable Range: <code>192.168.10.65</code> to <code>192.168.10.126</code> (Total 62 usable hosts).
+                </div>
+            </div>
+        </div>
+
+        <h2>Part 2: VLSM Variable Length Subnet Masking</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">P2-Q02</span>
+                <span class="badge badge-green">[15 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">A university campus network has been allocated the IP block <code>10.1.1.0/24</code>. Design a Variable Length Subnet Masking (VLSM) addressing scheme to satisfy the following departmental host requirements without wasting IP space:</h4>
+            <ul style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
+                <li><strong>Admin Department</strong>: 150 hosts</li>
+                <li><strong>Faculty of Applied Science</strong>: 88 hosts</li>
+                <li><strong>Marketing Department</strong>: 60 hosts</li>
+                <li><strong>ICT Support</strong>: 25 hosts</li>
+            </ul>
+
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q2')" style="margin-bottom:0.6rem;">View Step-by-Step VLSM Allocation & Scheme</button>
+            
+            <div id="ans-p2q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Step-by-Step Solution & Marking Scheme [15 Marks]</strong>:
+                
+                <div class="callout callout-warning" style="margin:0.4rem 0; font-size:0.85rem;">
+                    <strong>Golden Rule [3 Marks]</strong>: Always sort departments in <em>strictly descending order of host count</em> before allocating VLSM blocks!
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>1. Admin (150 hosts) [4 Marks]:</strong><br>
+                    Needs $h$ host bits where $2^h - 2 \ge 150 \rightarrow h = 8$ bits ($2^8 - 2 = 254$ hosts).<br>
+                    CIDR: $/32 - 8 = \mathbf{/24}$. Network ID: <code>10.1.1.0/24</code>. Range: <code>10.1.1.1</code> - <code>10.1.1.254</code>. Broadcast: <code>10.1.1.255</code>.
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>2. Faculty of Applied Science (88 hosts) [4 Marks]:</strong><br>
+                    Needs $h = 7$ bits ($2^7 - 2 = 126$ hosts). CIDR: $\mathbf{/25}$ (Mask 255.255.255.128).<br>
+                    Network ID: <code>10.1.2.0/25</code>. Range: <code>10.1.2.1</code> - <code>10.1.2.126</code>. Broadcast: <code>10.1.2.127</code>.
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>3. Marketing (60 hosts) [2 Marks]:</strong><br>
+                    Needs $h = 6$ bits ($2^6 - 2 = 62$ hosts). CIDR: $\mathbf{/26}$ (Mask 255.255.255.192).<br>
+                    Network ID: <code>10.1.2.128/26</code>. Range: <code>10.1.2.129</code> - <code>10.1.2.190</code>. Broadcast: <code>10.1.2.191</code>.
+                </div>
+
+                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
+                    <strong>4. ICT Support (25 hosts) [2 Marks]:</strong><br>
+                    Needs $h = 5$ bits ($2^5 - 2 = 30$ hosts). CIDR: $\mathbf{/27}$ (Mask 255.255.255.224).<br>
+                    Network ID: <code>10.1.2.192/27</code>. Range: <code>10.1.2.193</code> - <code>10.1.2.222</code>. Broadcast: <code>10.1.2.223</code>.
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

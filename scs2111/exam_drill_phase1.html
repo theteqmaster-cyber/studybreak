@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Drill Phase 1: Foundations (30%) | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 1 (30%)</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Exam Drill Phase 1 (30% Weighting)</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">Course Hub</a></li>
+        <li><a href="exam_drill_phase2.html">Exam Drill Phase 2 (30%) →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span class="badge badge-purple">Exam Drill Phase 1 of 4</span>
+            <span class="badge badge-amber">30% Exam Weighting</span>
+        </div>
+        
+        <h1>Phase 1 Exam Drill: Foundations & Transmission Modes</h1>
+        <p>Structured NUST exam questions with mark allocations, exact model answer marking schemes, and common pitfall traps.</p>
+
+        <div class="callout callout-info">
+            <div class="callout-title">📝 Exam Preparation Guidance</div>
+            <p style="margin:0;">NUST SCS2111 examinations consist primarily of <strong>Structured & Derivation Questions</strong>. Read each question carefully, formulate your answer mentally, and click <strong>"View Model Answer"</strong> to check your points against the official mark breakdown.</p>
+        </div>
+
+        <h2>Part 1: Definitions & 5 Essential Components</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">P1-Q01</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Define "Data Communications" and list the five (5) essential components required for any data communication system to function.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p1q1')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
+            
+            <div id="ans-p1q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [5 Marks]</strong>:
+                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
+                    <li><strong>Definition [1 Mark]</strong>: The exchange of data between two devices via some physical or wireless transmission medium.</li>
+                    <li><strong>1. Message [1 Mark]</strong>: The actual data or information payload being communicated (text, image, audio, video).</li>
+                    <li><strong>2. Sender [1 Mark]</strong>: The device that originates and transmits the data signal.</li>
+                    <li><strong>3. Receiver [1 Mark]</strong>: The target device that receives the data signal.</li>
+                    <li><strong>4. Medium & Protocol [1 Mark]</strong>: The physical path (copper, fiber, wireless RF) and governing set of rules synchronizing communication.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">P1-Q02</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Compare "Data Communications" against "Computer Networks". Explain why Mr. KGM emphasized that computer networks represent the practical realization of data communications theory in industry.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p1q2')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
+            
+            <div id="ans-p1q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [6 Marks]</strong>:
+                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
+                    <li><strong>Data Communications (Theory) [2 Marks]</strong>: Focuses on mathematical encoding, protocol rules, signaling mechanics, and theoretical framework without requiring physical hardware deployment.</li>
+                    <li><strong>Computer Networks (Practical) [2 Marks]</strong>: The real-world physical interconnection of autonomous computing devices using switches, routers, fiber transceivers, and server cabinets to share resources.</li>
+                    <li><strong>Industry Application Context [2 Marks]</strong>: Data communications provides the theoretical rules, but computer networks are what engineers install, configure, and troubleshoot in workplace industrial attachments.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Part 2: Transmission Modes & Physical Constraints</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-purple">P1-Q03</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Differentiate between Simplex, Half-Duplex, and Full-Duplex data transmission modes. For each mode, provide a real-world networking hardware example.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p1q3')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
+            
+            <div id="ans-p1q3" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [6 Marks]</strong>:
+                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
+                    <li><strong>Simplex Mode [2 Marks]</strong>: Unidirectional communication. Sender transmits only; receiver listens only. Example: TV/Radio broadcast, keyboard to PC.</li>
+                    <li><strong>Half-Duplex Mode [2 Marks]</strong>: Bidirectional communication, but only one direction at a time. Simultaneous transmission causes collision. Example: Legacy Network Hub, Walkie-talkie.</li>
+                    <li><strong>Full-Duplex Mode [2 Marks]</strong>: Simultaneous bidirectional transmission without collision. Example: Modern Gigabit Ethernet Switch, Telephone call.</li>
+                </ul>
+                <div class="callout callout-warning" style="margin-top:0.6rem; font-size:0.85rem;">
+                    <strong>⚠️ Common Exam Trap:</strong> Do not confuse a Network Hub (Half-Duplex) with a Network Switch (Full-Duplex). A hub broadcasts to all ports in a single collision domain; a switch isolates collision domains per port!
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-purple">P1-Q04</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Why is moisture/liquid identified as the #1 physical enemy of networking cabling and infrastructure in data communication systems?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p1q4')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
+            
+            <div id="ans-p1q4" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [4 Marks]</strong>:
+                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
+                    <li><strong>Electrical Short Circuits [2 Marks]</strong>: Liquid acts as an unwanted electrical conductor, causing short circuits across copper RJ45 pins and burning switch ports.</li>
+                    <li><strong>Wireless Signal Attenuation [2 Marks]</strong>: Water molecules absorb and scatter high-frequency RF radio waves (2.4GHz / 5GHz Wi-Fi / 5G), severely degrading wireless signal propagation during humid or rainy weather.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

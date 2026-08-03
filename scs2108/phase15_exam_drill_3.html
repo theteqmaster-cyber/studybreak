@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 15: Exam Drill 3 (Java Mechanics, JVM & Exceptions) | SCS2108</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #f59e0b;
+            --primary-light: #fbbf24;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-pink: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(245, 158, 11, 0.15); color: var(--primary-light); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .section-hdr { font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: #fff; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        .q-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+        .q-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; }
+        .q-num { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; color: var(--primary-light); }
+        .q-tag { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+        .tag-easy { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+        .tag-med { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+        .tag-hard { background: rgba(236, 72, 153, 0.15); color: var(--accent-pink); }
+        
+        .q-text { font-size: 1rem; font-weight: 500; color: #f3f4f6; margin-bottom: 0.75rem; }
+        .btn-ans { background: rgba(255, 255, 255, 0.05); color: var(--primary-light); border: 1px solid rgba(245, 158, 11, 0.3); font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.82rem; }
+        .btn-ans:hover { background: var(--primary); color: #000; }
+        .ans-box { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); color: #d1d5db; font-size: 0.93rem; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #60a5fa;">SCS2108</span> | <span style="color: #fff;">Phase Study Card</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="phase14_exam_drill_2.html" class="nav-link">← Phase 14: Exam Drill 2</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <span class="phase-badge">Phase 15 • 40 Questions</span>
+        <a href="phase16_wednesday_test_sprint_1.html" class="nav-link">Phase 16: Wednesday Sprint Part 1 →</a>
+    </div>
+
+    <h1>Phase 15: Exam Drill 3 (Java Mechanics, JVM & Exceptions)</h1>
+    <p class="intro-lead">40 Exam Questions on JVM Architecture, Modifiers, Interfaces, Abstract Classes, and Exception Handling. Click "View Model Answer" to see full marks scoring criteria.</p>
+
+    <!-- EASY (Q1 - Q20) -->
+    <div class="section-hdr">Part 1: Foundational Questions (Questions 1 - 20)</div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q01</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does JVM stand for and what is its role in Java execution?</div>
+        <button class="btn-ans" onclick="toggleAns('a1')">View Model Answer</button>
+        <div id="a1" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Java Virtual Machine. An abstract computing machine that provides a runtime execution environment for Java bytecodes (`.class` files).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q02</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Explain the concept of Bytecode in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a2')">View Model Answer</button>
+        <div id="a2" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>An intermediate, platform-independent instruction set generated by `javac` compiler that is executed by the JVM interpreter/JIT compiler.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q03</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the JIT Compiler in the JVM?</div>
+        <button class="btn-ans" onclick="toggleAns('a3')">View Model Answer</button>
+        <div id="a3" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Just-In-Time Compiler. It compiles frequently called bytecode segments directly into native machine code at runtime for high performance.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q04</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Differentiate between Heap memory and Stack memory in JVM.</div>
+        <button class="btn-ans" onclick="toggleAns('a4')">View Model Answer</button>
+        <div id="a4" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>Heap</strong>: Shared memory storing instantiated Objects.<br><strong>Stack</strong>: Per-thread memory storing stack frames, local variables, and method call chains.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q05</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">List the 4 access modifiers in Java in order of decreasing visibility.</div>
+        <button class="btn-ans" onclick="toggleAns('a5')">View Model Answer</button>
+        <div id="a5" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>1. <code>public</code><br>2. <code>protected</code><br>3. <code>default</code> (package-private)<br>4. <code>private</code></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q06</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does the <code>static</code> keyword mean when applied to a field?</div>
+        <button class="btn-ans" onclick="toggleAns('a6')">View Model Answer</button>
+        <div id="a6" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>The field belongs to the Class itself rather than object instances, and is shared among all instances in Metaspace memory.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q07</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does the <code>final</code> keyword mean when applied to a class?</div>
+        <button class="btn-ans" onclick="toggleAns('a7')">View Model Answer</button>
+        <div id="a7" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Prevents the class from being inherited or extended by any subclass (e.g. <code>java.lang.String</code>).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q08</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does the <code>final</code> keyword mean when applied to a method?</div>
+        <button class="btn-ans" onclick="toggleAns('a8')">View Model Answer</button>
+        <div id="a8" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Prevents the method from being overridden by any subclass.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q09</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does the <code>final</code> keyword mean when applied to a variable?</div>
+        <button class="btn-ans" onclick="toggleAns('a9')">View Model Answer</button>
+        <div id="a9" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Makes the variable an unmodifiable constant (cannot be reassigned after initialization).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q10</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">State the parent root class of all Java exception classes.</div>
+        <button class="btn-ans" onclick="toggleAns('a10')">View Model Answer</button>
+        <div id="a10" class="ans-box"><strong>Model Answer [2 Marks]</strong>:<br><code>java.lang.Throwable</code> (which splits into <code>Exception</code> and <code>Error</code>).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q11</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is a Checked Exception? Give an example.</div>
+        <button class="btn-ans" onclick="toggleAns('a11')">View Model Answer</button>
+        <div id="a11" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>An exception checked at compile-time by the Java compiler. Must be caught or declared. Example: <code>IOException</code>.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q12</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is an Unchecked Exception? Give an example.</div>
+        <button class="btn-ans" onclick="toggleAns('a12')">View Model Answer</button>
+        <div id="a12" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>An exception deriving from <code>RuntimeException</code> caused by programming logic errors, not checked by compiler. Example: <code>NullPointerException</code>.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q13</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the purpose of the <code>finally</code> block in exception handling?</div>
+        <button class="btn-ans" onclick="toggleAns('a13')">View Model Answer</button>
+        <div id="a13" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Contains cleanup code (closing files/connections) that ALWAYS executes regardless of whether an exception was thrown or caught.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q14</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Explain the difference between <code>throw</code> and <code>throws</code>.</div>
+        <button class="btn-ans" onclick="toggleAns('a14')">View Model Answer</button>
+        <div id="a14" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><code>throw</code> is used inside a method body to throw an exception object. <code>throws</code> is used in a method signature to declare potential checked exceptions.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q15</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What causes a <code>NullPointerException</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a15')">View Model Answer</button>
+        <div id="a15" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Attempting to call a method or access an attribute on an uninitialized reference variable set to <code>null</code>.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q16</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What causes a <code>NumberFormatException</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a16')">View Model Answer</button>
+        <div id="a16" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Attempting to convert an invalid String into a numeric primitive (e.g. <code>Integer.parseInt("hello")</code>).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q17</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What causes an <code>ArrayIndexOutOfBoundsException</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a17')">View Model Answer</button>
+        <div id="a17" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Attempting to access an array element using an index that is negative or $\ge \text{array.length}$.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q18</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">How do you create a Custom Exception class in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a18')">View Model Answer</button>
+        <div id="a18" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>By extending the <code>Exception</code> class (for checked custom exceptions) or <code>RuntimeException</code> (for unchecked custom exceptions).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q19</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is a Package in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a19')">View Model Answer</button>
+        <div id="a19" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>A namespace folder structure that groups related classes and interfaces together and prevents naming collisions.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q20</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the purpose of the <code>import</code> statement in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a20')">View Model Answer</button>
+        <div id="a20" class="ans-box"><strong>Model Answer [2 Marks]</strong>:<br>To allow code to reference classes declared in other packages without using fully qualified class names.</div>
+    </div>
+
+    <!-- MEDIUM (Q21 - Q30) -->
+    <div class="section-hdr">Part 2: Medium / Applied Questions (Questions 21 - 30)</div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q21</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain the Classloader Subsystem phases in the JVM (Loading, Linking, Initialization).</div>
+        <button class="btn-ans" onclick="toggleAns('a21')">View Model Answer</button>
+        <div id="a21" class="ans-box"><strong>Model Answer [6 Marks]</strong>:<br>1. <strong>Loading</strong>: Reads `.class` file bytecode into memory.<br>2. <strong>Linking</strong>: Verifies bytecode safety, prepares static fields with default values, and resolves symbolic references.<br>3. <strong>Initialization</strong>: Assigns explicit values to static variables and executes static initializer blocks.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q22</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Compare Abstract Class vs Interface in terms of default/static methods introduced in Java 8.</div>
+        <button class="btn-ans" onclick="toggleAns('a22')">View Model Answer</button>
+        <div id="a22" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>Java 8 added <code>default</code> methods (with body) to interfaces to allow backward compatibility without breaking implementing classes. However, interfaces still cannot maintain instance state variables or constructors, whereas abstract classes can.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q23</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is Try-With-Resources in Java 7+ and why is it preferred over standard try-catch-finally?</div>
+        <button class="btn-ans" onclick="toggleAns('a23')">View Model Answer</button>
+        <div id="a23" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>A try statement that automatically closes resources (files, database connections implementing `AutoCloseable`) upon exiting, eliminating boilerplate `finally` close blocks.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q24</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain what happens if an exception is thrown in a <code>try</code> block but there is NO matching <code>catch</code> block.</div>
+        <button class="btn-ans" onclick="toggleAns('a24')">View Model Answer</button>
+        <div id="a24" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>The <code>finally</code> block (if present) executes first. Then the unhandled exception propagates up the call stack to the caller method. If unhandled at main(), the thread terminates printing a stack trace.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q25</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Can a static method access non-static instance fields of the class directly? Why or why not?</div>
+        <button class="btn-ans" onclick="toggleAns('a25')">View Model Answer</button>
+        <div id="a25" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>NO!</strong> Static methods execute without an active object instance (no <code>this</code> pointer exists). Instance fields require a specific heap object instance reference to be accessed.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q26</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain the <code>protected</code> access modifier rule regarding subclasses in different packages.</div>
+        <button class="btn-ans" onclick="toggleAns('a26')">View Model Answer</button>
+        <div id="a26" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>A protected member is accessible to a subclass in a different package ONLY through inheritance (via `this` or `super`), but NOT via an instance reference of the parent class created inside that subclass!</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q27</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is the difference between <code>Error</code> and <code>Exception</code> in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a27')">View Model Answer</button>
+        <div id="a27" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>Error</strong>: Represents fatal system-level conditions outside application control (e.g. `OutOfMemoryError`, `StackOverflowError`). Applications should NOT attempt to catch them.<br><strong>Exception</strong>: Represents recoverable conditions caused by code or environment that applications should handle.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q28</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain what a Static Initializer Block is in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a28')">View Model Answer</button>
+        <div id="a28" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>A block declared with <code>static { ... }</code> that executes ONCE when the class is first loaded into JVM memory by the Classloader, before any constructors are called.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q29</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is the output of attempting to reassign a <code>final</code> object reference variable: <code>final Person p = new Person("John"); p.setName("Mary");</code>? Does this compile?</div>
+        <button class="btn-ans" onclick="toggleAns('a29')">View Model Answer</button>
+        <div id="a29" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>YES, it compiles and works!</strong> <code>final</code> on an object reference prevents reassigning the reference pointer itself (`p = new Person(...)`), but does NOT make the internal object state immutable.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q30</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain Exception Chaining in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a30')">View Model Answer</button>
+        <div id="a30" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Wrapping an underlying lower-level exception inside a higher-level business exception using <code>throw new CustomException("Failed", causeException)</code> to preserve original root cause stack traces.</div>
+    </div>
+
+    <!-- HARD / TRICK (Q31 - Q40) -->
+    <div class="section-hdr">Part 3: Hard / Examiner Trick Questions (Questions 31 - 40)</div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q31</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: If a <code>try</code> block calls <code>System.exit(0);</code>, does the <code>finally</code> block execute?</div>
+        <button class="btn-ans" onclick="toggleAns('a31')">View Model Answer</button>
+        <div id="a31" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>NO!</strong> <code>System.exit(0)</code> immediately terminates the entire JVM process, bypassing all <code>finally</code> blocks.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q32</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: In catch block ordering, what happens if you place <code>catch(Exception e)</code> BEFORE <code>catch(IOException e)</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a32')">View Model Answer</button>
+        <div id="a32" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>Compile Error!</strong> Unreachable code error. Subclass exceptions (`IOException`) must be caught BEFORE superclass exceptions (`Exception`) because the superclass block would swallow all exceptions.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q33</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can a overridden method in a subclass declare a broader checked exception than the superclass method?</div>
+        <button class="btn-ans" onclick="toggleAns('a33')">View Model Answer</button>
+        <div id="a33" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>NO! Compile Error</strong>. An overriding method cannot throw NEW or BROADER checked exceptions than declared by the parent method signature (it can throw narrower, fewer, or unchecked exceptions).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q34</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can a method be declared both <code>abstract</code> and <code>private</code> in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a34')">View Model Answer</button>
+        <div id="a34" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>NO! Compile Error</strong>. <code>abstract</code> requires a subclass to override the method, whereas <code>private</code> prevents subclasses from accessing or overriding it.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q35</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: What is the default access modifier of members declared inside a Java Interface if no access modifier is specified?</div>
+        <button class="btn-ans" onclick="toggleAns('a35')">View Model Answer</button>
+        <div id="a35" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>`public`</strong> (NOT default/package-private!). All interface methods and fields are implicitly <code>public</code>.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q36</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Does Java support <code>transient</code> variables? What is their purpose?</div>
+        <button class="btn-ans" onclick="toggleAns('a36')">View Model Answer</button>
+        <div id="a36" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Yes. The <code>transient</code> modifier prevents a field from being serialized when an object is converted to a byte stream (used for sensitive fields like passwords).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q37</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can a constructor be declared <code>static</code> or <code>final</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a37')">View Model Answer</button>
+        <div id="a37" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>NO! Compile Error</strong>. Constructors cannot be static (they instantiate instances) or final (they are not inherited or overridden).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q38</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: If a method returns a value inside a <code>try</code> block, and also returns inside the <code>finally</code> block, which value is returned?</div>
+        <button class="btn-ans" onclick="toggleAns('a38')">View Model Answer</button>
+        <div id="a38" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>The return value from the <strong><code>finally</code> block overrides</strong> the return value from the <code>try</code> or <code>catch</code> block! (Considered a bad practice).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q39</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: What is the difference between <code>java.lang.NoClassDefFoundError</code> and <code>ClassNotFoundException</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a39')">View Model Answer</button>
+        <div id="a39" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><code>ClassNotFoundException</code> is a checked exception occurring when dynamically loading a class string (e.g. `Class.forName()`). <code>NoClassDefFoundError</code> is a fatal Error occurring when a class was present at compile-time but missing at runtime.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q40</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Why is <code>java.lang.OutOfMemoryError</code> classified under <code>Error</code> rather than <code>Exception</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a40')">View Model Answer</button>
+        <div id="a40" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Because running out of heap memory is a fatal JVM execution state failure from which normal application logic cannot recover.</div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="phase14_exam_drill_2.html" class="nav-link">← Phase 14: Exam Drill 2</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <a href="phase16_wednesday_test_sprint_1.html" class="nav-link">Next: Phase 16 - Sprint Part 1 →</a>
+    </div>
+</div>
+
+<script>
+function toggleAns(id) {
+    var el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+(function() {
+    const phaseId = 'phase15';
+    const views = JSON.parse(localStorage.getItem('scs2108_views') || '{}');
+    views[phaseId] = (views[phaseId] || 0) + 1;
+    localStorage.setItem('scs2108_views', JSON.stringify(views));
+})();
+</script>
+
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

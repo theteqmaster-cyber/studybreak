@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: CS System Design in Research | SCS2110</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #a78bfa;
+            --primary-light: #c084fc;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(167, 139, 250, 0.15); color: var(--primary-light); border: 1px solid rgba(167, 139, 250, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .section-hdr { font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: #fff; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        .q-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; transition: border 0.2s; }
+        .q-card:hover { border-color: rgba(167, 139, 250, 0.4); }
+        .q-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .q-num { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; color: var(--primary-light); }
+        
+        .q-tag { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-apply { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .tag-defend { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .tag-outline { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .tag-classify { background: rgba(167, 139, 250, 0.2); color: #c084fc; border: 1px solid rgba(167, 139, 250, 0.4); }
+        .tag-audit { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
+        
+        .q-text { font-size: 1rem; font-weight: 500; color: #f3f4f6; margin-bottom: 0.75rem; }
+        .btn-ans { background: rgba(255, 255, 255, 0.05); color: var(--primary-light); border: 1px solid rgba(167, 139, 250, 0.3); font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
+        .btn-ans:hover { background: var(--primary); color: #000; }
+        .ans-box { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); color: #d1d5db; font-size: 0.93rem; }
+        .ans-box ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+        .ans-box li { margin-bottom: 0.3rem; }
+        .trap-box { background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 0.6rem 0.8rem; margin-top: 0.8rem; border-radius: 4px; font-size: 0.88rem; color: #fca5a5; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #a78bfa;">SCS2110</span> | <span style="color: #fff;">Module 7: System Design in Research</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="module6_data_analysis_reliability.html" class="nav-link">← Module 6: Data Analysis</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <span class="phase-badge">Module 7 of 8</span>
+        <a href="module8_report_outlines_ethics_proposal.html" class="nav-link">Module 8: Proposal & Ethics →</a>
+    </div>
+
+    <h1>Module 7: CS System Design Artifacts in Research</h1>
+    <p class="intro-lead">Master how CS engineering modeling artifacts (Context Diagrams, Use Case Diagrams, Activity Diagrams, ERDs, and 3-Tier Architecture) serve as essential evidence in Chapter 4 of your research project.</p>
+
+    <!-- SECTION 1: SYSTEM ANALYSIS DIAGRAMS -->
+    <div class="section-hdr">Part 1: Modeling Diagrams in CS Research Reports</div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M7-Q01</span>
+            <span class="q-tag tag-outline">[DRAFT & OUTLINE]</span>
+        </div>
+        <div class="q-text">Explain the role of a <strong>Context Diagram</strong> versus a <strong>Use Case Diagram</strong> in a CS research report (e.g. Chapter 4 Analysis & Design). What does each diagram model? [6 Marks]</div>
+        <button class="btn-ans" onclick="toggleAns('m7a1')">Reveal Model Answer</button>
+        <div id="m7a1" class="ans-box">
+            <strong>NUST Model Answer [6 Marks]</strong>:
+            <ul>
+                <li><strong>Context Diagram (Current Baseline System)</strong>: Models the proposed system or legacy process as a single central process entity surrounded by external entities (e.g., Student, Invigilator, Exam Dept) and external data flows. It defines the system boundary and baseline scope.</li>
+                <li><strong>Use Case Diagram (Proposed Research System)</strong>: Models internal system functional requirements from the user perspective, highlighting specific actors, system boundary, use cases (e.g., <em>Tap NFC Card</em>, <em>Scan Fingerprint</em>, <em>Auto-Record Attendance</em>), and <code>«include»</code> / <code>«extend»</code> relationships.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M7-Q02</span>
+            <span class="q-tag tag-apply">[APPLY & SOLVE]</span>
+        </div>
+        <div class="q-text">Draft an <strong>Activity Diagram logic flow</strong> for a Biometric Examination Identity Authentication System at exam entry. Include decision nodes and error branches. [6 Marks]</div>
+        <button class="btn-ans" onclick="toggleAns('m7a2')">Reveal Model Answer</button>
+        <div id="m7a2" class="ans-box">
+            <strong>NUST Model Answer [6 Marks]</strong>:
+            <br><strong>Sequential Logic Flow</strong>:
+            <ol>
+                <li><code>[Start Node]</code> → Student arrives at exam hall entrance.</li>
+                <li><code>[Action: Tap NFC Card]</code> → Hardware NFC reader extracts student UID and fetches stored fingerprint template from local SQLite DB.</li>
+                <li><code>[Action: Scan Fingerprint]</code> → Optical biometric sensor captures live minutiae template.</li>
+                <li><code>[Decision Node: Match?]</code>
+                    <br>↳ <strong>IF NO (Mismatch / Unregistered)</strong> → Flag alarm, set status to <code>ENTRY_DENIED</code>, log incident, and route to Manual Invigilator Desk <code>[End]</code>.
+                    <br>↳ <strong>IF YES (Authenticated)</strong> → Open physical turnstile gate, record timestamped <code>ENTRY_VERIFIED</code> in database <code>[End]</code>.
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M7-Q03</span>
+            <span class="q-tag tag-classify">[CLASSIFY & GROUND]</span>
+        </div>
+        <div class="q-text">Describe a <strong>3-Tier System Architecture</strong> for a CS research prototype and explain why decoupling the Hardware, Application, and Data layers is necessary for scientific controlled evaluation. [6 Marks]</div>
+        <button class="btn-ans" onclick="toggleAns('m7a3')">Reveal Model Answer</button>
+        <div id="m7a3" class="ans-box">
+            <strong>NUST Model Answer [6 Marks]</strong>:
+            <br><br><strong>The 3 Layers</strong>:
+            <ul>
+                <li><strong>1. Hardware / Perception Layer</strong>: Physical sensors (NFC reader, fingerprint scanner, microcontrollers).</li>
+                <li><strong>2. Application / Logic Layer</strong>: Matching engine, biometric comparison algorithm, web dashboard, and API client.</li>
+                <li><strong>3. Data Layer</strong>: Relational database (SQLite/PostgreSQL) storing student records, minutiae templates, and logs.</li>
+            </ul>
+            <br><strong>Why Decoupling is Essential in Research</strong>:
+            <br>Decoupling allows researchers to isolate variables during performance testing (e.g. testing the speed of a new fingerprint matching algorithm in Layer 2 without altering physical sensors in Layer 1 or database schemas in Layer 3).
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="module6_data_analysis_reliability.html" class="nav-link">← Module 6: Data Analysis</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <a href="module8_report_outlines_ethics_proposal.html" class="nav-link">Next: Module 8 - Report Outlines & Ethics →</a>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

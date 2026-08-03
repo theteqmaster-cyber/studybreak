@@ -1,0 +1,23 @@
+# Gitignore rules for Studybreak (Web files only)
+
+# Source directories & non-web materials
+temp ext sources/
+sources/
+**/sources/
+**/exam questions/
+**/lecturer notes/
+**/material from lecturer/
+**/packet tracer/
+**/presentation slides/
+**/typiccall exam paper/
+**/overleaf latex recommended tool s/
+
+# Documents & raw media files
+*.pdf
+*.pptx
+*.ppt
+*.docx
+*.doc
+*.sqlite
+*.db
+*.log

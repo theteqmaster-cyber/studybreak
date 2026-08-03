@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCS2111: Data Communications & Networking Pilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { background: #07090e; color: #f8fafc; font-family: 'Inter', sans-serif; margin: 0; padding: 0; line-height: 1.7; }
+        .container { max-width: 900px; margin: 2rem auto; padding: 2rem; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; backdrop-filter: blur(10px); }
+        h1 { font-size: 2rem; font-weight: 800; color: #06b6d4; margin-bottom: 1rem; }
+        .subtitle { color: #94a3b8; font-size: 1.05rem; margin-bottom: 2rem; }
+        .card-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 14px; margin-bottom: 1.5rem; }
+        .card-box h3 { color: #38bdf8; margin-bottom: 8px; }
+        code { font-family: 'JetBrains Mono', monospace; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Data Communications & Networking Pilot</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <h1>🌐 SCS2111: Data Communications & Networking</h1>
+    <div class="subtitle">Pilot Card — Core Concepts, Protocol Stacks & OSI Layers</div>
+
+    <div class="card-box">
+        <h3>1. The OSI 7-Layer Reference Model</h3>
+        <p>Memory Device: <em>All People Seem To Need Data Processing</em> (Application, Presentation, Session, Transport, Network, Data Link, Physical).</p>
+        <p>Key Protocols: <code>HTTP/S</code>, <code>DNS</code>, <code>TCP</code>, <code>UDP</code>, <code>IP</code>, <code>ARP</code>, <code>Ethernet</code>.</p>
+    </div>
+
+    <div class="card-box">
+        <h3>2. TCP vs UDP Dynamics</h3>
+        <p><strong>TCP (Transmission Control Protocol):</strong> Connection-oriented, 3-Way Handshake (SYN, SYN-ACK, ACK), reliable delivery with sequence numbers and sliding window flow control.</p>
+        <p><strong>UDP (User Datagram Protocol):</strong> Connectionless, lightweight, low-latency streaming & real-time communication.</p>
+    </div>
+
+    <div class="card-box">
+        <h3>3. IP Addressing & Subnetting</h3>
+        <p>CIDR notation (e.g. <code>192.168.1.0/24</code>), Subnet Masks, Network ID, Broadcast Address, and Private IP Ranges (RFC 1918).</p>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

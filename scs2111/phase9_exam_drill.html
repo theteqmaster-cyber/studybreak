@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 9: Exam Drill Bank | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 9: High-Yield Exam Drill Bank</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Phase 9: High-Yield Exam Drill Bank</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="phase8_industrial_attachment_lab.html">← Phase 8</a></li>
+        <li><a href="index.html">Course Hub</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <span class="badge badge-purple">PHASE 09</span>
+        <h1>High-Yield Exam Drill Bank & Math Solvers</h1>
+        <p>Interactive self-assessment covering 60% end-of-semester exam questions, subnetting calculations, and industrial attachment scenario drills.</p>
+
+        <div class="callout callout-info">
+            <div class="callout-title">📝 Exam Breakdown Guidance (Coursework 40% / Exam 60%)</div>
+            <p style="margin:0;">Select an option for each question to test your readiness. Explanations provide step-by-step mathematical derivations and real-world industrial context.</p>
+        </div>
+
+        <div id="exam-quiz-container"></div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/quiz_engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const examQuestions = [
+    {
+      category: 'IP Subnetting Math',
+      question: 'A network administrator is assigned the block 192.168.1.0/24 and needs to create 4 equal-sized subnets using Fixed Length Subnet Masking (FLSM). What is the usable host range for the first subnet?',
+      options: [
+        '192.168.1.0 to 192.168.1.63',
+        '192.168.1.1 to 192.168.1.62',
+        '192.168.1.1 to 192.168.1.64',
+        '192.168.1.0 to 192.168.1.255'
+      ],
+      correct: 1,
+      explanation: 'With /24 split into 4 equal subnets, we borrow 2 bits ($2^2 = 4$). The new CIDR is /26 (mask 255.255.255.192). Subnet 1 network ID is 192.168.1.0 and broadcast is 192.168.1.63. The usable host range is 192.168.1.1 to 192.168.1.62.'
+    },
+    {
+      category: 'OSI Protocol Stack',
+      question: 'Which OSI layer is responsible for adding logical source and destination IP addresses to Protocol Data Units (PDUs) to form Packets?',
+      options: [
+        'Layer 2 (Data Link Layer)',
+        'Layer 3 (Network Layer)',
+        'Layer 4 (Transport Layer)',
+        'Layer 7 (Application Layer)'
+      ],
+      correct: 1,
+      explanation: 'The Network Layer (Layer 3) handles logical IP addressing and inter-network routing, encapsulating segments into Packets.'
+    },
+    {
+      category: 'Transmission Modes',
+      question: 'Which data transmission mode allows both connected devices to transmit and receive data simultaneously without collision?',
+      options: [
+        'Simplex Mode',
+        'Half-Duplex Mode',
+        'Full-Duplex Mode',
+        'Multiplex Mode'
+      ],
+      correct: 2,
+      explanation: 'Full-Duplex mode allows simultaneous bidirectional data flow (e.g. modern network switches and gigabit NICs).'
+    },
+    {
+      category: 'Industrial Attachment Practical',
+      question: 'During a cabinet inspection, an intern observes that an IP CCTV security camera is powered through its Ethernet cable without a separate power plug. What technology is enabling this?',
+      options: [
+        'Power over Ethernet (PoE / IEEE 802.3af/at)',
+        'Spanning Tree Protocol (STP)',
+        'Address Resolution Protocol (ARP)',
+        'Fiber Distribution Data Interface (FDDI)'
+      ],
+      correct: 0,
+      explanation: 'Power over Ethernet (PoE) transmits both electrical DC power and data over standard CAT5e/6 copper cabling.'
+    },
+    {
+      category: 'Switching & VLANs',
+      question: 'What is the primary function of the Spanning Tree Protocol (STP / IEEE 802.1D) in a switched enterprise network?',
+      options: [
+        'Assign IP addresses dynamically to hosts',
+        'Prevent broadcast storms by blocking redundant loop paths',
+        'Convert fiber optic light signals into copper signals',
+        'Encrypt wireless radio transmissions'
+      ],
+      correct: 1,
+      explanation: 'STP detects redundant physical topology loops between switches and places backup ports into blocking state to prevent broadcast loop meltdowns.'
+    },
+    {
+      category: 'Special CIDR Rules',
+      question: 'Why does a /31 CIDR prefix allocation between two point-to-point router interfaces allow 2 usable hosts without subtracting 2 for network/broadcast addresses?',
+      options: [
+        'Routers do not broadcast packets, so network and broadcast IDs are not consumed',
+        'Classful addressing rules override CIDR rules',
+        '/31 uses 16-bit addressing instead of 32-bit',
+        'It is restricted strictly to wireless connections'
+      ],
+      correct: 0,
+      explanation: 'Point-to-point router links (/31) do not require broadcast addresses because routers forward packets directly without broadcasting, allowing both addresses to be assigned to router interfaces.'
+    }
+  ];
+
+  renderQuiz('exam-quiz-container', examQuestions);
+});
+</script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

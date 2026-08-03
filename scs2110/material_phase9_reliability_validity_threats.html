@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Phase 9: Reliability, Validity & Threat Mitigation | SCS2110</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --primary-light: #7dd3fc;
+            --accent-purple: #a78bfa;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(56, 189, 248, 0.15); color: var(--primary-light); border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+        .intro-lead { font-size: 1.08rem; color: var(--text-muted); margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
+        
+        .section-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.75rem; margin-bottom: 2rem; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.6rem; }
+        
+        p { margin-bottom: 1rem; color: #d1d5db; font-size: 0.98rem; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.4rem; color: #d1d5db; }
+        li { margin-bottom: 0.4rem; }
+        strong { color: #fff; }
+        
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.25rem 0; }
+        .concept-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; }
+        .concept-card h4 { font-family: 'Outfit', sans-serif; color: var(--primary-light); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        
+        .exam-tip { background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-amber); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; font-size: 0.94rem; color: #fef08a; }
+        .exam-tip strong { color: var(--accent-amber); }
+
+        .distinction-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1.25rem; border-radius: 10px; margin: 1.5rem 0; }
+        .distinction-box h4 { color: var(--accent-emerald); font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.92rem; }
+        .comparison-table th, .comparison-table td { border: 1px solid var(--border-color); padding: 0.75rem; text-align: left; }
+        .comparison-table th { background: rgba(255, 255, 255, 0.05); color: #fff; font-family: 'Outfit', sans-serif; }
+
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #38bdf8;">SCS2110 Material</span> | <span style="color: #fff;">Phase 9: Reliability, Validity & Threat Mitigation</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="material_phase8_ethics_integrity_dilemmas.html" class="nav-link">← Material Phase 8</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <span class="phase-badge">Material Phase 09</span>
+        <a href="material_phase10_report_writing_latex_hindex.html" class="nav-link">Material Phase 10 →</a>
+    </div>
+
+    <h1>Material Phase 9: Research Reliability, Validation & Threat Mitigation</h1>
+    <p class="intro-lead">Complete study guide for Course Unit 9. Master the difference between Reliability and Validity, measuring internal consistency (Cronbach's Alpha), classifying threats to validity, and enforcing 5-year data retention protocols.</p>
+
+    <!-- SECTION 1: RELIABILITY VS VALIDITY -->
+    <div class="section-box">
+        <div class="section-title">1. Reliability vs. Validity (The Target Analogy)</div>
+        <p>A study can be reliable without being valid, but it CANNOT be valid without being reliable.</p>
+
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h4 style="color: var(--accent-emerald);">Reliability (Consistency & Repeatability)</h4>
+                <p>The degree to which a measurement instrument yields consistent, reproducible results under unchanged experimental conditions.</p>
+                <p><em>CS Test</em>: If you run a microbenchmark algorithm 100 times on identical hardware, do you get consistent execution timings?</p>
+            </div>
+            <div class="concept-card">
+                <h4 style="color: var(--accent-purple);">Validity (Accuracy & Truthfulness)</h4>
+                <p>The extent to which a test or metric actually measures what it claims to measure.</p>
+                <p><em>CS Test</em>: Does measuring CPU cycles accurately represent overall user-perceived web application responsiveness (or does network RTT dominate)?</p>
+            </div>
+        </div>
+
+        <h3 style="color: #fff; font-size: 1.15rem; margin: 1.5rem 0 0.5rem;">Measuring Reliability: Cronbach's Alpha ($\alpha$)</h3>
+        <p>In survey research and Likert-scale questionnaire validation, internal consistency is evaluated using <strong>Cronbach's Alpha ($\alpha$)</strong>:</p>
+        <ul>
+            <li>$\alpha \ge 0.90$: Excellent internal consistency.</li>
+            <li>$\mathbf{\alpha \ge 0.70}$: Acceptable threshold for academic research.</li>
+            <li>$\alpha < 0.60$: Unacceptable reliability; items must be revised or dropped.</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 2: TYPES OF VALIDITY & THREATS -->
+    <div class="section-box">
+        <div class="section-title">2. Types of Validity & Threat Classification</div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Type of Validity</th>
+                    <th>Core Focus</th>
+                    <th>Threat Example in CS Research</th>
+                    <th>Mitigation Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Internal Validity</strong></td>
+                    <td>Ensuring observed changes in dependent variable are strictly caused by independent variable.</td>
+                    <td>OS background update or CPU thermal throttling skewing execution time during benchmark.</td>
+                    <td>Isolate environment (fixed CPU affinity, disable cron/throttling, run 30+ trials).</td>
+                </tr>
+                <tr>
+                    <td><strong>External Validity</strong></td>
+                    <td>Extent to which results can be generalized to real-world production settings.</td>
+                    <td>Evaluating a database engine only on tiny synthetic datasets in RAM, failing under disk swap.</td>
+                    <td>Evaluate against industry standard benchmarks (e.g. TPC-C, YCSB workloads).</td>
+                </tr>
+                <tr>
+                    <td><strong>Construct Validity</strong></td>
+                    <td>Ensuring metrics properly represent theoretical concepts.</td>
+                    <td>Using lines of code (LOC) as a metric for programmer productivity or software complexity.</td>
+                    <td>Use validated metrics like Cyclomatic Complexity or Maintainability Index.</td>
+                </tr>
+                <tr>
+                    <td><strong>Conclusion Validity</strong></td>
+                    <td>Correctness of statistical inferences made from data.</td>
+                    <td>Using a t-test on small, highly skewed sample data ($N=5$) with high variance.</td>
+                    <td>Perform normality testing (Shapiro-Wilk) and select non-parametric tests if skewed.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 3: 5-YEAR RETENTION & REPRODUCIBILITY -->
+    <div class="section-box">
+        <div class="section-title">3. Data Retention & Artifact Reproducibility Rules</div>
+        <p>Scientific integrity requires that all underlying data, code, benchmark scripts, and configuration files be preserved for independent audit.</p>
+
+        <div class="distinction-box">
+            <h4>💡 NUST Standard: 5-Year Data Retention Rule</h4>
+            <p>All raw experimental datasets, anonymized survey responses, script code, and container definitions (Dockerfiles) <strong>MUST be retained securely for a minimum of 5 years</strong> post-graduation to support post-publication audit and replication inquiries.</p>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="material_phase8_ethics_integrity_dilemmas.html" class="nav-link">← Material Phase 8</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <a href="material_phase10_report_writing_latex_hindex.html" class="nav-link">Next: Material Phase 10 - Report Writing & H-Index →</a>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

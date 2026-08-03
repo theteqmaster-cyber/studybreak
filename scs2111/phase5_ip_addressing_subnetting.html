@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 5: IP Addressing & Subnetting Mastery | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 5: IP Addressing & Subnetting</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Phase 5: IP Addressing & Subnetting</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="phase4_hardware_media.html">← Phase 4</a></li>
+        <li><a href="phase6_routing_switching_vlans.html">Phase 6 →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <span class="badge badge-cyan">PHASE 05</span>
+        <h1>IP Addressing & Subnetting Mastery</h1>
+        <p>Classful vs Classless IPv4, binary bit-borrowing, Subnet Mask ANDing, FLSM, VLSM, CIDR prefix rules, and step-by-step mathematical calculations.</p>
+
+        <!-- INTERACTIVE BINARY SUBNET CALCULATOR WIDGET -->
+        <h2>1. Interactive Binary Bit-Borrowing Subnet Visualizer</h2>
+        <div id="subnet-sim-container"></div>
+
+        <h2>2. Classful IP Addressing vs. Classless Schemes</h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <span class="badge badge-rose">Legacy Inefficient</span>
+                <h3>Classful IP Addressing</h3>
+                <p style="font-size:0.88rem;">Historic rigid allocation based on the leading bits of the first octet:</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
+                    <li><strong>Class A (1-127):</strong> /8 Mask (255.0.0.0) $\rightarrow$ 16,777,214 hosts</li>
+                    <li><strong>Class B (128-191):</strong> /16 Mask (255.255.0.0) $\rightarrow$ 65,534 hosts</li>
+                    <li><strong>Class C (192-223):</strong> /24 Mask (255.255.255.0) $\rightarrow$ 254 hosts</li>
+                    <li><strong>Class D (224-239):</strong> Multicast traffic</li>
+                </ul>
+                <div style="color:var(--accent-rose); font-size:0.8rem; margin-top:0.4rem;">❌ Wasted millions of IP addresses globally.</div>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-green">Modern Enterprise Standard</span>
+                <h3>Classless Addressing (CIDR, FLSM, VLSM)</h3>
+                <p style="font-size:0.88rem;">Arbitrary network prefix length specified via slash notation (e.g. `/26`):</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
+                    <li><strong>CIDR:</strong> Classless Inter-Domain Routing</li>
+                    <li><strong>FLSM:</strong> Fixed Length Subnet Masking (equal-sized subnets)</li>
+                    <li><strong>VLSM:</strong> Variable Length Subnet Masking (custom subnet sizes matched to exact department user numbers)</li>
+                </ul>
+                <div style="color:var(--accent-green); font-size:0.8rem; margin-top:0.4rem;">✓ Prevents address exhaustion and enables route summarization.</div>
+            </div>
+        </div>
+
+        <h2>3. CIDR Prefix Reference Cheat Sheet & Bit Borrowing Rules</h2>
+
+        <div class="card">
+            <div class="code-block" style="margin:0;">
+                <div class="code-header"><span>CIDR Subnet Mask & Usable Host Reference Table</span></div>
+                <pre><code style="color:var(--primary-cyan);">
+CIDR    Subnet Mask          Borrowed Bits   Host Bits (h)   Total Hosts   Usable Hosts ($2^h - 2$)
+/24     255.255.255.0        0               8               256           254
+/25     255.255.255.128      1               7               128           126
+/26     255.255.255.192      2               6               64            62
+/27     255.255.255.224      3               5               32            30
+/28     255.255.255.240      4               4               16            14
+/29     255.255.255.248      5               3               8             6
+/30     255.255.255.252      6               2               4             2  (Point-to-Point WAN)
+/31     255.255.255.254      7               1               2             2  (Special Router CIDR*)
+                </code></pre>
+            </div>
+            <div class="callout callout-info" style="margin-top:1rem;">
+                <div class="callout-title">💡 Special Lecturer Rule: The /31 Router Link Exception</div>
+                <p style="margin:0; font-size:0.85rem;">Notice for <strong>/31 CIDR prefixes</strong> (connecting 2 point-to-point routers): We do <strong>NOT subtract 2</strong> because routers do not broadcast. Both available addresses are assigned directly to the router interfaces!</p>
+            </div>
+        </div>
+
+        <h2>4. Step-by-Step VLSM Calculation Workflow</h2>
+
+        <div class="card">
+            <h4 style="color:var(--accent-amber); margin-bottom:0.5rem;">Example Problem: Allocate Subnets for Network 10.1.1.0/24</h4>
+            <p style="font-size:0.9rem;">Department requirements: Admin (150 hosts), Marketing (60 hosts), ICT (25 hosts), Faculty (88 hosts), Bursar (7 hosts).</p>
+            
+            <div class="callout callout-work" style="font-size:0.88rem;">
+                <strong>Step 1: Always sort departments in descending order of host count!</strong><br>
+                1. Admin (150 hosts) $\rightarrow$ Needs $2^8 - 2 = 254$ hosts $\rightarrow$ <strong>/25</strong> (Allocates 10.1.1.0 to 10.1.1.127)<br>
+                2. Faculty (88 hosts) $\rightarrow$ Needs $2^7 - 2 = 126$ hosts $\rightarrow$ <strong>/25</strong> (Allocates 10.1.1.128 to 10.1.1.255)<br>
+                3. Marketing (60 hosts) $\rightarrow$ Needs $2^6 - 2 = 62$ hosts $\rightarrow$ <strong>/26</strong><br>
+                4. ICT (25 hosts) $\rightarrow$ Needs $2^5 - 2 = 30$ hosts $\rightarrow$ <strong>/27</strong><br>
+                5. Bursar (7 hosts) $\rightarrow$ Needs $2^4 - 2 = 14$ hosts $\rightarrow$ <strong>/28</strong>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/net_simulators.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

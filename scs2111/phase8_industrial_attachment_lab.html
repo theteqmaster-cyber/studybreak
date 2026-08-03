@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 8: Attachment Lab & Troubleshooting | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 8: Attachment Lab</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Phase 8: Industrial Attachment Lab</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="phase7_wireless_security_nos.html">← Phase 7</a></li>
+        <li><a href="phase9_exam_drill.html">Phase 9 Exam Drills →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <span class="badge badge-cyan">PHASE 08</span>
+        <h1>Industrial Attachment Field Readiness & Packet Tracer Lab</h1>
+        <p>Network rack cabinet anatomy, Packet Tracer simulation walkthroughs, ISP primary/secondary failover, and field diagnostic SOPs.</p>
+
+        <!-- INTERACTIVE INDUSTRIAL TROUBLESHOOTING SANDBOX WIDGET -->
+        <h2>1. Interactive Attachment Field Diagnostic Ticket Sandbox</h2>
+        <div id="troubleshoot-sim-container"></div>
+
+        <h2>2. Network Server Cabinet Component Anatomy</h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <span class="badge badge-green">Hardware Anatomy</span>
+                <h3>Network Rack Layout & Patching</h3>
+                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:1.2rem;">
+                    <li><strong>Patch Panels:</strong> Wall drop cables terminate into rear RJ45 keystone jacks on the patch panel. Short patch cords bridge from panel to switch ports.</li>
+                    <li><strong>Managed Switch Stack:</strong> Interconnected via high-speed 10Gbps SFP+ stack cables.</li>
+                    <li><strong>Fiber Optics Transceiver Box:</strong> Converts ISP fiber glass line into copper RJ45 WAN input.</li>
+                    <li><strong>UPS Power Backup:</strong> Uninterruptible Power Supply shielding switches from sudden power cuts.</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-amber">Redundancy Rule</span>
+                <h3>ISP Primary vs. Secondary WAN Failover</h3>
+                <p style="font-size:0.88rem;">Enterprises cannot afford total network downtime. Always deploy dual ISP WAN connections:</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
+                    <li><strong>Primary Provider (e.g. Liquid Intelligent Tech):</strong> High speed, lower cost per GB, carries 95% of daily traffic.</li>
+                    <li><strong>Secondary Provider (e.g. TelOne / Dedicated Microwave):</strong> Higher cost per GB, kept active strictly as automatic failover backup when primary fiber suffers cut.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>3. Cisco Packet Tracer Lab 1: Building a Simple Switched Network</h2>
+
+        <div class="card">
+            <div class="code-block" style="margin:0;">
+                <div class="code-header"><span>Step-by-Step Cisco Packet Tracer Practical Lab Guide</span></div>
+                <pre><code style="color:var(--accent-green);">
+Step 1: Open Packet Tracer. From End Devices, drag 2 PCs (PC0 and PC1) onto workspace.
+Step 2: From Network Devices -> Switches, select a Cisco 2960 24-Port Switch.
+Step 3: Select Connections -> Copper Straight-Through Cable.
+        - Connect PC0 FastEthernet0 to Switch FastEthernet 0/1.
+        - Connect PC1 FastEthernet0 to Switch FastEthernet 0/2.
+Step 4: Click PC0 -> Desktop tab -> IP Configuration.
+        - Set IP Address: 192.168.1.10
+        - Set Subnet Mask: 255.255.255.0
+Step 5: Click PC1 -> Desktop tab -> IP Configuration.
+        - Set IP Address: 192.168.1.11
+        - Set Subnet Mask: 255.255.255.0
+Step 6: Verify ICMP Connectivity:
+        - Open Command Prompt on PC0.
+        - Execute command: ping 192.168.1.11
+        - Output should show: 4 packets sent, 4 received (0% loss).
+                </code></pre>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/net_simulators.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

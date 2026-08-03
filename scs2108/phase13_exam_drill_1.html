@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 13: Exam Drill 1 (OOP Principles & Concepts) | SCS2108</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-pink: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .section-hdr { font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: #fff; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        .q-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; transition: border 0.2s; }
+        .q-card:hover { border-color: rgba(99, 102, 241, 0.4); }
+        .q-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; }
+        .q-num { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; color: var(--primary-light); }
+        .q-tag { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+        .tag-easy { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+        .tag-med { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+        .tag-hard { background: rgba(236, 72, 153, 0.15); color: var(--accent-pink); }
+        
+        .q-text { font-size: 1rem; font-weight: 500; color: #f3f4f6; margin-bottom: 0.75rem; }
+        .btn-ans { background: rgba(255, 255, 255, 0.05); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
+        .btn-ans:hover { background: var(--primary); color: #fff; }
+        .ans-box { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); color: #d1d5db; font-size: 0.93rem; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #60a5fa;">SCS2108</span> | <span style="color: #fff;">Phase Study Card</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="phase12_four_pillars_code_snippets.html" class="nav-link">← Phase 12: 4 Pillars Code</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <span class="phase-badge">Phase 13 of 15 • 40 Questions</span>
+        <a href="phase14_exam_drill_2.html" class="nav-link">Phase 14: Exam Drill 2 →</a>
+    </div>
+
+    <h1>Phase 13: Exam Drill 1 (OOP Principles & Concepts)</h1>
+    <p class="intro-lead">40 Exam-Style Questions with Model Examiner Answers. Click "View Model Answer" to reveal the exact marking criteria.</p>
+
+    <!-- EASY (Q1 - Q20) -->
+    <div class="section-hdr">Part 1: Foundational Questions (Questions 1 - 20)</div>
+    
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q01</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Define Object-Oriented Programming (OOP) and state two of its core goals.</div>
+        <button class="btn-ans" onclick="toggleAns('a1')">View Model Answer</button>
+        <div id="a1" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>OOP is a programming paradigm based on the concept of "objects", which contain data (attributes/fields) and code (methods/behaviors).<br><strong>Two Core Goals</strong>: 1. Code Reusability (via inheritance/composition), 2. Modularity & Maintainability (via encapsulation).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q02</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the distinction between a Class and an Object?</div>
+        <button class="btn-ans" onclick="toggleAns('a2')">View Model Answer</button>
+        <div id="a2" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>A <strong>Class</strong> is a compile-time blueprint or user-defined data type describing properties and behaviors.<br>An <strong>Object</strong> is a concrete runtime instance created on the heap taking up memory space.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q03</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What does the term "Instantiation" mean in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a3')">View Model Answer</button>
+        <div id="a3" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Instantiation is the process of creating a concrete object instance of a class in heap memory using the <code>new</code> keyword.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q04</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">State the 4 major pillars of Object-Oriented Programming.</div>
+        <button class="btn-ans" onclick="toggleAns('a4')">View Model Answer</button>
+        <div id="a4" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>1. Encapsulation<br>2. Abstraction<br>3. Inheritance<br>4. Polymorphism</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q05</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Define Encapsulation and explain how it is achieved in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a5')">View Model Answer</button>
+        <div id="a5" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>Encapsulation is bundling data and methods into a single class while restricting direct access to instance fields.<br><strong>Achieved by</strong>: Declaring instance fields as <code>private</code> and exposing public <code>getter</code> and <code>setter</code> methods.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q06</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is Abstraction and why is it useful in software design?</div>
+        <button class="btn-ans" onclick="toggleAns('a6')">View Model Answer</button>
+        <div id="a6" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Abstraction hides internal complex implementation details and exposes only essential features. It reduces complexity and decouples interface from implementation.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q07</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Differentiate between an IS-A relationship and a HAS-A relationship.</div>
+        <button class="btn-ans" onclick="toggleAns('a7')">View Model Answer</button>
+        <div id="a7" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>IS-A</strong>: Represents Inheritance (e.g. <code>Dog IS-A Animal</code>).<br><strong>HAS-A</strong>: Represents Association/Aggregation/Composition (e.g. <code>Car HAS-AN Engine</code>).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q08</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is Polymorphism? State its two types in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a8')">View Model Answer</button>
+        <div id="a8" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Polymorphism allows one entity to take on multiple forms.<br><strong>Two Types</strong>: 1. Compile-Time Polymorphism (Method Overloading), 2. Runtime Polymorphism (Method Overriding).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q09</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is a Constructor in Java and what is its primary purpose?</div>
+        <button class="btn-ans" onclick="toggleAns('a9')">View Model Answer</button>
+        <div id="a9" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>A special method sharing the class name with no return type. Its purpose is to initialize a newly created object's fields.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q10</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What happens if a Java class defines no constructor explicitly?</div>
+        <button class="btn-ans" onclick="toggleAns('a10')">View Model Answer</button>
+        <div id="a10" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>The Java compiler automatically inserts a default no-argument constructor.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q11</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Explain Method Overloading.</div>
+        <button class="btn-ans" onclick="toggleAns('a11')">View Model Answer</button>
+        <div id="a11" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Defining multiple methods in the same class with the same name but different parameter lists (type, count, or order).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q12</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Explain Method Overriding.</div>
+        <button class="btn-ans" onclick="toggleAns('a12')">View Model Answer</button>
+        <div id="a12" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>A subclass providing a specific implementation of a method already defined in its superclass using the exact same signature.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q13</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the role of the <code>super</code> keyword in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a13')">View Model Answer</button>
+        <div id="a13" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Refers to the immediate parent (superclass) object. Used to invoke parent constructors (<code>super()</code>) or parent methods.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q14</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the role of the <code>this</code> keyword in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a14')">View Model Answer</button>
+        <div id="a14" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>Refers to the current object instance executing the method. Resolves shadowing between instance fields and parameters.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q15</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Does Java support Multiple Class Inheritance? Explain.</div>
+        <button class="btn-ans" onclick="toggleAns('a15')">View Model Answer</button>
+        <div id="a15" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>No. Java does not allow a class to extend multiple classes to avoid the Diamond Problem ambiguity. Multiple interface implementation is allowed.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q16</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is an Abstract Class?</div>
+        <button class="btn-ans" onclick="toggleAns('a16')">View Model Answer</button>
+        <div id="a16" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>A class declared with <code>abstract</code> that cannot be instantiated directly and may contain abstract methods without body.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q17</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is an Interface in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a17')">View Model Answer</button>
+        <div id="a17" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>A blueprint contract declaring abstract methods that implementing classes must fulfill.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q18</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">Define Garbage Collection in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a18')">View Model Answer</button>
+        <div id="a18" class="ans-box"><strong>Model Answer [3 Marks]</strong>:<br>An automatic memory management process in JVM that reclaims heap memory occupied by unreferenced objects.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q19</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the difference between Aggregation and Composition?</div>
+        <button class="btn-ans" onclick="toggleAns('a19')">View Model Answer</button>
+        <div id="a19" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Aggregation is a weak HAS-A relationship where child objects survive parent destruction. Composition is a strong PART-OF relationship where child lifetime is bound to parent.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q20</span><span class="q-tag tag-easy">Easy</span></div>
+        <div class="q-text">What is the DRY Principle in software engineering?</div>
+        <button class="btn-ans" onclick="toggleAns('a20')">View Model Answer</button>
+        <div id="a20" class="ans-box"><strong>Model Answer [2 Marks]</strong>:<br>"Don't Repeat Yourself" - avoiding code duplication by using inheritance, methods, or modular design.</div>
+    </div>
+
+    <!-- MEDIUM (Q21 - Q30) -->
+    <div class="section-hdr">Part 2: Medium / Applied Questions (Questions 21 - 30)</div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q21</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Why does Encapsulation improve software security and maintainability? Give a concrete scenario.</div>
+        <button class="btn-ans" onclick="toggleAns('a21')">View Model Answer</button>
+        <div id="a21" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>It prevents illegal external state modification. Scenario: In a <code>BankAccount</code>, if <code>balance</code> were public, any external code could set <code>balance = -5000</code>. Encapsulation forces access through <code>withdraw(amt)</code> which enforces invariant checks.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q22</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Compare Method Overloading and Method Overriding in a structured table (3 differences).</div>
+        <button class="btn-ans" onclick="toggleAns('a22')">View Model Answer</button>
+        <div id="a22" class="ans-box"><strong>Model Answer [6 Marks]</strong>:<br>1. <strong>Scope</strong>: Overloading is within same class; Overriding is between parent and child class.<br>2. <strong>Parameters</strong>: Overloading requires different parameters; Overriding requires identical parameters.<br>3. <strong>Binding</strong>: Overloading is compile-time (static); Overriding is runtime (dynamic).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q23</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain how Polymorphism enables loose coupling in software architecture.</div>
+        <button class="btn-ans" onclick="toggleAns('a23')">View Model Answer</button>
+        <div id="a23" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>By programming to an interface or abstract class reference rather than concrete implementations (e.g. <code>List<String> list = new ArrayList<>()</code>). The client code depends only on the contract, allowing implementation swap without modifying client code.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q24</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is the Diamond Problem in C++ and how does Java avoid it?</div>
+        <button class="btn-ans" onclick="toggleAns('a24')">View Model Answer</button>
+        <div id="a24" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>The Diamond Problem occurs in multiple class inheritance when Class D inherits from Class B and C, which both inherit from Class A. If B and C override a method from A, D faces ambiguity on which version to inherit. Java avoids this by disallowing multiple class inheritance.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q25</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Can an Abstract class have a constructor? If yes, how is it invoked?</div>
+        <button class="btn-ans" onclick="toggleAns('a25')">View Model Answer</button>
+        <div id="a25" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Yes! An abstract class can have constructors. They cannot be invoked via <code>new</code> directly, but are executed when a subclass constructor calls <code>super()</code>.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q26</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain the concept of an Anonymous Inner Class in Java.</div>
+        <button class="btn-ans" onclick="toggleAns('a26')">View Model Answer</button>
+        <div id="a26" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>An inner class declared without a name, instantiated in a single expression to override methods of an interface or class on the fly (commonly used for event listeners).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q27</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Differentiate between Static Binding and Dynamic Binding.</div>
+        <button class="btn-ans" onclick="toggleAns('a27')">View Model Answer</button>
+        <div id="a27" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>Static binding resolves method calls at compile-time (private, static, final methods). Dynamic binding resolves method calls at runtime based on the actual heap object instance type.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q28</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is an OOP Framework? Give two examples mentioned in lecture notes.</div>
+        <button class="btn-ans" onclick="toggleAns('a28')">View Model Answer</button>
+        <div id="a28" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>A reusable set of libraries and design structures providing a foundational template for building software. Examples: Spring Framework, JavaFX.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q29</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">Explain how Covariant Return Types work in Java method overriding.</div>
+        <button class="btn-ans" onclick="toggleAns('a29')">View Model Answer</button>
+        <div id="a29" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>In Java 5+, an overriding method in a subclass can return a subtype of the return type declared in the superclass method.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q30</span><span class="q-tag tag-med">Medium</span></div>
+        <div class="q-text">What is the difference between Shallow Copy and Deep Copy of an object?</div>
+        <button class="btn-ans" onclick="toggleAns('a30')">View Model Answer</button>
+        <div id="a30" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>Shallow copy duplicates primitive values but copies reference pointers to nested objects (sharing nested objects). Deep copy recursively duplicates all nested objects, creating independent memory instances.</div>
+    </div>
+
+    <!-- HARD / TRICK (Q31 - Q40) -->
+    <div class="section-hdr">Part 3: Hard / Examiner Trick Questions (Questions 31 - 40)</div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q31</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can a static method be overridden in Java? Explain what happens if a subclass defines a static method with the exact same signature.</div>
+        <button class="btn-ans" onclick="toggleAns('a31')">View Model Answer</button>
+        <div id="a31" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>NO! Static methods CANNOT be overridden</strong>. If a subclass defines the same static method, it is called <strong>Method Hiding</strong>. Method resolution depends on the reference type (compile-time), not the actual heap object.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q32</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can a class be declared both <code>abstract</code> and <code>final</code> in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a32')">View Model Answer</button>
+        <div id="a32" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>NO! Compile error</strong>. <code>abstract</code> requires subclasses to extend it, whereas <code>final</code> prevents subclasses from extending it. They are illegal contradictory modifiers.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q33</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Consider code: <code>class Parent { public static void show() {} } class Child extends Parent { public void show() {} }</code>. Will this compile?</div>
+        <button class="btn-ans" onclick="toggleAns('a33')">View Model Answer</button>
+        <div id="a33" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br><strong>NO! Compile error</strong>. You cannot override a static method with an instance method (or vice versa).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q34</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Does an interface variable default to private if no modifier is specified?</div>
+        <button class="btn-ans" onclick="toggleAns('a34')">View Model Answer</button>
+        <div id="a34" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>NO!</strong> All variables declared in an interface are implicitly <code>public static final</code> constants.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q35</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: If a subclass constructor does NOT explicitly call <code>super(...)</code>, what does the Java compiler do automatically?</div>
+        <button class="btn-ans" onclick="toggleAns('a35')">View Model Answer</button>
+        <div id="a35" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>The compiler inserts a no-arg <code>super()</code> call as the first statement. If the parent class has no no-arg constructor, a compile error occurs!</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q36</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Is Aggregation a sub-type of Composition, or is Composition a sub-type of Aggregation?</div>
+        <button class="btn-ans" onclick="toggleAns('a36')">View Model Answer</button>
+        <div id="a36" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Both Aggregation and Composition are specializations of <strong>Association</strong>. Composition is a stronger form of Aggregation where object lifetime is tightly coupled.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q37</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can an inner class access private members of its outer enclosing class?</div>
+        <button class="btn-ans" onclick="toggleAns('a37')">View Model Answer</button>
+        <div id="a37" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br><strong>YES!</strong> Inner classes have direct access to all private members and methods of their outer enclosing class.</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q38</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: What is the return type of a Constructor in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a38')">View Model Answer</button>
+        <div id="a38" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>Constructors have <strong>NO return type</strong> (not even <code>void</code>). Specifying a return type turns it into a normal method!</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q39</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Can you instantiate an Interface directly using <code>new InterfaceName()</code>?</div>
+        <button class="btn-ans" onclick="toggleAns('a39')">View Model Answer</button>
+        <div id="a39" class="ans-box"><strong>Model Answer [4 Marks]</strong>:<br>No, unless providing an Anonymous Inner Class implementation body inline (e.g. <code>new Runnable() { public void run() {} }</code>).</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-meta"><span class="q-num">Q40</span><span class="q-tag tag-hard">Examiner Trick</span></div>
+        <div class="q-text">TRICK: Why does changing a method's return type alone NOT create a valid method overload in Java?</div>
+        <button class="btn-ans" onclick="toggleAns('a40')">View Model Answer</button>
+        <div id="a40" class="ans-box"><strong>Model Answer [5 Marks]</strong>:<br>Because when a method is called without assigning its return value (e.g. <code>doWork()</code>), the compiler cannot determine which method to invoke based on return type alone. Overloading requires distinct parameter lists.</div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="phase12_four_pillars_code_snippets.html" class="nav-link">← Phase 12: 4 Pillars Code</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Home</a>
+        <a href="phase14_exam_drill_2.html" class="nav-link">Next: Phase 14 - Exam Drill 2 →</a>
+    </div>
+</div>
+
+<script>
+function toggleAns(id) {
+    var el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+(function() {
+    const phaseId = 'phase13';
+    const views = JSON.parse(localStorage.getItem('scs2108_views') || '{}');
+    views[phaseId] = (views[phaseId] || 0) + 1;
+    localStorage.setItem('scs2108_views', JSON.stringify(views));
+})();
+</script>
+
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Tutorial Phase 2: VLANs & Routing | SCS2111 Attachment Prep</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">PT Tutorial Phase 2: VLANs & Routing</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge" style="background:linear-gradient(135deg, var(--accent-green), var(--primary-cyan));">ATTACHMENT PREP</span>
+        <span class="logo-title">Packet Tracer Tutorial 2: VLANs & Routing</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="pt_tutorial_phase1.html">← PT Phase 1</a></li>
+        <li><a href="pt_tutorial_phase3.html">PT Phase 3: IT Mindset & Solvers →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span class="badge badge-green">On-the-Job Attachment Preparation</span>
+            <span class="badge badge-cyan">Packet Tracer Phase 2 of 3</span>
+        </div>
+        
+        <h1>Packet Tracer Phase 2: VLANs, 802.1Q Trunking & Inter-VLAN Routing</h1>
+        <p>Building enterprise multi-VLAN topologies, switch trunk links, Router-on-a-Stick (ROAS), and router DHCP pools.</p>
+
+        <div class="callout callout-work">
+            <div class="callout-title">🛠️ Real-World Enterprise Scenario</div>
+            <p style="margin:0;">In corporate networks (like NUST or a bank), finance staff, ICT admins, and guest users cannot sit on the same broadcast domain. We use <strong>VLANs</strong> to logically isolate traffic on shared switches, and a <strong>Router (or Layer 3 Switch)</strong> to securely route traffic between them.</p>
+        </div>
+
+        <h2>1. Step-by-Step Lab: VLAN Creation & Access Port Setup</h2>
+
+        <div class="card">
+            <div class="code-block" style="margin:0;">
+                <div class="code-header"><span>Cisco Switch CLI - Creating VLAN 10 (ADMIN) & VLAN 20 (STUDENTS)</span></div>
+                <pre><code style="color:var(--primary-cyan);">
+! Step 1: Open Switch CLI -> Enter Global Configuration Mode
+Switch> enable
+Switch# configure terminal
+
+! Step 2: Create VLAN 10 for ADMIN Department
+Switch(config)# vlan 10
+Switch(config-vlan)# name ADMIN_DEPT
+Switch(config-vlan)# exit
+
+! Step 3: Create VLAN 20 for STUDENTS
+Switch(config)# vlan 20
+Switch(config-vlan)# name STUDENT_LABS
+Switch(config-vlan)# exit
+
+! Step 4: Assign Ports 1-10 to VLAN 10 (Access Mode)
+Switch(config)# interface range FastEthernet 0/1 - 10
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 10
+Switch(config-if-range)# exit
+
+! Step 5: Assign Ports 11-20 to VLAN 20 (Access Mode)
+Switch(config)# interface range FastEthernet 0/11 - 20
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 20
+Switch(config-if-range)# end
+
+! Step 6: Verify VLAN Port Membership
+Switch# show vlan brief
+                </code></pre>
+            </div>
+        </div>
+
+        <h2>2. Configuring 802.1Q Trunk Links Between Switches</h2>
+
+        <div class="card">
+            <p style="font-size:0.88rem;">When connecting two switches together (e.g. Switch-Floor1 to Switch-Floor2), the link connecting them must be configured as a <strong>Trunk Port</strong> so it can carry tagged frames for both VLAN 10 and VLAN 20 simultaneously.</p>
+
+            <div class="code-block" style="margin:0.5rem 0;">
+                <div class="code-header"><span>Cisco Switch CLI - Enabling 802.1Q Trunking on GigabitEthernet 0/1</span></div>
+                <pre><code style="color:var(--accent-green);">
+Switch(config)# interface GigabitEthernet 0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20
+Switch(config-if)# switchport trunk native vlan 99
+Switch(config-if)# no shutdown
+Switch(config-if)# end
+                </code></pre>
+            </div>
+        </div>
+
+        <h2>3. Configuring Router-on-a-Stick (ROAS) & Router DHCP Server</h2>
+
+        <div class="card">
+            <p style="font-size:0.88rem;">Because VLAN 10 (`192.168.10.0/24`) and VLAN 20 (`192.168.20.0/24`) sit on different logical subnets, they cannot talk to each other without a Layer 3 router gateway. We use sub-interfaces on a single physical router port (`Gi0/0/0`):</p>
+
+            <div class="code-block" style="margin:0.5rem 0;">
+                <div class="code-header"><span>Cisco Router CLI - Sub-interfaces & DHCP Pool Setup</span></div>
+                <pre><code style="color:var(--accent-amber);">
+Router> enable
+Router# configure terminal
+
+! Enable Physical Interface without IP address
+Router(config)# interface GigabitEthernet 0/0/0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+
+! Configure Sub-interface for VLAN 10 (ADMIN Gateway)
+Router(config)# interface GigabitEthernet 0/0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+Router(config-subif)# exit
+
+! Configure Sub-interface for VLAN 20 (STUDENTS Gateway)
+Router(config)# interface GigabitEthernet 0/0/0.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+Router(config-subif)# exit
+
+! Configure DHCP Pool for ADMIN Workstations
+Router(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.10
+Router(config)# ip dhcp pool ADMIN_POOL
+Router(dhcp-config)# network 192.168.10.0 255.255.255.0
+Router(dhcp-config)# default-router 192.168.10.1
+Router(dhcp-config)# dns-server 8.8.8.8
+Router(dhcp-config)# end
+                </code></pre>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Report Outlines, Ethics & Proposal | SCS2110</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #a78bfa;
+            --primary-light: #c084fc;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(167, 139, 250, 0.15); color: var(--primary-light); border: 1px solid rgba(167, 139, 250, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .intro-lead { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .section-hdr { font-family: 'Outfit', sans-serif; font-size: 1.4rem; color: #fff; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        .q-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; transition: border 0.2s; }
+        .q-card:hover { border-color: rgba(167, 139, 250, 0.4); }
+        .q-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .q-num { font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; color: var(--primary-light); }
+        
+        .q-tag { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-apply { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .tag-defend { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .tag-outline { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .tag-classify { background: rgba(167, 139, 250, 0.2); color: #c084fc; border: 1px solid rgba(167, 139, 250, 0.4); }
+        .tag-audit { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
+        
+        .q-text { font-size: 1rem; font-weight: 500; color: #f3f4f6; margin-bottom: 0.75rem; }
+        .btn-ans { background: rgba(255, 255, 255, 0.05); color: var(--primary-light); border: 1px solid rgba(167, 139, 250, 0.3); font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
+        .btn-ans:hover { background: var(--primary); color: #000; }
+        .ans-box { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); color: #d1d5db; font-size: 0.93rem; }
+        .ans-box ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+        .ans-box li { margin-bottom: 0.3rem; }
+        .trap-box { background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 0.6rem 0.8rem; margin-top: 0.8rem; border-radius: 4px; font-size: 0.88rem; color: #fca5a5; }
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #a78bfa;">SCS2110</span> | <span style="color: #fff;">Module 8: Report Outlines, Ethics & Proposal</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="module7_system_design_in_research.html" class="nav-link">← Module 7: CS System Design</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <span class="phase-badge">Module 8 of 8</span>
+        <a href="exam_drill_phase1.html" class="nav-link">Start Exam Drills →</a>
+    </div>
+
+    <h1>Module 8: Report Outlines, Research Ethics & Proposal Drafting</h1>
+    <p class="intro-lead">Directly targets **DECEMBER 2024 EXAM QUESTIONS ONE [20 MARKS], THREE [20 MARKS], AND SIX [20 MARKS]**. Master project chapter structures, openEuler char driver experiment reporting, proposal drafting, and academic ethics.</p>
+
+    <!-- SECTION 1: DEC 2024 EXAM QUESTION ONE BREAKDOWN -->
+    <div class="section-hdr">Part 1: Final Year Research Project Report Structure (Dec 2024 Q1)</div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M8-Q01</span>
+            <span class="q-tag tag-outline">[DEC 2024 EXAM Q1] [DRAFT & OUTLINE]</span>
+        </div>
+        <div class="q-text">Give a detailed outline of the FIVE chapters in a final year CS research project report. [20 Marks - 4 Marks per chapter]</div>
+        <button class="btn-ans" onclick="toggleAns('m8a1')">Reveal Model Answer</button>
+        <div id="m8a1" class="ans-box">
+            <strong>NUST Model Answer [20 Marks Breakdown]</strong>:
+            <ul>
+                <li><strong>Chapter One: Introduction [4 Marks]</strong>:
+                    <br>Provides high-level background, research context, formal Problem Statement, Research Aim (The "What"), Research Objectives (The "How"), Research Questions/Hypotheses, Delimitations, Significance of study, and Report Organization overview.</li>
+                <li><strong>Chapter Two: Literature Review [4 Marks]</strong>:
+                    <br>Presents a systematic review (SLR) of existing academic literature, historical context, current state-of-the-art solutions, comparative evaluation of past approaches, PRISMA flow diagram, identification of research knowledge gaps, and theoretical framework.</li>
+                <li><strong>Chapter Three: Methodology [4 Marks]</strong>:
+                    <br>Details the research paradigm (Positivism/Pragmatism), research methodology (Applied Experimental/Mixed Methods), software development methodology (Iterative Prototyping/Agile justification), target population, sampling strategy, data collection instruments, environment controls, and ethical considerations.</li>
+                <li><strong>Chapter Four: Analysis and Design [4 Marks]</strong>:
+                    <br>Presents system requirements analysis, Context Diagram (current baseline), Use Case Diagrams (proposed system), Activity Diagrams, 3-Tier System Architecture, ERD Database Schema design, mathematical algorithm formulation, and pseudocode.</li>
+                <li><strong>Chapter Five: Implementation and Testing [4 Marks]</strong>:
+                    <br>Documents hardware/software implementation environment, core code module integration, benchmarking experiment execution, empirical results presentation (graphs/tables), statistical validation (t-test/ANOVA), error rate analysis, comparison against baselines, and project conclusions/future work.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION 2: DEC 2024 EXAM QUESTION THREE BREAKDOWN -->
+    <div class="section-hdr">Part 2: Reporting Experiments (Dec 2024 Q3)</div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M8-Q02</span>
+            <span class="q-tag tag-apply">[DEC 2024 EXAM Q3] [APPLY & SOLVE]</span>
+        </div>
+        <div class="q-text">Demonstrate your research writing skill by reporting on the <strong>openEuler operating system char driver experiment</strong> performed during class. [20 Marks]</div>
+        <button class="btn-ans" onclick="toggleAns('m8a2')">Reveal Model Answer</button>
+        <div id="m8a2" class="ans-box">
+            <strong>NUST Model Answer [20 Marks Section Breakdown]</strong>:
+            <br><br><strong>1. Abstract / Introduction (4 Marks)</strong>:
+            <br>Briefly state the goal: evaluating character driver kernel module memory allocation and I/O latency under openEuler OS.
+            <br><br><strong>2. Experimental Setup & Controls (5 Marks)</strong>:
+            <br>Specify hardware (e.g. QEMU ARM64/x86_64, 4GB RAM), openEuler kernel version, gcc flags, and controlled variables (CPU frequency locked, no background daemon activity).
+            <br><br><strong>3. Method & Device Registration (5 Marks)</strong>:
+            <br>Detail driver registration via <code>alloc_chrdev_region()</code>, <code>cdev_init()</code>, custom <code>file_operations</code> struct (read/write/ioctl routines), and ring buffer allocation.
+            <br><br><strong>4. Empirical Results & Discussion (6 Marks)</strong>:
+            <br>Present a benchmark comparison table measuring read/write throughput (MB/s) and context switch latency ($\mu s$) across variable payload sizes (64B to 64KB). Conclude with validity discussion and memory safety evaluation.
+        </div>
+    </div>
+
+    <!-- SECTION 3: RESEARCH ETHICS & CARDINAL SINS -->
+    <div class="section-hdr">Part 3: Research Ethics & "Cardinal Sins"</div>
+
+    <div class="q-card">
+        <div class="q-meta">
+            <span class="q-num">M8-Q03</span>
+            <span class="q-tag tag-audit">[CRITIQUE & AUDIT]</span>
+        </div>
+        <div class="q-text">Explain the FIVE "Cardinal Sins" of academic research ethics in Computer Science and state how to prevent each. [10 Marks]</div>
+        <button class="btn-ans" onclick="toggleAns('m8a3')">Reveal Model Answer</button>
+        <div id="m8a3" class="ans-box">
+            <strong>NUST Model Answer [10 Marks]</strong>:
+            <ul>
+                <li><strong>1. Data Fabrication</strong>: Making up fake benchmark results or survey responses. <em>Prevention</em>: Retain raw timestamped execution logs for 5 years.</li>
+                <li><strong>2. Data Falsification</strong>: Manipulating hardware logs, deleting outliers selectively, or falsifying performance benchmarks to match a hypothesis. <em>Prevention</em>: Report all data points transparently with standard deviation and confidence intervals.</li>
+                <li><strong>3. Plagiarism & Idea Theft</strong>: Copying text, code, or ideas from others without proper Harvard citation. <em>Prevention</em>: Always cite original authors and run Turnitin audits before submission.</li>
+                <li><strong>4. AI Hallucination & Uncited AI Use</strong>: Copying fake AI-generated references or unverified code snippets into a paper. <em>Prevention</em>: Paraphrase using human judgment and verify all references in academic databases.</li>
+                <li><strong>5. Unethical Human Data Collection</strong>: Gathering student biometric or personal network data without Institutional Review Board (IRB) ethical clearance. <em>Prevention</em>: Obtain formal written consent and anonymize all participant data.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="module7_system_design_in_research.html" class="nav-link">← Module 7: CS System Design</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <a href="exam_drill_phase1.html" class="nav-link">Start Phase 1 Exam Drill →</a>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

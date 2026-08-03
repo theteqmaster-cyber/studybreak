@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 6: Routing, Switching & VLANs | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 6: Routing & Switching</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Phase 6: Routing & Switching</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="phase5_ip_addressing_subnetting.html">← Phase 5</a></li>
+        <li><a href="phase7_wireless_security_nos.html">Phase 7 →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <span class="badge badge-cyan">PHASE 06</span>
+        <h1>Routing, Switching & VLAN Configurations</h1>
+        <p>Managed switch port configuration, VLAN broadcast isolation, Spanning Tree Protocol (STP), ARP, and Cisco IOS CLI syntax.</p>
+
+        <!-- INTERACTIVE CISCO VLAN CONFIGURATOR WIDGET -->
+        <h2>1. Interactive Cisco Switch VLAN Port Configurator</h2>
+        <div id="vlan-sim-container"></div>
+
+        <h2>2. Virtual Local Area Networks (VLANs) & Trunking</h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <span class="badge badge-cyan">End Host Port</span>
+                <h3>Access Ports</h3>
+                <p style="font-size:0.88rem;">Assigned to a single specific VLAN ID. Used to connect end-user workstations, printers, or IP phones.</p>
+                <div class="code-block" style="margin:0.5rem 0;">
+                    <pre><code style="color:var(--primary-cyan);">Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10</code></pre>
+                </div>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-purple">Inter-Switch Link</span>
+                <h3>Trunk Ports (IEEE 802.1Q)</h3>
+                <p style="font-size:0.88rem;">Carries multiplexed traffic for multiple VLANs simultaneously between switches or between switch and router (Router-on-a-Stick).</p>
+                <div class="code-block" style="margin:0.5rem 0;">
+                    <pre><code style="color:var(--accent-green);">Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20,99</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. Spanning Tree Protocol (STP / IEEE 802.1D)</h2>
+
+        <div class="card">
+            <p>Redundant physical cabling between switches is essential for enterprise uptime, but without STP, redundant loops cause infinite <strong>Broadcast Storms</strong> that crash switches in seconds.</p>
+            <div class="callout callout-warning">
+                <div class="callout-title">⚡ How STP Prevents Loop Meltdown</div>
+                <p style="margin:0; font-size:0.88rem;">STP elects a <strong>Root Bridge</strong> switch and dynamically blocks redundant backup ports (putting them into Blocking State). If an active link fails, STP unblocks the backup port within seconds, restoring traffic flow automatically.</p>
+            </div>
+        </div>
+
+        <h2>4. Essential Cisco IOS CLI Command Reference Cheat Sheet</h2>
+
+        <div class="card">
+            <div class="code-block" style="margin:0;">
+                <div class="code-header"><span>Cisco Router & Switch Configuration Commands</span></div>
+                <pre><code style="color:var(--accent-amber);">
+# Enter Privileged EXEC Mode
+Router> enable
+
+# Enter Global Configuration Mode
+Router# configure terminal
+
+# Set Device Hostname
+Router(config)# hostname Core-Switch-01
+
+# Configure IP Address on Router Interface
+Core-Switch-01(config)# interface GigabitEthernet 0/0
+Core-Switch-01(config-if)# ip address 192.168.1.1 255.255.255.0
+Core-Switch-01(config-if)# no shutdown
+
+# View Interface IP Status Summary
+Core-Switch-01# show ip interface brief
+
+# View Switch MAC Address Table
+Core-Switch-01# show mac address-table
+
+# Save Configuration to NVRAM
+Core-Switch-01# copy running-config startup-config
+                </code></pre>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/net_simulators.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Phase 10: Report Writing, LaTeX, Dissemination & H-Index | SCS2110</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #38bdf8;
+            --primary-light: #7dd3fc;
+            --accent-purple: #a78bfa;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 2rem 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        .nav-link { color: var(--primary-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .phase-badge { background: rgba(56, 189, 248, 0.15); color: var(--primary-light); border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
+        .intro-lead { font-size: 1.08rem; color: var(--text-muted); margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
+        
+        .section-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.75rem; margin-bottom: 2rem; }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.6rem; }
+        
+        p { margin-bottom: 1rem; color: #d1d5db; font-size: 0.98rem; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.4rem; color: #d1d5db; }
+        li { margin-bottom: 0.4rem; }
+        strong { color: #fff; }
+        
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.25rem 0; }
+        .concept-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; }
+        .concept-card h4 { font-family: 'Outfit', sans-serif; color: var(--primary-light); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        
+        .exam-tip { background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-amber); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; font-size: 0.94rem; color: #fef08a; }
+        .exam-tip strong { color: var(--accent-amber); }
+
+        .distinction-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1.25rem; border-radius: 10px; margin: 1.5rem 0; }
+        .distinction-box h4 { color: var(--accent-emerald); font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.92rem; }
+        .comparison-table th, .comparison-table td { border: 1px solid var(--border-color); padding: 0.75rem; text-align: left; }
+        .comparison-table th { background: rgba(255, 255, 255, 0.05); color: #fff; font-family: 'Outfit', sans-serif; }
+
+        .nav-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #38bdf8;">SCS2110 Material</span> | <span style="color: #fff;">Phase 10: Report Writing, LaTeX & Bibliometrics</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="material_phase9_reliability_validity_threats.html" class="nav-link">← Material Phase 9</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <span class="phase-badge">Material Phase 10</span>
+        <a href="index.html" class="nav-link">Course Index →</a>
+    </div>
+
+    <h1>Material Phase 10: Report Outlines, LaTeX Formatting & Dissemination Indices</h1>
+    <p class="intro-lead">Complete study guide for Course Units 10 & 11 (Direct Dec 2024 Exam Q1, Q3, Q6 focus [60 Marks]). Master the NUST 5-chapter thesis structure, LaTeX compilation, publishing channels, and calculating the h-index.</p>
+
+    <!-- SECTION 1: NUST 5-CHAPTER THESIS STRUCTURE -->
+    <div class="section-box">
+        <div class="section-title">1. The NUST 5-Chapter Thesis Structure</div>
+        <p>While standalone journal articles follow the 4-part <strong>IMRaD</strong> format (Introduction, Methods, Results, and Discussion), final-year CS degree reports at NUST must be structured into 5 distinct chapters:</p>
+
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h4>Chapter 1: Introduction</h4>
+                <p>Background of the study, Empirical Problem Statement, Overarching Aim, SMART Objectives, Research Questions / Hypotheses, Scope & Delimitations, Justification.</p>
+            </div>
+            <div class="concept-card">
+                <h4>Chapter 2: Literature Review</h4>
+                <p>Theoretical framework, Systematic Literature Review (SLR) synthesis, comparative table of prior state-of-the-art models, identification of the knowledge gap.</p>
+            </div>
+            <div class="concept-card">
+                <h4>Chapter 3: System Architecture & Methodology</h4>
+                <p>Detailed research design, Design Science framework (Hevner), System Artifact diagrams (Context, ERD, 3-Tier Architecture), Data Collection & Benchmarking setup.</p>
+            </div>
+            <div class="concept-card">
+                <h4>Chapter 4: Implementation & Evaluation</h4>
+                <p>Artifact construction details, benchmark execution logs, quantitative statistical analysis (t-test / ANOVA graphs), qualitative thematic findings, discussion.</p>
+            </div>
+            <div class="concept-card">
+                <h4>Chapter 5: Conclusion & Recommendations</h4>
+                <p>Summary of contributions mapped directly back to Chapter 1 objectives, critical limitations reflection, ethical disclosures, future research directions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: LATEX FORMATTING & BIBTEX -->
+    <div class="section-box">
+        <div class="section-title">2. Academic Formatting with LaTeX & Overleaf</div>
+        <p>LaTeX is the industry standard document preparation system for publishing Computer Science research papers.</p>
+
+        <h3 style="color: var(--primary-light); font-family: 'Outfit', sans-serif; margin: 1.25rem 0 0.5rem;">Key Benefits of LaTeX over Word</h3>
+        <ul>
+            <li><strong>Automated Bibliographic References</strong>: BibTeX automatically formats citations in Harvard, IEEE, or ACM style without manual editing.</li>
+            <li><strong>Mathematical Equation Typesetting</strong>: Precise, publication-ready formula layout using <code>\begin{equation}</code>.</li>
+            <li><strong>Cross-Referencing Integrity</strong>: Figures, tables, and section numbers dynamically update when text changes.</li>
+        </ul>
+
+        <div class="exam-tip">
+            <strong>💡 Code Snippet Example (BibTeX Entry)</strong>:
+            <pre style="font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5); padding: 0.75rem; border-radius: 6px; color: #7dd3fc; margin-top: 0.5rem;">
+@article{moyo2024latency,
+  author    = {Moyo, Blessing and Ncube, Thabo},
+  title     = {Optimizing Memory Serialization in Mobile Frameworks},
+  journal   = {IEEE Transactions on Software Engineering},
+  year      = {2024},
+  volume    = {50},
+  number    = {4},
+  pages     = {412--425}
+}
+            </pre>
+        </div>
+    </div>
+
+    <!-- SECTION 3: DISSEMINATION CHANNELS & BIBLIOMETRICS (H-INDEX) -->
+    <div class="section-box">
+        <div class="section-title">3. Research Dissemination & The h-Index Calculation</div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Publication Channel</th>
+                    <th>Review Mechanism</th>
+                    <th>Dissemination Speed & Prestige</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Preprint Servers</strong> (e.g., arXiv)</td>
+                    <td>Minimal moderation, NO formal peer-review.</td>
+                    <td>Immediate dissemination; allows rapid timestamping of novel algorithms before journal submission.</td>
+                </tr>
+                <tr>
+                    <td><strong>Peer-Reviewed Conferences</strong></td>
+                    <td>Double-blind peer review by program committee.</td>
+                    <td>Fast review cycles (3-6 months). In CS, top-tier conferences (SIGCOMM, USENIX) equal or exceed journal prestige.</td>
+                </tr>
+                <tr>
+                    <td><strong>Peer-Reviewed Journals</strong></td>
+                    <td>Rigorous multi-round peer review.</td>
+                    <td>Slower cycle (6-18 months); authoritative permanent archival record.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: var(--accent-emerald); font-family: 'Outfit', sans-serif; margin: 1.5rem 0 0.5rem;">Calculating the h-Index</h3>
+        <p>A scholar has an <strong>h-index of $h$</strong> if they have published $h$ papers, each of which has been cited at least $h$ times in other published works.</p>
+
+        <div class="distinction-box">
+            <h4>📊 Step-by-Step h-Index Calculation Example</h4>
+            <p>Suppose Researcher Dr. Zengeya has published 6 papers with the following citation counts:<br>
+            Paper 1: 45 citations<br>
+            Paper 2: 22 citations<br>
+            Paper 3: 18 citations<br>
+            Paper 4: 10 citations<br>
+            Paper 5: 5 citations<br>
+            Paper 6: 2 citations</p>
+            <p><strong>Step 1</strong>: Order papers in descending citation count: [45, 22, 18, 10, 5, 2].<br>
+            <strong>Step 2</strong>: Find the highest rank $h$ where Citation Count $\ge$ Rank Number:<br>
+            - Rank 1: 45 citations ($\ge 1$) ✅<br>
+            - Rank 2: 22 citations ($\ge 2$) ✅<br>
+            - Rank 3: 18 citations ($\ge 3$) ✅<br>
+            - Rank 4: 10 citations ($\ge 4$) ✅<br>
+            - Rank 5: 5 citations ($\ge 5$) ✅<br>
+            - Rank 6: 2 citations ($< 6$) ❌<br>
+            <strong>Final h-Index = 5</strong> (Dr. Zengeya has 5 papers with at least 5 citations each).</p>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <a href="material_phase9_reliability_validity_threats.html" class="nav-link">← Material Phase 9</a>
+        <a href="index.html" class="nav-link nav-home" style="display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.7rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none;">🏠 Course Index</a>
+        <a href="index.html" class="nav-link">Course Index →</a>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>

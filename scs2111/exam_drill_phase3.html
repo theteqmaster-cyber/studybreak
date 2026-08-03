@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Drill Phase 3: Cisco CLI & Topology (20%) | SCS2111 Data Communications</title>
+    <link rel="stylesheet" href="assets/css/kyukei_net.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
+    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+        <span>←</span> Kyūkei Master Hub
+    </a>
+    <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 3 (20%)</span>
+    </div>
+    <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
+        👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="logo-group">
+        <span class="logo-badge">SCS2111</span>
+        <span class="logo-title">Exam Drill Phase 3 (20% Weighting)</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="exam_drill_phase2.html">← Exam Drill Phase 2</a></li>
+        <li><a href="exam_drill_phase4.html">Exam Drill Phase 4 (10%) →</a></li>
+    </ul>
+</header>
+
+<div class="app-container">
+    <aside class="sidebar"></aside>
+
+    <main class="content-area">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <span class="badge badge-purple">Exam Drill Phase 3 of 4</span>
+            <span class="badge badge-amber">20% Exam Weighting</span>
+        </div>
+        
+        <h1>Phase 3 Exam Drill: Cisco CLI & Topology Design</h1>
+        <p>Cisco IOS syntax, VLAN configuration, IEEE 802.1Q trunking, Router-on-a-Stick (ROAS), and Spanning Tree loop prevention.</p>
+
+        <h2>Part 1: Cisco IOS CLI Commands & VLAN Configuration</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">P3-Q01</span>
+                <span class="badge badge-green">[12 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Write the exact sequence of Cisco IOS CLI commands to perform the following setup on a Cisco 2960 Switch:</h4>
+            <ol style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
+                <li>Change switch hostname to <code>Core-SW01</code> [2 Marks].</li>
+                <li>Create <strong>VLAN 10</strong> named <code>ADMIN</code> and <strong>VLAN 20</strong> named <code>STUDENTS</code> [4 Marks].</li>
+                <li>Configure port <code>FastEthernet 0/5</code> as an Access Port assigned to <code>VLAN 10</code> [3 Marks].</li>
+                <li>Configure port <code>GigabitEthernet 0/1</code> as an 802.1Q Trunk Port connected to the main router [3 Marks].</li>
+            </ol>
+
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q1')" style="margin-bottom:0.6rem;">View Cisco IOS Model Command Answers</button>
+            
+            <div id="ans-p3q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Cisco CLI Model Answer [12 Marks]</strong>:
+                <div class="code-block" style="margin-top:0.6rem;">
+                    <pre><code style="color:var(--accent-green);">
+! 1. Hostname Setup [2 Marks]
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname Core-SW01
+
+! 2. VLAN Creation [4 Marks]
+Core-SW01(config)# vlan 10
+Core-SW01(config-vlan)# name ADMIN
+Core-SW01(config-vlan)# exit
+Core-SW01(config)# vlan 20
+Core-SW01(config-vlan)# name STUDENTS
+Core-SW01(config-vlan)# exit
+
+! 3. Access Port Assignment [3 Marks]
+Core-SW01(config)# interface FastEthernet 0/5
+Core-SW01(config-if)# switchport mode access
+Core-SW01(config-if)# switchport access vlan 10
+Core-SW01(config-if)# no shutdown
+Core-SW01(config-if)# exit
+
+! 4. Trunk Port Assignment [3 Marks]
+Core-SW01(config)# interface GigabitEthernet 0/1
+Core-SW01(config-if)# switchport mode trunk
+Core-SW01(config-if)# switchport trunk allowed vlan 10,20
+Core-SW01(config-if)# end
+Core-SW01# copy running-config startup-config
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <h2>Part 2: Inter-VLAN Routing & STP Mechanics</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-purple">P3-Q02</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain the operation of Router-on-a-Stick (ROAS) inter-VLAN routing. Why are sub-interfaces and IEEE 802.1Q encapsulation required on the router physical interface?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q2')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
+            
+            <div id="ans-p3q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [8 Marks]</strong>:
+                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
+                    <li><strong>ROAS Core Concept [2 Marks]</strong>: Allows a single physical router interface to route traffic between multiple distinct VLANs over a single trunk link.</li>
+                    <li><strong>Sub-interfaces Role [3 Marks]</strong>: Virtual logical interfaces created on one physical router port (e.g. <code>Gi0/0/0.10</code> and <code>Gi0/0/0.20</code>), each acting as the default gateway for its respective VLAN IP subnet.</li>
+                    <li><strong>802.1Q Tagging [3 Marks]</strong>: Enforces <code>encapsulation dot1Q 10</code> on sub-interfaces so the router can read incoming VLAN tags from the switch trunk link and route packets across subnets before re-tagging.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>SCS2111 Data Communications & Computer Networks • Kyūkei Learning Vault</p>
+</footer>
+
+<script src="assets/js/nav.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function() {
+    const pathParts = window.location.pathname.split('/');
+    let filename = pathParts[pathParts.length - 1] || 'index.html';
+    let cardId = filename.replace('.html', '');
+    
+    let courseId = 'scs2108';
+    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
+    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+
+    if (window.StudyEngine) {
+        const stat = window.StudyEngine.logOpen(courseId, cardId);
+        if (stat) {
+            const openEl = document.getElementById('kyukei-open-count');
+            if (openEl) openEl.innerText = stat.total_opens || 1;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
+        }
+        
+        const statsMap = window.StudyEngine.getCardStatsMap();
+        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
+            const id = card.getAttribute('data-phase-id');
+            const numEl = card.querySelector('.count-num');
+            if (numEl) {
+                const statKey = ;
+                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+            }
+        });
+    }
+
+    let maxScroll = 0;
+    let scrollTimer = null;
+    window.addEventListener('scroll', function() {
+        const h = document.documentElement, b = document.body;
+        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
+        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
+        const ch = h.clientHeight;
+        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
+
+        if (pct > maxScroll) {
+            maxScroll = pct;
+            const scrollEl = document.getElementById('kyukei-scroll-pct');
+            if (scrollEl) scrollEl.innerText = maxScroll + '%';
+
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                if (window.StudyEngine) {
+                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
+                }
+            }, 500);
+        }
+    });
+})();
+</script>
+</body>
+</html>
