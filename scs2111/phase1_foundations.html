@@ -10,11 +10,11 @@
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 1: Foundations</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 1: Foundations & Transmission Theory</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,7 +24,7 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Phase 1: Foundations</span>
+        <span class="logo-title">Phase 1: Data Comm Foundations</span>
     </a>
     <ul class="nav-links">
         <li><a href="index.html">Course Hub</a></li>
@@ -38,101 +38,121 @@
     <main class="content-area">
         <span class="badge badge-cyan">PHASE 01</span>
         <h1>Data Communications & Network Foundations</h1>
-        <p>Mastering core definitions, transmission modes, essential components, and real-world physical constraints.</p>
+        <p>Mastering core definitions, transmission modes, 5 essential components, signal modulation, and channel capacity mathematical limit theorems.</p>
 
         <div class="callout callout-work">
             <div class="callout-title">💼 Industrial Attachment Reality Check (Taught vs Trained)</div>
             <p style="margin:0;">In class, Mr. KGM emphasized: <em>"Industry wants trained people. We are not just teaching theory for an exam—we are training you so that during your attachment, you can step right up to a network cabinet and diagnose real issues."</em></p>
         </div>
 
-        <h2>1. Data Communications vs. Computer Networks</h2>
+        <h2>1. Theoretical Foundations: Data Communications vs. Computer Networks</h2>
+        <p>Before designing or troubleshooting network systems, an engineer must distinguish between the theoretical abstraction of data transmission and its real-world physical deployment.</p>
 
         <div class="grid-2">
             <div class="card">
                 <span class="badge badge-amber">Theoretical Foundation</span>
                 <h3>Data Communications</h3>
-                <p>The exchange of data between two devices via some form of transmission medium (wire or wireless). Represents the <strong>theoretical rules, signaling, and protocol mechanics</strong>.</p>
-                <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem;">
-                    <li>Focuses on structure, encoding, and protocols</li>
-                    <li>Pure theory—no hardware setup required</li>
-                    <li>The foundation upon which all networks operate</li>
+                <p>The exchange of data between two nodes via a transmission medium (guided copper/fiber or unguided RF spectrum). It encompasses the <strong>mathematical rules, modulation, encoding schemes, and protocol mechanics</strong>.</p>
+                <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.5rem;">
+                    <li>Focuses on bit timing, signal-to-noise ratios, and framing protocols.</li>
+                    <li>Provides the theoretical foundation independent of physical vendor hardware.</li>
+                    <li>Analyzes channel capacity, error detection (CRC), and modulation schemes.</li>
                 </ul>
             </div>
 
             <div class="card">
                 <span class="badge badge-green">Industrial Application</span>
                 <h3>Computer Networks</h3>
-                <p>The <strong>practical implementation and real-world interconnection</strong> of autonomous computing devices capable of sharing resources, files, and services.</p>
-                <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem;">
-                    <li>Focuses on routers, managed switches, cabinets & cabling</li>
-                    <li>Directly applied in workplace industrial attachment</li>
-                    <li>Real life hardware application of data comm theory</li>
+                <p>The <strong>practical engineering realization</strong> of interconnected autonomous computing devices capable of routing traffic, sharing hardware resources, and delivering services.</p>
+                <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.5rem;">
+                    <li>Focuses on managed switches, enterprise routers, server cabinets, and cabling patch panels.</li>
+                    <li>Directly applied in workplace IT infrastructure and industrial attachment field operations.</li>
+                    <li>Configures VLANs, IP routing protocols (OSPF, BGP), and enterprise firewalls.</li>
                 </ul>
             </div>
         </div>
 
         <h2>2. The 5 Essential Components of Data Communication</h2>
+        <p>Every data communication architecture, from a simple Bluetooth connection to global optical fiber backbones, requires exactly these five fundamental building blocks:</p>
 
         <div class="card">
-            <p>Every single network communication system, regardless of complexity or scale, consists of exactly these 5 components:</p>
-            <div class="grid-3" style="margin-top:1rem;">
-                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code);">1. Message</div>
-                    <p style="font-size:0.85rem; margin-top:4px;">The actual data payload being sent (text, numbers, audio stream, IP video, images).</p>
+            <div class="grid-3" style="margin-top:0.5rem;">
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code); font-size:1rem;">1. Message (Payload)</div>
+                    <p style="font-size:0.88rem; margin-top:6px; color:var(--text-main);">The actual information content being transmitted. Examples include ASCII text files, compressed MP4 video streams, VoIP audio packets, or HTTP JSON responses.</p>
                 </div>
-                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code);">2. Sender</div>
-                    <p style="font-size:0.85rem; margin-top:4px;">The originating hardware unit (PC, workstation, camera, sensor) capable of generating signals.</p>
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code); font-size:1rem;">2. Sender (Transmitter)</div>
+                    <p style="font-size:0.88rem; margin-top:6px; color:var(--text-main);">The originating hardware unit (workstation, IP camera, IoT sensor) equipped with a Network Interface Card (NIC) that encodes digital data into electrical/optical signals.</p>
                 </div>
-                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code);">3. Receiver</div>
-                    <p style="font-size:0.85rem; margin-top:4px;">The target device (server, printer, smartphone) designated to receive and parse the signal.</p>
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code); font-size:1rem;">3. Receiver</div>
+                    <p style="font-size:0.88rem; margin-top:6px; color:var(--text-main);">The target device (database server, network printer, mobile terminal) that intercepts physical signals, decodes bit patterns, and presents data to the application layer.</p>
                 </div>
-                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code);">4. Medium</div>
-                    <p style="font-size:0.85rem; margin-top:4px;">The physical path traversed by signals (Copper CAT cables, Fiber optic glass, Radio RF waves).</p>
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code); font-size:1rem;">4. Transmission Medium</div>
+                    <p style="font-size:0.88rem; margin-top:6px; color:var(--text-main);">The physical pathway connecting sender and receiver. Divided into <strong>Guided Media</strong> (CAT6 UTP, Single-Mode Fiber) and <strong>Unguided Media</strong> (Wi-Fi RF, Microwave links).</p>
                 </div>
-                <div style="background:rgba(16,23,42,0.8); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code);">5. Protocol</div>
-                    <p style="font-size:0.85rem; margin-top:4px;">The set of governing rules synchronizing sender and receiver formatting, timing, and error handling.</p>
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <div style="color:var(--primary-cyan); font-weight:700; font-family:var(--font-code); font-size:1rem;">5. Protocol</div>
+                    <p style="font-size:0.88rem; margin-top:6px; color:var(--text-main);">The standardized set of rules governing data formatting, timing, error detection, and sequence control. Without a shared protocol, nodes can exchange signals but cannot interpret meaning.</p>
                 </div>
             </div>
         </div>
 
-        <h2>3. Data Transmission Modes</h2>
+        <h2>3. Data Transmission Directionality Modes</h2>
 
         <div class="grid-3">
             <div class="card">
                 <span class="badge badge-purple">Unidirectional</span>
                 <h3>Simplex Mode</h3>
-                <p style="font-size:0.88rem;">Communication flows strictly in one direction only. Sender can only transmit, receiver can only listen.</p>
-                <div class="callout callout-info" style="font-size:0.85rem; margin:0.5rem 0 0;">
-                    <strong>Examples:</strong> Keyboard to PC, FM Radio broadcasting, Television broadcast.
+                <p style="font-size:0.9rem;">Communication is strictly one-way. Dedicated transmitter channel; receiver cannot respond back.</p>
+                <div class="callout callout-info" style="font-size:0.85rem; margin:0.8rem 0 0;">
+                    <strong>Examples:</strong> Keyboard to PC motherboard, FM Radio broadcast tower, Television transmission.
                 </div>
             </div>
 
             <div class="card">
                 <span class="badge badge-amber">Half-Duplex</span>
                 <h3>Half-Duplex Mode</h3>
-                <p style="font-size:0.88rem;">Both devices can transmit and receive, but <strong>only one at a time</strong>. Simultaneous transmission causes collisions.</p>
-                <div class="callout callout-warning" style="font-size:0.85rem; margin:0.5rem 0 0;">
-                    <strong>Examples:</strong> Walkie-Talkies, Legacy Network Hubs (CSMA/CD collision detection).
+                <p style="font-size:0.9rem;">Both stations can transmit and receive, but <strong>only one node at a time</strong>. Simultaneous transmission causes signal collisions.</p>
+                <div class="callout callout-warning" style="font-size:0.85rem; margin:0.8rem 0 0;">
+                    <strong>Examples:</strong> Walkie-Talkies, Legacy Network Hubs (CSMA/CD collision handling).
                 </div>
             </div>
 
             <div class="card">
                 <span class="badge badge-green">Full-Duplex</span>
                 <h3>Full-Duplex Mode</h3>
-                <p style="font-size:0.88rem;">Both stations can send and receive data <strong>simultaneously</strong> without collision. Full bandwidth in both directions.</p>
-                <div class="callout callout-work" style="font-size:0.85rem; margin:0.5rem 0 0;">
-                    <strong>Examples:</strong> Modern Network Switches, Telephone calls, Gigabit Ethernet NICs.
+                <p style="font-size:0.9rem;">Both stations can transmit and receive <strong>simultaneously</strong> without collision. Dedicated send and receive signal channels.</p>
+                <div class="callout callout-work" style="font-size:0.85rem; margin:0.8rem 0 0;">
+                    <strong>Examples:</strong> Modern Gigabit Ethernet Switches, Telephone calls, Fiber optic dual-strand transceivers.
                 </div>
             </div>
         </div>
 
+        <h2>4. Mathematical Channel Capacity Limit Theorems</h2>
+        <p>In data communications examinations, calculating maximum theoretical data rate limits across physical channels is a core topic.</p>
+
+        <div class="card">
+            <h3>Nyquist Bit Rate Theorem (Noiseless Channel)</h3>
+            <p>Formulated by Harry Nyquist, this theorem determines the maximum theoretical bit rate for a noiseless channel of bandwidth $B$ using signal levels $M$:</p>
+            <div class="code-block">
+                <code style="color:var(--primary-cyan); font-size:1.1rem; font-weight:700;">Bit Rate = 2 × B × log₂ (M)</code>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted);">Where $B$ is channel bandwidth in Hertz ($\text{Hz}$) and $M$ is the number of discrete signal levels used to represent data.</p>
+
+            <h3 style="margin-top:1.5rem;">Shannon Capacity Theorem (Noisy Channel)</h3>
+            <p>Formulated by Claude Shannon, this theorem calculates the maximum theoretical channel capacity $C$ in the presence of thermal noise:</p>
+            <div class="code-block">
+                <code style="color:var(--accent-green); font-size:1.1rem; font-weight:700;">Capacity (C) = B × log₂ (1 + SNR)</code>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted);">Where $\text{SNR}$ is the dimensionless Signal-to-Noise Ratio ($\text{SNR} = \text{Signal Power} / \text{Noise Power}$). Note: If $\text{SNR}_{\text{dB}}$ is given in decibels, convert using $\text{SNR}_{\text{dB}} = 10 \log_{10}(\text{SNR})$.</p>
+        </div>
+
         <div class="callout callout-warning">
-            <div class="callout-title">⚡ Environmental & Physical Warning: Liquid is Network Enemy #1</div>
-            <p style="margin:0;">In class, the lecturer highlighted an important field rule: <strong>Liquid is the #1 enemy of networking infrastructure</strong>. Because water is a powerful conductor of electricity and radio waves, moisture causes short circuits in copper cabling, attenuates wireless RF signals, and degrades network cabinets during rain storms.</p>
+            <div class="callout-title">⚡ Field Reality: Liquid & Moisture Degradation</div>
+            <p style="margin:0;">In field deployments, <strong>moisture is the #1 physical threat to network cables</strong>. Water causes electrical shorts on copper RJ45 conductors and severely attenuates 2.4GHz/5GHz RF signals due to water molecule resonant absorption.</p>
         </div>
     </main>
 </div>
@@ -142,59 +162,17 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'phase1_foundations';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

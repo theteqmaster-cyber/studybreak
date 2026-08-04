@@ -34,10 +34,45 @@ function initNavigation() {
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
 
+  // Setup Mobile Drawer Toggle & Backdrop Overlay
+  let backdrop = document.querySelector('.sidebar-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  const header = document.querySelector('header');
+  if (header && !document.querySelector('.mobile-toggle-btn')) {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'mobile-toggle-btn';
+    toggleBtn.setAttribute('aria-label', 'Toggle Navigation Menu');
+    toggleBtn.innerHTML = `☰ <span>Menu</span>`;
+    
+    // Insert toggle button next to logo
+    const logoGroup = header.querySelector('.logo-group');
+    if (logoGroup) {
+      logoGroup.insertAdjacentElement('afterend', toggleBtn);
+    } else {
+      header.prepend(toggleBtn);
+    }
+
+    const toggleSidebar = () => {
+      sidebar.classList.toggle('mobile-open');
+      backdrop.classList.toggle('active');
+    };
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+    backdrop.addEventListener('click', toggleSidebar);
+  }
+
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
   let html = `
-    <div class="sidebar-title">Course Dashboard</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+      <div class="sidebar-title" style="margin-bottom:0;">Course Dashboard</div>
+      <button class="mobile-toggle-btn" style="padding:2px 8px; font-size:0.75rem;" onclick="document.querySelector('.sidebar').classList.remove('mobile-open'); document.querySelector('.sidebar-backdrop').classList.remove('active');">✕ Close</button>
+    </div>
     <ul class="phase-nav">
       <li>
         <a href="index.html" class="${currentPath === 'index.html' || currentPath === '' ? 'active' : ''}">

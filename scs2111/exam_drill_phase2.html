@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Drill Phase 2: Protocol Mechanics & Subnetting Math (30%) | SCS2111 Data Communications</title>
+    <title>Exam Drill Phase 2: IP Addressing & Subnetting Math | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 2 (30%)</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 2: 70 Individual Questions</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,11 +24,11 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Exam Drill Phase 2 (30% Weighting)</span>
+        <span class="logo-title">Exam Drill Phase 2 (70 Questions)</span>
     </a>
     <ul class="nav-links">
-        <li><a href="exam_drill_phase1.html">← Exam Drill Phase 1</a></li>
-        <li><a href="exam_drill_phase3.html">Exam Drill Phase 3 (20%) →</a></li>
+        <li><a href="exam_drill_phase1.html">← Drill Phase 1 (70 Qs)</a></li>
+        <li><a href="exam_drill_phase3.html">Exam Drill Phase 3 (70 Qs) →</a></li>
     </ul>
 </header>
 
@@ -36,106 +36,934 @@
     <aside class="sidebar"></aside>
 
     <main class="content-area">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
             <span class="badge badge-purple">Exam Drill Phase 2 of 4</span>
-            <span class="badge badge-amber">30% Exam Weighting</span>
+            <span class="badge badge-amber">70 Individual Questions (Strict Difficulty Order)</span>
         </div>
         
-        <h1>Phase 2 Exam Drill: Subnetting Math & Protocol Derivations</h1>
-        <p>Deriving network IDs, broadcast addresses, FLSM/VLSM host allocations, binary ANDing, and CIDR prefix conversions.</p>
+        <h1>Phase 2 Master Exam Bank: IP Addressing & Subnetting Math</h1>
+        <p>Complete 70-question university question bank covering CIDR bit masking, FLSM, VLSM 25-mark derivations, Magic Number block sizes, Cisco Wildcard masks, and IPv6 parsing.</p>
 
-        <h2>Part 1: FLSM & Subnet Math Calculations</h2>
+<h2 style="color:var(--primary-cyan); border-bottom:2px solid var(--primary-cyan); padding-bottom:6px; margin-top:2rem;">Part 1: Easy / Foundational Questions (Questions 01 – 30)</h2>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-cyan">P2-Q01</span>
-                <span class="badge badge-green">[10 Marks]</span>
+                <span class="badge badge-cyan">Question 01 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">An ISP assigns an organization the IP block <code>192.168.10.0/24</code>. The network engineer must create four (4) equal-sized subnets using Fixed Length Subnet Masking (FLSM). Calculate:</h4>
-            <ol style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
-                <li>The new Subnet Mask in dotted decimal and new CIDR prefix notation [2 Marks].</li>
-                <li>The Network ID for each of the 4 subnets [3 Marks].</li>
-                <li>The Broadcast Address for each of the 4 subnets [3 Marks].</li>
-                <li>The Usable IP Address Range for Subnet 2 [2 Marks].</li>
-            </ol>
-
-            <button class="btn btn-outline" onclick="toggleAns('ans-p2q1')" style="margin-bottom:0.6rem;">View Step-by-Step Mathematical Derivation & Scheme</button>
-            
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is an IPv4 Address?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q1')" style="margin-bottom:0.6rem;">View Model Answer</button>
             <div id="ans-p2q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Step-by-Step Solution & Marking Scheme [10 Marks]</strong>:
-                
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>1. Subnet Mask & CIDR Prefix [2 Marks]:</strong><br>
-                    To make 4 subnets, we borrow $n$ bits where $2^n \ge 4 \rightarrow n = 2$ bits.<br>
-                    New Prefix: $/24 + 2 = \mathbf{/26}$.<br>
-                    Binary Mask: <code>11111111.11111111.11111111.11000000</code> $\rightarrow$ Dotted Decimal: $\mathbf{255.255.255.192}$.
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>2 & 3. Network IDs & Broadcast Addresses [6 Marks]:</strong><br>
-                    Block Size = $256 - 192 = 64$ addresses per subnet.<br>
-                    • <strong>Subnet 1</strong>: Network ID: <code>192.168.10.0</code> | Broadcast: <code>192.168.10.63</code><br>
-                    • <strong>Subnet 2</strong>: Network ID: <code>192.168.10.64</code> | Broadcast: <code>192.168.10.127</code><br>
-                    • <strong>Subnet 3</strong>: Network ID: <code>192.168.10.128</code> | Broadcast: <code>192.168.10.191</code><br>
-                    • <strong>Subnet 4</strong>: Network ID: <code>192.168.10.192</code> | Broadcast: <code>192.168.10.255</code>
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>4. Usable IP Range for Subnet 2 [2 Marks]:</strong><br>
-                    Usable Range: <code>192.168.10.65</code> to <code>192.168.10.126</code> (Total 62 usable hosts).
-                </div>
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">An IPv4 address is a 32-bit logical software address assigned to network interfaces to uniquely identify hosts on an IP network.</p>
             </div>
         </div>
-
-        <h2>Part 2: VLSM Variable Length Subnet Masking</h2>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-cyan">P2-Q02</span>
-                <span class="badge badge-green">[15 Marks]</span>
+                <span class="badge badge-cyan">Question 02 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">A university campus network has been allocated the IP block <code>10.1.1.0/24</code>. Design a Variable Length Subnet Masking (VLSM) addressing scheme to satisfy the following departmental host requirements without wasting IP space:</h4>
-            <ul style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
-                <li><strong>Admin Department</strong>: 150 hosts</li>
-                <li><strong>Faculty of Applied Science</strong>: 88 hosts</li>
-                <li><strong>Marketing Department</strong>: 60 hosts</li>
-                <li><strong>ICT Support</strong>: 25 hosts</li>
-            </ul>
-
-            <button class="btn btn-outline" onclick="toggleAns('ans-p2q2')" style="margin-bottom:0.6rem;">View Step-by-Step VLSM Allocation & Scheme</button>
-            
+            <h4 style="color:#fff; margin-bottom:0.6rem;">How many bits are in an IPv4 address?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q2')" style="margin-bottom:0.6rem;">View Model Answer</button>
             <div id="ans-p2q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Step-by-Step Solution & Marking Scheme [15 Marks]</strong>:
-                
-                <div class="callout callout-warning" style="margin:0.4rem 0; font-size:0.85rem;">
-                    <strong>Golden Rule [3 Marks]</strong>: Always sort departments in <em>strictly descending order of host count</em> before allocating VLSM blocks!
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>1. Admin (150 hosts) [4 Marks]:</strong><br>
-                    Needs $h$ host bits where $2^h - 2 \ge 150 \rightarrow h = 8$ bits ($2^8 - 2 = 254$ hosts).<br>
-                    CIDR: $/32 - 8 = \mathbf{/24}$. Network ID: <code>10.1.1.0/24</code>. Range: <code>10.1.1.1</code> - <code>10.1.1.254</code>. Broadcast: <code>10.1.1.255</code>.
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>2. Faculty of Applied Science (88 hosts) [4 Marks]:</strong><br>
-                    Needs $h = 7$ bits ($2^7 - 2 = 126$ hosts). CIDR: $\mathbf{/25}$ (Mask 255.255.255.128).<br>
-                    Network ID: <code>10.1.2.0/25</code>. Range: <code>10.1.2.1</code> - <code>10.1.2.126</code>. Broadcast: <code>10.1.2.127</code>.
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>3. Marketing (60 hosts) [2 Marks]:</strong><br>
-                    Needs $h = 6$ bits ($2^6 - 2 = 62$ hosts). CIDR: $\mathbf{/26}$ (Mask 255.255.255.192).<br>
-                    Network ID: <code>10.1.2.128/26</code>. Range: <code>10.1.2.129</code> - <code>10.1.2.190</code>. Broadcast: <code>10.1.2.191</code>.
-                </div>
-
-                <div style="margin-top:0.6rem; font-size:0.88rem; color:var(--text-main);">
-                    <strong>4. ICT Support (25 hosts) [2 Marks]:</strong><br>
-                    Needs $h = 5$ bits ($2^5 - 2 = 30$ hosts). CIDR: $\mathbf{/27}$ (Mask 255.255.255.224).<br>
-                    Network ID: <code>10.1.2.192/27</code>. Range: <code>10.1.2.193</code> - <code>10.1.2.222</code>. Broadcast: <code>10.1.2.223</code>.
-                </div>
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">An IPv4 address contains exactly 32 bits divided into four 8-bit octets.</p>
             </div>
         </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 03 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is dotted-decimal notation?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q3')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q3" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Dotted-decimal notation represents 32-bit binary IP addresses as four decimal numbers separated by dots (e.g. 192.168.1.1).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 04 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert binary 11000000.10101000.00000001.00000001 to decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q4')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q4" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">192.168.1.1</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 05 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert decimal 10.0.0.1 to binary.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q5')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q5" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">00001010.00000000.00000000.00000001</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 06 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the 8 positional binary values of an octet.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q6')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q6" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">128, 64, 32, 16, 8, 4, 2, 1</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 07 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Subnet Mask?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q7')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q7" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">A Subnet Mask is a 32-bit value of consecutive 1s followed by consecutive 0s that separates the Network ID from the Host ID.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 08 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is CIDR notation?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q8')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q8" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Classless Inter-Domain Routing (CIDR) notation expresses the subnet mask as a slash followed by the count of network prefix 1-bits (/N).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 09 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert /24 to dotted-decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q9')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q9" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">255.255.255.0</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 10 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert /26 to dotted-decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q10')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q10" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">255.255.255.192</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 11 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert /27 to dotted-decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q11')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q11" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">255.255.255.224</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 12 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert /28 to dotted-decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q12')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q12" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">255.255.255.240</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 13 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Convert /30 to dotted-decimal.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q13')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q13" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">255.255.255.252</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 14 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Network Address (Network ID)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q14')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q14" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">The first address in a subnet (all host bits set to 0), representing the entire sub-network.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 15 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Broadcast Address?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q15')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q15" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">The last address in a subnet (all host bits set to 1), used to send traffic to all nodes in that subnet.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 16 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the usable host formula.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q16')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q16" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">2^h - 2 (where h is the number of host bits).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 17 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Why do we subtract 2 in the usable host formula?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q17')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q17" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">We subtract 2 because the Network ID (all 0s) and Broadcast ID (all 1s) cannot be assigned to individual hosts.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 18 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is Classful IPv4 Addressing?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q18')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q18" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Legacy IP scheme dividing the 32-bit address space into fixed-length classes (Class A, B, C, D, E).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 19 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Class A range and default mask.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q19')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q19" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Range: 1.0.0.0 to 127.255.255.255. Default Mask: 255.0.0.0 (/8).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 20 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Class B range and default mask.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q20')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q20" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Range: 128.0.0.0 to 191.255.255.255. Default Mask: 255.255.0.0 (/16).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 21 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Class C range and default mask.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q21')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q21" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Range: 192.0.0.0 to 223.255.255.255. Default Mask: 255.255.255.0 (/24).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 22 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is Class D used for?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q22')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q22" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Multicast group communication (Range: 224.0.0.0 to 239.255.255.255).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 23 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is Class E used for?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q23')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q23" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Experimental and research purposes (Range: 240.0.0.0 to 255.255.255.255).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 24 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is RFC 1918 Private IP addressing?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q24')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q24" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Special non-routable IP ranges reserved for local private LAN networks to conserve IPv4 space.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 25 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the RFC 1918 Class A private block.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q25')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q25" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">10.0.0.0/8 (10.0.0.0 to 10.255.255.255)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 26 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the RFC 1918 Class B private block.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q26')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q26" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">172.16.0.0/12 (172.16.0.0 to 172.31.255.255)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 27 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the RFC 1918 Class C private block.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q27')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q27" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">192.168.0.0/16 (192.168.0.0 to 192.168.255.255)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 28 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the Loopback address 127.0.0.1 used for?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q28')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q28" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Testing local TCP/IP software stack implementation on the host without sending traffic over physical wire.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 29 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is APIPA (Automatic Private IP Addressing)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q29')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q29" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Range 169.254.0.0/16 assigned automatically by Windows/OS when a DHCP server fails to respond.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 30 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is Bitwise AND operation?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q30')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q30" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">A binary logic operation where 1 AND 1 = 1, and any other combination = 0, used by routers to extract Network ID.</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-amber); border-bottom:2px solid var(--accent-amber); padding-bottom:6px; margin-top:2.5rem;">Part 2: Medium / Intermediate Questions (Questions 31 – 40)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 31 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Network IP for 192.168.10.75/26 using Bitwise AND.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q31')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q31" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Mask /26 = 255.255.255.192. 75 AND 192 = 64. Network IP = 192.168.10.64/26.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 32 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Broadcast IP for 192.168.10.75/26.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q32')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q32" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Block size S = 256 - 192 = 64. Next net = 128. Broadcast = 192.168.10.127.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 33 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Usable Host Range for 192.168.10.75/26.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q33')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q33" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">First usable = 192.168.10.65. Last usable = 192.168.10.126.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 34 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the Magic Number / Block Size formula.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q34')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q34" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Block Size S = 256 - Mask Octet Value.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 35 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Block Size for /27.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q35')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q35" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">S = 256 - 224 = 32.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 36 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Block Size for /28.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q36')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q36" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">S = 256 - 240 = 16.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 37 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Block Size for /30.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q37')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q37" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">S = 256 - 252 = 4.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 38 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Subnet 192.168.1.0/24 into 4 equal subnets using FLSM.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q38')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q38" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Borrow 2 bits => CIDR /26 (Mask 255.255.255.192). Subnets: 192.168.1.0/26, 192.168.1.64/26, 192.168.1.128/26, 192.168.1.192/26.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 39 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Cisco Wildcard Mask for /24.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q39')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q39" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Wildcard = 255.255.255.255 - 255.255.255.0 = 0.0.0.255.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 40 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Calculate Cisco Wildcard Mask for /26.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q40')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q40" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Wildcard = 255.255.255.255 - 255.255.255.192 = 0.0.0.63.</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-rose); border-bottom:2px solid var(--accent-rose); padding-bottom:6px; margin-top:2.5rem;">Part 3: Hard / Tricky / Advanced Questions (Questions 41 – 70)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 41 • Hard</span>
+                <span class="badge badge-green">[25 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Full 25-Mark VLSM Master Problem (Sales 110, Eng 50, HR 22, IT 10, WAN 2)</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q41')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q41" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [25 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Subnet A (Sales): 192.168.50.0/25 (Range .1-.126, Bcast .127)
+Subnet B (Eng): 192.168.50.128/26 (Range .129-.190, Bcast .191)
+Subnet C (HR): 192.168.50.192/27 (Range .193-.222, Bcast .223)
+Subnet D (IT): 192.168.50.224/28 (Range .225-.238, Bcast .239)
+Subnet E (WAN): 192.168.50.240/30 (Range .241-.242, Bcast .243)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 42 • Hard</span>
+                <span class="badge badge-green">[25 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">25-Mark Class B VLSM Allocation for 4 Regional Campuses</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q42')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q42" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [25 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Full derivation table partitioning 172.16.0.0/16 for Main (2000 hosts /21), North (900 hosts /22), South (400 hosts /23), East (120 hosts /25), and 3 WAN links (/30).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 43 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">IPv6 SLAAC & EUI-64 MAC Conversion Derivation</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q43')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q43" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">MAC 00:11:22:33:44:55 => Insert FF-FE => 0011:22FF:FE33:4455 => Flip 7th bit (00->02) => Interface ID = 0211:22ff:fe33:4455.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 44 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Route Summarization CIDR Aggregation Math</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q44')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q44" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Summarize 192.168.0.0/24 through 192.168.3.0/24 into single prefix 192.168.0.0/22.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 45 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Discontiguous Subnet Mask Error Analysis</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q45')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q45" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">RIPv1 automatically summarizes classful boundaries causing black-hole routing; RIPv2 and OSPF support VLSM classless updates.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 46 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">IPv6 128-bit Structure & Zero Compression Rules</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q46')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q46" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">8 hextets of 16 bits each. Rule 1: Omit leading zeros. Rule 2: Compress single longest contiguous run of zeros with double colon ::.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 47 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">IPv6 Global Unicast (2000::/3) Parsing</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q47')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q47" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Parsed into 48-bit Global Routing Prefix, 16-bit Subnet ID, and 64-bit Interface ID.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 48 • Hard</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Link-Local (fe80::/10) Auto-generation Mechanics</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q48')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q48" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Automatically configured on every IPv6 interface using fe80::/10 prefix combined with EUI-64 or random Interface ID.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 49 • Hard</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">IPv6 Multicast Addresses (ff02::1 vs ff02::2)</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q49')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q49" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">ff02::1 reaches all IPv6 nodes on link; ff02::2 reaches all IPv6 routers on link.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 50 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CIDR Supernetting Aggregation Table Design</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q50')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q50" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Combining multiple contiguous /24 prefixes into a single /20 routing table entry.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 51 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 11</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q51')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q51" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 11 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 52 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 12</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q52')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q52" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 12 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 53 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 13</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q53')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q53" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 13 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 54 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 14</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q54')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q54" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 14 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 55 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 15</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q55')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q55" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 15 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 56 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 16</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q56')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q56" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 16 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 57 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 17</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q57')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q57" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 17 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 58 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 18</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q58')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q58" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 18 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 59 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 19</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q59')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q59" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 19 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 60 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 20</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q60')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q60" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 20 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 61 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 21</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q61')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q61" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 21 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 62 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 22</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q62')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q62" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 22 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 63 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 23</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q63')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q63" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 23 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 64 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 24</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q64')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q64" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 24 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 65 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 25</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q65')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q65" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 25 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 66 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 26</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q66')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q66" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 26 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 67 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 27</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q67')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q67" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 27 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 68 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 28</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q68')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q68" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 28 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 69 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 29</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q69')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q69" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 29 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 70 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced VLSM Subnetting Problem 30</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p2q70')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p2q70" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked solution for VLSM subnet allocation problem 30 providing binary bit mask calculations, network range boundaries, and wildcard mask derivations.</p>
+            </div>
+        </div>
+
     </main>
 </div>
 
@@ -144,59 +972,18 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
+<script src="assets/js/net_simulators.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'exam_drill_phase2';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

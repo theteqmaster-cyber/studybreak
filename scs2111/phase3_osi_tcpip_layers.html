@@ -10,7 +10,7 @@
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
@@ -24,7 +24,7 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Phase 3: OSI & TCP/IP Reference Models</span>
+        <span class="logo-title">Phase 3: OSI & TCP/IP Models</span>
     </a>
     <ul class="nav-links">
         <li><a href="phase2_architectures_topologies.html">← Phase 2</a></li>
@@ -37,27 +37,25 @@
 
     <main class="content-area">
         <span class="badge badge-cyan">PHASE 03</span>
-        <h1>OSI & TCP/IP Reference Models</h1>
-        <p>Comparing theoretical 7-layer OSI stack vs 4-layer TCP/IP suite, protocol headers, PDUs, and live encapsulation mechanics.</p>
+        <h1>OSI 7-Layer & TCP/IP 4-Layer Reference Models</h1>
+        <p>Comprehensive layer-by-layer academic breakdown, protocol responsibilities, PDU encapsulation mechanics, and protocol header specifications.</p>
 
-        <!-- INTERACTIVE ENCAPSULATION SIMULATOR WIDGET -->
-        <h2>1. Interactive OSI Encapsulation & Decapsulation Simulator</h2>
-        <div id="osi-sim-container"></div>
+        <!-- SECTION 1: OVERVIEW -->
 
-        <h2>2. 7-Layer OSI vs. 4-Layer TCP/IP Architecture</h2>
+        <h2>2. Visual Architecture: 7-Layer OSI vs. 4-Layer TCP/IP Stack</h2>
 
         <div class="grid-2">
             <div class="card">
                 <span class="badge badge-purple">ISO Standard</span>
                 <h3>OSI 7-Layer Reference Model</h3>
                 <div class="osi-stack">
-                    <div class="osi-layer"><span>7. Application Layer</span><span class="pdu-badge">Data</span></div>
-                    <div class="osi-layer"><span>6. Presentation Layer</span><span class="pdu-badge">Data</span></div>
-                    <div class="osi-layer"><span>5. Session Layer</span><span class="pdu-badge">Data</span></div>
-                    <div class="osi-layer"><span>4. Transport Layer</span><span class="pdu-badge">Segment</span></div>
-                    <div class="osi-layer"><span>3. Network Layer</span><span class="pdu-badge">Packet</span></div>
-                    <div class="osi-layer"><span>2. Data Link Layer</span><span class="pdu-badge">Frame</span></div>
-                    <div class="osi-layer"><span>1. Physical Layer</span><span class="pdu-badge">Bits</span></div>
+                    <div class="osi-layer"><span>7. Application (HTTP, DNS, SSH, FTP)</span><span class="pdu-badge">Data</span></div>
+                    <div class="osi-layer"><span>6. Presentation (SSL/TLS, ASCII, JPEG)</span><span class="pdu-badge">Data</span></div>
+                    <div class="osi-layer"><span>5. Session (NetBIOS, RPC, Sockets)</span><span class="pdu-badge">Data</span></div>
+                    <div class="osi-layer"><span>4. Transport (TCP, UDP, Port Addressing)</span><span class="pdu-badge">Segment</span></div>
+                    <div class="osi-layer"><span>3. Network (IPv4, IPv6, ICMP, Routers)</span><span class="pdu-badge">Packet</span></div>
+                    <div class="osi-layer"><span>2. Data Link (Ethernet, MAC, Switches)</span><span class="pdu-badge">Frame</span></div>
+                    <div class="osi-layer"><span>1. Physical (Cables, Bits, Voltages)</span><span class="pdu-badge">Bits</span></div>
                 </div>
             </div>
 
@@ -65,22 +63,233 @@
                 <span class="badge badge-green">Practical Internet Suite</span>
                 <h3>TCP/IP 4-Layer Suite</h3>
                 <div class="osi-stack">
-                    <div class="osi-layer active"><span>4. Application (HTTP, SMTP, DNS, SSH)</span><span class="pdu-badge">Data</span></div>
-                    <div class="osi-layer active"><span>3. Transport (TCP, UDP, Ports)</span><span class="pdu-badge">Segment</span></div>
-                    <div class="osi-layer active"><span>2. Internet (IP, ICMP, ARP, Routers)</span><span class="pdu-badge">Packet</span></div>
-                    <div class="osi-layer active"><span>1. Network Access (Ethernet, Wi-Fi, MAC)</span><span class="pdu-badge">Frame/Bits</span></div>
+                    <div class="osi-layer active"><span>4. Application (Combines OSI 5, 6, 7)</span><span class="pdu-badge">Data</span></div>
+                    <div class="osi-layer active"><span>3. Transport (TCP / UDP)</span><span class="pdu-badge">Segment</span></div>
+                    <div class="osi-layer active"><span>2. Internet (IP, ICMP, ARP)</span><span class="pdu-badge">Packet</span></div>
+                    <div class="osi-layer active"><span>1. Network Access (Combines OSI 1, 2)</span><span class="pdu-badge">Frame/Bits</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- INTERACTIVE TCP HANDSHAKE ANIMATOR WIDGET -->
-        <h2>3. Interactive TCP 3-Way Handshake Connection Simulator</h2>
-        <div id="tcp-sim-container"></div>
+        <h2>3. Comprehensive Layer-by-Layer Breakdown: OSI 7-Layer Model</h2>
+        <p>Each layer in the OSI (Open Systems Interconnection) reference model performs a distinct set of networking functions, serving the layer directly above it and requesting service from the layer directly below it.</p>
 
-        <div class="callout callout-info">
-            <div class="callout-title">💡 Exam Key Concept: PDU Transformation Order</div>
-            <p style="margin:0;">During transmission down the OSI stack, raw application data receives control headers at each step: <strong>Data $\rightarrow$ Segment (Transport) $\rightarrow$ Packet (Network) $\rightarrow$ Frame (Data Link) $\rightarrow$ Bits (Physical)</strong>. On arrival, the receiver strips off headers in reverse order (Decapsulation).</p>
+        <div class="card">
+            <span class="badge badge-cyan">LAYER 7</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">1. Application Layer (Layer 7)</h3>
+            <p><strong>Primary Function:</strong> Provides network interfaces and application protocols directly to end-user software applications. It does <em>not</em> represent the application program itself (e.g., Google Chrome), but rather the communication protocol services that the application relies on to transfer data across a network.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong> Resource availability identification, user authentication, service request formatting, and protocol synchronization.</li>
+                <li><strong>Protocol Data Unit (PDU):</strong> Data (Payload).</li>
+                <li><strong>Core Protocols:</strong> HTTP / HTTPS (Web), FTP / SFTP (File Transfer), SMTP / IMAP / POP3 (Email), DNS (Domain Resolution), SSH / Telnet (Remote Terminal), DHCP (IP Allocation).</li>
+                <li><strong>Exam Focus Note:</strong> Remember that Layer 7 is the closest layer to the end user. When a user enters a URL in a browser, HTTP initiates communication at Layer 7.</li>
+            </ul>
         </div>
+
+        <div class="card">
+            <span class="badge badge-cyan">LAYER 6</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">2. Presentation Layer (Layer 6)</h3>
+            <p><strong>Primary Function:</strong> Acts as the "translator" for the network. It ensures that data sent from the application layer of one system can be understood and read by the application layer of another system, regardless of differences in internal data representation or operating systems.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong>
+                    <br>• <strong>Syntax Translation:</strong> Translating between different data encodings (e.g., EBCDIC to ASCII, UTF-8, Big-Endian vs Little-Endian).
+                    <br>• <strong>Data Encryption & Decryption:</strong> Applying cryptographic protocols (TLS/SSL encryption) for secure transmission.
+                    <br>• <strong>Data Compression:</strong> Compressing data payloads (e.g., gzip, zip, JPEG, MPEG, PNG) to optimize network bandwidth utilization.
+                </li>
+                <li><strong>Protocol Data Unit (PDU):</strong> Data (Payload).</li>
+                <li><strong>Core Examples:</strong> TLS / SSL security wrappers, ASCII, Unicode, JPEG, GIF, PNG, MP3, MPEG, XML, JSON syntax standards.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="badge badge-cyan">LAYER 5</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">3. Session Layer (Layer 5)</h3>
+            <p><strong>Primary Function:</strong> Establishes, manages, synchronizes, and terminates active communication dialogues (sessions) between distributed applications running on separate hosts.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong>
+                    <br>• <strong>Session Establishment & Teardown:</strong> Opening active channels between client and server processes and tearing them down gracefully when complete.
+                    <br>• <strong>Dialog Control:</strong> Determining whether communication runs in Simplex, Half-Duplex, or Full-Duplex session modes.
+                    <br>• <strong>Checkpointing & Recovery:</strong> Inserting synchronization markers into long data streams. If a connection drops midway through a 1 GB file transfer, the session layer resumes transmission from the last verified checkpoint rather than restarting from 0 bytes.
+                </li>
+                <li><strong>Protocol Data Unit (PDU):</strong> Data (Payload).</li>
+                <li><strong>Core Protocols / APIs:</strong> NetBIOS, RPC (Remote Procedure Call), Sockets API, PPTP, SQL Session negotiation.</li>
+            </ul>
+        </div>
+
+        <div class="card highlight">
+            <span class="badge badge-purple">LAYER 4</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">4. Transport Layer (Layer 4)</h3>
+            <p><strong>Primary Function:</strong> Responsible for <strong>end-to-end (process-to-process) communication</strong>, data segmentation, port addressing, connection multiplexing, flow control, and error recovery across the network.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong>
+                    <br>• <strong>Port Addressing (Multiplexing):</strong> Uses 16-bit Port Numbers (0 – 65,535) to direct data stream segments to the specific software application running on a device (e.g., Port 80 for HTTP, Port 443 for HTTPS, Port 22 for SSH).
+                    <br>• <strong>Segmentation & Reassembly:</strong> Dividing large application payloads into smaller managed segments on the sender side, and reordering out-of-order segments at the destination using Sequence Numbers.
+                    <br>• <strong>Flow Control:</strong> Utilizing <strong>Sliding Window mechanisms</strong> to prevent a fast sender from flooding a slow receiver.
+                    <br>• <strong>Reliability & Error Recovery:</strong> Acknowledging received segments (ACKs) and retransmitting lost segments (TCP).
+                </li>
+                <li><strong>Protocol Data Unit (PDU):</strong> <strong>Segment</strong> (for TCP) / <strong>Datagram</strong> (for UDP).</li>
+                <li><strong>Core Protocols:</strong> TCP (Transmission Control Protocol - Reliable, Connection-Oriented), UDP (User Datagram Protocol - Unreliable, Connectionless, High-Speed), SCTP.</li>
+            </ul>
+        </div>
+
+        <div class="card highlight">
+            <span class="badge badge-green">LAYER 3</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">5. Network Layer (Layer 3)</h3>
+            <p><strong>Primary Function:</strong> Responsible for <strong>host-to-host logical IP addressing, packet encapsulation, dynamic inter-network routing, and optimal path determination</strong> across intermediate routers and subnets.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong>
+                    <br>• <strong>Logical IP Addressing:</strong> Assigning hierarchical global source and destination IP addresses (IPv4 / IPv6) to identify nodes across different networks.
+                    <br>• <strong>Routing & Path Selection:</strong> Evaluating routing tables and executing dynamic routing protocols (OSPF, BGP, RIP) to forward packets across multi-hop router paths.
+                    <br>• <strong>Packet Encapsulation & Fragmentation:</strong> Wrapping transport segments into IP packets and breaking down packets that exceed a link's Maximum Transmission Unit (MTU).
+                </li>
+                <li><strong>Protocol Data Unit (PDU):</strong> <strong>Packet</strong>.</li>
+                <li><strong>Hardware Devices:</strong> Routers, Layer 3 Managed Switches, Firewalls.</li>
+                <li><strong>Core Protocols:</strong> IPv4, IPv6, ICMP (Ping / Traceroute diagnostics), IPsec, IGMP, OSPF, BGP, RIP.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="badge badge-amber">LAYER 2</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">6. Data Link Layer (Layer 2)</h3>
+            <p><strong>Primary Function:</strong> Responsible for <strong>hop-to-hop physical node delivery</strong> across a single physical link or local network segment. It converts packets into frames and handles physical MAC addressing and error detection.</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Sublayer Structure:</strong>
+                    <br>• <strong>LLC (Logical Link Control - IEEE 802.2):</strong> Interfaces with Layer 3, manages protocol multiplexing, and controls frame sequencing.
+                    <br>• <strong>MAC (Media Access Control - IEEE 802.3 / 802.11):</strong> Manages hardware 48-bit MAC addressing, frame creation, and media access control methods (CSMA/CD for Ethernet, CSMA/CA for Wi-Fi).
+                </li>
+                <li><strong>Key Responsibilities:</strong> Physical MAC addressing (Source & Destination MAC), framing, Media Access Control, and Error Detection via Frame Check Sequence (FCS) CRC polynomials.</li>
+                <li><strong>Protocol Data Unit (PDU):</strong> <strong>Frame</strong>.</li>
+                <li><strong>Hardware Devices:</strong> Layer 2 Managed Switches, Network Interface Cards (NICs), Bridges, Wireless Access Points.</li>
+                <li><strong>Core Standards:</strong> Ethernet (802.3), Wi-Fi (802.11), PPP, HDLC, ARP, 802.1Q VLAN Tagging.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="badge badge-cyan">LAYER 1</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">7. Physical Layer (Layer 1)</h3>
+            <p><strong>Primary Function:</strong> Transmits raw unstructured binary bits (1s and 0s) over a physical transmission medium (copper cable, optical fiber strand, or radio frequency wireless channel).</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; margin-top:0.4rem; line-height:1.6;">
+                <li><strong>Key Responsibilities:</strong> Bit representation (encoding binary values into electrical voltage levels, optical light pulses, or RF carrier phase shifts), bit synchronization, transmission rate (bit rate), physical topology layout, and hardware interface specifications.</li>
+                <li><strong>Protocol Data Unit (PDU):</strong> <strong>Bits</strong>.</li>
+                <li><strong>Hardware & Media:</strong> CAT5e / CAT6 Copper Cabling, Single-mode & Multi-mode Fiber Optics, RJ45 connectors, SFP Transceivers, Network Hubs, Repeaters.</li>
+            </ul>
+        </div>
+
+        <h2>4. Layer-by-Layer Breakdown: TCP/IP 4-Layer Internet Suite</h2>
+        <p>The TCP/IP suite was designed by the US Department of Defense (DoD) and refined by the IETF. It prioritizes practical internetworking by consolidating functions into 4 operational layers:</p>
+
+        <div class="grid-2">
+            <div class="card highlight">
+                <span class="badge badge-cyan">TCP/IP LAYER 4</span>
+                <h3>1. Application Layer</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);"><strong>Consolidates OSI Layers 5, 6, and 7.</strong> Handles high-level application communication, data formatting, encryption, character encoding, and session control directly within application protocols.</p>
+                <p style="font-size:0.85rem; color:var(--primary-cyan);">Protocols: HTTP/HTTPS, DNS, SSH, FTP, SMTP, DHCP, SNMP.</p>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-purple">TCP/IP LAYER 3</span>
+                <h3>2. Transport Layer</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);"><strong>Maps directly to OSI Layer 4.</strong> Manages end-to-end process-to-process data delivery, port multiplexing, segmentation, flow control, and error recovery.</p>
+                <p style="font-size:0.85rem; color:var(--accent-purple);">Protocols: TCP (Connection-Oriented), UDP (Connectionless).</p>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-green">TCP/IP LAYER 2</span>
+                <h3>3. Internet Layer</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);"><strong>Maps directly to OSI Layer 3.</strong> Responsible for logical IP addressing, packet routing across autonomous networks, path determination, and ICMP diagnostic messaging.</p>
+                <p style="font-size:0.85rem; color:var(--accent-green);">Protocols: IPv4, IPv6, ICMP, ARP, BGP, OSPF.</p>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge badge-amber">TCP/IP LAYER 1</span>
+                <h3>4. Network Access / Link Layer</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);"><strong>Consolidates OSI Layers 1 and 2.</strong> Manages hardware device drivers, Network Interface Cards (NICs), physical MAC addressing, Ethernet framing, and electrical/optical signal transmission.</p>
+                <p style="font-size:0.85rem; color:var(--accent-amber);">Standards: Ethernet (802.3), Wi-Fi (802.11), PPP, Fiber SFP.</p>
+            </div>
+        </div>
+
+        <h2>5. Comparison Matrix: OSI vs. TCP/IP Architecture</h2>
+        <div class="card">
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.88rem; color:var(--text-main);">
+                    <thead>
+                        <tr style="background:rgba(56,189,248,0.15); border-bottom:1px solid var(--border-glow);">
+                            <th style="padding:10px; text-align:left;">Architectural Feature</th>
+                            <th style="padding:10px; text-align:left;">OSI 7-Layer Reference Model</th>
+                            <th style="padding:10px; text-align:left;">TCP/IP 4-Layer Internet Suite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Standardization Body</td>
+                            <td style="padding:10px;">ISO (International Organization for Standardization)</td>
+                            <td style="padding:10px;">IETF (Internet Engineering Task Force) / DoD</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Number of Layers</td>
+                            <td style="padding:10px;">7 Strict Functional Layers</td>
+                            <td style="padding:10px;">4 Practical Operational Layers</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Development Order</td>
+                            <td style="padding:10px;">Model created <em>before</em> protocols were written (Theoretical)</td>
+                            <td style="padding:10px;">Protocols developed <em>first</em>, model created to describe suite (Practical)</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Session & Presentation</td>
+                            <td style="padding:10px;">Explicit separate layers (Layer 5 & Layer 6)</td>
+                            <td style="padding:10px;">Integrated directly into the Application Layer (Layer 4)</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Primary Purpose</td>
+                            <td style="padding:10px;">Conceptual guide for educational & vendor standardization</td>
+                            <td style="padding:10px;">Actual commercial architecture powering the global Internet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>6. Deep Dive Protocol Header Specifications</h2>
+
+        <div class="card">
+            <h3>TCP Header Format (20-60 Bytes)</h3>
+            <p style="font-size:0.9rem;">TCP provides reliable, connection-oriented, ordered byte-stream delivery with flow control (sliding window) and error recovery.</p>
+            <div class="code-block">
+                <div class="code-header"><span>TCP Segment Header Structure</span></div>
+                <pre><code style="color:var(--primary-cyan);">+-------------------------------+-------------------------------+
+|     Source Port (16 Bits)     |  Destination Port (16 Bits)   |
++-------------------------------+-------------------------------+
+|                 Sequence Number (32 Bits)                     |
++-------------------------------+-------------------------------+
+|              Acknowledgment Number (32 Bits)                  |
++-------+-------+---------------+-------------------------------+
+| Data  | Resv  | Flags (6 Bits)|     Window Size (16 Bits)     |
+| Offset|       |U|A|P|R|S|F|   |                               |
++-------+-------+---------------+-------------------------------+
+|    Header Checksum (16 Bits)  |    Urgent Pointer (16 Bits)   |
++-------------------------------+-------------------------------+</code></pre>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Key TCP Control Flags: <strong>SYN</strong> (Synchronize), <strong>ACK</strong> (Acknowledge), <strong>FIN</strong> (Finish connection), <strong>RST</strong> (Reset connection), <strong>PSH</strong> (Push data immediately), <strong>URG</strong> (Urgent data pointer valid).</p>
+        </div>
+
+        <div class="card">
+            <h3>UDP Header Format (8 Bytes)</h3>
+            <p style="font-size:0.9rem;">UDP provides lightweight, connectionless, unreliable datagram delivery without handshake overhead or retransmission delays.</p>
+            <div class="code-block">
+                <div class="code-header"><span>UDP Datagram Header Structure</span></div>
+                <pre><code style="color:var(--accent-green);">+-------------------------------+-------------------------------+
+|     Source Port (16 Bits)     |  Destination Port (16 Bits)   |
++-------------------------------+-------------------------------+
+|      Length (16 Bits)         |     Checksum (16 Bits)        |
++-------------------------------+-------------------------------+</code></pre>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">UDP Applications: VoIP, Live Video Streaming, DNS Query (Port 53), DHCP (Port 67/68), SNMP.</p>
+        </div>
+
+        <!-- INTERACTIVE TCP HANDSHAKE ANIMATOR -->
+        <h2>7. Interactive TCP 3-Way Handshake Connection Simulator</h2>
+        <div id="tcp-sim-container"></div>
     </main>
 </div>
 
@@ -90,59 +299,17 @@
 
 <script src="assets/js/nav.js"></script>
 <script src="assets/js/net_simulators.js"></script>
-<script src="../js/app.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'phase3_osi_tcpip_layers';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

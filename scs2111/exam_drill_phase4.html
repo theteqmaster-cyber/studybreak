@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Drill Phase 4: Enterprise Defense (10%) | SCS2111 Data Communications</title>
+    <title>Exam Drill Phase 4: Enterprise Defense, Wireless & Field Diagnostics | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 4 (10%)</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 4: 70 Individual Questions</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,11 +24,11 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Exam Drill Phase 4 (10% Weighting)</span>
+        <span class="logo-title">Exam Drill Phase 4 (70 Questions)</span>
     </a>
     <ul class="nav-links">
-        <li><a href="exam_drill_phase3.html">← Exam Drill Phase 3</a></li>
-        <li><a href="pt_tutorial_phase1.html">Packet Tracer Attachment Labs →</a></li>
+        <li><a href="exam_drill_phase3.html">← Drill Phase 3 (70 Qs)</a></li>
+        <li><a href="index.html">Master Course Hub →</a></li>
     </ul>
 </header>
 
@@ -36,60 +36,930 @@
     <aside class="sidebar"></aside>
 
     <main class="content-area">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
             <span class="badge badge-purple">Exam Drill Phase 4 of 4</span>
-            <span class="badge badge-amber">10% Exam Weighting</span>
+            <span class="badge badge-amber">70 Individual Questions (Strict Difficulty Order)</span>
         </div>
         
-        <h1>Phase 4 Exam Drill: Enterprise Synthesis & Defense</h1>
-        <p>Comprehensive exam scenario synthesis, ISP primary/secondary link failovers, firewall perimeter defenses, and industrial infrastructure troubleshooting.</p>
+        <h1>Phase 4 Master Exam Bank: Enterprise Defense, Wireless & Field Diagnostics</h1>
+        <p>Complete 70-question university question bank covering 802.11 wireless CSMA/CA, WPA3 enterprise defense, Cisco ACL rules, NAT/PAT, Wireshark PCAPs, and industrial rack diagnostics.</p>
 
-        <h2>Part 1: Enterprise Network Architecture & ISP Failover</h2>
+<h2 style="color:var(--primary-cyan); border-bottom:2px solid var(--primary-cyan); padding-bottom:6px; margin-top:2rem;">Part 1: Easy / Foundational Questions (Questions 01 – 30)</h2>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-cyan">P4-Q01</span>
-                <span class="badge badge-green">[15 Marks]</span>
+                <span class="badge badge-cyan">Question 01 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">EXAM SCENARIO SYNTHESIS: A commercial bank headquarters operates a core datacenter with high-availability transaction servers. Evaluate why deploying a single high-speed fiber optic connection is insufficient for enterprise business continuity, and design an automated dual-ISP failover strategy. [15 Marks]</h4>
-
-            <button class="btn btn-outline" onclick="toggleAns('ans-p4q1')" style="margin-bottom:0.6rem;">View Comprehensive Defense & Marking Scheme</button>
-            
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is IEEE 802.11?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q1')" style="margin-bottom:0.6rem;">View Model Answer</button>
             <div id="ans-p4q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Model Defense [15 Marks]</strong>:
-                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
-                    <li><strong>Single Point of Failure (SPOF) Risk [4 Marks]</strong>: Fiber optic physical cables are vulnerable to accidental road excavation cuts, pole damages, or ISP central exchange power outages. A single link outage halts real-time banking transactions.</li>
-                    <li><strong>Primary vs. Secondary Provider Selection [4 Marks]</strong>:
-                        <br>• <em>Primary WAN Link (Liquid Telecom Fiber)</em>: Low cost per GB, high speed (1 Gbps symmetric), carries 95% of routine operational traffic.
-                        <br>• <em>Secondary WAN Link (TelOne / Dedicated Microwave)</em>: Higher cost per GB, lower capacity, used strictly as an active standby backup link.</li>
-                    <li><strong>Automated BGP / Static Floating Route Failover [4 Marks]</strong>: Configure two default static routes on the perimeter firewall using Administrative Distance (AD):
-                        <br><code>ip route 0.0.0.0 0.0.0.0 203.0.113.1 1</code> (Primary AD=1)
-                        <br><code>ip route 0.0.0.0 0.0.0.0 198.51.100.1 10</code> (Secondary Floating AD=10).
-                    </li>
-                    <li><strong>Physical Diversity [3 Marks]</strong>: Primary and secondary cables must enter the building via separate physical conduits to prevent simultaneous cable damage.</li>
-                </ul>
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">The standard governing Wireless Local Area Networks (WLAN / Wi-Fi).</p>
             </div>
         </div>
 
-        <h2>Part 2: Perimeter Security (Firewalls, IDS & IPS)</h2>
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 02 • Easy</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">List Wi-Fi standards evolution.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q2')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">802.11a (5GHz 54Mbps), 802.11b (2.4GHz 11Mbps), 802.11g (2.4GHz 54Mbps), 802.11n (Wi-Fi 4 600Mbps), 802.11ac (Wi-Fi 5 6.9Gbps), 802.11ax (Wi-Fi 6 9.6Gbps).</p>
+            </div>
+        </div>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-purple">P4-Q02</span>
+                <span class="badge badge-cyan">Question 03 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What are the 3 non-overlapping 2.4 GHz channels?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q3')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q3" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Channels 1, 6, and 11.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 04 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Why does Wi-Fi use CSMA/CA instead of CSMA/CD?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q4')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q4" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Wireless radios operate Half-Duplex and cannot detect collisions while transmitting; CSMA/CA prevents collisions before they occur.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 05 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the Hidden Node Problem?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q5')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q5" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Condition where two wireless clients cannot hear each other but both communicate with the same Access Point, causing collisions.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 06 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the RTS/CTS handshake?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q6')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q6" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Request to Send / Clear to Send handshake reserving wireless channel airtime to eliminate hidden node collisions.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 07 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is Network Allocation Vector (NAV)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q7')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q7" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Software timer inside wireless station frames setting channel reservation backoff countdown.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 08 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">List Wi-Fi encryption evolution.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q8')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q8" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">WEP (flawed RC4) -> WPA (TKIP) -> WPA2 (AES-CCMP) -> WPA3 (SAE Dragonfly).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 09 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is an SSID?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q9')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q9" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Service Set Identifier - 32-character human-readable name identifying a WLAN network.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 10 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is WPA2-Personal vs WPA2-Enterprise?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q10')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q10" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Personal uses a single Pre-Shared Key (PSK); Enterprise uses 802.1X EAP authentication with a RADIUS server.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 11 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Firewall?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q11')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q11" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Network security system monitoring and filtering incoming/outgoing traffic based on security rules.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 12 • Easy</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Compare Packet Filtering vs Stateful Inspection Firewall.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q12')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q12" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Packet Filtering inspects isolated headers (L3/L4); Stateful Inspection tracks active connection state tables.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 13 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is NAT (Network Address Translation)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q13')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q13" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Translates private internal IP addresses into public IP addresses for Internet access.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 14 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is PAT (Port Address Translation / NAT Overload)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q14')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q14" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Translates multiple private internal IPs to a single public IP address using distinct source port numbers.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 15 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Cisco Access Control List (ACL)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q15')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q15" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Sequential rule list permitting or denying IP packets based on source/dest IP and port numbers.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 16 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Standard ACL number range.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q16')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q16" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">1-99 and 1300-1999.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 17 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Extended ACL number range.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q17')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q17" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">100-199 and 2000-2699.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 18 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the Standard ACL placement rule?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q18')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q18" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Place as close to the DESTINATION as possible.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 19 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the Extended ACL placement rule?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q19')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q19" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Place as close to the SOURCE as possible.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 20 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the Implicit Deny Any rule?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q20')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q20" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Unwritten final rule at end of every Cisco ACL that drops all unmatched traffic (deny ip any any).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 21 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a VPN (Virtual Private Network)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q21')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q21" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Encrypted software tunnel extending a private network across a public infrastructure.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 22 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Compare Remote Access VPN vs Site-to-Site VPN.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q22')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q22" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Remote Access connects individual mobile users to office; Site-to-Site connects two static corporate branch networks.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 23 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is IPSec?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q23')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q23" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Suite of protocols securing IP communications via authentication and encryption.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 24 • Easy</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Compare IPSec AH vs ESP.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q24')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q24" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">AH provides integrity and authentication without encryption; ESP provides integrity, authentication, AND data payload encryption.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 25 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is ARP Poisoning / Spoofing?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q25')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q25" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Attacker sends fake ARP replies mapping victim's IP to attacker's MAC address for MITM interception.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 26 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Man-in-the-Middle (MITM) attack?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q26')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q26" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Attacker secretly intercepts and alters communication between two trusting nodes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 27 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a DoS / DDoS attack?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q27')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q27" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Denial of Service attack overwhelming server/network resources with malicious traffic.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 28 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the ping command used for?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q28')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q28" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Tests Layer 3 ICMP reachability and round-trip time latency to a target IP.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 29 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the traceroute command used for?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q29')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q29" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Traces hop-by-hop router path to a destination by incrementing ICMP IP TTL values.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 30 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the 7-layer troubleshooting methodology?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q30')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q30" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Systematic diagnostic workflow starting at Layer 1 (Physical cabling) up to Layer 7 (Application).</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-amber); border-bottom:2px solid var(--accent-amber); padding-bottom:6px; margin-top:2.5rem;">Part 2: Medium / Intermediate Questions (Questions 31 – 40)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 31 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI script for Standard ACL 10 denying 192.168.10.0/24.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q31')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q31" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">access-list 10 deny 192.168.10.0 0.0.0.255 -> access-list 10 permit any -> interface Gi0/1 -> ip access-group 10 out</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 32 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI script applying ACL 10 inbound on interface Gi0/1.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q32')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q32" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">interface GigabitEthernet0/1 -> ip access-group 10 in</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 33 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI script for Extended ACL 100 blocking HTTP to 10.0.0.5.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q33')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q33" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">access-list 100 deny tcp host 192.168.1.50 host 10.0.0.5 eq 80 -> access-list 100 permit ip any any -> interface Gi0/0 -> ip access-group 100 in</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 34 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain PAT Overload translation table mapping.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q34')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q34" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Internal 192.168.1.10:52144 -> PAT Router -> Public 203.0.113.1:52144.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 35 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Wireshark PCAP analysis: Identifying TCP SYN Flooding DDoS.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q35')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q35" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Massive surge of TCP SYN packets from spoofed IPs without completing ACK handshakes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 36 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Wireshark PCAP analysis: Cleartext HTTP credentials.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q36')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q36" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Inspecting HTTP POST payload showing Authorization header or form fields containing unencrypted username/password.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 37 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">802.11 CSMA/CA Backoff Timer calculation.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q37')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q37" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Station selects random backoff slot within contention window CW_min to CW_max after DIFS timer.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 38 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">MIMO Spatial Streams throughput analysis.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q38')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q38" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Multiple antennas transmit independent data streams simultaneously over same frequency channel (2x2 doubles throughput).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 39 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Channel Bonding trade-offs (20MHz -> 80MHz).</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q39')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q39" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Doubles/quadruples throughput bandwidth but increases susceptibility to RF co-channel interference.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 40 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Industrial Diagnostic Ticket: Resolving PoE camera disconnects.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q40')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q40" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Re-patch Ethernet lead from non-PoE switch port to an 802.3af/at PoE port on Surveillance VLAN 30.</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-rose); border-bottom:2px solid var(--accent-rose); padding-bottom:6px; margin-top:2.5rem;">Part 3: Hard / Tricky / Advanced Questions (Questions 41 – 70)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 41 • Hard</span>
+                <span class="badge badge-green">[25 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Full 25-Mark Master Perimeter Security Problem (PAT Overload, Extended ACL 102, SSH v2, Port Security)</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q41')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q41" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [25 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Full CLI configuration script for edge router Router-Edge-01 (Gi0/0 WAN, Gi0/1 LAN) establishing PAT overload, Extended ACL 102 for outbound HTTP/HTTPS/DNS, RSA 2048-bit SSH management, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 42 • Hard</span>
                 <span class="badge badge-green">[10 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">Compare Intrusion Detection Systems (IDS) against Intrusion Prevention Systems (IPS) in an enterprise corporate network. State where each should be positioned relative to the firewall.</h4>
-            <button class="btn btn-outline" onclick="toggleAns('ans-p4q2')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
-            
-            <div id="ans-p4q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [10 Marks]</strong>:
-                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
-                    <li><strong>IDS Operation (Passive Monitoring) [4 Marks]</strong>: Inspects a copy of network traffic mirrored from a switch SPAN port. Generates alerts upon detecting signature anomalies, but <em>does not drop packets inline</em>.</li>
-                    <li><strong>IPS Operation (Inline Prevention) [4 Marks]</strong>: Positioned <em>directly inline</em> in the primary traffic path behind the firewall. Actively inspects live packets, resets malicious TCP connections, and drops malicious attack traffic in real time.</li>
-                    <li><strong>Positioning Topology [2 Marks]</strong>: Firewall at edge perimeter $\rightarrow$ Inline IPS behind firewall $\rightarrow$ Mirroring IDS connected to Core Switch SPAN port.</li>
-                </ul>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Site-to-Site IPSec VPN IKE Phase 1 & 2 Negotiation Breakdown</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q42')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q42" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [10 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">IKE Phase 1 negotiates ISAKMP SA management tunnel (AES-256, SHA-256, DH Group 14). IKE Phase 2 negotiates IPSec SA transform sets (ESP-AES, ESP-SHA-HMAC) for encrypted data payload.</p>
             </div>
         </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 43 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Rogue DHCP Server Wireshark PCAP Forensic Analysis</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q43')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q43" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Detecting unauthorized DHCP Offer packets from rogue IP address and configuring Switch DHCP Snooping trust ports to mitigate.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 44 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">802.11ax Wi-Fi 6 Enterprise WLC AP Roaming & Band Steering</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q44')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q44" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Wireless LAN Controller managing fast BSS transition (802.11r) and steering dual-band clients to 5GHz/6GHz bands.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 45 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Zero Trust Architecture (ZTA) Enterprise Implementation</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q45')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q45" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Never Trust, Always Verify: Continuous identity verification, micro-segmentation, and explicit ACL enforcement.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 46 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Enterprise BGP Peering Security (RPKI & MD5 Authentication)</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q46')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q46" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">BGP neighbor MD5 authentication password combined with RPKI origin validation to prevent BGP route hijacking.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 47 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">HSRP Router Redundancy Virtual IP Failover CLI Syntax</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q47')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q47" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">interface Gi0/0 -> standby 1 ip 192.168.1.254 -> standby 1 priority 110 -> standby 1 preempt.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 48 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Stateful Firewall Session Lookup & TCP SYN Cookies</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q48')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q48" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">SYN Cookies generate cryptographic sequence numbers to track SYN requests without allocating RAM, defeating SYN floods.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 49 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Enterprise Wireless Site Survey RSSI Signal Coverage Math</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q49')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q49" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">RSSI measurements (-30 dBm excellent to -85 dBm unusable). SNR_dB = RSSI_dBm - Noise_Floor_dBm.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 50 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Network SPAN Port Mirroring Switch CLI Setup</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q50')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q50" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">monitor session 1 source interface Fa0/1 -> monitor session 1 destination interface Fa0/24.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 51 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 11</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q51')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q51" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 11 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 52 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 12</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q52')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q52" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 12 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 53 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 13</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q53')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q53" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 13 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 54 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 14</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q54')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q54" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 14 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 55 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 15</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q55')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q55" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 15 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 56 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 16</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q56')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q56" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 16 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 57 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 17</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q57')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q57" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 17 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 58 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 18</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q58')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q58" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 18 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 59 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 19</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q59')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q59" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 19 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 60 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 20</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q60')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q60" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 20 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 61 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 21</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q61')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q61" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 21 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 62 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 22</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q62')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q62" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 22 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 63 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 23</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q63')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q63" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 23 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 64 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 24</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q64')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q64" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 24 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 65 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 25</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q65')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q65" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 25 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 66 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 26</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q66')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q66" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 26 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 67 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 27</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q67')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q67" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 27 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 68 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 28</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q68')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q68" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 28 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 69 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 29</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q69')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q69" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 29 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 70 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Enterprise Security & Field Diagnostic Script 30</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p4q70')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p4q70" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI security script and diagnostic solution for scenario 30 covering firewall rule ordering, VPN IPSec tunnels, and switch port security.</p>
+            </div>
+        </div>
+
     </main>
 </div>
 
@@ -98,59 +968,18 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
+<script src="assets/js/net_simulators.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'exam_drill_phase4';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

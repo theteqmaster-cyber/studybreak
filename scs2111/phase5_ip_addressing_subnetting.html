@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 5: IP Addressing & Subnetting Mastery | SCS2111 Data Communications</title>
+    <title>Phase 5: IP Addressing & Subnetting | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 5: IP Addressing & Subnetting</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 5: IP Addressing & Subnetting Math (25-Mark Master Guide)</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,7 +24,7 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Phase 5: IP Addressing & Subnetting</span>
+        <span class="logo-title">Phase 5: IP & Subnetting</span>
     </a>
     <ul class="nav-links">
         <li><a href="phase4_hardware_media.html">← Phase 4</a></li>
@@ -37,79 +37,436 @@
 
     <main class="content-area">
         <span class="badge badge-cyan">PHASE 05</span>
-        <h1>IP Addressing & Subnetting Mastery</h1>
-        <p>Classful vs Classless IPv4, binary bit-borrowing, Subnet Mask ANDing, FLSM, VLSM, CIDR prefix rules, and step-by-step mathematical calculations.</p>
+        <h1>IPv4 / IPv6 Addressing & VLSM Subnetting Mathematics</h1>
+        <p>Exhaustive 25-mark university exam master guide: Conceptual foundations, binary conversions, bitwise AND operations, FLSM vs VLSM algorithms, Magic Number block size shortcuts, and IPv6 address parsing.</p>
 
-        <!-- INTERACTIVE BINARY SUBNET CALCULATOR WIDGET -->
-        <h2>1. Interactive Binary Bit-Borrowing Subnet Visualizer</h2>
-        <div id="subnet-sim-container"></div>
+        <!-- SECTION 1: OVERVIEW -->
 
-        <h2>2. Classful IP Addressing vs. Classless Schemes</h2>
+        <h2>2. Conceptual Foundations: What is IP Addressing, What is Subnetting, and Why Do We Subnet?</h2>
+        <p>Before diving into binary calculations and mask math, an engineer must understand the fundamental core concepts: <strong>what</strong> an IP address represents, <strong>what</strong> subnetting actually is, and <strong>why</strong> network engineers must subnet enterprise networks.</p>
+
+        <div class="card highlight">
+            <span class="badge badge-cyan">CONCEPT 1</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">What is an IP Address? (Logical Postal Address Analogy)</h3>
+            <p style="font-size:0.9rem; color:var(--text-main); line-height:1.6;">
+                An <strong>Internet Protocol (IP) Address</strong> is a logical Layer-3 software address assigned to any network interface (PC, server, router port, printer) communicating over a TCP/IP network.
+            </p>
+            <div class="callout callout-info" style="font-size:0.88rem; margin-top:0.6rem;">
+                <strong>Real-World Postal Analogy:</strong> Think of a device's <strong>MAC Address</strong> as a person's <em>National ID Number</em> (permanent, hardware-burned identity that never changes regardless of where you move). In contrast, an <strong>IP Address</strong> is a person's <em>Mailing / Postal Address</em> (location-dependent; it changes whenever you connect to a different network, specifying your current city, street, and house number).
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.6rem;">
+                Every IP address is divided into two distinct components:
+                <br>• <strong>Network ID (Prefix):</strong> Identifies the specific network segment (like the City & Street name).
+                <br>• <strong>Host ID (Suffix):</strong> Identifies the specific device on that network segment (like the House number).
+            </p>
+        </div>
+
+        <div class="card highlight">
+            <span class="badge badge-purple">CONCEPT 2</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">What is Subnetting? (Sub-Networking)</h3>
+            <p style="font-size:0.9rem; color:var(--text-main); line-height:1.6;">
+                <strong>Subnetting (Sub-Networking)</strong> is the process of partitioning a single large physical or logical network block into multiple smaller, independent sub-networks called <strong>Subnets</strong>.
+            </p>
+            <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6;">
+                Conceptually, subnetting is accomplished by <strong>"borrowing bits"</strong> from the Host portion of an IP address and reallocating them to the Network portion. This creates smaller, manageable network boundaries separated by Layer 3 routers or firewalls.
+            </p>
+        </div>
+
+        <div class="card highlight">
+            <span class="badge badge-green">CONCEPT 3</span>
+            <h3 style="color:#fff; margin:0.4rem 0;">Why Do We Subnet? (4 Essential Engineering Reasons)</h3>
+            <p style="font-size:0.9rem; color:var(--text-main);">In enterprise environments, flat un-subnetted networks lead to severe performance degradation. Engineers subnet for four core reasons:</p>
+
+            <div class="grid-2" style="margin-top:1rem;">
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-amber); margin-bottom:0.4rem;">1. Broadcast Storm Suppression</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">In a flat network with 2,000 PCs, any ARP request or broadcast packet (<code>FF:FF:FF:FF:FF:FF</code>) is processed by all 2,000 devices, causing massive CPU overhead and broadcast storms. Subnetting locks broadcast traffic inside small local segments (e.g. 50 devices per subnet).</p>
+                </div>
+
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--primary-cyan); margin-bottom:0.4rem;">2. Security & Departmental Isolation</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">On a flat network, any user can intercept or access other computers. Subnetting logically isolates departments (e.g. Finance vs Students vs Server Farm). Routers can enforce <strong>Access Control Lists (ACLs)</strong> and firewall policies between subnets.</p>
+                </div>
+
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-green); margin-bottom:0.4rem;">3. IP Address Conservation</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Without subnetting, assigning a Class C block (254 IPs) to a remote router link needing only 2 IPs wastes 252 IP addresses! Subnetting (VLSM) lets engineers allocate exact block sizes (e.g. a <code>/30</code> prefix with exactly 2 usable IPs), preserving address space.</p>
+                </div>
+
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-purple); margin-bottom:0.4rem;">4. Hierarchical Routing & Management</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Simplifies network administration and allows core routers to route to a single summary network address (Route Summarization) rather than maintaining thousands of individual host routes in memory.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. Fundamentals of IPv4 Addressing (32-Bit Structure)</h2>
+        <p>An Internet Protocol Version 4 (IPv4) address is a <strong>32-bit binary number</strong> uniquely identifying a network interface on a TCP/IP network. For human readability, it is expressed in <strong>Dotted-Decimal Notation</strong> consisting of four 8-bit groupings called <strong>Octets</strong> separated by decimal points.</p>
+
+        <div class="card">
+            <h3>Binary Octet Positional Values</h3>
+            <p style="font-size:0.9rem;">Each octet contains 8 bits, where each bit position represents a power of 2 ($2^7$ down to $2^0$):</p>
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:center; font-family:var(--font-code); font-size:0.9rem; margin-top:0.5rem; color:var(--text-main);">
+                    <thead>
+                        <tr style="background:rgba(56,189,248,0.15); border-bottom:1px solid var(--border-glow);">
+                            <th style="padding:8px;">Bit Position</th>
+                            <th style="padding:8px;">Bit 7</th>
+                            <th style="padding:8px;">Bit 6</th>
+                            <th style="padding:8px;">Bit 5</th>
+                            <th style="padding:8px;">Bit 4</th>
+                            <th style="padding:8px;">Bit 3</th>
+                            <th style="padding:8px;">Bit 2</th>
+                            <th style="padding:8px;">Bit 1</th>
+                            <th style="padding:8px;">Bit 0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:8px; font-weight:700; color:var(--primary-cyan);">Exponent Power ($2^p$)</td>
+                            <td style="padding:8px;">$2^7$</td>
+                            <td style="padding:8px;">$2^6$</td>
+                            <td style="padding:8px;">$2^5$</td>
+                            <td style="padding:8px;">$2^4$</td>
+                            <td style="padding:8px;">$2^3$</td>
+                            <td style="padding:8px;">$2^2$</td>
+                            <td style="padding:8px;">$2^1$</td>
+                            <td style="padding:8px;">$2^0$</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; font-weight:700; color:var(--accent-green);">Decimal Value</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">128</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">64</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">32</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">16</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">8</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">4</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">2</td>
+                            <td style="padding:8px; color:var(--accent-amber); font-weight:700;">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.8rem;">Example: Binary <code>11000000</code> $= 128 + 64 + 0 + 0 + 0 + 0 + 0 + 0 = \mathbf{192}$.</p>
+        </div>
+
+        <div class="card">
+            <h3>Special IP Address Types in Every Subnet</h3>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Network ID (Address):</strong> All host bits are set to 0. Identifies the network segment itself. <em>Cannot be assigned to a device.</em></li>
+                <li><strong>Broadcast Address:</strong> All host bits are set to 1. Sends data to all nodes on the subnet (Destination MAC: <code>FF:FF:FF:FF:FF:FF</code>). <em>Cannot be assigned to a host.</em></li>
+                <li><strong>First Usable Host IP:</strong> Network Address $+ 1$.</li>
+                <li><strong>Last Usable Host IP:</strong> Broadcast Address $- 1$.</li>
+                <li><strong>Usable Hosts Formula:</strong> $2^h - 2$ (where $h$ is the number of host bits; we subtract 2 for Network & Broadcast IDs).</li>
+            </ul>
+        </div>
+
+        <h2>4. Classful IPv4 Addressing Scheme</h2>
+        <p>Historically (RFC 791), IPv4 addresses were divided into 5 distinct classes based on the high-order leading bits of the first octet:</p>
+
+        <div class="card">
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.88rem; color:var(--text-main);">
+                    <thead>
+                        <tr style="background:rgba(56,189,248,0.15); border-bottom:1px solid var(--border-glow);">
+                            <th style="padding:10px; text-align:left;">Class</th>
+                            <th style="padding:10px; text-align:left;">Lead Bits</th>
+                            <th style="padding:10px; text-align:left;">First Octet Range</th>
+                            <th style="padding:10px; text-align:left;">Default Subnet Mask</th>
+                            <th style="padding:10px; text-align:left;">Net / Host Split</th>
+                            <th style="padding:10px; text-align:left;">Usable Hosts per Network</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Class A</td>
+                            <td style="padding:10px; font-family:var(--font-code);">0...</td>
+                            <td style="padding:10px;">1 – 126</td>
+                            <td style="padding:10px; font-family:var(--font-code);">255.0.0.0 (/8)</td>
+                            <td style="padding:10px;">8 Net / 24 Host</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">$2^{24} - 2 = 16,777,214$</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--accent-green);">Class B</td>
+                            <td style="padding:10px; font-family:var(--font-code);">10...</td>
+                            <td style="padding:10px;">128 – 191</td>
+                            <td style="padding:10px; font-family:var(--font-code);">255.255.0.0 (/16)</td>
+                            <td style="padding:10px;">16 Net / 16 Host</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">$2^{16} - 2 = 65,534$</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--accent-purple);">Class C</td>
+                            <td style="padding:10px; font-family:var(--font-code);">110...</td>
+                            <td style="padding:10px;">192 – 223</td>
+                            <td style="padding:10px; font-family:var(--font-code);">255.255.255.0 (/24)</td>
+                            <td style="padding:10px;">24 Net / 8 Host</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">$2^{8} - 2 = 254$</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--accent-amber);">Class D</td>
+                            <td style="padding:10px; font-family:var(--font-code);">1110...</td>
+                            <td style="padding:10px;">224 – 239</td>
+                            <td style="padding:10px;">N/A (Multicast)</td>
+                            <td style="padding:10px;" colspan="2">Reserved for Multicast Group Streams</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--accent-rose);">Class E</td>
+                            <td style="padding:10px; font-family:var(--font-code);">1111...</td>
+                            <td style="padding:10px;">240 – 255</td>
+                            <td style="padding:10px;">N/A (Experimental)</td>
+                            <td style="padding:10px;" colspan="2">Reserved for Research & Development</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="callout callout-warning" style="margin-top:1rem; font-size:0.85rem;">
+                <strong>⚠️ Note on 127.x.x.x:</strong> The first octet 127 (<code>127.0.0.0 – 127.255.255.255</code>) is omitted from Class A because it is reserved globally for local loopback testing (e.g. <code>127.0.0.1</code>).
+            </div>
+        </div>
+
+        <h2>5. RFC 1918 Private IP Address Space</h2>
+        <div class="card">
+            <p style="font-size:0.9rem;">To prevent premature IPv4 depletion, RFC 1918 designated three non-routable private address blocks for internal LANs. Private IPs cannot be routed directly over the public Internet and require <strong>Network Address Translation (NAT)</strong> at the perimeter firewall:</p>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Class A Private Block:</strong> <code>10.0.0.0 – 10.255.255.255</code> (<code>10.0.0.0/8</code>) $\rightarrow 16,777,216$ private IPs.</li>
+                <li><strong>Class B Private Block:</strong> <code>172.16.0.0 – 172.31.255.255</code> (<code>172.16.0.0/12</code>) $\rightarrow 1,048,576$ private IPs.</li>
+                <li><strong>Class C Private Block:</strong> <code>192.168.0.0 – 192.168.255.255</code> (<code>192.168.0.0/16</code>) $\rightarrow 65,536$ private IPs.</li>
+            </ul>
+        </div>
+
+        <h2>6. The Bitwise AND Operation & Magic Number Shortcut</h2>
+
+        <div class="card highlight">
+            <h3>How Routers Determine Network Address (Bitwise AND)</h3>
+            <p style="font-size:0.9rem;">A router determines which subnet an incoming IP address belongs to by performing a <strong>bitwise logical AND operation</strong> between the IP address and the Subnet Mask:</p>
+            <div class="code-block">
+                <pre><code style="color:var(--primary-cyan); font-family:var(--font-code);">IP Address:   192.168.10.75  --> 11000000.16810000.00001010.01001011
+Subnet Mask:  255.255.255.192 --> 11111111.11111111.11111111.11000000
+-----------------------------------------------------------------------
+Bitwise AND:  192.168.10.64  --> 11000000.16810000.00001010.01000000</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>The "Magic Number" Block Size Shortcut Method</h3>
+            <p style="font-size:0.9rem;">Instead of converting to binary during an exam, use the <strong>Magic Number (Block Size) Shortcut</strong>:</p>
+            <div class="code-block">
+                <code style="color:var(--accent-amber); font-size:1.1rem; font-weight:700;">Magic Number (Block Size S) = 256 - (Subnet Mask in Interesting Octet)</code>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">
+                <strong>Example:</strong> For a <code>255.255.255.224</code> mask (/27):
+                <br>• The interesting octet is octet 4 (value = 224).
+                <br>• Magic Number $S = 256 - 224 = \mathbf{32}$.
+                <br>• Therefore, subnets increment in multiples of 32: <code>.0</code>, <code>.32</code>, <code>.64</code>, <code>.96</code>, <code>.128</code>, <code>.160</code>, <code>.192</code>, <code>.224</code>.
+            </p>
+        </div>
+
+        <h2>7. FLSM vs. VLSM Subnetting Architecture</h2>
 
         <div class="grid-2">
             <div class="card">
-                <span class="badge badge-rose">Legacy Inefficient</span>
-                <h3>Classful IP Addressing</h3>
-                <p style="font-size:0.88rem;">Historic rigid allocation based on the leading bits of the first octet:</p>
+                <span class="badge badge-amber">FLSM (Fixed Length)</span>
+                <h3>Fixed-Length Subnet Masking</h3>
+                <p style="font-size:0.88rem;">All subnets are partitioned into <strong>identical equal-sized blocks</strong> using a single static subnet mask.</p>
                 <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Class A (1-127):</strong> /8 Mask (255.0.0.0) $\rightarrow$ 16,777,214 hosts</li>
-                    <li><strong>Class B (128-191):</strong> /16 Mask (255.255.0.0) $\rightarrow$ 65,534 hosts</li>
-                    <li><strong>Class C (192-223):</strong> /24 Mask (255.255.255.0) $\rightarrow$ 254 hosts</li>
-                    <li><strong>Class D (224-239):</strong> Multicast traffic</li>
+                    <li>Formula for Subnets created: $2^s$ (where $s$ is borrowed bits).</li>
+                    <li>Disadvantage: Wastes massive IP address space when smaller departments need only 2 or 5 hosts.</li>
                 </ul>
-                <div style="color:var(--accent-rose); font-size:0.8rem; margin-top:0.4rem;">❌ Wasted millions of IP addresses globally.</div>
             </div>
 
             <div class="card highlight">
-                <span class="badge badge-green">Modern Enterprise Standard</span>
-                <h3>Classless Addressing (CIDR, FLSM, VLSM)</h3>
-                <p style="font-size:0.88rem;">Arbitrary network prefix length specified via slash notation (e.g. `/26`):</p>
+                <span class="badge badge-green">VLSM (Variable Length)</span>
+                <h3>Variable-Length Subnet Masking</h3>
+                <p style="font-size:0.88rem;">Subnets are partitioned into <strong>dynamically sized custom blocks</strong> tailored strictly to host requirements.</p>
                 <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>CIDR:</strong> Classless Inter-Domain Routing</li>
-                    <li><strong>FLSM:</strong> Fixed Length Subnet Masking (equal-sized subnets)</li>
-                    <li><strong>VLSM:</strong> Variable Length Subnet Masking (custom subnet sizes matched to exact department user numbers)</li>
+                    <li>Allows subnets to use different subnet masks (e.g. /25, /27, /30).</li>
+                    <li>Eliminates IP address waste; essential for enterprise and WAN point-to-point links.</li>
                 </ul>
-                <div style="color:var(--accent-green); font-size:0.8rem; margin-top:0.4rem;">✓ Prevents address exhaustion and enables route summarization.</div>
             </div>
         </div>
 
-        <h2>3. CIDR Prefix Reference Cheat Sheet & Bit Borrowing Rules</h2>
+        <h2>8. Master 25-Mark VLSM Subnetting Exam Worked Problem</h2>
 
-        <div class="card">
-            <div class="code-block" style="margin:0;">
-                <div class="code-header"><span>CIDR Subnet Mask & Usable Host Reference Table</span></div>
-                <pre><code style="color:var(--primary-cyan);">
-CIDR    Subnet Mask          Borrowed Bits   Host Bits (h)   Total Hosts   Usable Hosts ($2^h - 2$)
-/24     255.255.255.0        0               8               256           254
-/25     255.255.255.128      1               7               128           126
-/26     255.255.255.192      2               6               64            62
-/27     255.255.255.224      3               5               32            30
-/28     255.255.255.240      4               4               16            14
-/29     255.255.255.248      5               3               8             6
-/30     255.255.255.252      6               2               4             2  (Point-to-Point WAN)
-/31     255.255.255.254      7               1               2             2  (Special Router CIDR*)
-                </code></pre>
-            </div>
-            <div class="callout callout-info" style="margin-top:1rem;">
-                <div class="callout-title">💡 Special Lecturer Rule: The /31 Router Link Exception</div>
-                <p style="margin:0; font-size:0.85rem;">Notice for <strong>/31 CIDR prefixes</strong> (connecting 2 point-to-point routers): We do <strong>NOT subtract 2</strong> because routers do not broadcast. Both available addresses are assigned directly to the router interfaces!</p>
-            </div>
+        <div class="card highlight" style="border-color:var(--primary-cyan);">
+            <span class="badge badge-green" style="font-size:0.85rem;">Full 25-Mark Exam Question</span>
+            <h3 style="color:#fff; margin:0.6rem 0;">NUST Exam Problem Scenario</h3>
+            <p style="font-size:0.95rem; color:var(--text-main); line-height:1.6;">
+                An IT network manager is assigned the base IPv4 network block <strong>192.168.50.0/24</strong>. Using Variable Length Subnet Masking (VLSM), design an optimal IP addressing scheme for the following five enterprise network requirements:
+                <br>• <strong>Subnet A (Sales Dept):</strong> Requires 110 usable hosts
+                <br>• <strong>Subnet B (Engineering):</strong> Requires 50 usable hosts
+                <br>• <strong>Subnet C (Human Resources):</strong> Requires 22 usable hosts
+                <br>• <strong>Subnet D (IT Support):</strong> Requires 10 usable hosts
+                <br>• <strong>Subnet E (Router WAN Link):</strong> Requires 2 usable hosts
+            </p>
         </div>
 
-        <h2>4. Step-by-Step VLSM Calculation Workflow</h2>
-
         <div class="card">
-            <h4 style="color:var(--accent-amber); margin-bottom:0.5rem;">Example Problem: Allocate Subnets for Network 10.1.1.0/24</h4>
-            <p style="font-size:0.9rem;">Department requirements: Admin (150 hosts), Marketing (60 hosts), ICT (25 hosts), Faculty (88 hosts), Bursar (7 hosts).</p>
+            <h3>Step-by-Step Solution Derivation & Execution</h3>
             
-            <div class="callout callout-work" style="font-size:0.88rem;">
-                <strong>Step 1: Always sort departments in descending order of host count!</strong><br>
-                1. Admin (150 hosts) $\rightarrow$ Needs $2^8 - 2 = 254$ hosts $\rightarrow$ <strong>/25</strong> (Allocates 10.1.1.0 to 10.1.1.127)<br>
-                2. Faculty (88 hosts) $\rightarrow$ Needs $2^7 - 2 = 126$ hosts $\rightarrow$ <strong>/25</strong> (Allocates 10.1.1.128 to 10.1.1.255)<br>
-                3. Marketing (60 hosts) $\rightarrow$ Needs $2^6 - 2 = 62$ hosts $\rightarrow$ <strong>/26</strong><br>
-                4. ICT (25 hosts) $\rightarrow$ Needs $2^5 - 2 = 30$ hosts $\rightarrow$ <strong>/27</strong><br>
-                5. Bursar (7 hosts) $\rightarrow$ Needs $2^4 - 2 = 14$ hosts $\rightarrow$ <strong>/28</strong>
+            <h4 style="color:var(--accent-amber); margin-top:1rem;">Step 1: Sort Requirements from Largest to Smallest Host Count</h4>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Sorting order: Subnet A (110) $\rightarrow$ Subnet B (50) $\rightarrow$ Subnet C (22) $\rightarrow$ Subnet D (10) $\rightarrow$ Subnet E (2).</p>
+
+            <h4 style="color:var(--accent-amber); margin-top:1rem;">Step 2: Calculate Required Host Bits ($h$), CIDR ($32 - h$), and Block Size ($S = 2^h$)</h4>
+            <ul style="color:var(--text-main); font-size:0.88rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Subnet A (110 hosts):</strong> Need $2^h - 2 \ge 110 \rightarrow 2^7 - 2 = 126$ hosts ($h=7$). CIDR $= 32 - 7 = \mathbf{/25}$. Block Size $S = 2^7 = \mathbf{128}$. Subnet Mask: <code>255.255.255.128</code>.</li>
+                <li><strong>Subnet B (50 hosts):</strong> Need $2^h - 2 \ge 50 \rightarrow 2^6 - 2 = 62$ hosts ($h=6$). CIDR $= 32 - 6 = \mathbf{/26}$. Block Size $S = 2^6 = \mathbf{64}$. Subnet Mask: <code>255.255.255.192</code>.</li>
+                <li><strong>Subnet C (22 hosts):</strong> Need $2^h - 2 \ge 22 \rightarrow 2^5 - 2 = 30$ hosts ($h=5$). CIDR $= 32 - 5 = \mathbf{/27}$. Block Size $S = 2^5 = \mathbf{32}$. Subnet Mask: <code>255.255.255.224</code>.</li>
+                <li><strong>Subnet D (10 hosts):</strong> Need $2^h - 2 \ge 10 \rightarrow 2^4 - 2 = 14$ hosts ($h=4$). CIDR $= 32 - 4 = \mathbf{/28}$. Block Size $S = 2^4 = \mathbf{16}$. Subnet Mask: <code>255.255.255.240</code>.</li>
+                <li><strong>Subnet E (2 hosts):</strong> Need $2^h - 2 \ge 2 \rightarrow 2^2 - 2 = 2$ hosts ($h=2$). CIDR $= 32 - 2 = \mathbf{/30}$. Block Size $S = 2^2 = \mathbf{4}$. Subnet Mask: <code>255.255.255.252</code>.</li>
+            </ul>
+
+            <h4 style="color:var(--accent-green); margin-top:1.5rem;">Step 3: Complete Master VLSM Address Allocation Table (25 Marks)</h4>
+            <div style="overflow-x:auto; margin-top:0.8rem;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.85rem; color:var(--text-main); font-family:var(--font-code);">
+                    <thead>
+                        <tr style="background:rgba(56,189,248,0.2); border-bottom:1px solid var(--border-glow); text-align:left;">
+                            <th style="padding:10px;">Subnet Name</th>
+                            <th style="padding:10px;">Req. Hosts</th>
+                            <th style="padding:10px;">CIDR Prefix</th>
+                            <th style="padding:10px;">Subnet Mask</th>
+                            <th style="padding:10px;">Network IP</th>
+                            <th style="padding:10px;">First Usable IP</th>
+                            <th style="padding:10px;">Last Usable IP</th>
+                            <th style="padding:10px;">Broadcast IP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Subnet A (Sales)</td>
+                            <td style="padding:10px;">110</td>
+                            <td style="padding:10px; color:var(--accent-amber);">/25</td>
+                            <td style="padding:10px;">255.255.255.128</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">192.168.50.0</td>
+                            <td style="padding:10px;">192.168.50.1</td>
+                            <td style="padding:10px;">192.168.50.126</td>
+                            <td style="padding:10px; color:var(--accent-rose);">192.168.50.127</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Subnet B (Eng)</td>
+                            <td style="padding:10px;">50</td>
+                            <td style="padding:10px; color:var(--accent-amber);">/26</td>
+                            <td style="padding:10px;">255.255.255.192</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">192.168.50.128</td>
+                            <td style="padding:10px;">192.168.50.129</td>
+                            <td style="padding:10px;">192.168.50.190</td>
+                            <td style="padding:10px; color:var(--accent-rose);">192.168.50.191</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Subnet C (HR)</td>
+                            <td style="padding:10px;">22</td>
+                            <td style="padding:10px; color:var(--accent-amber);">/27</td>
+                            <td style="padding:10px;">255.255.255.224</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">192.168.50.192</td>
+                            <td style="padding:10px;">192.168.50.193</td>
+                            <td style="padding:10px;">192.168.50.222</td>
+                            <td style="padding:10px; color:var(--accent-rose);">192.168.50.223</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Subnet D (IT)</td>
+                            <td style="padding:10px;">10</td>
+                            <td style="padding:10px; color:var(--accent-amber);">/28</td>
+                            <td style="padding:10px;">255.255.255.240</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">192.168.50.224</td>
+                            <td style="padding:10px;">192.168.50.225</td>
+                            <td style="padding:10px;">192.168.50.238</td>
+                            <td style="padding:10px; color:var(--accent-rose);">192.168.50.239</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:10px; font-weight:700; color:var(--primary-cyan);">Subnet E (WAN Link)</td>
+                            <td style="padding:10px;">2</td>
+                            <td style="padding:10px; color:var(--accent-amber);">/30</td>
+                            <td style="padding:10px;">255.255.255.252</td>
+                            <td style="padding:10px; color:var(--accent-green); font-weight:700;">192.168.50.240</td>
+                            <td style="padding:10px;">192.168.50.241</td>
+                            <td style="padding:10px;">192.168.50.242</td>
+                            <td style="padding:10px; color:var(--accent-rose);">192.168.50.243</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+
+        <h2>9. Cisco Wildcard Masks (Inverse Subnet Masking)</h2>
+        <p>In Cisco IOS CLI configurations (such as Access Control Lists - ACLs and OSPF network statements), a <strong>Wildcard Mask</strong> is used instead of a standard subnet mask.</p>
+
+        <div class="card">
+            <div class="code-block">
+                <code style="color:var(--accent-purple); font-size:1.1rem; font-weight:700;">Wildcard Mask = 255.255.255.255 - (Subnet Mask)</code>
+            </div>
+            <div style="overflow-x:auto; margin-top:0.8rem;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.85rem; color:var(--text-main); font-family:var(--font-code);">
+                    <thead>
+                        <tr style="background:rgba(129,140,248,0.15); border-bottom:1px solid var(--border-glow); text-align:left;">
+                            <th style="padding:8px;">CIDR Prefix</th>
+                            <th style="padding:8px;">Subnet Mask</th>
+                            <th style="padding:8px;">Cisco Wildcard Mask</th>
+                            <th style="padding:8px;">Cisco OSPF CLI Configuration Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:8px; color:var(--primary-cyan);">/24</td>
+                            <td style="padding:8px;">255.255.255.0</td>
+                            <td style="padding:8px; color:var(--accent-amber);">0.0.0.255</td>
+                            <td style="padding:8px;"><code>network 192.168.10.0 0.0.0.255 area 0</code></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:8px; color:var(--primary-cyan);">/26</td>
+                            <td style="padding:8px;">255.255.255.192</td>
+                            <td style="padding:8px; color:var(--accent-amber);">0.0.0.63</td>
+                            <td style="padding:8px;"><code>network 192.168.50.128 0.0.0.63 area 0</code></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:8px; color:var(--primary-cyan);">/27</td>
+                            <td style="padding:8px;">255.255.255.224</td>
+                            <td style="padding:8px; color:var(--accent-amber);">0.0.0.31</td>
+                            <td style="padding:8px;"><code>network 192.168.50.192 0.0.0.31 area 0</code></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:8px; color:var(--primary-cyan);">/30</td>
+                            <td style="padding:8px;">255.255.255.252</td>
+                            <td style="padding:8px; color:var(--accent-amber);">0.0.0.3</td>
+                            <td style="padding:8px;"><code>network 192.168.50.240 0.0.0.3 area 0</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>10. Next-Generation IPv6 Addressing Architecture</h2>
+
+        <div class="card">
+            <h3>IPv6 128-Bit Structure & Abbreviation Rules</h3>
+            <p style="font-size:0.9rem;">IPv6 addresses are <strong>128 bits in length</strong>, represented as eight groups of four hexadecimal digits (hextets) separated by colons (e.g. <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>).</p>
+
+            <h4 style="color:var(--primary-cyan); margin-top:1rem;">Two Zero Abbreviation Rules:</h4>
+            <ol style="color:var(--text-main); font-size:0.88rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Rule 1: Omit Leading Zeros in any Hextet:</strong>
+                    <br>• <code>0db8</code> becomes <code>db8</code>
+                    <br>• <code>0000</code> becomes <code>0</code>
+                </li>
+                <li><strong>Rule 2: Double Colon (::) Compression:</strong>
+                    <br>• Replaces any single contiguous sequence of all-zero hextets with a double colon (<code>::</code>).
+                    <br>• <em>CRITICAL EXAM RULE:</em> The double colon <code>::</code> can ONLY be used ONCE per IPv6 address to prevent ambiguity!
+                </li>
+            </ol>
+
+            <div class="code-block" style="margin-top:1rem;">
+                <div class="code-header"><span>IPv6 Compression Step-by-Step Example</span></div>
+                <pre><code style="color:var(--accent-green); font-family:var(--font-code);">Original Address:   2001:0db8:0000:0000:0000:0000:1428:57ab
+Rule 1 (Leading 0s): 2001:db8:0:0:0:0:1428:57ab
+Rule 2 (Double ::):  2001:db8::1428:57ab  (Compressed Final Form)</code></pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>IPv6 Scope Types</h3>
+            <ul style="color:var(--text-muted); font-size:0.88rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Global Unicast Address (GUA):</strong> Begins with <code>2000::/3</code> (2000:: to 3FFF::). Globally unique and routable on the public Internet.</li>
+                <li><strong>Link-Local Address:</strong> Begins with <code>fe80::/10</code>. Used exclusively for local link hop-by-hop communications (e.g. NDP, router discovery). Automatically generated on every IPv6 interface.</li>
+                <li><strong>Unique Local Address (ULA):</strong> Begins with <code>fc00::/7</code> (fc00:: to fdff::). Equivalent to IPv4 RFC 1918 private IP addresses.</li>
+                <li><strong>Loopback Address:</strong> <code>::1/128</code> (Equivalent to IPv4 127.0.0.1).</li>
+            </ul>
         </div>
     </main>
 </div>
@@ -120,59 +477,17 @@ CIDR    Subnet Mask          Borrowed Bits   Host Bits (h)   Total Hosts   Usabl
 
 <script src="assets/js/nav.js"></script>
 <script src="assets/js/net_simulators.js"></script>
-<script src="../js/app.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'phase5_ip_addressing_subnetting';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

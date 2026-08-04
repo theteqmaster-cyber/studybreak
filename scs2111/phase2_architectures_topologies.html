@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 2: Topologies & Architecture | SCS2111 Data Communications</title>
+    <title>Phase 2: Architectures & Topologies | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
@@ -37,79 +37,95 @@
 
     <main class="content-area">
         <span class="badge badge-cyan">PHASE 02</span>
-        <h1>Architectures & Network Topologies</h1>
-        <p>Analyzing physical connection layouts, failure domains, P2P vs Client-Server models, and Domain Network Operating Systems.</p>
+        <h1>Network Architectures & Physical/Logical Topologies</h1>
+        <p>Analyzing physical topology layouts, fault tolerance, collision vs broadcast domain boundaries, and hardware device layer processing.</p>
 
-        <h2>1. Physical & Logical Network Topologies</h2>
+        <h2>1. Physical & Logical Topologies</h2>
+        <p>A <strong>Physical Topology</strong> defines how nodes and cables are physically laid out, whereas a <strong>Logical Topology</strong> defines how data frames travel across nodes regardless of physical cabling.</p>
 
         <div class="grid-2">
             <div class="card">
-                <span class="badge badge-amber">Legacy Topology</span>
+                <span class="badge badge-purple">Legacy Bus</span>
                 <h3>Bus Topology</h3>
-                <p>All nodes connect to a single central coaxial cable backbone terminated at both ends with 50-ohm resistors.</p>
-                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Pros:</strong> Minimal cabling required, cheap setup</li>
-                    <li><strong>Cons:</strong> Single backbone break drops the entire network; high packet collision rates</li>
+                <p style="font-size:0.9rem;">Nodes connect to a single central backbone cable terminated at both ends with resistors (50-ohm terminators).</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.4rem;">
+                    <li><strong>Pros:</strong> Low cable usage, simple setup for small rooms.</li>
+                    <li><strong>Cons:</strong> A single cable break drops the entire network; high collision rate (CSMA/CD).</li>
                 </ul>
             </div>
 
             <div class="card highlight">
-                <span class="badge badge-green">Modern Enterprise Standard</span>
+                <span class="badge badge-green">Enterprise Standard</span>
                 <h3>Star Topology</h3>
-                <p>All end devices connect directly to a central multiport switch or hub using individual dedicated cables.</p>
-                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Pros:</strong> High fault tolerance—single cable failure affects only one device; easy to expand</li>
-                    <li><strong>Cons:</strong> Central switch is a single point of failure (SPOF)</li>
+                <p style="font-size:0.9rem;">Every node connects directly to a central hub or switch via dedicated point-to-point links.</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.4rem;">
+                    <li><strong>Pros:</strong> High fault isolation—one cable cut affects only that single node. Easy to expand.</li>
+                    <li><strong>Cons:</strong> Central switch represents a single point of failure.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <span class="badge badge-purple">Token Passing</span>
+                <span class="badge badge-amber">Token Ring</span>
                 <h3>Ring Topology</h3>
-                <p>Nodes are connected in a closed circular loop. Signals travel in one direction passing a special token frame.</p>
-                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Pros:</strong> Deterministic traffic control; no packet collisions</li>
-                    <li><strong>Cons:</strong> Unidirectional failure breaks ring unless dual-ring (FDDI) is deployed</li>
+                <p style="font-size:0.9rem;">Nodes are connected in a closed loop. Data frames or tokens travel sequentially from node to node in one direction.</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.4rem;">
+                    <li><strong>Pros:</strong> Deterministic access—no packet collisions.</li>
+                    <li><strong>Cons:</strong> Unidirectional ring break disrupts all nodes unless dual counter-rotating rings (FDDI) are deployed.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <span class="badge badge-cyan">Maximum Reliability</span>
-                <h3>Mesh Topology</h3>
-                <p>Every node has a direct point-to-point link to every other node in the network ($Links = \frac{n(n-1)}{2}$).</p>
-                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Pros:</strong> Absolute redundancy, privacy, and zero bottlenecking</li>
-                    <li><strong>Cons:</strong> Extremely expensive cabling and high port count requirements</li>
+                <span class="badge badge-cyan">Mission Critical</span>
+                <h3>Mesh Topology (Full vs Partial)</h3>
+                <p style="font-size:0.9rem;">Every node connects to every other node (Full Mesh: $N(N-1)/2$ links) or to multiple selected nodes (Partial Mesh).</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.4rem;">
+                    <li><strong>Pros:</strong> Maximum redundancy, zero single points of failure, guaranteed link throughput.</li>
+                    <li><strong>Cons:</strong> Extremely expensive cabling and port requirement for large $N$.</li>
                 </ul>
             </div>
         </div>
 
-        <h2>2. Peer-to-Peer (P2P) vs. Client-Server Architecture</h2>
+        <h2>2. Collision Domains vs. Broadcast Domains</h2>
+        <p>Understanding domain separation is a vital skill tested in university examinations and required for network switch deployment.</p>
 
-        <div class="grid-2">
-            <div class="card">
-                <h3>Peer-to-Peer (P2P) Model</h3>
-                <p style="font-size:0.88rem;">Every node (peer) acts simultaneously as both a client and a server. No dedicated central administrator exists.</p>
-                <div class="callout callout-info" style="font-size:0.85rem;">
-                    <strong>Characteristics:</strong> Low cost, simple to set up for under 10 devices, decentralized file sharing (e.g. BitTorrent, local home network). Security is decentralized and weak.
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Client-Server Architecture</h3>
-                <p style="font-size:0.88rem;">Dedicated server hosts (Domain Controller, Database, Web Server) provide centralized resources and access control to client workstations.</p>
-                <div class="callout callout-work" style="font-size:0.85rem;">
-                    <strong>Characteristics:</strong> Industrial enterprise standard. Centralized security, single point of policy administration, high scalability, user access privileges governed via Network Operating System (NOS).
-                </div>
-            </div>
-        </div>
-
-        <h2>3. Network Operating Systems (NOS) & Domain Control</h2>
         <div class="card">
-            <p>In enterprise corporate attachments (like NUST or corporate offices), computers do not operate in isolation. They are connected to a <strong>Domain Server running a Network Operating System (NOS)</strong> (e.g., Windows Server Active Directory, Red Hat Enterprise Linux).</p>
-            <div class="callout callout-info">
-                <div class="callout-title">🔑 Why Domain Control Matters in Industry</div>
-                <p style="margin:0; font-size:0.88rem;">Domain administration centralizes user authentication, privilege policies, group access security, database rights, and automated software deployment across thousands of enterprise workstations from a single administrative console.</p>
+            <div class="grid-2">
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-amber); margin-bottom:0.5rem;">Collision Domain</h4>
+                    <p style="font-size:0.88rem; color:var(--text-main);">A network segment where simultaneous transmissions from two nodes cause electrical signals to collide and corrupt.</p>
+                    <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.5rem;">
+                        <li><strong>Hubs (Layer 1):</strong> All ports share 1 single collision domain!</li>
+                        <li><strong>Switches (Layer 2):</strong> Every individual port forms its own isolated collision domain!</li>
+                    </ul>
+                </div>
+
+                <div style="background:rgba(16,23,42,0.9); padding:1.2rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--primary-cyan); margin-bottom:0.5rem;">Broadcast Domain</h4>
+                    <p style="font-size:0.88rem; color:var(--text-main);">A network region across which a broadcast frame (Destination MAC: <code>FF:FF:FF:FF:FF:FF</code>) is forwarded to all nodes.</p>
+                    <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem; margin-top:0.5rem;">
+                        <li><strong>Switches:</strong> All ports belong to 1 broadcast domain (unless partitioned into VLANs).</li>
+                        <li><strong>Routers (Layer 3):</strong> Routers block layer 2 broadcast frames by default—every router interface bounds a broadcast domain!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. Network Scale Classification</h2>
+        <div class="grid-3">
+            <div class="card">
+                <span class="badge badge-cyan">PAN / LAN</span>
+                <h3>LAN & PAN</h3>
+                <p style="font-size:0.88rem;"><strong>PAN:</strong> Personal Area Network ($\le 10\text{m}$, Bluetooth).\n<strong>LAN:</strong> Local Area Network spanning a room, office floor, or campus ($\le 2\text{km}$). High throughput ($1\text{Gbps} - 10\text{Gbps}$).</p>
+            </div>
+            <div class="card">
+                <span class="badge badge-amber">MAN</span>
+                <h3>Metropolitan Area Network</h3>
+                <p style="font-size:0.88rem;">Spans an entire municipality or city ($5\text{km} - 50\text{km}$). Interconnects city municipal offices, university campuses, or regional fiber backbones.</p>
+            </div>
+            <div class="card">
+                <span class="badge badge-green">WAN</span>
+                <h3>Wide Area Network</h3>
+                <p style="font-size:0.88rem;">Spans countries or global continents ($>50\text{km}$). Utilizes leased fiber lines, submarine cables, and satellite links (e.g. The Internet).</p>
             </div>
         </div>
     </main>
@@ -120,59 +136,17 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'phase2_architectures_topologies';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

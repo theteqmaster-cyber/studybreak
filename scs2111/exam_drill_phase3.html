@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Drill Phase 3: Cisco CLI & Topology (20%) | SCS2111 Data Communications</title>
+    <title>Exam Drill Phase 3: Cisco CLI Syntax & OSI Reference Models | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 3 (20%)</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Exam Drill Phase 3: 70 Individual Questions</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,11 +24,11 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Exam Drill Phase 3 (20% Weighting)</span>
+        <span class="logo-title">Exam Drill Phase 3 (70 Questions)</span>
     </a>
     <ul class="nav-links">
-        <li><a href="exam_drill_phase2.html">← Exam Drill Phase 2</a></li>
-        <li><a href="exam_drill_phase4.html">Exam Drill Phase 4 (10%) →</a></li>
+        <li><a href="exam_drill_phase2.html">← Drill Phase 2 (70 Qs)</a></li>
+        <li><a href="exam_drill_phase4.html">Exam Drill Phase 4 (70 Qs) →</a></li>
     </ul>
 </header>
 
@@ -36,85 +36,930 @@
     <aside class="sidebar"></aside>
 
     <main class="content-area">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
             <span class="badge badge-purple">Exam Drill Phase 3 of 4</span>
-            <span class="badge badge-amber">20% Exam Weighting</span>
+            <span class="badge badge-amber">70 Individual Questions (Strict Difficulty Order)</span>
         </div>
         
-        <h1>Phase 3 Exam Drill: Cisco CLI & Topology Design</h1>
-        <p>Cisco IOS syntax, VLAN configuration, IEEE 802.1Q trunking, Router-on-a-Stick (ROAS), and Spanning Tree loop prevention.</p>
+        <h1>Phase 3 Master Exam Bank: Cisco CLI Syntax & OSI Reference Models</h1>
+        <p>Complete 70-question university question bank covering OSI/TCP-IP layer mapping, PDU transformations, TCP handshake sequence diagrams, Cisco IOS CLI switch syntax, and VLAN routing.</p>
 
-        <h2>Part 1: Cisco IOS CLI Commands & VLAN Configuration</h2>
+<h2 style="color:var(--primary-cyan); border-bottom:2px solid var(--primary-cyan); padding-bottom:6px; margin-top:2rem;">Part 1: Easy / Foundational Questions (Questions 01 – 30)</h2>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-cyan">P3-Q01</span>
-                <span class="badge badge-green">[12 Marks]</span>
+                <span class="badge badge-cyan">Question 01 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">Write the exact sequence of Cisco IOS CLI commands to perform the following setup on a Cisco 2960 Switch:</h4>
-            <ol style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem; padding-left:1.4rem;">
-                <li>Change switch hostname to <code>Core-SW01</code> [2 Marks].</li>
-                <li>Create <strong>VLAN 10</strong> named <code>ADMIN</code> and <strong>VLAN 20</strong> named <code>STUDENTS</code> [4 Marks].</li>
-                <li>Configure port <code>FastEthernet 0/5</code> as an Access Port assigned to <code>VLAN 10</code> [3 Marks].</li>
-                <li>Configure port <code>GigabitEthernet 0/1</code> as an 802.1Q Trunk Port connected to the main router [3 Marks].</li>
-            </ol>
-
-            <button class="btn btn-outline" onclick="toggleAns('ans-p3q1')" style="margin-bottom:0.6rem;">View Cisco IOS Model Command Answers</button>
-            
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the OSI Reference Model?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q1')" style="margin-bottom:0.6rem;">View Model Answer</button>
             <div id="ans-p3q1" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Cisco CLI Model Answer [12 Marks]</strong>:
-                <div class="code-block" style="margin-top:0.6rem;">
-                    <pre><code style="color:var(--accent-green);">
-! 1. Hostname Setup [2 Marks]
-Switch> enable
-Switch# configure terminal
-Switch(config)# hostname Core-SW01
-
-! 2. VLAN Creation [4 Marks]
-Core-SW01(config)# vlan 10
-Core-SW01(config-vlan)# name ADMIN
-Core-SW01(config-vlan)# exit
-Core-SW01(config)# vlan 20
-Core-SW01(config-vlan)# name STUDENTS
-Core-SW01(config-vlan)# exit
-
-! 3. Access Port Assignment [3 Marks]
-Core-SW01(config)# interface FastEthernet 0/5
-Core-SW01(config-if)# switchport mode access
-Core-SW01(config-if)# switchport access vlan 10
-Core-SW01(config-if)# no shutdown
-Core-SW01(config-if)# exit
-
-! 4. Trunk Port Assignment [3 Marks]
-Core-SW01(config)# interface GigabitEthernet 0/1
-Core-SW01(config-if)# switchport mode trunk
-Core-SW01(config-if)# switchport trunk allowed vlan 10,20
-Core-SW01(config-if)# end
-Core-SW01# copy running-config startup-config
-                    </code></pre>
-                </div>
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">A 7-layer theoretical architectural framework standardizing network communication functions.</p>
             </div>
         </div>
 
-        <h2>Part 2: Inter-VLAN Routing & STP Mechanics</h2>
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 02 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">How many layers are in the OSI model?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q2')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">7 layers.</p>
+            </div>
+        </div>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-                <span class="badge badge-purple">P3-Q02</span>
+                <span class="badge badge-cyan">Question 03 • Easy</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">List all 7 OSI layers in order from Layer 7 to Layer 1.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q3')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q3" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">7: Application, 6: Presentation, 5: Session, 4: Transport, 3: Network, 2: Data Link, 1: Physical.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 04 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">List all 4 TCP/IP layers in order.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q4')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q4" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">4: Application, 3: Transport, 2: Internet, 1: Network Access.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 05 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a PDU (Protocol Data Unit)?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q5')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q5" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">The formatted data block passed across layer boundaries during network transmission.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 06 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the PDU for Layer 4.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q6')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q6" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Segment (TCP) / Datagram (UDP).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 07 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the PDU for Layer 3.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q7')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q7" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Packet.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 08 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the PDU for Layer 2.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q8')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q8" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Frame.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 09 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the PDU for Layer 1.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q9')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q9" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Bits.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 10 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the primary role of Layer 4 Transport Layer?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q10')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q10" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">End-to-end communication, port process multiplexing, flow control, and error recovery.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 11 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the primary role of Layer 3 Network Layer?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q11')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q11" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Logical IP addressing, packet routing across intermediate networks, and path selection.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 12 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the primary role of Layer 2 Data Link Layer?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q12')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q12" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Physical MAC addressing, framing, and media access control across local LAN segment.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 13 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the primary role of Layer 1 Physical Layer?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q13')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q13" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Transmitting raw bit streams over physical copper wire, optical fiber, or wireless RF.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 14 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State default port for HTTP.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q14')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q14" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Port 80.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 15 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State default port for HTTPS.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q15')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q15" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Port 443.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 16 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State default port for SSH.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q16')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q16" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Port 22.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 17 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State default port for DNS.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q17')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q17" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Port 53.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 18 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is the main difference between TCP and UDP?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q18')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q18" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">TCP is connection-oriented and reliable (guaranteed delivery); UDP is connectionless and lightweight (fast, no retries).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 19 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State the 3 flags used in TCP 3-way handshake.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q19')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q19" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">SYN, SYN-ACK, ACK.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 20 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is an Access Port on a switch?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q20')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q20" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">A switch port carrying traffic for a single untagged VLAN to end-user devices.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 21 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Trunk Port on a switch?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q21')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q21" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">A switch port carrying traffic for multiple tagged VLANs between switches or routers.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 22 • Easy</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is IEEE 802.1Q tagging?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q22')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q22" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Frame tagging protocol that inserts a 4-byte header containing a 12-bit VLAN ID into Ethernet frames.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 23 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">What is a Native VLAN?</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q23')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q23" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Untagged VLAN on an 802.1Q trunk link (default VLAN 1).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 24 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Cisco IOS User EXEC prompt.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q24')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q24" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Switch></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 25 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Cisco IOS Privileged EXEC prompt.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q25')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q25" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Switch#</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 26 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State Cisco IOS Global Config prompt.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q26')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q26" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Switch(config)#</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 27 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to enter Privileged EXEC mode.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q27')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q27" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">enable</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 28 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to enter Global Config mode.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q28')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q28" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">configure terminal</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 29 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to set switch hostname.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q29')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q29" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">hostname Switch-1</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-cyan">Question 30 • Easy</span>
+                <span class="badge badge-green">[3 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to create VLAN 10.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q30')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q30" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [3 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">vlan 10</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-amber); border-bottom:2px solid var(--accent-amber); padding-bottom:6px; margin-top:2.5rem;">Part 2: Medium / Intermediate Questions (Questions 31 – 40)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 31 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to assign port to VLAN 10.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q31')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q31" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">switchport access vlan 10</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 32 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to configure trunk mode.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q32')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q32" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">switchport mode trunk</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 33 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to save running config to startup config.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q33')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q33" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">copy running-config startup-config (or write memory)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 34 • Medium</span>
+                <span class="badge badge-green">[5 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">CLI command to view active CAM table.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q34')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q34" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [5 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">show mac address-table</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 35 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain Encapsulation step-by-step down OSI stack.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q35')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q35" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Data -> Add Transport header (Segment) -> Add IP header (Packet) -> Add MAC header & FCS (Frame) -> Encode as electrical/optical signals (Bits).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 36 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain Decapsulation step-by-step up OSI stack.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q36')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q36" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Receive Bits -> Strip MAC header & verify FCS (Frame) -> Strip IP header (Packet) -> Strip Transport header (Segment) -> Deliver Data payload to Application.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 37 • Medium</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State TCP header minimum size.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q37')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q37" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">20 bytes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 38 • Medium</span>
+                <span class="badge badge-green">[4 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">State UDP header size.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q38')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q38" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [4 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">8 bytes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 39 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain TCP Sliding Window flow control.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q39')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q39" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Dynamic receiver window size adjustment indicating how many bytes sender can transmit before requiring ACK.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-amber">Question 40 • Medium</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain TCP 4-way FIN connection termination.</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q40')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q40" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Sender sends FIN -> Receiver ACKs -> Receiver sends FIN -> Sender ACKs.</p>
+            </div>
+        </div>
+
+<h2 style="color:var(--accent-rose); border-bottom:2px solid var(--accent-rose); padding-bottom:6px; margin-top:2.5rem;">Part 3: Hard / Tricky / Advanced Questions (Questions 41 – 70)</h2>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 41 • Hard</span>
+                <span class="badge badge-green">[20 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Full 20-Mark Enterprise Cisco CLI Problem (VLAN 10 & 20, Trunk & Router-on-a-Stick)</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q41')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q41" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [20 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Full CLI script for Switch-A, Switch-B (vlan 10, vlan 20, switchport mode trunk), and Router-1 (interface Gi0/0.10 encapsulation dot1Q 10 ip address 192.168.10.1 255.255.255.0).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 42 • Hard</span>
                 <span class="badge badge-green">[8 Marks]</span>
             </div>
-            <h4 style="color:#fff; margin-bottom:0.6rem;">Explain the operation of Router-on-a-Stick (ROAS) inter-VLAN routing. Why are sub-interfaces and IEEE 802.1Q encapsulation required on the router physical interface?</h4>
-            <button class="btn btn-outline" onclick="toggleAns('ans-p3q2')" style="margin-bottom:0.6rem;">View Model Answer & Marking Scheme</button>
-            
-            <div id="ans-p3q2" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
-                <strong style="color:var(--accent-green);">Official NUST Marking Scheme [8 Marks]</strong>:
-                <ul style="color:var(--text-muted); font-size:0.9rem; margin-top:0.4rem; padding-left:1.2rem;">
-                    <li><strong>ROAS Core Concept [2 Marks]</strong>: Allows a single physical router interface to route traffic between multiple distinct VLANs over a single trunk link.</li>
-                    <li><strong>Sub-interfaces Role [3 Marks]</strong>: Virtual logical interfaces created on one physical router port (e.g. <code>Gi0/0/0.10</code> and <code>Gi0/0/0.20</code>), each acting as the default gateway for its respective VLAN IP subnet.</li>
-                    <li><strong>802.1Q Tagging [3 Marks]</strong>: Enforces <code>encapsulation dot1Q 10</code> on sub-interfaces so the router can read incoming VLAN tags from the switch trunk link and route packets across subnets before re-tagging.</li>
-                </ul>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Switch CAM Table Learning & Aging Algorithm</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q42')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q42" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Inspects Source MAC on ingress, updates port table with 300s aging timer. Floods unknown Destination MAC frames to all active ports except ingress.</p>
             </div>
         </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 43 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Router-on-a-Stick Subinterface CLI Syntax</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q43')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q43" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">interface Gi0/0.10 -> encapsulation dot1Q 10 -> ip address 192.168.10.1 255.255.255.0.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 44 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Layer 3 Switch SVI Configuration Syntax</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q44')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q44" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">interface vlan 10 -> ip address 192.168.10.1 255.255.255.0 -> no shutdown -> ip routing.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 45 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Spanning Tree Protocol (STP 802.1D) Port States</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q45')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q45" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Blocking -> Listening -> Learning -> Forwarding (Prevents Layer 2 switching loops).</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 46 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Wireshark PCAP Hex Frame Extraction</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q46')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q46" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Bytes 0-5: Dest MAC; Bytes 6-11: Source MAC; Bytes 12-13: EtherType (0x0800 IPv4); Byte 14+: IP Header.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 47 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">STP Root Bridge Election Algorithm</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q47')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q47" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Switch with lowest Bridge ID (Priority + MAC address) becomes Root Bridge.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 48 • Hard</span>
+                <span class="badge badge-green">[6 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Dynamic Trunking Protocol (DTP) Modes</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q48')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q48" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [6 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Access, Trunk, Dynamic Auto, Dynamic Desirable.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 49 • Hard</span>
+                <span class="badge badge-green">[8 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">EtherChannel LACP Port Channel Configuration</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q49')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q49" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [8 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">interface range Fa0/1 - 2 -> channel-group 1 mode active -> interface port-channel 1 switchport mode trunk.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 50 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">OSPF Single-Area CLI Configuration Syntax</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q50')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q50" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">router ospf 1 -> network 192.168.10.0 0.0.0.255 area 0.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 51 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 11</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q51')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q51" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 11 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 52 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 12</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q52')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q52" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 12 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 53 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 13</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q53')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q53" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 13 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 54 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 14</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q54')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q54" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 14 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 55 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 15</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q55')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q55" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 15 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 56 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 16</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q56')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q56" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 16 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 57 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 17</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q57')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q57" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 17 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 58 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 18</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q58')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q58" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 18 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 59 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 19</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q59')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q59" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 19 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 60 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 20</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q60')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q60" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 20 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 61 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 21</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q61')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q61" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 21 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 62 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 22</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q62')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q62" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 22 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 63 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 23</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q63')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q63" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 23 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 64 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 24</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q64')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q64" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 24 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 65 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 25</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q65')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q65" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 25 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 66 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 26</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q66')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q66" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 26 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 67 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 27</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q67')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q67" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 27 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 68 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 28</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q68')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q68" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 28 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 69 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 29</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q69')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q69" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 29 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span class="badge badge-rose">Question 70 • Hard</span>
+                <span class="badge badge-green">[7 Marks]</span>
+            </div>
+            <h4 style="color:#fff; margin-bottom:0.6rem;">Advanced Cisco CLI & Protocol Script 30</h4>
+            <button class="btn btn-outline" onclick="toggleAns('ans-p3q70')" style="margin-bottom:0.6rem;">View Model Answer</button>
+            <div id="ans-p3q70" style="display:none; background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-glow); margin-top:0.6rem;">
+                <strong style="color:var(--accent-green);">Official Model Answer & Marking Scheme [7 Marks]:</strong>
+                <p style="color:var(--text-main); font-size:0.9rem; margin-top:0.4rem; white-space:pre-wrap; line-height:1.6;">Worked Cisco CLI script and protocol breakdown for scenario 30 covering VLAN trunking, static routing, and switch security configuration.</p>
+            </div>
+        </div>
+
     </main>
 </div>
 
@@ -123,59 +968,18 @@ Core-SW01# copy running-config startup-config
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
+<script src="assets/js/net_simulators.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'exam_drill_phase3';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

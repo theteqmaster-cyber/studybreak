@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 4: Hardware & Transmission Media | SCS2111 Data Communications</title>
+    <title>Phase 4: Hardware, Media & Cabling | SCS2111 Data Communications</title>
     <link rel="stylesheet" href="assets/css/kyukei_net.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
-        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 4: Hardware & Media</span>
+        <span style="color: #06b6d4;">SCS2111</span> | <span style="color: #fff;">Phase 4: Hardware, Media & Cabling Infrastructure</span>
     </div>
     <div style="font-size: 0.8rem; color: #10b981; font-weight: 700; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.3);">
         👁️ <span id="kyukei-open-count">--</span> opens | <span id="kyukei-scroll-pct">0%</span>
@@ -24,7 +24,7 @@
 <header>
     <a href="index.html" class="logo-group">
         <span class="logo-badge">SCS2111</span>
-        <span class="logo-title">Phase 4: Hardware & Transmission Media</span>
+        <span class="logo-title">Phase 4: Hardware & Cabling</span>
     </a>
     <ul class="nav-links">
         <li><a href="phase3_osi_tcpip_layers.html">← Phase 3</a></li>
@@ -37,76 +37,86 @@
 
     <main class="content-area">
         <span class="badge badge-cyan">PHASE 04</span>
-        <h1>Hardware, Transmission Media & Cabling</h1>
-        <p>Physical copper & fiber optics specs, switches vs hubs, Power over Ethernet (PoE), fiber converter transceivers, and perimeter firewalls.</p>
+        <h1>Hardware, Physical Media & Cabling Infrastructure</h1>
+        <p>Mastering copper twisted-pair pinouts, fiber optics, attenuation formulas, network interconnection devices, and PoE standards.</p>
 
-        <div class="callout callout-work">
-            <div class="callout-title">🛠️ Attachment Cabinet Troubleshooting: Fiber Converters & PoE</div>
-            <p style="margin:0;">When network internet drops in an enterprise cabinet, check the <strong>Fiber Converter Transceiver lights (Link, TX, RX)</strong>. If Link/RX LED is dark, the fiber line is disrupted. Also, devices like IP CCTV cameras and ceiling WAPs receive electrical power directly over CAT6 cabling using <strong>PoE (Power over Ethernet) switches</strong>.</p>
-        </div>
-
-        <h2>1. Physical Transmission Media (Copper vs. Fiber Optic)</h2>
+        <h2>1. Copper Twisted-Pair Cabling Standards</h2>
 
         <div class="grid-2">
             <div class="card">
-                <span class="badge badge-amber">Copper Twisted Pair</span>
-                <h3>UTP & STP Copper Cabling</h3>
-                <p style="font-size:0.88rem;">Twisted pairs reduce electromagnetic interference (EMI) crosstalk.</p>
-                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>CAT5e:</strong> Up to 1 Gbps at 100 meters (100 MHz bandwidth)</li>
-                    <li><strong>CAT6:</strong> Up to 10 Gbps up to 55 meters (250 MHz bandwidth)</li>
-                    <li><strong>CAT7:</strong> Fully shielded (S/FTP) up to 600 MHz for server racks</li>
-                    <li><strong>Termination:</strong> RJ45 connectors using T568B pinout standard</li>
-                </ul>
+                <span class="badge badge-cyan">T568A Standard</span>
+                <h3>T568A Wire Color Order</h3>
+                <ol style="font-family:var(--font-code); font-size:0.88rem; color:var(--text-main); padding-left:1.2rem; margin-top:0.5rem;">
+                    <li>White / Green</li>
+                    <li>Green</li>
+                    <li>White / Orange</li>
+                    <li>Blue</li>
+                    <li>White / Blue</li>
+                    <li>Orange</li>
+                    <li>White / Brown</li>
+                    <li>Brown</li>
+                </ol>
             </div>
 
             <div class="card highlight">
-                <span class="badge badge-cyan">High Speed Optical</span>
-                <h3>Fiber Optic Cables & Converters</h3>
-                <p style="font-size:0.88rem;">Transmits data pulses of light through ultra-pure glass strands (FDDI). Completely immune to EMI.</p>
+                <span class="badge badge-green">T568B Standard (Industry Default)</span>
+                <h3>T568B Wire Color Order</h3>
+                <ol style="font-family:var(--font-code); font-size:0.88rem; color:var(--text-main); font-family:var(--font-code); padding-left:1.2rem; margin-top:0.5rem;">
+                    <li>White / Orange</li>
+                    <li>Orange</li>
+                    <li>White / Green</li>
+                    <li>Blue</li>
+                    <li>White / Blue</li>
+                    <li>Green</li>
+                    <li>White / Brown</li>
+                    <li>Brown</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Straight-Through vs Crossover Cables</h3>
+            <ul style="color:var(--text-muted); font-size:0.9rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>Straight-Through Cable (T568B on both ends):</strong> Connects unlike devices (PC to Switch, Switch to Router).</li>
+                <li><strong>Crossover Cable (T568A on one end, T568B on the other):</strong> Connects like devices (Switch to Switch, Router to Router, PC to PC). Note: Modern Auto-MDIX ports auto-detect and correct pin mismatch.</li>
+            </ul>
+        </div>
+
+        <h2>2. Fiber Optic Transmission Media</h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <span class="badge badge-purple">Long Haul Backbone</span>
+                <h3>Single-Mode Fiber (SMF)</h3>
+                <p style="font-size:0.88rem;">Small glass core diameter ($8.3 - 10\,\mu\text{m}$). Employs focused laser diodes. Light travels straight down core with zero modal dispersion.</p>
                 <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
-                    <li><strong>Single-Mode (SMF):</strong> Laser light source, tiny 9µm core, long distance WAN ISP links (tens of kilometers)</li>
-                    <li><strong>Multi-Mode (MMF):</strong> LED light source, 50/62.5µm core, shorter data center inter-rack links</li>
-                    <li><strong>Fiber Converters:</strong> Converts optical pulses to electrical RJ45 copper signals; operates in TX (transmit) / RX (receive) pairs</li>
+                    <li>Distance: Up to $40\,\text{km} - 100\,\text{km}$ without repeaters.</li>
+                    <li>Used in ISP MAN/WAN backbones and inter-building links.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <span class="badge badge-amber">Intra-Building Data Center</span>
+                <h3>Multi-Mode Fiber (MMF)</h3>
+                <p style="font-size:0.88rem;">Larger core diameter ($50 - 62.5\,\mu\text{m}$). Employs VCSEL or LED light sources. Multiple light rays travel at varying reflection angles.</p>
+                <ul style="font-size:0.85rem; color:var(--text-muted); padding-left:1.2rem;">
+                    <li>Distance: Limited to $300\,\text{m} - 550\,\text{m}$ due to modal dispersion.</li>
+                    <li>Used inside enterprise server rooms and local rack uplinks.</li>
                 </ul>
             </div>
         </div>
 
-        <h2>2. Network Devices: Hubs vs. Managed Switches vs. Routers</h2>
-
-        <div class="grid-3">
-            <div class="card">
-                <span class="badge badge-rose">Layer 1 Legacy</span>
-                <h3>Network Hub</h3>
-                <p style="font-size:0.85rem;">Repeats incoming bits to <strong>all ports simultaneously</strong> (broadcasting). Creates a single shared collision domain running on half-duplex (10Mbps).</p>
-                <div style="font-size:0.8rem; color:var(--accent-rose); margin-top:0.4rem;">⚠️ Outdated bad hardware—causes severe packet collisions.</div>
-            </div>
-
-            <div class="card">
-                <span class="badge badge-cyan">Layer 2 Intelligent</span>
-                <h3>Managed Switch</h3>
-                <p style="font-size:0.85rem;">Inspects MAC addresses, maintains a MAC Table, and forwards frames strictly to the destination port in full-duplex mode (1Gbps - 10Gbps).</p>
-                <div style="font-size:0.8rem; color:var(--accent-green); margin-top:0.4rem;">✓ Supports VLAN partitioning & PoE power delivery.</div>
-            </div>
-
-            <div class="card">
-                <span class="badge badge-purple">Layer 3 Perimeter</span>
-                <h3>Enterprise Router</h3>
-                <p style="font-size:0.85rem;">Connects separate distinct IP networks (LAN to WAN ISP link). Reads IP addresses to route packets across optimal paths.</p>
-                <div style="font-size:0.8rem; color:var(--primary-cyan); margin-top:0.4rem;">🛡️ Houses ARP table, perimeter defense, NAT & firewall rules.</div>
-            </div>
-        </div>
-
-        <h2>3. Power over Ethernet (PoE) & Perimeter Security</h2>
+        <h2>3. Network Interconnection Devices & PoE Technology</h2>
         <div class="card">
             <div class="grid-2">
-                <div>
-                    <h4 style="color:var(--accent-amber); margin-bottom:0.4rem;">Power over Ethernet (PoE / IEEE 802.3af/at)</h4>
-                    <p style="font-size:0.88rem;">Delivers both DC power and Ethernet data simultaneously over a single CAT5e/6 cable. Eliminates the need for AC electrical outlets near ceiling Access Points, VoIP phones, and CCTV IP security cameras.</p>
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--primary-cyan); margin-bottom:0.4rem;">Hubs (Layer 1) vs Switches (Layer 2)</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Hubs broadcast incoming electrical signals to all ports (single collision domain). Switches learn MAC addresses and forward frames selectively per port (isolated collision domains).</p>
                 </div>
-                <div>
-                    <h4 style="color:var(--primary-cyan); margin-bottom:0.4rem;">Firewalls & Intrusion Prevention (IDS/IPS)</h4>
-                    <p style="font-size:0.88rem;">Security appliance positioned at the perimeter of the enterprise network. Inspects packet state, blocks malicious traffic, and detects unauthorized penetration attempts before reaching internal servers.</p>
+
+                <div style="background:rgba(16,23,42,0.9); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                    <h4 style="color:var(--accent-green); margin-bottom:0.4rem;">Routers (Layer 3) & Power over Ethernet (PoE)</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Routers connect separate networks using logical IP addresses. Power over Ethernet (IEEE 802.3af/at/bt) delivers up to 15.4W – 90W DC power over Cat6 cables to IP cameras and Wireless Access Points (WAPs).</p>
                 </div>
             </div>
         </div>
@@ -118,59 +128,18 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
-<script src="../js/app.js"></script>
+<script src="assets/js/net_simulators.js"></script>
 <script>
 (function() {
-    const pathParts = window.location.pathname.split('/');
-    let filename = pathParts[pathParts.length - 1] || 'index.html';
-    let cardId = filename.replace('.html', '');
-    
-    let courseId = 'scs2108';
-    if (window.location.pathname.includes('scs2111')) courseId = 'scs2111';
-    if (window.location.pathname.includes('scs2110')) courseId = 'scs2110';
+    const cardId = 'phase4_hardware_media';
+    const courseId = 'scs2111';
 
-    if (window.StudyEngine) {
-        const stat = window.StudyEngine.logOpen(courseId, cardId);
-        if (stat) {
-            const openEl = document.getElementById('kyukei-open-count');
-            if (openEl) openEl.innerText = stat.total_opens || 1;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl && stat.max_scroll_depth) scrollEl.innerText = stat.max_scroll_depth + '%';
-        }
-        
-        const statsMap = window.StudyEngine.getCardStatsMap();
-        document.querySelectorAll('.phase-card[data-phase-id]').forEach(card => {
-            const id = card.getAttribute('data-phase-id');
-            const numEl = card.querySelector('.count-num');
-            if (numEl) {
-                const statKey = ;
-                numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
-            }
-        });
-    }
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
 
-    let maxScroll = 0;
-    let scrollTimer = null;
-    window.addEventListener('scroll', function() {
-        const h = document.documentElement, b = document.body;
-        const st = 'scrollTop' in h ? h.scrollTop : b.scrollTop;
-        const sh = 'scrollHeight' in h ? h.scrollHeight : b.scrollHeight;
-        const ch = h.clientHeight;
-        const pct = Math.min(100, Math.round((st / (sh - ch || 1)) * 100));
-
-        if (pct > maxScroll) {
-            maxScroll = pct;
-            const scrollEl = document.getElementById('kyukei-scroll-pct');
-            if (scrollEl) scrollEl.innerText = maxScroll + '%';
-
-            if (scrollTimer) clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                if (window.StudyEngine) {
-                    window.StudyEngine.logScroll(courseId, cardId, maxScroll);
-                }
-            }, 500);
-        }
-    });
+    fetch('/kyukei/api.php', { method: 'POST', body: fd }).catch(() => {});
 })();
 </script>
 </body>

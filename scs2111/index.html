@@ -10,7 +10,7 @@
 <body>
 
 <div id="kyukei-nav-bar" style="position: sticky; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', system-ui, sans-serif;">
-    <a href="../index.html" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+    <a href="/kyukei/" style="color: #f59e0b; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
         <span>←</span> Kyūkei Master Hub
     </a>
     <div style="font-size: 0.85rem; color: #94a3b8; font-weight: 600;">
@@ -22,12 +22,12 @@
 </div>
 
 <header style="margin-top:1rem;">
-    <a href="../index.html" class="logo-group">
+    <a href="/kyukei/" class="logo-group">
         <span class="logo-badge">KYŪKEI</span>
         <span class="logo-title">SCS2111 Networks</span>
     </a>
     <ul class="nav-links">
-        <li><a href="../index.html">← Master Hub</a></li>
+        <li><a href="/kyukei/">← Master Hub</a></li>
         <li><a href="index.html" class="active">Course Dashboard</a></li>
         <li><a href="exam_drill_phase1.html">Exam Drills (4 Phases)</a></li>
         <li><a href="pt_tutorial_phase1.html">Packet Tracer Labs</a></li>
@@ -299,6 +299,46 @@
 </footer>
 
 <script src="assets/js/nav.js"></script>
+<script>
+function updateDashboardReadCounts() {
+    fetch('/kyukei/api.php?action=get_card_stats&course_id=scs2111')
+        .then(r => r.json())
+        .then(res => {
+            const statsMap = res.stats || {};
+            document.querySelectorAll('[data-phase-id]').forEach(card => {
+                const id = card.getAttribute('data-phase-id');
+                const numEl = card.querySelector('.count-num');
+                if (numEl) {
+                    const statKey = `scs2111_${id}`;
+                    numEl.textContent = (statsMap[statKey] && statsMap[statKey].total_opens) || 0;
+                }
+            });
+        })
+        .catch(() => {});
+}
+document.addEventListener('DOMContentLoaded', updateDashboardReadCounts);
+window.addEventListener('pageshow', updateDashboardReadCounts);
 
+(function() {
+    const cardId = 'dashboard';
+    const courseId = 'scs2111';
+
+    let fd = new FormData();
+    fd.append('action', 'log_open');
+    fd.append('course_id', courseId);
+    fd.append('card_id', cardId);
+
+    fetch('/kyukei/api.php', { method: 'POST', body: fd })
+        .then(r => r.json())
+        .then(res => {
+            if (res.ok && res.card_stat) {
+                const openEl = document.getElementById('kyukei-open-count');
+                if (openEl) openEl.innerText = res.card_stat.total_opens;
+                const scrollEl = document.getElementById('kyukei-scroll-pct');
+                if (scrollEl && res.card_stat.max_scroll_depth) scrollEl.innerText = res.card_stat.max_scroll_depth + '%';
+            }
+        });
+})();
+</script>
 </body>
 </html>
