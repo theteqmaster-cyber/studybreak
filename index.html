@@ -192,17 +192,28 @@
         
         body {
             background-color: var(--bg-dark);
-            background-image: 
-                linear-gradient(to bottom, rgba(7, 9, 14, 0.45), rgba(7, 9, 14, 0.62)),
-                url('assets/wallpaper.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Inter', system-ui, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        .app-bg-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background-image: 
+                linear-gradient(to bottom, rgba(7, 9, 14, 0.45), rgba(7, 9, 14, 0.62)),
+                url('assets/wallpaper.jpg');
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .brand-logo-img {
@@ -222,6 +233,8 @@
             pointer-events: none;
             z-index: 0;
             opacity: 0.18;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .ambient-orb-1 {
@@ -604,6 +617,9 @@
     </div>
 </div>
 
+<!-- Hardware-accelerated Fixed Wallpaper Background Layer -->
+<div class="app-bg-fixed"></div>
+
 <!-- Ambient Glow Orbs -->
 <div class="ambient-orb ambient-orb-1"></div>
 <div class="ambient-orb ambient-orb-2"></div>
@@ -973,6 +989,9 @@
         return { d, h, m, s };
     }
 
+    let cwRenderedActiveIdx = -1;
+    let cwRenderedAllCompleted = false;
+
     function updateCereWarsLiveDashboard() {
         const now = Date.now();
         let activeIdx = -1;
@@ -997,149 +1016,183 @@
         const activeExam = CERE_WARS_EXAMS[activeIdx];
         const allCompleted = CERE_WARS_EXAMS.every(e => e.status === 'COMPLETED');
 
-        if (allCompleted && heroEl) {
-            heroEl.innerHTML = `
-                <div class="cw-hero-card" style="text-align: center; border-color: #10b981;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉🏆</div>
-                    <div class="cw-badge" style="background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: #6ee7b7;">
-                        ALL EXAMS COMPLETED
+        const needsStructuralRebuild = (activeIdx !== cwRenderedActiveIdx || allCompleted !== cwRenderedAllCompleted);
+
+        if (needsStructuralRebuild) {
+            cwRenderedActiveIdx = activeIdx;
+            cwRenderedAllCompleted = allCompleted;
+
+            if (allCompleted && heroEl) {
+                heroEl.innerHTML = `
+                    <div class="cw-hero-card" style="text-align: center; border-color: #10b981;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉🏆</div>
+                        <div class="cw-badge" style="background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: #6ee7b7;">
+                            ALL EXAMS COMPLETED
+                        </div>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; margin-top: 0.5rem; color: #34d399;">
+                            Campaign Accomplished! All Papers Written
+                        </h2>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+                            SCS2111, SCS2110, and SCS2108 exams are complete. Great job!
+                        </p>
                     </div>
-                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; margin-top: 0.5rem; color: #34d399;">
-                        Campaign Accomplished! All Papers Written
-                    </h2>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
-                        SCS2111, SCS2110, and SCS2108 exams are complete. Great job!
-                    </p>
-                </div>
-            `;
-        } else if (heroEl) {
+                `;
+            } else if (heroEl) {
+                const isLive = (activeExam.status === 'IN_PROGRESS');
+                const badgeClass = isLive ? 'cw-badge imminent' : 'cw-badge';
+                const badgeText = isLive ? '🚨 LIVE EXAM IN SESSION' : '🔥 IMMINENT EXAM TARGET';
+
+                heroEl.innerHTML = `
+                    <div class="cw-hero-card" style="border-color: ${activeExam.accent}; box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 35px ${activeExam.accentGlow};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span class="${badgeClass}">${badgeText}</span>
+                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: ${activeExam.accent};">
+                                ${activeExam.badge}
+                            </span>
+                        </div>
+
+                        <div style="margin-top: 1rem;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: ${activeExam.gradient}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                ${activeExam.code}
+                            </div>
+                            <div style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 4px;">
+                                ${activeExam.name}
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 1.2rem;">
+                            <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.3rem;">📍</span>
+                                <div>
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Venue</div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.venue}</div>
+                                </div>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.3rem;">🗓️</span>
+                                <div>
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Scheduled Time</div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.dateStr} @ ${activeExam.timeStr}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cw-countdown-box">
+                            <div id="cw-hero-countdown-label" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 2px;">
+                                ${isLive ? 'SESSION ENDS IN' : 'LIVE COUNTDOWN TO EXAM START'}
+                            </div>
+                            <div class="cw-digits-row">
+                                <div class="cw-unit-box">
+                                    <span id="cw-digit-d" class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">00</span>
+                                    <span class="cw-unit-label">Days</span>
+                                </div>
+                                <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                                <div class="cw-unit-box">
+                                    <span id="cw-digit-h" class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">00</span>
+                                    <span class="cw-unit-label">Hours</span>
+                                </div>
+                                <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                                <div class="cw-unit-box">
+                                    <span id="cw-digit-m" class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">00</span>
+                                    <span class="cw-unit-label">Mins</span>
+                                </div>
+                                <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                                <div class="cw-unit-box">
+                                    <span id="cw-digit-s" class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">00</span>
+                                    <span class="cw-unit-label">Secs</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="${activeExam.kyukeiUrl}" class="btn-cw-launch" style="background: ${activeExam.gradient}; box-shadow: 0 8px 20px ${activeExam.accentGlow};">
+                            <span>${activeExam.icon}</span> OPEN ${activeExam.code} STUDY NOTES & DRILLS &rarr;
+                        </a>
+                    </div>
+                `;
+            }
+
+            if (matrixEl) {
+                let mHtml = '';
+                CERE_WARS_EXAMS.forEach((exam, idx) => {
+                    const isActive = (idx === activeIdx);
+                    let badgeClass = 'cw-badge';
+                    let badgeText = 'UPCOMING';
+
+                    if (exam.status === 'COMPLETED') {
+                        badgeText = 'WRITTEN ✓';
+                    } else if (exam.status === 'IN_PROGRESS') {
+                        badgeClass = 'cw-badge imminent';
+                        badgeText = 'IN PROGRESS';
+                    } else if (isActive) {
+                        badgeText = 'NEXT TARGET';
+                    }
+
+                    mHtml += `
+                        <div class="cw-card ${isActive ? 'active-target' : ''}" style="--cw-accent: ${exam.accent}; --cw-glow: ${exam.accentGlow};">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800; color: #fff;">${exam.code}</span>
+                                    <span class="${badgeClass}" style="font-size: 0.68rem; padding: 3px 8px;">${badgeText}</span>
+                                </div>
+                                <div style="font-size: 0.92rem; font-weight: 600; color: var(--text-muted); margin-top: 6px; min-height: 2.6rem;">${exam.name}</div>
+                            </div>
+
+                            <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem; font-size: 0.78rem; display: flex; flex-direction: column; gap: 4px;">
+                                <div>📍 <strong style="color:#fff;">Venue:</strong> ${exam.venue}</div>
+                                <div>🗓️ <strong style="color:#fff;">Date:</strong> ${exam.dateStr}</div>
+                                <div>⏰ <strong style="color:#fff;">Time:</strong> ${exam.timeStr}</div>
+                            </div>
+
+                            <div id="cw-matrix-timer-${exam.code}" style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: ${exam.accent}; text-align: center; padding: 0.5rem; background: rgba(0,0,0,0.5); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.15);">
+                                --
+                            </div>
+
+                            <a href="${exam.kyukeiUrl}" class="btn-cw-launch" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); box-shadow: none;">
+                                <span>${exam.icon}</span> Study Notes &rarr;
+                            </a>
+                        </div>
+                    `;
+                });
+                matrixEl.innerHTML = mHtml;
+            }
+        }
+
+        // Fast text DOM updates on every tick (no innerHTML rebuilds)
+        if (!allCompleted) {
             const isLive = (activeExam.status === 'IN_PROGRESS');
             const targetTs = isLive ? activeExam.endTs : activeExam.startTs;
             const diffMs = targetTs - now;
             const parts = getParts(diffMs);
 
-            const badgeClass = isLive ? 'cw-badge imminent' : 'cw-badge';
-            const badgeText = isLive ? '🚨 LIVE EXAM IN SESSION' : '🔥 IMMINENT EXAM TARGET';
+            const dEl = document.getElementById('cw-digit-d');
+            const hEl = document.getElementById('cw-digit-h');
+            const mEl = document.getElementById('cw-digit-m');
+            const sEl = document.getElementById('cw-digit-s');
 
-            heroEl.innerHTML = `
-                <div class="cw-hero-card" style="border-color: ${activeExam.accent}; box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 35px ${activeExam.accentGlow};">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <span class="${badgeClass}">${badgeText}</span>
-                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: ${activeExam.accent};">
-                            ${activeExam.badge}
-                        </span>
-                    </div>
-
-                    <div style="margin-top: 1rem;">
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: ${activeExam.gradient}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            ${activeExam.code}
-                        </div>
-                        <div style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 4px;">
-                            ${activeExam.name}
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 1.2rem;">
-                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 1.3rem;">📍</span>
-                            <div>
-                                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Venue</div>
-                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.venue}</div>
-                            </div>
-                        </div>
-                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 1.3rem;">🗓️</span>
-                            <div>
-                                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Scheduled Time</div>
-                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.dateStr} @ ${activeExam.timeStr}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cw-countdown-box">
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 2px;">
-                            ${isLive ? 'SESSION ENDS IN' : 'LIVE COUNTDOWN TO EXAM START'}
-                        </div>
-                        <div class="cw-digits-row">
-                            <div class="cw-unit-box">
-                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.d).padStart(2, '0')}</span>
-                                <span class="cw-unit-label">Days</span>
-                            </div>
-                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
-                            <div class="cw-unit-box">
-                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.h).padStart(2, '0')}</span>
-                                <span class="cw-unit-label">Hours</span>
-                            </div>
-                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
-                            <div class="cw-unit-box">
-                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.m).padStart(2, '0')}</span>
-                                <span class="cw-unit-label">Mins</span>
-                            </div>
-                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
-                            <div class="cw-unit-box">
-                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.s).padStart(2, '0')}</span>
-                                <span class="cw-unit-label">Secs</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="${activeExam.kyukeiUrl}" class="btn-cw-launch" style="background: ${activeExam.gradient}; box-shadow: 0 8px 20px ${activeExam.accentGlow};">
-                        <span>${activeExam.icon}</span> OPEN ${activeExam.code} STUDY NOTES & DRILLS &rarr;
-                    </a>
-                </div>
-            `;
+            if (dEl) dEl.textContent = String(parts.d).padStart(2, '0');
+            if (hEl) hEl.textContent = String(parts.h).padStart(2, '0');
+            if (mEl) mEl.textContent = String(parts.m).padStart(2, '0');
+            if (sEl) sEl.textContent = String(parts.s).padStart(2, '0');
         }
 
-        if (matrixEl) {
-            let mHtml = '';
-            CERE_WARS_EXAMS.forEach((exam, idx) => {
-                const isActive = (idx === activeIdx);
-                let badgeClass = 'cw-badge';
-                let badgeText = 'UPCOMING';
+        CERE_WARS_EXAMS.forEach((exam) => {
+            const timerEl = document.getElementById(`cw-matrix-timer-${exam.code}`);
+            if (timerEl) {
                 let timerText = '';
-
                 if (exam.status === 'COMPLETED') {
-                    badgeText = 'WRITTEN ✓';
                     timerText = 'EXAM COMPLETED';
                 } else if (exam.status === 'IN_PROGRESS') {
-                    badgeClass = 'cw-badge imminent';
-                    badgeText = 'IN PROGRESS';
                     const parts = getParts(exam.endTs - now);
                     timerText = `ENDS IN ${String(parts.h).padStart(2, '0')}h ${String(parts.m).padStart(2, '0')}m ${String(parts.s).padStart(2, '0')}s`;
                 } else {
-                    if (isActive) badgeText = 'NEXT TARGET';
                     const parts = getParts(exam.startTs - now);
                     timerText = `${parts.d}d ${String(parts.h).padStart(2, '0')}h ${String(parts.m).padStart(2, '0')}m ${String(parts.s).padStart(2, '0')}s`;
                 }
-
-                mHtml += `
-                    <div class="cw-card ${isActive ? 'active-target' : ''}" style="--cw-accent: ${exam.accent}; --cw-glow: ${exam.accentGlow};">
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800; color: #fff;">${exam.code}</span>
-                                <span class="${badgeClass}" style="font-size: 0.68rem; padding: 3px 8px;">${badgeText}</span>
-                            </div>
-                            <div style="font-size: 0.92rem; font-weight: 600; color: var(--text-muted); margin-top: 6px; min-height: 2.6rem;">${exam.name}</div>
-                        </div>
-
-                        <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem; font-size: 0.78rem; display: flex; flex-direction: column; gap: 4px;">
-                            <div>📍 <strong style="color:#fff;">Venue:</strong> ${exam.venue}</div>
-                            <div>🗓️ <strong style="color:#fff;">Date:</strong> ${exam.dateStr}</div>
-                            <div>⏰ <strong style="color:#fff;">Time:</strong> ${exam.timeStr}</div>
-                        </div>
-
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: ${exam.accent}; text-align: center; padding: 0.5rem; background: rgba(0,0,0,0.5); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.15);">
-                            ${timerText}
-                        </div>
-
-                        <a href="${exam.kyukeiUrl}" class="btn-cw-launch" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); box-shadow: none;">
-                            <span>${exam.icon}</span> Study Notes &rarr;
-                        </a>
-                    </div>
-                `;
-            });
-            matrixEl.innerHTML = mHtml;
-        }
+                if (timerEl.textContent !== timerText) {
+                    timerEl.textContent = timerText;
+                }
+            }
+        });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
