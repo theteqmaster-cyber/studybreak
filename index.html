@@ -576,23 +576,23 @@
 </head>
 <body>
 
-<!-- KYŪKEI TEA BREAK SPLASH OVERLAY -->
+<!-- KYŪKEI & CERE WARS SPLASH OVERLAY -->
 <div id="kyukei-splash-overlay" onclick="dismissSplash()">
     <div class="splash-content-card" onclick="event.stopPropagation()">
         <div class="splash-img-wrapper">
-            <img src="assets/splash.png" alt="Kyūkei Tea Break" class="splash-img">
+            <img src="assets/splash.png" alt="Cere Wars & Kyūkei" class="splash-img">
         </div>
-        <h2 class="splash-title">Kyūkei (休憩)</h2>
-        <p class="splash-tagline">Take a tea break • Recharge your mind • Master your exams</p>
+        <h2 class="splash-title">Cere Wars & Kyūkei</h2>
+        <p class="splash-tagline">Tactical Exam War Room &bull; Live Alert Countdown &bull; Distinction Study Hub</p>
         
         <!-- 5-Second Circular SVG Progress Ring -->
         <div class="splash-ring-container">
             <svg class="splash-ring-svg" viewBox="0 0 80 80">
                 <defs>
                     <linearGradient id="splashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f59e0b" />
-                        <stop offset="50%" stop-color="#10b981" />
-                        <stop offset="100%" stop-color="#06b6d4" />
+                        <stop offset="0%" stop-color="#06b6d4" />
+                        <stop offset="50%" stop-color="#a855f7" />
+                        <stop offset="100%" stop-color="#38bdf8" />
                     </linearGradient>
                 </defs>
                 <circle class="splash-ring-bg" cx="40" cy="40" r="34"></circle>
@@ -600,7 +600,7 @@
             </svg>
         </div>
 
-        <button type="button" class="splash-skip-btn" onclick="dismissSplash()">Enter Dashboard →</button>
+        <button type="button" class="splash-skip-btn" onclick="dismissSplash()">Enter War Room Dashboard →</button>
     </div>
 </div>
 
@@ -614,27 +614,45 @@
         <div class="brand-section">
             <span class="brand-icon">⚔️</span>
             <div>
-                <h1 class="brand-title">Kyūkei (休憩)</h1>
-                <div class="brand-subtitle">The Art of War — Exam Distinction Campaign</div>
+                <h1 class="brand-title">Cere Wars & Kyūkei</h1>
+                <div class="brand-subtitle">Tactical Exam Alert & Distinction Study Hub</div>
             </div>
         </div>
 
         <div class="campaign-badge">
             <div class="campaign-timers-row" style="display: flex; gap: 1.5rem;">
                 <div class="timer-box">
-                    <div class="timer-label">Study Break Target</div>
-                    <div class="timer-val" id="study-break-countdown">-- Days</div>
+                    <div class="timer-label">Active Target</div>
+                    <div class="timer-val" id="study-break-countdown" style="color: #67e8f9;">SCS2111</div>
                 </div>
                 <div class="timer-box">
-                    <div class="timer-label">Exam Sprint</div>
-                    <div class="timer-val" style="color: #f43f5e;" id="exam-countdown">17 - 21 Aug</div>
+                    <div class="timer-label">Exam Season</div>
+                    <div class="timer-val" style="color: #f43f5e;" id="exam-countdown">17 - 19 Aug</div>
                 </div>
             </div>
             <div id="overall-status-pill" class="status-pill red">
-                <span class="gk-led-dot"></span> <span id="status-text">ALERT: UNREAD</span>
+                <span class="gk-led-dot"></span> <span id="status-text">ALERT: ACTIVE</span>
             </div>
         </div>
     </header>
+
+    <!-- CERE WARS TACTICAL WAR ROOM ALERT DASHBOARD SECTION -->
+    <section class="cw-section" style="margin-bottom: 2.5rem;">
+        <div id="cw-hero-container">
+            <!-- Dynamically populated Hero Target Card -->
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 1rem 0;">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; color: #fff;">
+                🎯 Campaign Target Matrix
+            </h3>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted);">3 EXAMS SCHEDULED</span>
+        </div>
+
+        <div id="cw-matrix-container" class="cw-matrix-grid">
+            <!-- Dynamically populated 3-card target matrix -->
+        </div>
+    </section>
 
     <!-- SECTION 1: CAMPAIGN CALENDAR & STREAK (TOP) -->
     <section style="margin-bottom: 2rem;">
@@ -894,12 +912,244 @@
         }
     }
 
+    // --- CERE WARS LIVE COUNTDOWN ENGINE ---
+    const CERE_WARS_EXAMS = [
+        {
+            code: 'SCS2111',
+            name: 'Data Communications & Networking',
+            dateStr: 'Monday, 17 August 2026',
+            timeStr: '09:00 hrs',
+            venue: 'Technovation Center',
+            startTs: new Date('2026-08-17T09:00:00+02:00').getTime(),
+            endTs: new Date('2026-08-17T12:00:00+02:00').getTime(),
+            kyukeiUrl: 'scs2111/index.html',
+            accent: '#06b6d4',
+            accentGlow: 'rgba(6, 182, 212, 0.35)',
+            gradient: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
+            badge: 'TARGET 01 • NETWORKING',
+            icon: '📡'
+        },
+        {
+            code: 'SCS2110',
+            name: 'Research Methods',
+            dateStr: 'Tuesday, 18 August 2026',
+            timeStr: '14:00 hrs',
+            venue: 'FD 33/36 Chemical Engineering Building',
+            startTs: new Date('2026-08-18T14:00:00+02:00').getTime(),
+            endTs: new Date('2026-08-18T17:00:00+02:00').getTime(),
+            kyukeiUrl: 'scs2110/index.html',
+            accent: '#a78bfa',
+            accentGlow: 'rgba(167, 139, 250, 0.35)',
+            gradient: 'linear-gradient(135deg, #c084fc 0%, #8b5cf6 100%)',
+            badge: 'TARGET 02 • METHODOLOGY',
+            icon: '📊'
+        },
+        {
+            code: 'SCS2108',
+            name: 'Object-Oriented Software Concepts & Development',
+            dateStr: 'Wednesday, 19 August 2026',
+            timeStr: '09:00 hrs',
+            venue: 'Technovation Centre',
+            startTs: new Date('2026-08-19T09:00:00+02:00').getTime(),
+            endTs: new Date('2026-08-19T12:00:00+02:00').getTime(),
+            kyukeiUrl: 'scs2108/index.html',
+            accent: '#38bdf8',
+            accentGlow: 'rgba(56, 189, 248, 0.35)',
+            gradient: 'linear-gradient(135deg, #38bdf8 0%, #6366f1 100%)',
+            badge: 'TARGET 03 • OOP MASTERY',
+            icon: '💻'
+        }
+    ];
+
+    function getParts(diffMs) {
+        let diffSecs = Math.floor(diffMs / 1000);
+        if (diffSecs <= 0) return { d: 0, h: 0, m: 0, s: 0 };
+        const d = Math.floor(diffSecs / 86400);
+        diffSecs %= 86400;
+        const h = Math.floor(diffSecs / 3600);
+        diffSecs %= 3600;
+        const m = Math.floor(diffSecs / 60);
+        const s = diffSecs % 60;
+        return { d, h, m, s };
+    }
+
+    function updateCereWarsLiveDashboard() {
+        const now = Date.now();
+        let activeIdx = -1;
+
+        CERE_WARS_EXAMS.forEach((exam, idx) => {
+            if (now < exam.startTs) {
+                exam.status = 'UPCOMING';
+                if (activeIdx === -1) activeIdx = idx;
+            } else if (now >= exam.startTs && now <= exam.endTs) {
+                exam.status = 'IN_PROGRESS';
+                if (activeIdx === -1) activeIdx = idx;
+            } else {
+                exam.status = 'COMPLETED';
+            }
+        });
+
+        if (activeIdx === -1) activeIdx = CERE_WARS_EXAMS.length - 1;
+
+        const heroEl = document.getElementById('cw-hero-container');
+        const matrixEl = document.getElementById('cw-matrix-container');
+
+        const activeExam = CERE_WARS_EXAMS[activeIdx];
+        const allCompleted = CERE_WARS_EXAMS.every(e => e.status === 'COMPLETED');
+
+        if (allCompleted && heroEl) {
+            heroEl.innerHTML = `
+                <div class="cw-hero-card" style="text-align: center; border-color: #10b981;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉🏆</div>
+                    <div class="cw-badge" style="background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: #6ee7b7;">
+                        ALL EXAMS COMPLETED
+                    </div>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; margin-top: 0.5rem; color: #34d399;">
+                        Campaign Accomplished! All Papers Written
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+                        SCS2111, SCS2110, and SCS2108 exams are complete. Great job!
+                    </p>
+                </div>
+            `;
+        } else if (heroEl) {
+            const isLive = (activeExam.status === 'IN_PROGRESS');
+            const targetTs = isLive ? activeExam.endTs : activeExam.startTs;
+            const diffMs = targetTs - now;
+            const parts = getParts(diffMs);
+
+            const badgeClass = isLive ? 'cw-badge imminent' : 'cw-badge';
+            const badgeText = isLive ? '🚨 LIVE EXAM IN SESSION' : '🔥 IMMINENT EXAM TARGET';
+
+            heroEl.innerHTML = `
+                <div class="cw-hero-card" style="border-color: ${activeExam.accent}; box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 35px ${activeExam.accentGlow};">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <span class="${badgeClass}">${badgeText}</span>
+                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: ${activeExam.accent};">
+                            ${activeExam.badge}
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 1rem;">
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 800; line-height: 1.1; background: ${activeExam.gradient}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            ${activeExam.code}
+                        </div>
+                        <div style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 4px;">
+                            ${activeExam.name}
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 1.2rem;">
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.3rem;">📍</span>
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Venue</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.venue}</div>
+                            </div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.3rem;">🗓️</span>
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Scheduled Time</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">${activeExam.dateStr} @ ${activeExam.timeStr}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cw-countdown-box">
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 2px;">
+                            ${isLive ? 'SESSION ENDS IN' : 'LIVE COUNTDOWN TO EXAM START'}
+                        </div>
+                        <div class="cw-digits-row">
+                            <div class="cw-unit-box">
+                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.d).padStart(2, '0')}</span>
+                                <span class="cw-unit-label">Days</span>
+                            </div>
+                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                            <div class="cw-unit-box">
+                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.h).padStart(2, '0')}</span>
+                                <span class="cw-unit-label">Hours</span>
+                            </div>
+                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                            <div class="cw-unit-box">
+                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.m).padStart(2, '0')}</span>
+                                <span class="cw-unit-label">Mins</span>
+                            </div>
+                            <span style="font-size: 1.8rem; font-weight: 700; color: rgba(255,255,255,0.2);">:</span>
+                            <div class="cw-unit-box">
+                                <span class="cw-unit-num" style="color: ${activeExam.accent}; text-shadow: 0 0 12px ${activeExam.accentGlow};">${String(parts.s).padStart(2, '0')}</span>
+                                <span class="cw-unit-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="${activeExam.kyukeiUrl}" class="btn-cw-launch" style="background: ${activeExam.gradient}; box-shadow: 0 8px 20px ${activeExam.accentGlow};">
+                        <span>${activeExam.icon}</span> OPEN ${activeExam.code} STUDY NOTES & DRILLS &rarr;
+                    </a>
+                </div>
+            `;
+        }
+
+        if (matrixEl) {
+            let mHtml = '';
+            CERE_WARS_EXAMS.forEach((exam, idx) => {
+                const isActive = (idx === activeIdx);
+                let badgeClass = 'cw-badge';
+                let badgeText = 'UPCOMING';
+                let timerText = '';
+
+                if (exam.status === 'COMPLETED') {
+                    badgeText = 'WRITTEN ✓';
+                    timerText = 'EXAM COMPLETED';
+                } else if (exam.status === 'IN_PROGRESS') {
+                    badgeClass = 'cw-badge imminent';
+                    badgeText = 'IN PROGRESS';
+                    const parts = getParts(exam.endTs - now);
+                    timerText = `ENDS IN ${String(parts.h).padStart(2, '0')}h ${String(parts.m).padStart(2, '0')}m ${String(parts.s).padStart(2, '0')}s`;
+                } else {
+                    if (isActive) badgeText = 'NEXT TARGET';
+                    const parts = getParts(exam.startTs - now);
+                    timerText = `${parts.d}d ${String(parts.h).padStart(2, '0')}h ${String(parts.m).padStart(2, '0')}m ${String(parts.s).padStart(2, '0')}s`;
+                }
+
+                mHtml += `
+                    <div class="cw-card ${isActive ? 'active-target' : ''}" style="--cw-accent: ${exam.accent}; --cw-glow: ${exam.accentGlow};">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800; color: #fff;">${exam.code}</span>
+                                <span class="${badgeClass}" style="font-size: 0.68rem; padding: 3px 8px;">${badgeText}</span>
+                            </div>
+                            <div style="font-size: 0.92rem; font-weight: 600; color: var(--text-muted); margin-top: 6px; min-height: 2.6rem;">${exam.name}</div>
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem; font-size: 0.78rem; display: flex; flex-direction: column; gap: 4px;">
+                            <div>📍 <strong style="color:#fff;">Venue:</strong> ${exam.venue}</div>
+                            <div>🗓️ <strong style="color:#fff;">Date:</strong> ${exam.dateStr}</div>
+                            <div>⏰ <strong style="color:#fff;">Time:</strong> ${exam.timeStr}</div>
+                        </div>
+
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: ${exam.accent}; text-align: center; padding: 0.5rem; background: rgba(0,0,0,0.5); border-radius: 8px; border: 1px dashed rgba(255,255,255,0.15);">
+                            ${timerText}
+                        </div>
+
+                        <a href="${exam.kyukeiUrl}" class="btn-cw-launch" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); box-shadow: none;">
+                            <span>${exam.icon}</span> Study Notes &rarr;
+                        </a>
+                    </div>
+                `;
+            });
+            matrixEl.innerHTML = mHtml;
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         initSplash();
         updateTimers();
         renderSummary();
         renderHeatmap();
+        updateCereWarsLiveDashboard();
         setInterval(updateTimers, 60000);
+        setInterval(updateCereWarsLiveDashboard, 1000);
     });
 </script>
 </body>
