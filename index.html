@@ -531,6 +531,172 @@
             transition: width 0.6s ease;
         }
 
+        /* --- CERE WARS TACTICAL DASHBOARD STYLES --- */
+        .cw-section {
+            width: 100%;
+        }
+
+        .cw-hero-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 20px 50px rgba(0, 0, 0, 0.6);
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            will-change: transform, box-shadow;
+            transform: translateZ(0);
+        }
+
+        .cw-hero-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--border-highlight), 0 25px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        .cw-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            color: #67e8f9;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cw-badge.imminent {
+            background: rgba(244, 63, 94, 0.2);
+            border-color: rgba(244, 63, 94, 0.5);
+            color: #f43f5e;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.35);
+            animation: cwPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes cwPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.82; transform: scale(1.02); }
+        }
+
+        .cw-countdown-box {
+            margin-top: 1.5rem;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 1.35rem 1.5rem;
+            text-align: center;
+        }
+
+        .cw-digits-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .cw-unit-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 68px;
+            padding: 0.4rem 0.6rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+        }
+
+        .cw-unit-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .cw-unit-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        .cw-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .cw-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--card-border);
+            box-shadow: var(--border-highlight), 0 10px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 18px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cw-card.active-target {
+            border-color: var(--cw-accent, #06b6d4);
+            box-shadow: var(--border-highlight), 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px var(--cw-glow, rgba(6, 182, 212, 0.3));
+        }
+
+        .cw-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--cw-accent, #06b6d4);
+            box-shadow: var(--border-highlight), 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--cw-glow, rgba(6, 182, 212, 0.35));
+            background: var(--card-bg-hover);
+        }
+
+        .btn-cw-launch {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 1.2rem;
+            padding: 0.9rem 1.6rem;
+            border-radius: 14px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .btn-cw-launch:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 0.8rem 0.8rem 2rem 0.8rem;
@@ -583,6 +749,28 @@
             #campaign-heatmap-grid {
                 grid-template-columns: repeat(6, 1fr) !important;
                 gap: 6px !important;
+            }
+
+            .cw-hero-card {
+                padding: 1.25rem 1rem !important;
+                border-radius: 18px !important;
+            }
+
+            .cw-digits-row {
+                gap: 0.4rem !important;
+            }
+
+            .cw-unit-box {
+                min-width: 52px !important;
+                padding: 0.3rem 0.4rem !important;
+            }
+
+            .cw-unit-num {
+                font-size: 1.55rem !important;
+            }
+
+            .cw-matrix-grid {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
