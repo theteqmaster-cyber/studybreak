@@ -76,53 +76,13 @@
         COURSE_METADATA: COURSE_METADATA,
 
         logOpen: function (courseId, cardId) {
-            if (!courseId || !cardId) return;
-            const today = getTodayStr();
-            const timeBucket = getTimeBucket();
-            const nowIso = new Date().toISOString();
-
-            // 1. Add log entry
-            const logs = getLogs();
-            logs.push({
-                id: Date.now() + '_' + Math.random().toString(36).substring(2, 6),
-                course_id: courseId,
-                card_id: cardId,
-                timestamp: nowIso,
-                date_str: today,
-                time_bucket: timeBucket,
-                scroll_depth: 0
-            });
-            saveLogs(logs);
-
-            // 2. Update card stats
-            const stats = getCardStats();
-            const key = `${courseId}_${cardId}`;
-            if (!stats[key]) {
-                stats[key] = {
-                    course_id: courseId,
-                    card_id: cardId,
-                    total_opens: 0,
-                    max_scroll_depth: 0,
-                    last_opened: nowIso
-                };
-            }
-            stats[key].total_opens = (stats[key].total_opens || 0) + 1;
-            stats[key].last_opened = nowIso;
-            saveCardStats(stats);
-
-            return stats[key];
+            // ARCHIVED MUSEUM MODE: Telemetry recording frozen post-16 Aug
+            return { course_id: courseId, card_id: cardId, total_opens: 1, archived: true };
         },
-
         logScroll: function (courseId, cardId, depth) {
-            if (!courseId || !cardId) return;
-            const stats = getCardStats();
-            const key = `${courseId}_${cardId}`;
-            if (stats[key]) {
-                stats[key].max_scroll_depth = Math.max(stats[key].max_scroll_depth || 0, parseInt(depth, 10) || 0);
-                saveCardStats(stats);
-            }
+            // ARCHIVED MUSEUM MODE: Scroll telemetry frozen post-16 Aug
+            return;
         },
-
         getSummary: function () {
             const today = getTodayStr();
             const logs = getLogs();
@@ -192,7 +152,7 @@
 
         getCampaignHeatmap: function () {
             const campaignStart = '2026-07-29';
-            const campaignEnd = '2026-08-21';
+            const campaignEnd = '2026-08-16';
             const todayStr = getTodayStr();
             const logs = getLogs();
 
