@@ -1,0 +1,2 @@
+# Prioritize index.php, fallback to index.html
+DirectoryIndex index.php index.html
