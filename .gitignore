@@ -1,5 +1,9 @@
 # Gitignore rules for Studybreak (Web files only)
 
+# Archived old kyukei site
+old kyukei/
+old\ kyukei/
+
 # Source directories & non-web materials
 temp ext sources/
 sources/
@@ -21,3 +25,4 @@ sources/
 *.sqlite
 *.db
 *.log
+
