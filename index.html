@@ -1,425 +1,203 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Break | Focus &amp; Recharge</title>
-  <!-- Zero external font connections for instantaneous rendering -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    /* System font fallback guarantees zero font network latency */
-    :root {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    @keyframes pulseSlow {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.08); opacity: 0.6; }
-    }
-    .breathing-circle {
-      animation: pulseSlow 8s ease-in-out infinite;
-    }
-  </style>
+  <title>StudyBreak — NUST Computer Science Revision Hub</title>
+  <meta name="description" content="Zero-lag, mobile-ready NUST Computer Science revision portal featuring SCS 2211 Software Project Management notes and interactive concept slide decks.">
+  <link rel="stylesheet" href="assets/css/spm.css">
 </head>
-<body class="min-h-full flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+<body>
 
-  <!-- Minimal Header -->
-  <header class="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500 to-emerald-400 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20">
-          SB
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="cyber-glow-aura" aria-hidden="true"></div>
+
+  <div class="site-container">
+
+    <!-- Header Navigation (teqmaster pattern) -->
+    <header class="portal-header">
+      <nav class="portal-nav" aria-label="Main Navigation">
+        <a href="index.html" class="portal-brand">
+          <div class="brand-mark">SB</div>
+          <span class="brand-title">STUDYBREAK</span>
+        </a>
+
+        <div class="portal-nav-links">
+          <a href="#courses" class="nav-link active">Courses</a>
+          <a href="indexsoftwareprojectmanagement.html" class="nav-link">SCS 2211 SPM</a>
+          <a href="concept9.html" class="nav-link">Formulas</a>
+          <a href="allnotes.md" class="nav-link">All Notes</a>
         </div>
-        <div>
-          <span class="text-lg font-bold tracking-tight text-white">Study<span class="text-indigo-400">Break</span></span>
-          <span class="hidden sm:inline-block ml-2 text-xs text-slate-400 border-l border-slate-700 pl-2">Zero-Lag Focus Hub</span>
-        </div>
-      </div>
-      <div class="flex items-center space-x-3 text-xs sm:text-sm text-slate-400">
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">
-          ☀️ Good afternoon        </span>
-        <span id="liveClock" class="font-mono text-slate-300 font-medium">--:--:--</span>
-      </div>
-    </div>
-  </header>
 
-  <!-- Main Container -->
-  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full space-y-8">
-
-    <!-- Hero / Top Banner -->
-    <section class="rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 p-6 sm:p-8 relative overflow-hidden shadow-xl">
-      <div class="relative z-10 max-w-2xl">
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-3">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>Fast, Lightweight &amp; Self-Contained</span>
-        </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
-          Study with intent. Break without guilt.
-        </h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed italic">
-          “Protect your attention. It is your rarest study asset.”        </p>
-      </div>
-    </section>
-
-    <!-- Core Interactive Section: Timer & Quick Recharge -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-      <!-- Interactive Focus & Break Timer (Col 7) -->
-      <section class="lg:col-span-7 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 flex flex-col items-center text-center shadow-lg">
-        
-        <!-- Timer Mode Selector -->
-        <div class="inline-flex p-1 bg-slate-950 rounded-xl border border-slate-800 mb-6">
-          <button id="modeFocus" onclick="setTimerMode('focus')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-indigo-600 text-white shadow">
-            🎯 Focus (25m)
+        <div class="portal-nav-actions">
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
           </button>
-          <button id="modeShort" onclick="setTimerMode('short')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white">
-            ☕ Short Break (5m)
-          </button>
-          <button id="modeLong" onclick="setTimerMode('long')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white">
-            🌿 Long Break (15m)
-          </button>
+          <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">
+            <span>SPM Portal &rarr;</span>
+          </a>
         </div>
+      </nav>
+    </header>
 
-        <!-- Timer Circle Display -->
-        <div class="relative w-64 h-64 my-2 flex items-center justify-center">
-          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="5" class="text-slate-800" fill="transparent" />
-            <circle id="timerProgress" cx="50" cy="50" r="44" stroke="currentColor" stroke-width="5" class="text-indigo-500 transition-all duration-300" stroke-linecap="round" fill="transparent" stroke-dasharray="276.46" stroke-dashoffset="0" />
-          </svg>
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <span id="timeDisplay" class="font-mono text-5xl font-black tracking-tight text-white">25:00</span>
-            <span id="timerLabel" class="text-xs uppercase tracking-widest text-indigo-400 font-semibold mt-2">Focus Sprint</span>
-          </div>
-        </div>
+    <!-- Main Portal Content -->
+    <main class="portal-main">
 
-        <!-- Timer Control Buttons -->
-        <div class="flex items-center space-x-3 mt-6">
-          <button id="btnToggle" onclick="toggleTimer()" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-indigo-600 hover:bg-indigo-500 text-white transition-all transform active:scale-95 shadow-md shadow-indigo-600/30 flex items-center gap-2">
-            <span id="btnToggleIcon">▶</span> <span id="btnToggleText">Start Session</span>
-          </button>
-          <button onclick="resetTimer()" class="px-4 py-2.5 rounded-xl font-semibold text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all border border-slate-700">
-            ↺ Reset
-          </button>
-        </div>
+      <!-- Hero Section -->
+      <section class="portal-hero">
+        <div class="hero-inner">
+          <h1 class="portal-title" id="kineticHeroTitle" aria-label="STUDYBREAK" title="Click to pulse">
+            <span class="kinetic-letter">S</span><span class="kinetic-letter">T</span><span class="kinetic-letter">U</span><span class="kinetic-letter">D</span><span class="kinetic-letter">Y</span><span class="kinetic-letter">B</span><span class="kinetic-letter">R</span><span class="kinetic-letter">E</span><span class="kinetic-letter">A</span><span class="kinetic-letter">K</span>
+          </h1>
 
-        <!-- Quick Stats -->
-        <div class="w-full grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-800 text-left">
-          <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
-            <div class="text-xs text-slate-400 font-medium">Completed Sprints</div>
-            <div id="statSprints" class="text-xl font-bold text-white mt-1">0</div>
-          </div>
-          <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
-            <div class="text-xs text-slate-400 font-medium">Rest Breaks Taken</div>
-            <div id="statBreaks" class="text-xl font-bold text-emerald-400 mt-1">0</div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Guided Recharge & Tips (Col 5) -->
-      <section class="lg:col-span-5 space-y-6">
-
-        <!-- 4-7-8 Breathing Guide Card -->
-        <div class="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 shadow-lg">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-base font-bold text-white flex items-center gap-2">
-              <span>🧘</span> Guided Relaxation
-            </h2>
-            <span class="text-xs text-indigo-400 font-mono bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-800/50">4-7-8 Rhythm</span>
-          </div>
-
-          <div class="flex items-center justify-center p-4 bg-slate-950/50 rounded-xl border border-slate-800/80 mb-4">
-            <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-indigo-500/20 to-emerald-500/20 border border-emerald-500/40 flex items-center justify-center breathing-circle">
-              <span class="text-xs font-semibold text-slate-300 text-center px-2">Inhale &bull; Exhale</span>
-            </div>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed text-center">
-            Calm your heart rate during your break: Breathe in gently for 4s, hold for 7s, exhale slowly through your mouth for 8s.
+          <p class="portal-subtitle">
+            Zero-lag, mobile-first NUST Computer Science Part 2.2 revision portal. Built with native typography and lightweight slide decks for instant study anywhere.
           </p>
-        </div>
 
-        <!-- Science-Backed Study Break Tips -->
-        <div class="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 shadow-lg">
-          <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
-            <span>⚡</span> Recharge Protocol
-          </h2>
-          <div class="space-y-3">
-                          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60 flex items-start gap-3">
-                <span class="text-xl shrink-0">👀</span>
-                <div>
-                  <h3 class="text-xs font-bold text-slate-200">20-20-20 Eye Rule</h3>
-                  <p class="text-xs text-slate-400 mt-0.5 leading-snug">Every 20 minutes, look at an object 20 feet away for at least 20 seconds to prevent digital eye strain.</p>
-                </div>
-              </div>
-                          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60 flex items-start gap-3">
-                <span class="text-xl shrink-0">💧</span>
-                <div>
-                  <h3 class="text-xs font-bold text-slate-200">Hydration Boost</h3>
-                  <p class="text-xs text-slate-400 mt-0.5 leading-snug">Drinking 250ml of water restores mental alertness and reduces fatigue during intense sessions.</p>
-                </div>
-              </div>
-                          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60 flex items-start gap-3">
-                <span class="text-xl shrink-0">🚶</span>
-                <div>
-                  <h3 class="text-xs font-bold text-slate-200">Active Recovery</h3>
-                  <p class="text-xs text-slate-400 mt-0.5 leading-snug">Stand up and walk around for 2 minutes to restore blood circulation and cognitive agility.</p>
-                </div>
-              </div>
-                          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60 flex items-start gap-3">
-                <span class="text-xl shrink-0">🫁</span>
-                <div>
-                  <h3 class="text-xs font-bold text-slate-200">Box Breathing</h3>
-                  <p class="text-xs text-slate-400 mt-0.5 leading-snug">Inhale for 4s, hold for 4s, exhale for 4s, hold for 4s. Lowers cortisol and resets focus.</p>
-                </div>
-              </div>
-                      </div>
+          <div class="project-spotlight-tag">
+            <span class="spotlight-pulse"></span>
+            <span class="spotlight-title">ACTIVE COURSE: SCS 2211 — SOFTWARE PROJECT MANAGEMENT</span>
+            <span class="spotlight-sep">&bull;</span>
+            <span class="spotlight-meta">Mr Bhuru &bull; 9 Slide Decks</span>
+          </div>
         </div>
-
       </section>
 
-    </div>
-
-    <!-- Active Courses Review Deck -->
-    <section class="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 shadow-lg">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-        <div>
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span>📚</span> Study Modules &amp; Target Drill
+      <!-- Active Course Gateway -->
+      <section class="sources-group" id="courses">
+        <div class="sources-group-header">
+          <h2 class="sources-group-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Course Portal</span>
           </h2>
-          <p class="text-xs sm:text-sm text-slate-400">High-yield revision areas organized for high retention.</p>
+          <p class="sources-group-desc">Open the full Software Project Management hub or jump directly into any concept slide deck below.</p>
         </div>
-        <span class="text-xs font-mono text-slate-400">Computer Science Part 2</span>
+
+        <div class="cards-grid" style="margin-bottom: 1.75rem;">
+          <a href="indexsoftwareprojectmanagement.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row">
+              <span class="card-tag">SCS 2211 &bull; MAIN PORTAL</span>
+              <span class="badge-emerald">9 DECKS READY</span>
+            </div>
+            <h3 class="card-title">Software Project Management</h3>
+            <p class="card-desc">Complete revision hub synthesized from Notak lecture logs, Okum tasks, and Ulwazi study guides: ICCF, Cost-Benefit Analysis (Alpha vs. Beta), WBS, FPA/COCOMO, CPM/PERT, Earned Value Management (School Portal), Risk, ISO 9126 Quality, and Ishikawa 6Ms.</p>
+            <div class="card-footer-link">
+              <span>Enter SPM Course Portal</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <a href="allnotes.md" class="gateway-card" style="--card-accent: var(--accent-cyan);">
+            <div class="card-header-row">
+              <span class="card-tag">RAW ARCHIVE</span>
+              <span class="badge-cyan">MARKDOWN &bull; 41 KB</span>
+            </div>
+            <h3 class="card-title">allnotes.md Source Vault</h3>
+            <p class="card-desc">Full consolidated raw notes, recovered scheduling logs, NUST marking guides, textbook unit breakdowns (DCAP304/515 &amp; Sommerville Ch 22–25), and exam formulas in one plain file.</p>
+            <div class="card-footer-link">
+              <span>View allnotes.md</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Direct Concept Quick-Launch Cards -->
+        <div class="gateway-cards">
+          <a href="concept1.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 01</span><span class="badge-emerald">5 SLIDES</span></div>
+            <h3 class="card-title">SPM Foundations &amp; ICCF</h3>
+            <p class="card-desc">Invisibility, Complexity, Conformity, Flexibility, Triple Constraint, Brooks' Law &amp; Stakeholders.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept2.html" class="gateway-card" style="--card-accent: var(--accent-cyan);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 02</span><span class="badge-cyan">5 SLIDES</span></div>
+            <h3 class="card-title">Failure &amp; Cost-Benefit (CBA)</h3>
+            <p class="card-desc">CHAOS taxonomy, Payback, ROI, NPV, IRR &amp; Alpha vs. Beta worked case.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept3.html" class="gateway-card" style="--card-accent: var(--accent-amber);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 03</span><span class="badge-amber">5 SLIDES</span></div>
+            <h3 class="card-title">Planning, WBS &amp; SDLC</h3>
+            <p class="card-desc">DISCO, WBS decomposition, Waterfall/Spiral/Agile, Upper vs. Lower CASE.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept4.html" class="gateway-card" style="--card-accent: var(--accent-violet);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 04</span><span class="badge-cyan">5 SLIDES</span></div>
+            <h3 class="card-title">Effort Estimation</h3>
+            <p class="card-desc">SWAG/EQF, Albrecht FPA weights &amp; 14 GSCs, Mark II &amp; Boehm COCOMO modes.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept5.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 05</span><span class="badge-emerald">6 SLIDES</span></div>
+            <h3 class="card-title">CPM, PERT &amp; CCPM</h3>
+            <p class="card-desc">Network passes, Float, Crashing vs. Fast-Tracking, 3-point PERT SD &amp; Buffers.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept6.html" class="gateway-card" style="--card-accent: var(--accent-rose);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 06</span><span class="badge-rose">5 SLIDES</span></div>
+            <h3 class="card-title">Earned Value (EVM)</h3>
+            <p class="card-desc">SV, CV, SPI, CPI, 4 EAC formulas, ETC, VAC, TCPI &amp; School Portal case.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept7.html" class="gateway-card" style="--card-accent: var(--accent-cyan);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 07</span><span class="badge-cyan">5 SLIDES</span></div>
+            <h3 class="card-title">Risk &amp; Resource Allocation</h3>
+            <p class="card-desc">Risk Exposure, Prompt Lists, Decision Trees, Resource Leveling &amp; Slip Charts.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept8.html" class="gateway-card" style="--card-accent: var(--accent-amber);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 08</span><span class="badge-amber">5 SLIDES</span></div>
+            <h3 class="card-title">Quality &amp; Ishikawa 6Ms</h3>
+            <p class="card-desc">Quality vs. Grade, ISO 9126, QA vs. QC, Test Pyramid &amp; 6Ms Fishbone Diagram.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+
+          <a href="concept9.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row"><span class="card-tag">CONCEPT 09</span><span class="badge-emerald">5 SLIDES</span></div>
+            <h3 class="card-title">Exam Blueprint &amp; Formulas</h3>
+            <p class="card-desc">5 difficulty tiers, complete exam formula sheet &amp; Top 8 marking traps.</p>
+            <div class="card-footer-link"><span>Open Deck</span><svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="portal-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-title">STUDYBREAK</span>
+          <span>&bull;</span>
+          <span>studybreak.mphathisi.com</span>
+        </div>
+
+        <div class="footer-center">
+          <a href="index.html" class="active">Home</a>
+          <a href="indexsoftwareprojectmanagement.html">SPM Portal</a>
+          <a href="concept9.html">Formula Sheet</a>
+          <a href="allnotes.md">allnotes.md</a>
+        </div>
+
+        <div class="footer-right">
+          <p>Zero Modals &bull; Zero Google Fonts &bull; Mobile Ready</p>
+        </div>
       </div>
+    </footer>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div class="rounded-xl bg-slate-950/60 border border-slate-800 p-4 hover:border-slate-700 transition flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-indigo-400">SCS2108</span>
-                <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                  Core CS                </span>
-              </div>
-              <h3 class="text-sm font-bold text-white mb-1.5">Object-Oriented Programming</h3>
-              <p class="text-xs text-slate-400 leading-relaxed">Java OOP Pillars, JVM Mechanics, Collections &amp; JDBC</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-xs text-slate-400">
-              <span class="text-emerald-400 font-medium">Ready for drill</span>
-              <span>&rarr;</span>
-            </div>
-          </div>
-                  <div class="rounded-xl bg-slate-950/60 border border-slate-800 p-4 hover:border-slate-700 transition flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-indigo-400">SCS2110</span>
-                <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                  Methods                </span>
-              </div>
-              <h3 class="text-sm font-bold text-white mb-1.5">Research Methodology</h3>
-              <p class="text-xs text-slate-400 leading-relaxed">Hypothesis formulation, literature synthesis &amp; sampling</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-xs text-slate-400">
-              <span class="text-emerald-400 font-medium">Ready for drill</span>
-              <span>&rarr;</span>
-            </div>
-          </div>
-                  <div class="rounded-xl bg-slate-950/60 border border-slate-800 p-4 hover:border-slate-700 transition flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-indigo-400">SCS2111</span>
-                <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                  Infrastructure                </span>
-              </div>
-              <h3 class="text-sm font-bold text-white mb-1.5">Computer Networks</h3>
-              <p class="text-xs text-slate-400 leading-relaxed">OSI/TCP-IP models, subnetting, VLANs &amp; packet routing</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-xs text-slate-400">
-              <span class="text-emerald-400 font-medium">Ready for drill</span>
-              <span>&rarr;</span>
-            </div>
-          </div>
-              </div>
-    </section>
+  </div>
 
-  </main>
-
-  <!-- Clean Footer -->
-  <footer class="border-t border-slate-800/80 bg-slate-950/80 mt-12 py-6 text-center text-xs text-slate-500">
-    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>
-        <span>StudyBreak &copy; 2026 &bull; Crafted for fast, low-friction study sprints.</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-400">
-        <span>No external font latency</span>
-        <span>&bull;</span>
-        <span>PHP 8 + Tailwind</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Ultra-lightweight Vanilla JS Timer Engine (3KB, zero dependencies) -->
-  <script>
-    // Live clock in user's local time
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('liveClock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Timer State
-    const MODES = {
-      focus: { label: 'Focus Sprint', minutes: 25, isBreak: false },
-      short: { label: 'Short Break', minutes: 5, isBreak: true },
-      long: { label: 'Long Break', minutes: 15, isBreak: true }
-    };
-
-    let currentMode = 'focus';
-    let totalSeconds = MODES.focus.minutes * 60;
-    let remainingSeconds = totalSeconds;
-    let timerInterval = null;
-    let isRunning = false;
-
-    // Load saved counters from localStorage
-    let sprintsCount = parseInt(localStorage.getItem('sb_sprints') || '0', 10);
-    let breaksCount = parseInt(localStorage.getItem('sb_breaks') || '0', 10);
-    document.getElementById('statSprints').textContent = sprintsCount;
-    document.getElementById('statBreaks').textContent = breaksCount;
-
-    const timeDisplay = document.getElementById('timeDisplay');
-    const timerLabel = document.getElementById('timerLabel');
-    const timerProgress = document.getElementById('timerProgress');
-    const btnToggle = document.getElementById('btnToggle');
-    const btnToggleIcon = document.getElementById('btnToggleIcon');
-    const btnToggleText = document.getElementById('btnToggleText');
-    const circumference = 2 * Math.PI * 44; // ~276.46
-
-    function setTimerMode(mode) {
-      if (!MODES[mode]) return;
-      currentMode = mode;
-      pauseTimer();
-      totalSeconds = MODES[mode].minutes * 60;
-      remainingSeconds = totalSeconds;
-      timerLabel.textContent = MODES[mode].label;
-
-      // Update button highlights
-      ['modeFocus', 'modeShort', 'modeLong'].forEach(id => {
-        const btn = document.getElementById(id);
-        btn.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-400 hover:text-white';
-      });
-
-      const activeBtnId = mode === 'focus' ? 'modeFocus' : (mode === 'short' ? 'modeShort' : 'modeLong');
-      const activeBtn = document.getElementById(activeBtnId);
-      if (activeBtn) {
-        activeBtn.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-indigo-600 text-white shadow';
-      }
-
-      // Update progress ring color
-      if (MODES[mode].isBreak) {
-        timerProgress.classList.remove('text-indigo-500');
-        timerProgress.classList.add('text-emerald-400');
-        timerLabel.classList.remove('text-indigo-400');
-        timerLabel.classList.add('text-emerald-400');
-      } else {
-        timerProgress.classList.remove('text-emerald-400');
-        timerProgress.classList.add('text-indigo-500');
-        timerLabel.classList.remove('text-emerald-400');
-        timerLabel.classList.add('text-indigo-400');
-      }
-
-      updateDisplay();
-    }
-
-    function updateDisplay() {
-      const mins = Math.floor(remainingSeconds / 60);
-      const secs = remainingSeconds % 60;
-      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-      timeDisplay.textContent = formatted;
-      document.title = `${formatted} - ${MODES[currentMode].label} | StudyBreak`;
-
-      const fraction = remainingSeconds / totalSeconds;
-      const offset = circumference * (1 - fraction);
-      timerProgress.style.strokeDashoffset = offset;
-    }
-
-    function toggleTimer() {
-      if (isRunning) {
-        pauseTimer();
-      } else {
-        startTimer();
-      }
-    }
-
-    function startTimer() {
-      if (isRunning) return;
-      isRunning = true;
-      btnToggleIcon.textContent = '⏸';
-      btnToggleText.textContent = 'Pause';
-      btnToggle.className = 'px-6 py-2.5 rounded-xl font-bold text-sm bg-amber-600 hover:bg-amber-500 text-white transition-all transform active:scale-95 shadow-md shadow-amber-600/30 flex items-center gap-2';
-
-      timerInterval = setInterval(() => {
-        if (remainingSeconds > 0) {
-          remainingSeconds--;
-          updateDisplay();
-        } else {
-          onSessionComplete();
-        }
-      }, 1000);
-    }
-
-    function pauseTimer() {
-      isRunning = false;
-      clearInterval(timerInterval);
-      btnToggleIcon.textContent = '▶';
-      btnToggleText.textContent = 'Start Session';
-      btnToggle.className = 'px-6 py-2.5 rounded-xl font-bold text-sm bg-indigo-600 hover:bg-indigo-500 text-white transition-all transform active:scale-95 shadow-md shadow-indigo-600/30 flex items-center gap-2';
-    }
-
-    function resetTimer() {
-      pauseTimer();
-      remainingSeconds = totalSeconds;
-      updateDisplay();
-    }
-
-    function onSessionComplete() {
-      pauseTimer();
-      // Optional subtle audio notification via Web Audio API (zero external assets)
-      playTone();
-
-      if (MODES[currentMode].isBreak) {
-        breaksCount++;
-        localStorage.setItem('sb_breaks', breaksCount);
-        document.getElementById('statBreaks').textContent = breaksCount;
-        alert('Break completed! Ready to begin another study sprint?');
-        setTimerMode('focus');
-      } else {
-        sprintsCount++;
-        localStorage.setItem('sb_sprints', sprintsCount);
-        document.getElementById('statSprints').textContent = sprintsCount;
-        alert('Great focus sprint! Time to take a study break.');
-        setTimerMode(sprintsCount % 4 === 0 ? 'long' : 'short');
-      }
-    }
-
-    function playTone() {
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.3); // A5
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.5);
-      } catch (e) {
-        // AudioContext disabled or unsupported; graceful ignore
-      }
-    }
-
-    // Initialize display on load
-    updateDisplay();
-  </script>
+  <script src="assets/js/spm.js"></script>
 </body>
 </html>
