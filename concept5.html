@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 5: Activity Planning, CPM &amp; PERT — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 05</span>
+      <span class="track-pill">Scheduling, CPM &amp; PERT</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 06</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>5.1 Activity Planning &amp; Scheduling Tools</span></div>
+        <h1 class="slide-title">Schedule as the <span class="highlight">"Basis of Argument"</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">GANTT CHARTS</span><span class="stat-tag">VISUAL BAR</span></div>
+              <div class="stat-big-number">Gantt</div>
+              <div class="stat-big-label">Who Does What &amp; When</div>
+              <ul class="stat-details-list">
+                <li>Horizontal bar chart plotting task start dates, durations, finish dates &amp; milestones.</li>
+                <li>Great for executive progress reporting and simple short-duration projects.</li>
+                <li><strong>Weakness:</strong> Does not cleanly highlight complex dependency chains or critical float math like network diagrams.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-sky);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">NETWORK DIAGRAMS</span><span class="stat-tag">PDM / AOA</span></div>
+              <div class="stat-big-number">Network</div>
+              <div class="stat-big-label">Precedence &amp; Flow Graph</div>
+              <ul class="stat-details-list">
+                <li>Read left-to-right; every node except Start/End has predecessors &amp; successors (uses dummy arrows in AOA if needed).</li>
+                <li><strong>4 Constraints:</strong> Technical, Management, Interproject, and Date constraints.</li>
+                <li>Enables mathematical Critical Path, Float, and Schedule Risk analysis.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>From Mr Bhuru's Nov 2 Lecture</h3>
+            <p>"Projects are the basis of argument; the schedule is the basis of argument" — it proves what happens when tasks slip or scope grows.</p>
+          </div>
+          <span class="badge-emerald">G91 LECTURE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>5.2 Dependencies, Lead/Lag &amp; Forward/Backward Pass</span></div>
+        <h1 class="slide-title">Precedence <span class="highlight">Dependencies &amp; Passes</span></h1>
+
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <div class="pillar-icon">FS</div>
+            <div class="pillar-title">Finish-to-Start</div>
+            <div class="pillar-sub">Task B cannot start until Task A finishes (most common, e.g., Code &rarr; Test).</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-sky); border-color: var(--accent-sky);">SS</div>
+            <div class="pillar-title">Start-to-Start</div>
+            <div class="pillar-sub">Task B cannot start until Task A starts (allows parallel overlap).</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-amber); border-color: var(--accent-amber);">FF</div>
+            <div class="pillar-title">Finish-to-Finish</div>
+            <div class="pillar-sub">Task B cannot finish until Task A finishes (e.g., Docs &amp; Build).</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-rose); border-color: var(--accent-rose);">SF</div>
+            <div class="pillar-title">Start-to-Finish</div>
+            <div class="pillar-sub">Task B cannot finish until Task A starts (rare shift handovers).</div>
+          </div>
+        </div>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">FORWARD PASS (ES &amp; EF)</span>
+            <p style="font-size: 0.85rem; color: var(--text-sub);">Calculates earliest dates left-to-right. When merging two or more predecessors, <strong>take the MAXIMUM (largest)</strong> Earliest Finish to set the successor's Earliest Start!</p>
+            <div class="formula-box">EF = ES + Duration (or ES + D &minus; 1 in 1-indexed days)</div>
+          </div>
+          <div class="stage-panel">
+            <span class="stat-agency">BACKWARD PASS (LF &amp; LS)</span>
+            <p style="font-size: 0.85rem; color: var(--text-sub);">Calculates latest non-delaying dates right-to-left. When branching back to multiple successors, <strong>take the MINIMUM (smallest)</strong> Latest Start! Lead = negative lag (overlaps); Lag = forced delay.</p>
+            <div class="formula-box">LS = LF &minus; Duration | Float = LS &minus; ES = LF &minus; EF</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>5.3 Critical Path Method (CPM) &amp; Schedule Compression</span></div>
+        <h1 class="slide-title">Critical Path, <span class="highlight">Slack &amp; Compression</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CRITICAL PATH</span><span class="stat-tag">ZERO SLACK</span></div>
+              <div class="stat-big-number">Float = 0</div>
+              <div class="stat-big-label">Longest Path Through Network</div>
+              <ul class="stat-details-list">
+                <li>Sequence of activities where <code>ES = LS</code> and <code>EF = LF</code>.</li>
+                <li>Any delay to a critical task delays the entire project completion date.</li>
+                <li><strong>Total Slack:</strong> Max delay before delaying project end.</li>
+                <li><strong>Free Slack:</strong> Max delay before delaying the next activity's ES.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">COMPRESSION 1</span><span class="stat-tag">COST +</span></div>
+              <div class="stat-big-number">Crashing</div>
+              <div class="stat-big-label">Add More Resources</div>
+              <ul class="stat-details-list">
+                <li>Assign extra staff/overtime to effort-driven critical tasks to shorten duration.</li>
+                <li><strong>Trade-off:</strong> Increases project labor cost, and fails on fixed-duration tasks (Brooks' Law risk!).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">COMPRESSION 2</span><span class="stat-tag">RISK +</span></div>
+              <div class="stat-big-number">Fast-Track</div>
+              <div class="stat-big-label">Run Sequential Tasks in Parallel</div>
+              <ul class="stat-details-list">
+                <li>Overlap phases normally done sequentially (e.g., start coding before final review sign-off).</li>
+                <li><strong>Trade-off:</strong> Increases rework and quality risk.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>5.4 Program Evaluation &amp; Review Technique (PERT)</span></div>
+        <h1 class="slide-title">Probabilistic <span class="highlight-amber">PERT Time &amp; Variance</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">3-POINT ESTIMATES</span><span class="stat-tag">UNCERTAIN WORK</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Optimistic Time (a):</strong> Best-case duration if everything goes right.</li>
+                <li><strong>Most Likely Time (m):</strong> Realistic normal duration.</li>
+                <li><strong>Pessimistic Time (b):</strong> Worst-case duration if major delays hit.</li>
+              </ul>
+              <div class="formula-box">Expected Duration: t_e = (a + 4m + b) / 6</div>
+              <div class="stat-bottom-callout">PERT assigns 4&times; weight to Most Likely (<em>m</em>) in a Beta probability distribution.</div>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">STANDARD DEVIATION &amp; VARIANCE</span><span class="stat-tag">EXAM MATH</span></div>
+              <div class="formula-box">Task SD: &sigma; = (b &minus; a) / 6</div>
+              <div class="formula-box">Task Variance: &sigma;&sup2; = [(b &minus; a) / 6]&sup2;</div>
+              <div class="formula-box">Path SD: &sigma;_path = &radic;( &Sigma; &sigma;_i&sup2; )</div>
+              <div class="stat-bottom-callout">Never add task SDs directly! Sum the <strong>variances (&sigma;&sup2;)</strong> along the critical path first, then take the square root.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>5.5 PERT vs. CPM &amp; Critical Chain (CCPM)</span></div>
+        <h1 class="slide-title">CPM vs. PERT vs. <span class="highlight">Critical Chain</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">PERT VS. CPM (MR BHURU NOTES)</span>
+            <div class="table-wrap">
+              <table class="spm-table">
+                <thead><tr><th>Feature</th><th>CPM</th><th>PERT</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Estimates</strong></td><td><strong>Deterministic</strong> (single time based on experience)</td><td><strong>Probabilistic</strong> (3 estimates: <em>a, m, b</em> &rarr; expected date)</td></tr>
+                  <tr><td><strong>Use Case</strong></td><td>Familiar, predictable tasks</td><td>Novel, uncertain work; caters for schedule risk</td></tr>
+                  <tr><td><strong>Focus</strong></td><td>Critical vs. non-critical tasks, time-cost trade-offs</td><td>Realistic deadline probability &amp; variance</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">CRITICAL CHAIN (CCPM) BUFFERS</span>
+            <p style="font-size: 0.84rem; color: var(--text-sub);">CCPM emphasizes <strong>resource dependencies</strong> and removes hidden per-task padding, consolidating safety into explicit buffers:</p>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>3 Buffer Types</h4>
+                <p><strong>Project Buffer</strong> (end of critical chain) &bull; <strong>Feeding Buffer</strong> (where non-critical chains merge in) &bull; <strong>Resource Buffer</strong> (alert flag, not time).</p>
+              </div>
+              <div class="stage-item">
+                <h4>Penetration Action Triggers</h4>
+                <p>1st Third: Monitor only &bull; Middle Third: Investigate &amp; make get-well plan &bull; Final Third: Immediate corrective action.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide" data-slide-index="6">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>5.6 Exam Grid Checklist</span></div>
+        <h1 class="slide-title">Exam Skills: <span class="highlight">Network Grids &amp; SD</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">FROM NOTAK (SCHSDULING)</span><span class="stat-tag">EXAM ALERT</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Be ready to:</strong> Calculate PERT expected duration <code>t_e</code> and <strong>Standard Deviation</strong> for every task in a grid table.</li>
+                <li>Draw the network diagram from predecessor relationships (<code>A &rarr; B &rarr; C</code>).</li>
+                <li>Fill the grid table for <strong>ES, EF, LS, LF, Total Float</strong> and highlight the Critical Path.</li>
+                <li>Explain what happens when you deviate from the baseline plan!</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">6-STEP PERT/CPM FRAMEWORK</span><span class="stat-tag">DCAP UNIT 9</span></div>
+              <ul class="stat-details-list">
+                <li>1. Define all significant activities (single Start &amp; single End).</li>
+                <li>2. Determine predecessor/successor precedence relationships.</li>
+                <li>3. Draw the network connecting all activities cleanly.</li>
+                <li>4. Assign deterministic (CPM) or 3-point (PERT) time estimates.</li>
+                <li>5. Compute Forward/Backward passes &amp; longest Critical Path.</li>
+                <li>6. Monitor, control &amp; crash if required at minimum cost.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 5: Scheduling, CPM &amp; PERT</h3>
+            <p>Next up: Earned Value Management (EVM) — PV, EV, AC, SPI, CPI, all EACs, TCPI &amp; School Portal Case.</p>
+          </div>
+          <a href="concept6.html" class="next-concept-btn">Next: Concept 6 (EVM) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+      <button class="dot" aria-label="Slide 6"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

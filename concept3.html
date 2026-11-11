@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 3: Step-Wise Planning, WBS &amp; SDLC — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 03</span>
+      <span class="track-pill">Planning, WBS &amp; Process Models</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>3.1 Step-Wise Project Planning (DCAP Units 1–2)</span></div>
+        <h1 class="slide-title">"If You Fail to Plan, <span class="highlight">You Plan to Fail"</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">8 CORE SPM TASKS</span><span class="stat-tag">LIFECYCLE</span></div>
+              <ul class="stat-details-list">
+                <li>1. Problem Identification &amp; Justification</li>
+                <li>2. Problem Definition (Project Proposal)</li>
+                <li>3. Project Planning &amp; Sequencing</li>
+                <li>4. Project Organization (Staffing)</li>
+                <li>5. Resource Allocation &amp; Scheduling</li>
+                <li>6. Tracking, Reporting &amp; Controlling</li>
+                <li>7. Project Termination &amp; Release</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Planning is ongoing across the lifecycle—not a single document written once and forgotten.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-sky);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">OBJECTIVES</span><span class="stat-tag">DISCO RULE</span></div>
+              <div class="stat-big-number">DISCO</div>
+              <div class="stat-big-label">Methodical Goal Setting</div>
+              <ul class="stat-details-list">
+                <li><strong>D</strong>efined deliverables &amp; scope boundaries</li>
+                <li><strong>I</strong>nfrastructure &amp; environment setup</li>
+                <li><strong>S</strong>eek consensus with the team on metrics</li>
+                <li><strong>C</strong>reate a reasonable, agreed approach</li>
+                <li><strong>O</strong>perate in a methodical timeframe</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Programme Management links projects via <em>"The Golden Thread"</em> to strategic business outcomes.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">SCOPE &amp; INFRASTRUCTURE</span><span class="stat-tag">STEP-WISE</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Scope Planning:</strong> Document assumptions, constraints, user needs &amp; exclusions.</li>
+                <li><strong>Scope Verification:</strong> Quality-assuring acceptance of deliverables.</li>
+                <li><strong>Infrastructure:</strong> Hardware, networks, tools, governance &amp; team structure.</li>
+                <li><strong>MTA (Milestone Trend Analysis):</strong> Tracks planned vs. actual milestone dates over time.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>3.2 Work Breakdown Structure (DCAP Unit 3 + Bhuru Recap)</span></div>
+        <h1 class="slide-title">Work Breakdown <span class="highlight">Structure (WBS)</span></h1>
+
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <div class="pillar-icon">1</div>
+            <div class="pillar-title">Thought Tool</div>
+            <div class="pillar-sub">Breaks big fuzzy deliverables into hierarchical Activities, Tasks, and Work Packages (What, Who, When, How).</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-sky); border-color: var(--accent-sky);">2</div>
+            <div class="pillar-title">Architecture Tool</div>
+            <div class="pillar-sub">Visualizes system modules using <strong>Noun</strong> (components), <strong>Verb</strong> (actions), or <strong>Organizational</strong> structures.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-amber); border-color: var(--accent-amber);">3</div>
+            <div class="pillar-title">Planning Tool</div>
+            <div class="pillar-sub">Foundation for accurate effort/cost estimation, critical path scheduling, and parallel task sequencing.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-violet); border-color: var(--accent-violet);">4</div>
+            <div class="pillar-title">Status Tool</div>
+            <div class="pillar-sub">Reports progress and EVM variances upward cleanly from work packages to project level.</div>
+          </div>
+        </div>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">BUILDING THE WBS</span>
+            <p style="font-size: 0.86rem; color: var(--text-sub);">Best built collaboratively in a <strong>Joint Project Planning (JPP)</strong> session using either <strong>Top-Down</strong> decomposition (goal &rarr; work packages) or <strong>Bottom-Up</strong> aggregation (team brainstorm &rarr; grouped hierarchy).</p>
+          </div>
+          <div class="stage-panel">
+            <span class="stat-agency">6 COMPLETENESS CRITERIA</span>
+            <p style="font-size: 0.86rem; color: var(--text-sub);">Each work package must have clear: 1) Status/Completion measurability, 2) Start &amp; End event, 3) Deliverable output, 4) Time/Cost estimateability, 5) Acceptable duration limits, and 6) Independent task assignment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>3.3 Project Approach &amp; Software Methodologies</span></div>
+        <h1 class="slide-title">Process Models: <span class="highlight">Thick vs. Thin</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CLASSIC &amp; PLAN-DRIVEN MODELS</span><span class="stat-tag">DCAP UNIT 5</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Waterfall Model:</strong> Sequential phases (Reqs &rarr; Design &rarr; Code &rarr; Test). Best when requirements are stable and well understood.</li>
+                <li><strong>V-Process Model:</strong> Maps every dev phase directly to a corresponding testing level (Unit, Integration, System, Acceptance).</li>
+                <li><strong>Spiral Model (Boehm):</strong> Risk-driven iterative cycles (Objective &rarr; Risk Analysis &rarr; Engineering &rarr; Evaluation).</li>
+                <li><strong>Prototyping &amp; Incremental Delivery:</strong> Rapid user feedback for unclear UI/needs; delivers working increments early.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">METHODOLOGY WEIGHT CLASSES</span><span class="stat-tag">UNIT 1 + SOMMERVILLE</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Thick (Heavyweight) Methodologies:</strong> Heavy documentation, formal roles, strict sign-offs — <code>RUP</code>, <code>SSADM</code>, <code>PRINCE2</code>.</li>
+                <li><strong>Thin (Agile/Lightweight) Methodologies:</strong> Adaptive, iterative, people-focused — <code>XP</code> (Planning Game), <code>Scrum</code>, <code>Crystal Clear</code>.</li>
+                <li><strong>Agile Planning Trade-off:</strong> When time/budget are fixed, XP adjusts <em>scope</em> (fewer stories in the increment) rather than delaying delivery.</li>
+                <li><strong>Small/Student Projects (Unit 14):</strong> Keep planning lightweight, but never skip WBS, schedule, or version control!</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>3.4 CASE Tools &amp; Specifications (Notak SCS 2214 Overlap)</span></div>
+        <h1 class="slide-title">Upper/Lower CASE &amp; <span class="highlight-amber">Specifications</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">CASE TOOLS CLASSIFICATION</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>Upper CASE Tools (Planning &amp; Design)</h4>
+                <p>Used for documentation, collaboration, requirements modeling &amp; tracking: <strong>Git, Slack, Figma, OMG/UML modeling tools</strong>.</p>
+              </div>
+              <div class="stage-item">
+                <h4>Lower CASE Tools (Code &amp; Implementation)</h4>
+                <p>Used directly for coding, compiling, debugging &amp; simulation: <strong>VS Code, CodeBlocks, PyCharm, Gazebo</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">SPECIFICATION STYLES (SRS DOC)</span>
+            <div class="stage-item-list">
+              <div class="stage-item">
+                <h4>Object-Oriented (OMG UML)</h4>
+                <p>Use Case Diagram &amp; Description Table, Class, Sequence, Collaboration, State, Package &amp; Deployment Diagrams.</p>
+              </div>
+              <div class="stage-item">
+                <h4>Structured Approach</h4>
+                <p>Context Diagram, DFD Level 0 / 1 / 2, Flowcharts, and Jackson Structured Programming (JSP) Diagrams.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>3.5 Planning Revision Summary</span></div>
+        <h1 class="slide-title">Key Exam <span class="highlight">Takeaways</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">WBS RULE</span></div>
+              <div class="stat-big-number">100% Rule</div>
+              <div class="stat-big-label">Work Packages = Whole Scope</div>
+              <ul class="stat-details-list">
+                <li>If a deliverable isn't in the WBS, it isn't in the project.</li>
+                <li>Prevents unpriced gold-plating and feeds directly into Effort Estimation and CPM.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CHARTER VS PLAN</span></div>
+              <div class="stat-big-number">Charter</div>
+              <div class="stat-big-label">Authorization Document</div>
+              <ul class="stat-details-list">
+                <li>Written in Initiation by the PM/Sponsor to authorize work.</li>
+                <li>Project Plan comes in Planning (how, when, how much).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">MOORE'S LAW WARNING</span></div>
+              <div class="stat-big-number">Speed</div>
+              <div class="stat-big-label">Don't Over-Drag Projects</div>
+              <ul class="stat-details-list">
+                <li>Hardware &amp; tech double rapidly; projects taking years risk launching obsolete tech.</li>
+                <li>Deliver incrementally when requirements shift.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 3: Planning, WBS &amp; Process Models</h3>
+            <p>Next up: Effort Estimation with Albrecht Function Point Analysis (FPA) &amp; COCOMO.</p>
+          </div>
+          <a href="concept4.html" class="next-concept-btn">Next: Concept 4 (Estimation) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

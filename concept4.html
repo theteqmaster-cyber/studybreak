@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 4: Effort Estimation (FPA &amp; COCOMO) — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 04</span>
+      <span class="track-pill">Effort Estimation: FPA &amp; COCOMO</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>4.1 Foundations of Software Estimation (DCAP Unit 6)</span></div>
+        <h1 class="slide-title">Why Estimation is a <span class="highlight">"Black Art"</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">3 ESTIMATION PHASES</span><span class="stat-tag">EQF</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Phase 1 (Initial Estimate):</strong> First-cut sizing (SWAG — <em>Scientific Wild-Ass Guess</em>) refined via WBS.</li>
+                <li><strong>Phase 2 (Track EQF):</strong> Track Estimate-to-Quantity Factor against actual progress.</li>
+                <li><strong>Phase 3 (Manage Concerns):</strong> Use EQF variance early to negotiate scope, schedule, or cost.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">HIDDEN OVERHEAD</span><span class="stat-tag">GRANULARITY</span></div>
+              <ul class="stat-details-list">
+                <li>Never estimate coding alone! Also estimate:</li>
+                <li><strong>1. Project Management Effort</strong></li>
+                <li><strong>2. Documentation Effort (SRS, User Manuals)</strong></li>
+                <li><strong>3. Reviews &amp; Inspections</strong></li>
+                <li><strong>4. Configuration Management &amp; Releases</strong></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">ESTIMATION FAILURES</span><span class="stat-tag">LAWS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Under-Estimating:</strong> Infeasible plans, missed deadlines, rushed testing &rarr; Weinberg's Zeroth Law (low reliability).</li>
+                <li><strong>Over-Estimating:</strong> Wastes budget &amp; stretches timeline via Parkinson's Law.</li>
+                <li><strong>Pricing-to-Win (Sommerville):</strong> Bid price is adjusted to win contracts, then scope is trimmed to fit.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>4.2 Albrecht Function Point Analysis (FPA)</span></div>
+        <h1 class="slide-title">Function Point <span class="highlight">Components &amp; Weights</span></h1>
+
+        <div class="table-wrap">
+          <table class="spm-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Albrecht Component</th>
+                <th>Simple</th>
+                <th>Average</th>
+                <th>Complex</th>
+                <th>What Counts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>EI (A)</strong></td>
+                <td>External Inputs</td>
+                <td><code>3</code></td>
+                <td><code>4</code></td>
+                <td><code>6</code></td>
+                <td>User forms / data screens entering system &amp; updating ILFs</td>
+              </tr>
+              <tr>
+                <td><strong>EO (B)</strong></td>
+                <td>External Outputs</td>
+                <td><code>4</code></td>
+                <td><code>5</code></td>
+                <td><code>7</code></td>
+                <td>Reports, derived data, screens leaving the app boundary</td>
+              </tr>
+              <tr>
+                <td><strong>EQ (C)</strong></td>
+                <td>External Inquiries</td>
+                <td><code>3</code></td>
+                <td><code>4</code></td>
+                <td><code>6</code></td>
+                <td>Interactive input+output retrieval (no derived data, no ILF update)</td>
+              </tr>
+              <tr>
+                <td><strong>ILF (D)</strong></td>
+                <td>Internal Logical Files</td>
+                <td><code>7</code></td>
+                <td><code>10</code></td>
+                <td><code>15</code></td>
+                <td>Logically related permanent data maintained inside app boundary</td>
+              </tr>
+              <tr>
+                <td><strong>EIF (E)</strong></td>
+                <td>External Interface Files</td>
+                <td><code>5</code></td>
+                <td><code>7</code></td>
+                <td><code>10</code></td>
+                <td>Reference data maintained outside app (another app's ILF)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Step 1: Unadjusted Function Count (UFC / UAF)</h3>
+            <p>Multiply each component count by its complexity weight (Simple / Average / Complex) and sum across all 5 categories. Rated via Data Element Types (DETs) and File Types Referenced (FTRs).</p>
+          </div>
+          <span class="badge-emerald">FP = UAF &times; VAF</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>4.3 Value Adjustment Factor &amp; Mark II FPA</span></div>
+        <h1 class="slide-title">14 System Characteristics &amp; <span class="highlight">Mark II</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">14 GENERAL SYSTEM CHARACTERISTICS (0–5)</span>
+            <p style="font-size: 0.82rem; color: var(--text-sub);">Each rated <strong>0 (irrelevant)</strong> to <strong>5 (essential)</strong> to compute the Value Adjustment Factor (VAF):</p>
+            <div class="stage-item-list">
+              <div class="stage-item">
+                <p>1. Backup &amp; recovery &bull; 2. Data communications &bull; 3. Distributed functions &bull; 4. High performance &bull; 5. Heavily used config &bull; 6. On-line data entry &bull; 7. End-user efficiency (easy to use)</p>
+              </div>
+              <div class="stage-item">
+                <p>8. On-line update &bull; 9. Complex UI &bull; 10. Complex processing &bull; 11. Reusability &bull; 12. Ease of installation &bull; 13. Multiple sites &bull; 14. Facilitate change</p>
+              </div>
+            </div>
+            <div class="formula-box">Rule of Thumb: 1 Function Point &approx; 2 Days Effort</div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">MK II FUNCTION POINT ANALYSIS</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>Charles Symons (1991) — ISO/IEC 20968</h4>
+                <p>Measures information-processing systems from an end-user functional view; maintained by UK Software Metrics Association (UKSMA).</p>
+              </div>
+              <div class="stage-item">
+                <h4>Albrecht FPA vs. Mark II</h4>
+                <p>Albrecht suits transaction/file boundaries well and is language-independent (unlike LOC), while Mark II focuses on logical transactions (Input + Processing + Output elements).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>4.4 Barry Boehm's Constructive Cost Model</span></div>
+        <h1 class="slide-title">The <span class="highlight-amber">COCOMO</span> Estimation Model</h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">EQUATION &amp; LEVELS</span><span class="stat-tag">BOEHM</span></div>
+              <div class="formula-box">Effort = c &times; (Size)^k</div>
+              <div class="stat-big-label">Person-Months via KDSI</div>
+              <ul class="stat-details-list">
+                <li><strong>Basic COCOMO:</strong> Static single-variable using estimated KDSI (Delivered Source Instructions).</li>
+                <li><strong>Intermediate:</strong> Adds 15 cost-driver multipliers (personnel, hardware, tool maturity).</li>
+                <li><strong>Detailed:</strong> Applies cost drivers per phase (Analysis, Design, Code) &amp; hierarchy level.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">3 PROJECT MODES</span><span class="stat-tag">CATEGORIES</span></div>
+              <ul class="stat-details-list">
+                <li><strong>1. Organic Mode:</strong> Small, straightforward projects; experienced team; flexible requirements (e.g., internal data utility).</li>
+                <li><strong>2. Semi-Detached Mode:</strong> Medium size &amp; complexity; mixed experience; mix of rigid &amp; flexible reqs (e.g., transaction DB).</li>
+                <li><strong>3. Embedded Mode:</strong> Tight hardware, software &amp; operational constraints (e.g., avionics, real-time robotics).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">APPRAISAL</span><span class="stat-tag">PROS &amp; CONS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Strengths:</strong> Public domain, well-documented, supports development &amp; maintenance effort + schedule estimates.</li>
+                <li><strong>Weaknesses:</strong> Early KDSI size is hard to guess; LOC varies wildly by language expressivity &amp; code reuse; subjective cost drivers.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Function Points can be converted into KDSI via language tables before applying COCOMO.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>4.5 Trade-Offs &amp; Revision Check</span></div>
+        <h1 class="slide-title">Estimation <span class="highlight">Trade-Offs</span></h1>
+
+        <div class="callout-banner amber" style="margin-top: 0; margin-bottom: 16px;">
+          <div>
+            <h3>Extending Schedule Can Lower Overall Cost</h3>
+            <p>Lengthening a deadline slightly lets a smaller, core team complete the work with fewer communication channels and lower coordination overhead—remember Brooks' Law!</p>
+          </div>
+          <span class="badge-amber">KEY INSIGHT</span>
+        </div>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">REVIEW QUESTIONS</span></div>
+              <ul class="stat-details-list">
+                <li>Why does sound effort estimation always start with a Work Breakdown Structure (WBS)?</li>
+                <li>Contrast LOC-based estimation (COCOMO) with functional sizing (Albrecht FPA).</li>
+                <li>Distinguish Organic, Semi-Detached, and Embedded projects with real examples.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-sky);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">NEXT MODULE</span></div>
+              <ul class="stat-details-list">
+                <li>Once effort is estimated per WBS task, we sequence dependencies and calculate start/finish dates and critical paths.</li>
+                <li>Move to Concept 5 for <strong>Activity Planning, Network Diagrams, CPM &amp; PERT</strong>!</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 4: Effort Estimation</h3>
+            <p>Next up: Gantt Charts, Dependencies (FS/SS/FF/SF), ES/EF/LS/LF, CPM, PERT &amp; CCPM Buffers.</p>
+          </div>
+          <a href="concept5.html" class="next-concept-btn">Next: Concept 5 (CPM &amp; PERT) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

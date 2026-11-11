@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 7: Risk Management &amp; Resource Allocation — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 07</span>
+      <span class="track-pill">Risk &amp; Resource Management</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>7.1 Risk Fundamentals &amp; Exposure (DCAP Unit 10)</span></div>
+        <h1 class="slide-title">Prioritizing <span class="highlight-rose">Risk Exposure</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">QUANTITATIVE METRIC</span><span class="stat-tag">EXPOSURE</span></div>
+              <div class="formula-box">RE = Probability &times; Impact</div>
+              <div class="stat-big-label">Prioritize Highest Exposure First</div>
+              <ul class="stat-details-list">
+                <li>Focus on the 20% of risks causing 80% of potential impact (Pareto rule).</li>
+                <li>Balance high-probability/low-loss vs. low-probability/catastrophic-loss threats in the Risk Register.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">INTANGIBLE RISKS</span><span class="stat-tag">100% PROB</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Knowledge Risk:</strong> Deficient technical skills applied to a problem.</li>
+                <li><strong>Relationship Risk:</strong> Ineffective collaboration or team conflict.</li>
+                <li><strong>Process-Engagement Risk:</strong> Broken operational procedures reducing productivity &amp; quality.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">SOMMERVILLE CH 22</span><span class="stat-tag">RESPONSE</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Avoidance Strategies:</strong> Reduce probability the risk occurs (e.g., use mature framework).</li>
+                <li><strong>Minimization Strategies:</strong> Reduce impact if it hits (e.g., backups, cross-training).</li>
+                <li><strong>Contingency Plans:</strong> Ready-to-run fallback if disaster strikes.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>7.2 Prompt Lists &amp; Qualitative Identification</span></div>
+        <h1 class="slide-title">Risk Categories &amp; <span class="highlight">Identification</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">PROMPT LIST CATEGORIES (UNIT 10)</span>
+            <div class="stage-item-list">
+              <div class="stage-item"><h4>External</h4><p>Infrastructure (networks/power), Economic (inflation/FX), Legal &amp; Regulatory, Environmental, Political, Market, Acts of God.</p></div>
+              <div class="stage-item"><h4>Financial &amp; Activity</h4><p>Budgetary shortfalls, Fraud/Theft, Operational policy failures, Information loss, Reputational damage.</p></div>
+              <div class="stage-item accent-rose"><h4>Technological &amp; Human Resources</h4><p>New/unproven innovation risks, Personnel shortfall (tracked via metrics!), Health &amp; Safety.</p></div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">6 QUALITATIVE IDENTIFICATION TECHNIQUES</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>Structured Discovery Tools</h4>
+                <p>1. <strong>Assumptions Analysis:</strong> Stress-test every timeline assumption.<br>
+                   2. <strong>Checklists &amp; Prompt Lists:</strong> Historical risk catalogs.<br>
+                   3. <strong>Brainstorming &amp; Facilitated Workshops:</strong> Team risk surfacing.<br>
+                   4. <strong>Open-Question Interviews:</strong> Supportive, non-confrontational stakeholder interviews.</p>
+              </div>
+              <div class="stage-item">
+                <h4>7-Step Continuous Cycle</h4>
+                <p>Establish Context &rarr; Identify &rarr; Analyze &rarr; Evaluate &rarr; Treat &rarr; Monitor/Review &rarr; Communicate (never stop after one pass).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>7.3 Quantitative Risk Analysis</span></div>
+        <h1 class="slide-title">Decision Trees, <span class="highlight">Influence &amp; Monte Carlo</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">TECHNIQUE 1</span></div>
+              <div class="stat-big-number">Decision Trees</div>
+              <div class="stat-big-label">Branching Expected Value</div>
+              <ul class="stat-details-list">
+                <li>Flowchart comparing choices (e.g., Build vs. Buy) with probabilities and payoffs at each branch.</li>
+                <li>Best for clear, bounded decisions; gets messy in huge systems.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">TECHNIQUE 2</span></div>
+              <div class="stat-big-number">Influence</div>
+              <div class="stat-big-label">Causal Network Diagrams</div>
+              <ul class="stat-details-list">
+                <li>Nodes hold variables/decisions showing how an upstream risk ripples across downstream schedule or cost outcomes.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">TECHNIQUE 3</span></div>
+              <div class="stat-big-number">Monte Carlo</div>
+              <div class="stat-big-label">Probabilistic Simulation</div>
+              <ul class="stat-details-list">
+                <li>Runs thousands of random trials across task duration distributions (like PERT <em>a, m, b</em>) to forecast completion date probabilities.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>7.4 Resource Allocation (DCAP Unit 11)</span></div>
+        <h1 class="slide-title">Managing <span class="highlight">Finite Resources</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">RESOURCE SCHEDULING REALITY</span>
+            <div class="stage-item-list">
+              <div class="stage-item"><h4>Finite Resources</h4><p>A PM cannot always hire more staff mid-sprint (e.g., only 1 UI designer available across parallel tasks = resource conflict).</p></div>
+              <div class="stage-item accent-emerald"><h4>Resource Leveling / Smoothing</h4><p>Delay non-critical tasks using their <strong>Float/Slack</strong> so daily staff &amp; equipment usage stays realistic without delaying the project end date.</p></div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">4 STAGES OF RESOURCE SCHEDULING</span>
+            <div class="stage-item-list">
+              <div class="stage-item"><p><strong>1. Identify Resource Requirements:</strong> Skills, roles, hardware &amp; software tools per WBS package.</p></div>
+              <div class="stage-item"><p><strong>2. Schedule Resources:</strong> Map allocations onto timeline &amp; resolve overlaps.</p></div>
+              <div class="stage-item"><p><strong>3. Publish Resource Schedule:</strong> Communicate exact staffing commitments to the team.</p></div>
+              <div class="stage-item"><p><strong>4. Publish Cost Schedule:</strong> Convert labor/tool hours into phased budget curves (PV baseline).</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>7.5 Monitoring, Control &amp; Reporting (DCAP Unit 12)</span></div>
+        <h1 class="slide-title">Visibility, <span class="highlight">Slip Charts</span> &amp; Control</h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">3 PURPOSES OF PROJECT REPORTS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>1. Track Progress:</strong> Verify actual completion against WBS milestones.</li>
+                <li><strong>2. Detect Variance:</strong> Spot schedule/cost slippage early (EVM &amp; Slip Charts).</li>
+                <li><strong>3. Take Corrective Action:</strong> Rebalance controls with risk (control and quality are positively correlated).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">VISUAL TOOLS &amp; MEETINGS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Slip Charts &amp; Timelines:</strong> Show how target milestone dates shift across review checkpoints.</li>
+                <li><strong>Status vs. Problem Meetings:</strong> Keep status reporting brief; dedicate separate focused meetings to solving blockers.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 7: Risk &amp; Resource Management</h3>
+            <p>Next up: Software Quality Management, ISO 9126, QA vs. QC, and Mr Bhuru's 6Ms Ishikawa Fishbone Diagram.</p>
+          </div>
+          <a href="concept8.html" class="next-concept-btn">Next: Concept 8 (Quality &amp; Ishikawa) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

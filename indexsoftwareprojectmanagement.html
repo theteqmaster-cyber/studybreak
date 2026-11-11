@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCS 2211 — Software Project Management | StudyBreak</title>
+  <meta name="description" content="Complete NUST SCS 2211 Software Project Management study portal and interactive slide decks covering ICCF, CBA, WBS, Effort Estimation, CPM/PERT, EVM, Risk, Quality, and Ishikawa Analysis.">
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body>
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="cyber-glow-aura" aria-hidden="true"></div>
+
+  <div class="site-container">
+
+    <!-- Header Navigation (teqmaster pattern) -->
+    <header class="portal-header">
+      <nav class="portal-nav" aria-label="Main Navigation">
+        <a href="indexsoftwareprojectmanagement.html" class="portal-brand">
+          <div class="brand-mark">SPM</div>
+          <span class="brand-title">SCS 2211</span>
+        </a>
+
+        <div class="portal-nav-links">
+          <a href="#concepts" class="nav-link active">Concept Decks</a>
+          <a href="#blueprint" class="nav-link">Exam Blueprint</a>
+          <a href="concept9.html" class="nav-link">Formula Sheet</a>
+          <a href="allnotes.md" class="nav-link">All Notes (.md)</a>
+        </div>
+
+        <div class="portal-nav-actions">
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <a href="concept1.html" class="back-hub-pill" title="Start Concept 1">
+            <span>Start Deck 1 &rarr;</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Portal Content -->
+    <main class="portal-main">
+
+      <!-- Hero Section (teqmaster index.html) -->
+      <section class="portal-hero">
+        <div class="hero-inner">
+          <h1 class="portal-title" id="kineticHeroTitle" aria-label="SOFTWARE PROJECT MANAGEMENT" title="Click to pulse">
+            <span class="kinetic-letter">S</span><span class="kinetic-letter">O</span><span class="kinetic-letter">F</span><span class="kinetic-letter">T</span><span class="kinetic-letter">W</span><span class="kinetic-letter">A</span><span class="kinetic-letter">R</span><span class="kinetic-letter">E</span>
+            <span class="kinetic-letter">&nbsp;</span>
+            <span class="kinetic-letter">P</span><span class="kinetic-letter">R</span><span class="kinetic-letter">O</span><span class="kinetic-letter">J</span><span class="kinetic-letter">E</span><span class="kinetic-letter">C</span><span class="kinetic-letter">T</span>
+            <span class="kinetic-letter">&nbsp;</span>
+            <span class="kinetic-letter">M</span><span class="kinetic-letter">G</span><span class="kinetic-letter">M</span><span class="kinetic-letter">T</span>
+          </h1>
+
+          <p class="portal-subtitle">
+            Unified NUST Computer Science Part 2.2 revision portal synthesized from Notak lecture logs, Okum tasks, and Ulwazi study guides &amp; textbooks. Zero modals, zero font lag, built for instant desktop and mobile study.
+          </p>
+
+          <div class="project-spotlight-tag">
+            <span class="spotlight-pulse"></span>
+            <span class="spotlight-title">NUST SCS 2211 • MR BHURU &amp; DR S DUBE</span>
+            <span class="spotlight-sep">&bull;</span>
+            <span class="spotlight-meta">9 Slide Decks &bull; Full Formula &amp; Exam Guide</span>
+          </div>
+
+          <div class="overview-pills">
+            <span class="overview-pill accent">Hughes &amp; Cotterell + Fred Brooks</span>
+            <span class="overview-pill">CBA &amp; NPV Worked Case</span>
+            <span class="overview-pill">PERT / CPM &amp; Float</span>
+            <span class="overview-pill">EVM (School Portal Case)</span>
+            <span class="overview-pill">ISO 9126 &amp; Ishikawa 6Ms</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: 9 Dedicated Concept Pages (No Modals) -->
+      <section class="sources-group" id="concepts">
+        <div class="sources-group-header">
+          <h2 class="sources-group-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span>Concept Slide Decks (Sub-Pages)</span>
+          </h2>
+          <p class="sources-group-desc">Select any module below to open its dedicated keyboard- and swipe-driven presentation page.</p>
+        </div>
+
+        <div class="gateway-cards">
+
+          <!-- Concept 1 -->
+          <a href="concept1.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 01</span>
+              <span class="badge-emerald">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">SPM Foundations &amp; ICCF</h3>
+            <p class="card-desc">Project characteristics, Software vs. Ordinary Engineering (Invisibility, Complexity, Conformity, Flexibility), Triple Constraint, and Stakeholder Power-Interest Matrix.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Brooks', Parkinson's &amp; Weinberg's Laws</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>5 Process Groups &amp; Lecture 1 Exam Answers</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 1</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 2 -->
+          <a href="concept2.html" class="gateway-card" style="--card-accent: var(--accent-cyan);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 02</span>
+              <span class="badge-cyan">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Project Failure &amp; Cost-Benefit Analysis</h3>
+            <p class="card-desc">Standish CHAOS project outcomes, Cost &amp; Benefit taxonomy, Net Profit, Payback Period, ROI, NPV, IRR, and the 15-mark Project Alpha vs. Beta calculation.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Full Alpha vs. Beta 10% Discounted Cash Flows</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Year 0 Discount Factor &amp; NPV Exam Traps</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 2</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 3 -->
+          <a href="concept3.html" class="gateway-card" style="--card-accent: var(--accent-amber);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 03</span>
+              <span class="badge-amber">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Step-Wise Planning, WBS &amp; SDLC</h3>
+            <p class="card-desc">DISCO objectives, Work Breakdown Structure (Top-Down/Bottom-Up, Noun/Verb/Org, 6 Completeness Criteria), Process Models, and Upper vs. Lower CASE tools.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Waterfall, V-Model, Spiral, Agile &amp; Thick vs. Thin</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>UML vs. Structured DFDs &amp; Project Charter</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 3</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 4 -->
+          <a href="concept4.html" class="gateway-card" style="--card-accent: var(--accent-violet);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 04</span>
+              <span class="badge-cyan">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Effort Estimation: FPA &amp; COCOMO</h3>
+            <p class="card-desc">Why estimation is a "black art", 3 estimation phases (SWAG &amp; EQF), Albrecht Function Point weights &amp; 14 GSCs, Mark II FPA, and Barry Boehm's COCOMO modes.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>EI, EO, EQ, ILF, EIF Simple/Avg/Complex Weights</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Organic, Semi-Detached &amp; Embedded Modes</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 4</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 5 -->
+          <a href="concept5.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 05</span>
+              <span class="badge-emerald">6 SLIDES</span>
+            </div>
+            <h3 class="card-title">Activity Planning, CPM &amp; PERT</h3>
+            <p class="card-desc">Gantt Charts vs. Precedence Networks (FS/SS/FF/SF), Forward &amp; Backward Pass (ES/EF/LS/LF), Slack/Float, Crashing vs. Fast-Tracking, PERT 3-point math &amp; CCPM.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Deterministic CPM vs. Probabilistic PERT (&sigma; &amp; t<sub>e</sub>)</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Project, Feeding &amp; Resource Buffers (CCPM)</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 5</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 6 -->
+          <a href="concept6.html" class="gateway-card" style="--card-accent: var(--accent-rose);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 06</span>
+              <span class="badge-rose">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Earned Value Management (EVM)</h3>
+            <p class="card-desc">PV, EV, AC, BAC, Variances (SV, CV), Indexes (SPI, CPI), all 4 EAC formulas, ETC, VAC, TCPI, Estimated Duration, and Mr Bhuru's full School Portal case.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Typical, Atypical, SPI&times;CPI &amp; Bottom-Up EAC</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>School Portal Walkthrough (BAC $400k, Month 5)</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 6</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 7 -->
+          <a href="concept7.html" class="gateway-card" style="--card-accent: var(--accent-cyan);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 07</span>
+              <span class="badge-cyan">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Risk Management &amp; Resources</h3>
+            <p class="card-desc">Risk Exposure (P &times; Impact), Intangible Risks, Prompt Lists, Decision Trees, Monte Carlo, 7-step Risk Cycle, Resource Leveling, and Monitoring/Slip Charts.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Qualitative Checklists vs. Quantitative Trees</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Resource Smoothing &amp; Change Control Logs</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 7</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 8 -->
+          <a href="concept8.html" class="gateway-card" style="--card-accent: var(--accent-amber);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 08</span>
+              <span class="badge-amber">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Software Quality &amp; Ishikawa 6Ms</h3>
+            <p class="card-desc">Quality vs. Grade, Technical Debt, ISO 9126 (6 attributes) &amp; ISO 9001, Defect Density, Cost of Conformance, QA vs. QC, Test Pyramid, and Fishbone Failure Diagram.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Proactive QA (Audits) vs. Reactive QC (Tests)</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>6Ms Fishbone Diagram (3+ Causes per Bone)</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 8</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Concept 9 -->
+          <a href="concept9.html" class="gateway-card" style="--card-accent: var(--accent-emerald);">
+            <div class="card-header-row">
+              <span class="card-tag">CONCEPT 09</span>
+              <span class="badge-emerald">5 SLIDES</span>
+            </div>
+            <h3 class="card-title">Exam Blueprint &amp; Formula Sheet</h3>
+            <p class="card-desc">Mr Bhuru's 5-tier exam difficulty model, complete unified mathematical formula reference, Top 8 marking traps, and verified exam topic checklist.</p>
+            <ul class="doc-feature-list">
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Every Formula: CBA, FPA, COCOMO, PERT, EVM</span></li>
+              <li class="doc-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>High-Yield Topics: WBS, CPM, EVM, Risk, Quality</span></li>
+            </ul>
+            <div class="card-footer-link">
+              <span>Open Concept 9</span>
+              <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- SECTION 2: Exam Blueprint & Zwanane Source Dossier (teqmaster sources.html style) -->
+      <section class="sources-group" id="blueprint">
+        <div class="sources-group-header">
+          <h2 class="sources-group-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Source Dossier &amp; Exam Structure</span>
+          </h2>
+          <p class="sources-group-desc">Compiled strictly from your Zwanane vault (Notak, LTrack, Okum, and Ulwazi documents).</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="nexus-card">
+            <div class="card-header-row">
+              <span class="badge-emerald">NOTAK + LTRACK</span>
+              <span class="card-tag">LECTURE LOGS</span>
+            </div>
+            <h3 class="doc-title">Mr Bhuru's Classroom Notes</h3>
+            <p class="doc-desc">Includes Oct 12 Intro, Oct 13 CBA, Nov 2 WBS/PERT/CPM scheduling (recovered from sync history), Nov 9 EVM &amp; School Portal, and Nov 10 Quality &amp; Ishikawa.</p>
+            <div class="card-footer-link">
+              <span>Logged in allnotes.md</span>
+            </div>
+          </article>
+
+          <article class="nexus-card">
+            <div class="card-header-row">
+              <span class="badge-cyan">ULWAZI + OKUM</span>
+              <span class="card-tag">STUDY GUIDES</span>
+            </div>
+            <h3 class="doc-title">Textbooks &amp; NUST Guides</h3>
+            <p class="doc-desc">Covers Scs2211 Intro PDF (13 slides), What is SPM Guide, CBA Guide, DCAP304/515 (14 Units / 289 pages), Sommerville Ch 22–25, and Okum assignment tracking.</p>
+            <div class="card-footer-link">
+              <span>Verified Reference Vault</span>
+            </div>
+          </article>
+
+          <article class="nexus-card">
+            <div class="card-header-row">
+              <span class="badge-rose">EXAM TIERS</span>
+              <span class="card-tag">ASSESSMENT MODEL</span>
+            </div>
+            <h3 class="doc-title">Difficulty Follows Course Outline</h3>
+            <p class="doc-desc">5 question tiers noted in class: <strong>1 Easy</strong>, <strong>1 Moderate</strong>, <strong>1 Hard</strong> (Quality + EVM math), <strong>1 Very Hard</strong>, <strong>1 Impossible</strong>. Master calculations &amp; PM interpretations.</p>
+            <div class="card-footer-link">
+              <span>See Concept 9 Blueprint</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer (teqmaster pattern) -->
+    <footer class="portal-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-title">SCS 2211 SPM</span>
+          <span>&bull;</span>
+          <span>NUST Computer Science StudyBreak</span>
+        </div>
+
+        <div class="footer-center">
+          <a href="indexsoftwareprojectmanagement.html" class="active">Portal</a>
+          <a href="concept1.html">Concept 1</a>
+          <a href="concept6.html">EVM</a>
+          <a href="concept8.html">Ishikawa</a>
+          <a href="concept9.html">Formulas</a>
+          <a href="allnotes.md">allnotes.md</a>
+        </div>
+
+        <div class="footer-right">
+          <p>Zero Modals &bull; Zero Google Fonts &bull; Mobile Ready</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

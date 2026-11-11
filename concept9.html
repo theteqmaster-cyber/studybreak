@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 9: Exam Blueprint &amp; Formula Sheet — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 09</span>
+      <span class="track-pill">Exam Blueprint &amp; Master Formulas</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>9.1 Mr Bhuru's Exam Structure (Nov 10 Notes)</span></div>
+        <h1 class="slide-title">How the <span class="highlight">SCS 2211 Exam</span> is Structured</h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">5 DIFFICULTY TIERS</span><span class="stat-tag">COURSE ORDER</span></div>
+              <ul class="stat-details-list">
+                <li><strong>1. Easy:</strong> Definitions, SPM fundamentals, ICCF, Quality basics.</li>
+                <li><strong>2. Moderate:</strong> WBS, Methodologies, CBA comparisons.</li>
+                <li><strong>3. Hard:</strong> Quality concepts + <strong>EVM / PERT calculations</strong> + PM interpretation.</li>
+                <li><strong>4. Very Hard:</strong> Deep scenario trade-offs &amp; multi-stage forecasting.</li>
+                <li><strong>5. Impossible:</strong> Stretch edge-case synthesis.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Questions follow the course outline in sequence from easy concepts at the start to harder quantitative material toward the end.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">HIGH-YIELD EXAM TOPICS</span><span class="stat-tag">CHECKLIST</span></div>
+              <ul class="stat-details-list">
+                <li><strong>1. Software vs. Ordinary Projects (ICCF)</strong> &amp; Triple Constraint</li>
+                <li><strong>2. Software Methodologies</strong> (Thick vs. Thin, Waterfall/Spiral/V)</li>
+                <li><strong>3. Work Breakdown Structure (WBS)</strong> &amp; Step-wise Planning</li>
+                <li><strong>4. Cost-Benefit Analysis (CBA)</strong> — Net Profit, Payback, ROI, NPV</li>
+                <li><strong>5. CPM &amp; PERT</strong> — Forward/Backward Pass, Float, SD</li>
+                <li><strong>6. Risk Management &amp; Earned Value (EVM)</strong></li>
+                <li><strong>7. Quality Control &amp; Ishikawa 6Ms Fishbone</strong></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>9.2 Master Formula Sheet — Part 1</span></div>
+        <h1 class="slide-title">Formulas: <span class="highlight">CBA, FPA &amp; COCOMO</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">COST-BENEFIT ANALYSIS</span><span class="stat-tag">CONCEPT 2</span></div>
+              <ul class="stat-details-list">
+                <li><code>Net Profit = Total Benefits &minus; Total Costs</code></li>
+                <li><code>Payback = Year before recovery + (Unrecovered / Recovery Yr Inflow)</code></li>
+                <li><code>ROI = (Avg Annual Profit / Total Investment) &times; 100%</code></li>
+                <li><code>NPV = &Sigma; [NCF_t / (1 + r)^t] &minus; Cost_0</code> (Yr 0 DF = <code>1.0000</code>)</li>
+                <li><code>IRR = discount rate r where NPV = 0</code></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">ESTIMATION &amp; RISK</span><span class="stat-tag">CONCEPTS 4 &amp; 7</span></div>
+              <ul class="stat-details-list">
+                <li><code>FP = UAF &times; VAF</code> (Albrecht: 5 components &times; weights; 14 GSCs 0–5)</li>
+                <li><code>Rule of Thumb: 1 FP &approx; 2 days effort</code></li>
+                <li><code>Basic COCOMO: Effort = c &times; (KDSI)^k</code> (Person-Months)</li>
+                <li><code>Risk Exposure (RE) = Probability &times; Impact</code></li>
+                <li><code>Defect Density = Defects / 1 KLOC</code></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>9.3 Master Formula Sheet — Part 2</span></div>
+        <h1 class="slide-title">Formulas: <span class="highlight-rose">PERT / CPM &amp; EVM</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">PERT &amp; CPM SCHEDULING</span><span class="stat-tag">CONCEPT 5</span></div>
+              <ul class="stat-details-list">
+                <li><code>t_e = (a + 4m + b) / 6</code> (Expected PERT Duration)</li>
+                <li><code>&sigma; = (b &minus; a) / 6</code> | <code>&sigma;&sup2; = [(b &minus; a) / 6]&sup2;</code></li>
+                <li><code>&sigma;_path = &radic;(&Sigma; &sigma;_i&sup2;)</code> (Sum variances along critical path)</li>
+                <li><code>Float = LS &minus; ES = LF &minus; EF</code> (Critical path Float = 0)</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">EARNED VALUE MANAGEMENT</span><span class="stat-tag">CONCEPT 6</span></div>
+              <ul class="stat-details-list">
+                <li><code>SV = EV &minus; PV</code> | <code>CV = EV &minus; AC</code></li>
+                <li><code>SPI = EV / PV</code> | <code>CPI = EV / AC</code></li>
+                <li><code>EAC (Typical) = BAC / CPI</code> | <code>(Atypical) = AC + (BAC &minus; EV)</code></li>
+                <li><code>EAC (CPI&times;SPI) = AC + (BAC &minus; EV)/(CPI &times; SPI)</code></li>
+                <li><code>ETC = EAC &minus; AC</code> | <code>VAC = BAC &minus; EAC</code></li>
+                <li><code>Est. Duration = Planned Duration / SPI</code></li>
+                <li><code>TCPI = (BAC &minus; EV) / (BAC &minus; AC)</code></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>9.4 Avoid Easy Zeroes</span></div>
+        <h1 class="slide-title">Top 8 <span class="highlight-amber">Exam Traps</span> Checklist</h1>
+
+        <div class="table-wrap">
+          <table class="spm-table">
+            <thead><tr><th>#</th><th>Common Mistake</th><th>Correct Rule for Full Marks</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Calling Software <strong>Flexibility</strong> an advantage</td><td>Flexibility invites scope creep — it is a <strong>management challenge</strong>!</td></tr>
+              <tr><td>2</td><td>Using routine payroll as a project example</td><td>Routine operations &ne; project; building a <em>new</em> system by a deadline is a project.</td></tr>
+              <tr><td>3</td><td>Discounting Year 0 cash outlay in NPV</td><td>Year 0 happens today: discount factor is always <code>1.0000</code>.</td></tr>
+              <tr><td>4</td><td>Choosing a project by Net Profit over NPV</td><td>Always rank mutually exclusive projects using <strong>NPV</strong> (Time Value of Money).</td></tr>
+              <tr><td>5</td><td>Writing only numbers in EVM answers</td><td>Always explain what SV/CV/SPI/CPI/TCPI mean to the PM!</td></tr>
+              <tr><td>6</td><td>Guessing which EAC formula to use</td><td>If variance type isn't stated, default to <strong>Typical: BAC / CPI</strong>.</td></tr>
+              <tr><td>7</td><td>Putting &lt; 3 causes per Ishikawa branch</td><td>Include all 6Ms with <strong>at least 3 causes per bone</strong>.</td></tr>
+              <tr><td>8</td><td>Mixing up Quality vs. Grade &amp; QA vs. QC</td><td>Quality = fit for use; QA = proactive defect prevention; QC = reactive testing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>9.5 Jump to Any Deck</span></div>
+        <h1 class="slide-title">Full Revision <span class="highlight">Navigation</span></h1>
+
+        <div class="pillars-grid">
+          <a href="concept1.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">01</div>
+            <div class="pillar-title">ICCF &amp; Foundations</div>
+            <div class="pillar-sub">Definitions, Brooks, Iron Triangle, Stakeholders</div>
+          </a>
+          <a href="concept2.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">02</div>
+            <div class="pillar-title">Failure &amp; CBA</div>
+            <div class="pillar-sub">CHAOS, Payback, ROI, NPV Alpha/Beta</div>
+          </a>
+          <a href="concept3.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">03</div>
+            <div class="pillar-title">WBS &amp; SDLC</div>
+            <div class="pillar-sub">DISCO, WBS, Waterfall/Spiral/Agile, CASE</div>
+          </a>
+          <a href="concept4.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">04</div>
+            <div class="pillar-title">FPA &amp; COCOMO</div>
+            <div class="pillar-sub">5 Components, 14 GSCs, Boehm Modes</div>
+          </a>
+        </div>
+
+        <div class="pillars-grid">
+          <a href="concept5.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">05</div>
+            <div class="pillar-title">CPM &amp; PERT</div>
+            <div class="pillar-sub">Passes, Float, Crashing, PERT SD, CCPM</div>
+          </a>
+          <a href="concept6.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">06</div>
+            <div class="pillar-title">EVM &amp; Portal Case</div>
+            <div class="pillar-sub">SV, CV, SPI, CPI, 4 EACs, VAC, TCPI</div>
+          </a>
+          <a href="concept7.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">07</div>
+            <div class="pillar-title">Risk &amp; Resources</div>
+            <div class="pillar-sub">Prompt Lists, Trees, Leveling, Slip Charts</div>
+          </a>
+          <a href="concept8.html" class="pillar-item" style="text-decoration: none;">
+            <div class="pillar-icon">08</div>
+            <div class="pillar-title">Quality &amp; Ishikawa</div>
+            <div class="pillar-sub">ISO 9126, QA vs. QC, 6Ms Fishbone</div>
+          </a>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Finished All 9 Concept Decks</h3>
+            <p>Return to the main Software Project Management hub or review the full raw archive in <code>allnotes.md</code>.</p>
+          </div>
+          <a href="indexsoftwareprojectmanagement.html" class="next-concept-btn">Back to SPM Portal &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

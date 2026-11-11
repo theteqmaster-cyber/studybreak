@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 6: Earned Value Management (EVM) — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 06</span>
+      <span class="track-pill">Earned Value Management (EVM)</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>6.1 EVM Core Variables (Mr Bhuru Nov 9 Lecture)</span></div>
+        <h1 class="slide-title">"EVM Brings <span class="highlight">Sanity</span> to Software Projects"</h1>
+
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <div class="pillar-icon">PV</div>
+            <div class="pillar-title">Planned Value</div>
+            <div class="pillar-sub"><strong>BCWS</strong> — Budgeted Cost of Work Scheduled to be done by today according to the Gantt plan.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-sky); border-color: var(--accent-sky);">EV</div>
+            <div class="pillar-title">Earned Value</div>
+            <div class="pillar-sub"><strong>BCWP</strong> — Budgeted value of the work <em>actually</em> completed so far ("end value" in class notes).</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-rose); border-color: var(--accent-rose);">AC</div>
+            <div class="pillar-title">Actual Cost</div>
+            <div class="pillar-sub"><strong>ACWP</strong> — Actual money spent from the bank account to achieve the work completed so far.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-amber); border-color: var(--accent-amber);">BAC</div>
+            <div class="pillar-title">Budget at Completion</div>
+            <div class="pillar-sub">The total original baseline budget approved for the entire project from start to finish.</div>
+          </div>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Why EVM Matters (Not Too Fast, Not Too Slow)</h3>
+            <p>Comparing AC vs. PV alone lies to you! Only comparing <strong>EV</strong> against both <strong>PV</strong> (schedule) and <strong>AC</strong> (cost) reveals true project health in money and time.</p>
+          </div>
+          <span class="badge-emerald">DELTA DARK AREA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>6.2 Variances &amp; Performance Indexes</span></div>
+        <h1 class="slide-title">How Far Are We From Plan? <span class="highlight">SV, CV, SPI, CPI</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">SCHEDULE PERFORMANCE</span><span class="stat-tag">TIME</span></div>
+              <div class="formula-box">SV = EV &minus; PV</div>
+              <div class="formula-box">SPI = EV / PV</div>
+              <ul class="stat-details-list">
+                <li><strong>SV &lt; 0 or SPI &lt; 1:</strong> Behind schedule (e.g., SPI = 0.80 means progressing at 80% of planned rate).</li>
+                <li><strong>SV &gt; 0 or SPI &gt; 1:</strong> Ahead of schedule.</li>
+                <li><strong>Estimated Duration:</strong> <code>Planned Duration / SPI</code>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">COST PERFORMANCE</span><span class="stat-tag">BUDGET</span></div>
+              <div class="formula-box">CV = EV &minus; AC</div>
+              <div class="formula-box">CPI = EV / AC</div>
+              <ul class="stat-details-list">
+                <li><strong>CV &lt; 0 or CPI &lt; 1:</strong> Over budget! (e.g., CPI = 0.889 means getting $0.89 of value per $1 spent).</li>
+                <li><strong>CV &gt; 0 or CPI &gt; 1:</strong> Under budget (cost efficient).</li>
+                <li><strong>Notice:</strong> <code>EV</code> is ALWAYS first in every variance &amp; numerator in SPI/CPI!</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>6.3 Forecasting Formulas (Learn ALL EACs!)</span></div>
+        <h1 class="slide-title">Forecasting Completion: <span class="highlight-rose">EAC, ETC, VAC, TCPI</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">4 EAC (ESTIMATE AT COMPLETION) FORMULAS</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>1. Typical Variance (DEFAULT if unspecified)</h4>
+                <p>Things are off-track and will continue at current CPI efficiency:<br><code>EAC = BAC / CPI</code></p>
+              </div>
+              <div class="stage-item">
+                <h4>2. Atypical Variance (One-Off Blip)</h4>
+                <p>Overspend was a once-off problem; remaining work executes at planned rate:<br><code>EAC = AC + (BAC &minus; EV)</code></p>
+              </div>
+              <div class="stage-item">
+                <h4>3. Combined Cost &amp; Schedule (CPI &amp; SPI)</h4>
+                <p>When both schedule &amp; cost efficiency drive final cost:<br><code>EAC = AC + (BAC &minus; EV) / (CPI &times; SPI)</code></p>
+              </div>
+              <div class="stage-item">
+                <h4>4. Bottom-Up Re-Estimate</h4>
+                <p>Original plan invalid; add new bottom-up cost:<br><code>EAC = AC + New Bottom-Up ETC</code></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">REMAINING WORK, VARIANCE &amp; EFFICIENCY</span>
+            <div class="stage-item-list">
+              <div class="stage-item">
+                <h4>Estimate to Complete (ETC)</h4>
+                <p><code>ETC = EAC &minus; AC</code> &rarr; How much money is still left to spend from now to finish.</p>
+              </div>
+              <div class="stage-item accent-rose">
+                <h4>Variance at Completion (VAC)</h4>
+                <p><code>VAC = BAC &minus; EAC</code> &rarr; At the end, did we save (+) or overrun (&minus;)?</p>
+              </div>
+              <div class="stage-item">
+                <h4>To-Complete Performance Index (TCPI)</h4>
+                <p><code>TCPI = (BAC &minus; EV) / (BAC &minus; AC)</code> &rarr; Efficiency required on remaining dollars to hit original BAC (&gt;1 means harder than planned).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>6.4 Mr Bhuru's Worked Example (Nov 9 Lecture)</span></div>
+        <h1 class="slide-title">School Portal Case: <span class="highlight">Month 5 of 10</span></h1>
+
+        <div class="callout-banner" style="margin-top: 0; margin-bottom: 12px;">
+          <div>
+            <h3>Given Baseline Data (Customer School Portal)</h3>
+            <p>Planned Duration = <strong>10 months</strong> &bull; Current Time = <strong>Month 5</strong> &bull; <strong>BAC = $400k</strong> &bull; <strong>PV = $200k</strong> &bull; <strong>EV = $160k</strong> &bull; <strong>AC = $180k</strong></p>
+          </div>
+          <span class="badge-emerald">TYPICAL VARIANCE</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="spm-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Calculation</th>
+                <th>Result</th>
+                <th>PM Meaning (Required in Exam!)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SV &amp; SPI</strong></td>
+                <td><code>160k &minus; 200k</code> | <code>160 / 200</code></td>
+                <td><code>-$40k</code> | <code>0.80</code></td>
+                <td>Behind schedule by $40,000 of work; progressing at 80% speed.</td>
+              </tr>
+              <tr>
+                <td><strong>CV &amp; CPI</strong></td>
+                <td><code>160k &minus; 180k</code> | <code>160 / 180</code></td>
+                <td><code>-$20k</code> | <code>0.889</code></td>
+                <td>Over budget by $20,000; earning only $0.89 value per $1 spent.</td>
+              </tr>
+              <tr>
+                <td><strong>EAC (Typical)</strong></td>
+                <td><code>400k / 0.8889</code></td>
+                <td><code>$450,000</code></td>
+                <td>Forecasted final total cost of the project.</td>
+              </tr>
+              <tr>
+                <td><strong>ETC</strong></td>
+                <td><code>450k &minus; 180k</code></td>
+                <td><code>$270,000</code></td>
+                <td>Remaining cash needed to complete the portal.</td>
+              </tr>
+              <tr>
+                <td><strong>VAC</strong></td>
+                <td><code>400k &minus; 450k</code></td>
+                <td><code>-$50,000</code></td>
+                <td>Projected to finish $50,000 over original budget.</td>
+              </tr>
+              <tr>
+                <td><strong>TCPI</strong></td>
+                <td><code>(400&minus;160)/(400&minus;180) = 240/220</code></td>
+                <td><code>1.091</code></td>
+                <td>Must deliver $1.09 value per remaining $1 to stay inside $400k BAC.</td>
+              </tr>
+              <tr>
+                <td><strong>Est. Duration</strong></td>
+                <td><code>10 months / 0.80</code></td>
+                <td><code>12.5 months</code></td>
+                <td>2.5-month schedule overrun unless corrective action is taken.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>6.5 EVM Exam Rules &amp; PM Interpretation</span></div>
+        <h1 class="slide-title">Explain the <span class="highlight-amber">Numbers</span> Like a PM</h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">RULE 1</span></div>
+              <div class="stat-big-number">Interpretation</div>
+              <div class="stat-big-label">Numbers Alone Are Half Marks</div>
+              <ul class="stat-details-list">
+                <li>Mr Bhuru warns: Expect questions asking <em>"What does that mean? What does it mean for you as a PM?"</em></li>
+                <li>Always state both the dollar/index figure AND whether the project is ahead/behind or under/over budget.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">RULE 2</span></div>
+              <div class="stat-big-number">Typical Default</div>
+              <div class="stat-big-label">When Variance Type Isn't Stated</div>
+              <ul class="stat-details-list">
+                <li>Always use <code>EAC = BAC / CPI</code> unless the question says the overspend was a "one-off" (Atypical) or asks to use both SPI &amp; CPI.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">RULE 3</span></div>
+              <div class="stat-big-number">No Guessing</div>
+              <div class="stat-big-label">Good Practice in EVM</div>
+              <ul class="stat-details-list">
+                <li>"Don't speculate things" — compute directly from EV, PV, AC, and BAC earned milestones.</li>
+                <li>Remember: calculations sit on the <strong>Hard</strong> exam question!</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 6: Earned Value Management</h3>
+            <p>Next up: Risk Management (Exposure, Prompt Lists, Trees, Cycle) &amp; Resource Allocation.</p>
+          </div>
+          <a href="concept7.html" class="next-concept-btn">Next: Concept 7 (Risk &amp; Resources) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

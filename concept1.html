@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 1: SPM Foundations &amp; ICCF — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <!-- Top Bar (Zimknows Slidedeck HUD) -->
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 01</span>
+      <span class="track-pill">SPM Foundations &amp; ICCF</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill" title="Slide & Study Timer">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Toggle Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset Deck (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>1.1 Definitions &amp; Project Properties</span></div>
+        <h1 class="slide-title">What is a <span class="highlight">Software Project?</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">DEFINITION</span><span class="stat-tag">CORE</span></div>
+              <div class="stat-big-number">Project</div>
+              <div class="stat-big-label">Temporary &amp; Unique Effort</div>
+              <ul class="stat-details-list">
+                <li><strong>Temporary:</strong> Defined start and end date; team disbands upon completion.</li>
+                <li><strong>Unique Output:</strong> Creates a novel product/service, unlike routine operations.</li>
+                <li><strong>Goal-Driven:</strong> Judged against agreed objectives &amp; acceptance criteria.</li>
+                <li><strong>Constrained:</strong> Bounded by Time, Budget, People, and Technology.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Exam Trap: Running weekly university payroll is routine operations—building a <em>new</em> payroll system by Dec 2026 is a project.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-sky);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">DISCIPLINE</span><span class="stat-tag">SPM</span></div>
+              <div class="stat-big-number">SPM</div>
+              <div class="stat-big-label">Art &amp; Science of Delivery</div>
+              <ul class="stat-details-list">
+                <li>Planning, organizing, staffing, directing, monitoring, and controlling software projects.</li>
+                <li><strong>3 Control Cycle Stages:</strong> (1) Feasibility &amp; Planning, (2) Execution &amp; Monitoring, (3) Control &amp; Closure.</li>
+                <li><strong>Categorizing Projects:</strong> Information Systems vs. Embedded; Product-Driven vs. Objective-Driven; In-House vs. Outsourced.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Hughes &amp; Cotterell: Planning and Control form a closed-loop feedback cycle until formal handover.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">OTHER TYPES</span><span class="stat-tag">DCAP UNIT 1</span></div>
+              <div class="stat-big-number">5 Types</div>
+              <div class="stat-big-label">Project Taxonomies</div>
+              <ul class="stat-details-list">
+                <li><strong>Construction:</strong> Tangible physical artifact (bridge, building).</li>
+                <li><strong>Research:</strong> Generates knowledge, models, or patents.</li>
+                <li><strong>Reengineering:</strong> Changes existing process/system (e.g., PRINCE2 adoption).</li>
+                <li><strong>Procurement &amp; Business Impl.:</strong> Supplier tenders or new business processes.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Each project type answers "When to start, stop, and evaluate?" differently.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>1.2 Fred Brooks &amp; Hughes &amp; Cotterell (#1 Exam Favorite)</span></div>
+        <h1 class="slide-title">Software vs. Ordinary Projects: <span class="highlight">ICCF</span></h1>
+
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <div class="pillar-icon">I</div>
+            <div class="pillar-title">Invisibility</div>
+            <div class="pillar-sub">Unlike walls rising on a building site, code progress is intangible ("90% done" looks like "50% done").<br><br><strong>PM Fix:</strong> Artificial visibility via WBS milestones, prototypes &amp; burn-down charts.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-sky); border-color: var(--accent-sky);">C</div>
+            <div class="pillar-title">Complexity</div>
+            <div class="pillar-sub">Per dollar spent, software holds vastly more discrete states, branches, and interactions than bridges.<br><br><strong>PM Fix:</strong> Modular design, formal specs, code reviews &amp; automated testing.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-amber); border-color: var(--accent-amber);">C</div>
+            <div class="pillar-title">Conformity</div>
+            <div class="pillar-sub">Physics is consistent; software must conform to arbitrary human rules, legacy DBs, and tax laws.<br><br><strong>PM Fix:</strong> Intensive requirements engineering &amp; domain validation.</div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon" style="color: var(--accent-rose); border-color: var(--accent-rose);">F</div>
+            <div class="pillar-title">Flexibility</div>
+            <div class="pillar-sub">Because text files seem easy to edit, clients constantly demand late changes (nobody moves concrete bridges!).<br><br><strong>PM Fix:</strong> Strict Change Control to prevent scope creep.</div>
+          </div>
+        </div>
+
+        <div class="callout-banner rose">
+          <div>
+            <h3>Critical Exam Trap: Flexibility is NOT an Advantage!</h3>
+            <p>Never write that flexibility makes software easier to manage. In Hughes &amp; Cotterell / Brooks, perceived flexibility invites relentless late changes, schedule slippage, and architectural decay.</p>
+          </div>
+          <span class="badge-rose">MEMORIZE: ICCF</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>1.3 Iron Triangle &amp; Laws of Software Management</span></div>
+        <h1 class="slide-title">The <span class="highlight-amber">Triple Constraint</span> &amp; Key Laws</h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <div>
+              <span class="stat-agency">THE IRON TRIANGLE</span>
+              <h3 style="margin: 6px 0 10px; font-size: 1.1rem;">Scope, Time &amp; Cost Coupled Around Quality</h3>
+              <div class="table-wrap">
+                <table class="spm-table">
+                  <thead><tr><th>If Client Asks To...</th><th>Required Trade-Off</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Add features (+Scope)</strong></td><td>Extend schedule (Time) or increase budget (Cost)</td></tr>
+                    <tr><td><strong>Deliver sooner (-Time)</strong></td><td>Cut features (Scope) or add resources (+Cost)</td></tr>
+                    <tr><td><strong>Spend less (-Cost)</strong></td><td>Reduce Scope or accept a longer Time schedule</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="stat-bottom-callout">Squeezing all three simultaneously destroys Software Quality at the center via rushed, untested code and technical debt.</div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">3 CLASSIC LAWS IN SPM</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-rose">
+                <h4>1. Brooks' Law</h4>
+                <p>"Adding manpower to a late software project makes it later" — due to onboarding overhead and combinatorial communication channels $n(n-1)/2$.</p>
+              </div>
+              <div class="stage-item">
+                <h4>2. Parkinson's Law</h4>
+                <p>"Work expands to fill the time available for its completion" — over-estimating schedules wastes budget without finishing early.</p>
+              </div>
+              <div class="stage-item">
+                <h4>3. Weinberg's Zeroth Law of Reliability</h4>
+                <p>"If a system doesn't have to be reliable, it can meet any other objective" — severe under-estimation forces teams to ship broken code.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>1.4 Roles, Lifecycle &amp; Stakeholders</span></div>
+        <h1 class="slide-title">What PMs Do &amp; <span class="highlight">Stakeholder Matrix</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">5 PM AREAS &amp; 5 PROCESS GROUPS</span>
+            <div class="stage-item-list">
+              <div class="stage-item">
+                <h4>5 Core PM Activities (Lecture Notes)</h4>
+                <p>1) Scope &amp; Requirements &bull; 2) Schedule &amp; Estimation &bull; 3) People &amp; Resources &bull; 4) Risk &amp; Quality &bull; 5) Communication. <em>("Maintenance has money!")</em></p>
+              </div>
+              <div class="stage-item accent-emerald">
+                <h4>Lifecycle Deliverables (5 Groups)</h4>
+                <p><strong>Initiation:</strong> Business Case, Project Charter.<br>
+                   <strong>Planning:</strong> SRS, WBS, Schedule, Budget, Risk Plan.<br>
+                   <strong>Execution:</strong> Designs, Code, Tested Builds.<br>
+                   <strong>Monitoring &amp; Control:</strong> Status Reports, Change Logs.<br>
+                   <strong>Closure:</strong> Final Product, Sign-off, Lessons Learned.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">POWER-INTEREST STAKEHOLDER MATRIX</span>
+            <div class="table-wrap">
+              <table class="spm-table">
+                <thead><tr><th>Power</th><th>Interest</th><th>Strategy &amp; Examples</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>High</strong></td><td><strong>High</strong></td><td><strong>Manage Closely:</strong> Project Sponsor, Client</td></tr>
+                  <tr><td><strong>High</strong></td><td><strong>Low</strong></td><td><strong>Keep Satisfied:</strong> Senior Executives</td></tr>
+                  <tr><td><strong>Low</strong></td><td><strong>High</strong></td><td><strong>Keep Informed:</strong> End Users, Dev Team</td></tr>
+                  <tr><td><strong>Low</strong></td><td><strong>Low</strong></td><td><strong>Monitor:</strong> Other Departments</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="stat-bottom-callout">Note from Mr Bhuru: A <strong>Project Charter</strong> formally authorizes the project and names the PM &amp; Sponsor during Initiation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>1.5 NUST Exam Drill &amp; Summary</span></div>
+        <h1 class="slide-title">Lecture 1 <span class="highlight">Marking Guides</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">HIGH-FREQUENCY QUESTIONS</span><span class="stat-tag">9–12 MARKS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Q1 (10m):</strong> Define Project &amp; SPM + 4 characteristics separating projects from routine work (unique, temporary, interdependent, constrained).</li>
+                <li><strong>Q2 (12m):</strong> Discuss 4 ways software projects differ from physical projects + management challenges (<strong>ICCF</strong>).</li>
+                <li><strong>Q3 (9m):</strong> Describe Feasibility, Planning, and Execution/Control stages &amp; how they form a closed feedback loop.</li>
+                <li><strong>Q4 (9m):</strong> 5 core responsibilities of a Software PM (don't write "writing all C++ code solo"!).</li>
+                <li><strong>Q5 (10m):</strong> Triple Constraint trade-offs + Brooks' Law impact when adding staff late.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">6 KEY CHALLENGES IN SPM</span><span class="stat-tag">INTRO SLIDES</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Changing Requirements:</strong> Needs evolve once users see prototypes.</li>
+                <li><strong>Estimation:</strong> Effort is hard to predict for novel one-off systems.</li>
+                <li><strong>Intangibility:</strong> Code progress cannot be seen physically.</li>
+                <li><strong>Technical Risk:</strong> Unproven tools, integrations, latent defects.</li>
+                <li><strong>Communication:</strong> Coordinating large/distributed teams.</li>
+                <li><strong>Quality Pressure:</strong> Tight deadlines tempt teams to skip testing.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Ready for economic evaluation? Continue to Concept 2 for Cost-Benefit Analysis &amp; Project Failure!</div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 1: SPM Foundations</h3>
+            <p>Next up: Standish CHAOS failure modes, Costs/Benefits taxonomy, Payback, ROI, and NPV.</p>
+          </div>
+          <a href="concept2.html" class="next-concept-btn">Next: Concept 2 (CBA) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span> <span class="kbd">Space</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span> <span class="kbd">Backspace</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn" aria-label="Previous Slide">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn" aria-label="Next Slide">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

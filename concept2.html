@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 2: Project Failure &amp; CBA — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 02</span>
+      <span class="track-pill">Project Failure &amp; CBA</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>2.1 Standish CHAOS &amp; Project Failure</span></div>
+        <h1 class="slide-title">When Does a <span class="highlight-rose">Software Project Fail?</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CHAOS OUTCOME 1</span><span class="stat-tag">IDEAL</span></div>
+              <div class="stat-big-number">Successful</div>
+              <div class="stat-big-label">All Constraints Satisfied</div>
+              <ul class="stat-details-list">
+                <li>Delivered on time, within budget, with all originally specified features and functions.</li>
+                <li>Delivers positive business value exceeding development + operational costs.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">Requires realistic baseline planning and disciplined change control.</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CHAOS OUTCOME 2</span><span class="stat-tag">PARTIAL</span></div>
+              <div class="stat-big-number">Challenged</div>
+              <div class="stat-big-label">Operational, But Compromised</div>
+              <ul class="stat-details-list">
+                <li>Completed and deployed into use, <strong>but</strong> over budget, past deadline, and/or missing specified features.</li>
+                <li>Caused by scope creep, optimistic estimates, or gold-plating.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">SCS 2214 Overlap: Failure along Spec, Time, or Money (Moore's Law makes slow projects obsolete).</div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CHAOS OUTCOME 3</span><span class="stat-tag">FAILED</span></div>
+              <div class="stat-big-number">Impaired</div>
+              <div class="stat-big-label">Cancelled or Never Used</div>
+              <ul class="stat-details-list">
+                <li>Cancelled prior to completion, or built and rejected by end users.</li>
+                <li><strong>Root Causes:</strong> Lack of user involvement, poor WBS, zero risk register, wrong technology stack.</li>
+              </ul>
+            </div>
+            <div class="stat-bottom-callout">A technically running program that solves the wrong business problem is still a failed project.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>2.2 Economic Feasibility Framework</span></div>
+        <h1 class="slide-title">CBA: <span class="highlight">Costs vs. Benefits</span> Taxonomy</h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency" style="color: var(--accent-rose);">3 PROJECT COST CATEGORIES</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-rose">
+                <h4>1. Development / Direct Costs</h4>
+                <p>Outlays directly incurred to engineer the software: developer salaries, workstations, IDE/software licenses.</p>
+              </div>
+              <div class="stage-item">
+                <h4>2. Setup &amp; Conversion Costs</h4>
+                <p>One-time transition costs: legacy database migration, parallel running periods, initial staff training.</p>
+              </div>
+              <div class="stage-item">
+                <h4>3. Operational &amp; Maintenance Costs</h4>
+                <p>Recurring annual expenses over system lifetime: cloud/server hosting, helpdesk support, patches, renewals.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency" style="color: var(--accent-emerald);">3 PROJECT BENEFIT CATEGORIES</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>1. Direct Benefits</h4>
+                <p>Immediate, measurable cash savings or new revenue (e.g., saving $15,000/yr in paper stationery and clerical overtime).</p>
+              </div>
+              <div class="stage-item">
+                <h4>2. Assessable Indirect Benefits</h4>
+                <p>Secondary efficiency gains reasonably estimated in money (e.g., 40% fewer data-entry errors saving 10 hrs/wk rework).</p>
+              </div>
+              <div class="stage-item">
+                <h4>3. Intangible Benefits</h4>
+                <p>Positive strategic impacts hard to express in exact dollars (corporate reputation, student satisfaction, staff morale).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>2.3 Quantitative Evaluation Formulas</span></div>
+        <h1 class="slide-title">Five CBA <span class="highlight">Financial Metrics</span></h1>
+
+        <div class="table-wrap">
+          <table class="spm-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Formula</th>
+                <th>Decision Rule</th>
+                <th>Key Limitation (Exam Favorite)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Net Profit</strong></td>
+                <td><code>Total Benefits &minus; Total Costs</code></td>
+                <td>Accept if &gt; 0; higher looks better</td>
+                <td>Ignores initial investment scale AND timing of cash flows (time value of money).</td>
+              </tr>
+              <tr>
+                <td><strong>Payback Period</strong></td>
+                <td><code>Year before recovery + (Unrecovered / Recovery Yr Inflow)</code></td>
+                <td>Prefer shortest payback (lower risk)</td>
+                <td>Ignores all cash flows AFTER breakeven date and ignores time value of money.</td>
+              </tr>
+              <tr>
+                <td><strong>ROI / ARR</strong></td>
+                <td><code>(Avg Annual Profit / Total Investment) &times; 100%</code></td>
+                <td>Accept if ROI &gt; target / bank rate</td>
+                <td>Uses simple accounting averages; ignores exact cash timing &amp; compounding.</td>
+              </tr>
+              <tr>
+                <td><strong>Net Present Value (NPV)</strong></td>
+                <td><code>&Sigma; [Net Cash Flow_t / (1 + r)^t] &minus; Initial Cost_0</code></td>
+                <td>Accept if NPV &gt; 0; <strong>pick highest NPV</strong></td>
+                <td>Sensitive to discount rate <em>r</em>; absolute dollar figure ignores capital scale.</td>
+              </tr>
+              <tr>
+                <td><strong>IRR</strong></td>
+                <td>Discount rate <em>r</em> where <code>NPV = 0</code></td>
+                <td>Accept if IRR &gt; cost of capital</td>
+                <td>Assumes inflows reinvested at IRR; multiple roots if cash signs flip.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Why NPV Wins Over Net Profit &amp; Payback</h3>
+            <p>NPV accounts for both the <strong>Time Value of Money</strong> ($1 today &gt; $1 in 3 years) and <strong>all lifecycle cash flows</strong> from Year 0 to the final year.</p>
+          </div>
+          <span class="badge-emerald">15–20 MARK EXAM STAPLE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>2.4 Guaranteed NUST Exam Calculation</span></div>
+        <h1 class="slide-title">Worked Case: <span class="highlight">Project Alpha vs. Beta</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">CASH FLOWS (10% DISCOUNT RATE)</span>
+            <div class="table-wrap">
+              <table class="spm-table">
+                <thead><tr><th>Year</th><th>DF (10%)</th><th>Alpha</th><th>Beta</th></tr></thead>
+                <tbody>
+                  <tr><td>Yr 0</td><td><code>1.0000</code></td><td>-$100,000</td><td>-$100,000</td></tr>
+                  <tr><td>Yr 1</td><td><code>0.9091</code></td><td>+$50,000</td><td>+$10,000</td></tr>
+                  <tr><td>Yr 2</td><td><code>0.8264</code></td><td>+$50,000</td><td>+$30,000</td></tr>
+                  <tr><td>Yr 3</td><td><code>0.7513</code></td><td>+$30,000</td><td>+$100,000</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="stat-bottom-callout">
+              <strong>Alpha PV:</strong> 45,455 + 41,320 + 22,539 = $109,314<br>
+              <strong>Beta PV:</strong> 9,091 + 24,792 + 75,130 = $109,013
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">METRIC COMPARISON &amp; DECISION</span>
+            <div class="table-wrap">
+              <table class="spm-table">
+                <thead><tr><th>Metric</th><th>Alpha</th><th>Beta</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Net Profit</strong></td><td>$30,000</td><td><strong>$40,000</strong></td></tr>
+                  <tr><td><strong>Payback</strong></td><td><strong>2.0 years</strong></td><td>2 + 60/100 = 2.6 yrs</td></tr>
+                  <tr><td><strong>ROI</strong></td><td>10.00%</td><td><strong>13.33%</strong></td></tr>
+                  <tr><td><strong>NPV (10%)</strong></td><td><strong>+$9,314</strong></td><td>+$9,013</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="stage-item accent-emerald">
+              <h4>Recommendation: Select Project Alpha</h4>
+              <p>Even though Beta shows higher raw Net Profit ($40k vs $30k), <strong>Alpha delivers a higher NPV (+$9,314 vs +$9,013)</strong> and faster 2.0-year payback because its inflows arrive earlier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>2.5 Exam Traps &amp; PM Role in Feasibility</span></div>
+        <h1 class="slide-title">CBA <span class="highlight-amber">Exam Traps</span> &amp; PM Stewardship</h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">4 COSTLY EXAM TRAPS</span><span class="stat-tag">DON'T LOSE MARKS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Year 0 Discounting:</strong> Year 0 happens TODAY! Its factor is always <code>1.0000</code>, never <code>1/(1+r)^1</code>.</li>
+                <li><strong>Picking by Net Profit Alone:</strong> Early-inflow projects often beat late-inflow projects on NPV—always rank by NPV.</li>
+                <li><strong>Implicit ROI Denominator:</strong> Always state <code>ROI = (Avg Annual Profit / Total Investment) &times; 100%</code> explicitly (Hughes &amp; Cotterell).</li>
+                <li><strong>Ignoring Strategic Fit:</strong> Regulatory compliance or cybersecurity may justify a lower-NPV project in essays.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">PM ROLE IN ECONOMIC SUCCESS</span><span class="stat-tag">5 FUNCTIONS</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Business Case Stewardship:</strong> Verify technical + CBA feasibility before heavy spend.</li>
+                <li><strong>Stepwise Planning:</strong> Realistic WBS &amp; effort estimation (no SWAG budgets).</li>
+                <li><strong>Monitoring &amp; EVM:</strong> Catch cost/schedule variances early.</li>
+                <li><strong>Change Control Board (CCB):</strong> Block unapproved gold-plating &amp; scope creep.</li>
+                <li><strong>Stakeholder Alignment:</strong> Bridge non-technical sponsors and engineers.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 2: Project Failure &amp; CBA</h3>
+            <p>Next up: Step-Wise Project Planning, DISCO Objectives, WBS, Process Models, and CASE tools.</p>
+          </div>
+          <a href="concept3.html" class="next-concept-btn">Next: Concept 3 (WBS &amp; SDLC) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+

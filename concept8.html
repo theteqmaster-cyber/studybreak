@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 8: Software Quality &amp; Ishikawa 6Ms — SCS 2211</title>
+  <link rel="stylesheet" href="assets/css/spm.css">
+</head>
+<body class="deck-mode">
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-bottom" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand-badge">
+      <a href="indexsoftwareprojectmanagement.html" class="back-hub-pill">&larr; Portal</a>
+      <span class="brand-title">CONCEPT 08</span>
+      <span class="track-pill">Quality &amp; Ishikawa Fishbone</span>
+    </div>
+
+    <div class="presenter-tools">
+      <div class="timer-pill">
+        <span id="slideCounter">01 / 05</span>
+        <span>&bull;</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="tool-btn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+      <button id="btnReset" class="tool-btn" title="Reset (R)" aria-label="Reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active" data-slide-index="1">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>8.1 Quality Fundamentals (Mr Bhuru Nov 10 Lecture)</span></div>
+        <h1 class="slide-title">Quality is <span class="highlight">NOT Grade</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">DEFINITION</span><span class="stat-tag">CORE</span></div>
+              <div class="stat-big-number">Quality</div>
+              <div class="stat-big-label">Fit for Use &amp; Meets Reqs</div>
+              <ul class="stat-details-list">
+                <li><strong>Quality:</strong> Does the software satisfy user requirements and perform reliably?</li>
+                <li><strong>Grade:</strong> Feature-level richness (low grade = basic features; high grade = many features).</li>
+                <li>Low grade + zero bugs = <strong>High Quality</strong>! High grade + crashes = <strong>Low Quality</strong>!</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">WHY IT MATTERS</span><span class="stat-tag">VALUE</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Maintain Reputation</strong> &amp; stakeholder trust.</li>
+                <li><strong>Regulatory Compliance</strong> (ISO / IEC standards).</li>
+                <li><strong>Maintainability, Sustainability &amp; Security.</strong></li>
+                <li><strong>Built Over Time:</strong> Quality is NOT inspected in at the end—it must be checked throughout!</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">TRIPLE CONSTRAINT</span><span class="stat-tag">PYRAMID</span></div>
+              <div class="stat-big-number">Tech Debt</div>
+              <div class="stat-big-label">When Scope/Time/Cost Tighten</div>
+              <ul class="stat-details-list">
+                <li>Quality sits at the center of Scope, Time &amp; Cost.</li>
+                <li>When squeezed, people blame each other and take shortcuts.</li>
+                <li><strong>Shortcuts create Technical Debt</strong>, raising long-term maintenance costs dramatically.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" data-slide-index="2">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>8.2 ISO 9126-1 Quality Model &amp; Software Metrics</span></div>
+        <h1 class="slide-title">Measuring Software: <span class="highlight">ISO 9126 &amp; Metrics</span></h1>
+
+        <div class="split-stage">
+          <div class="stage-panel">
+            <span class="stat-agency">6 ISO 9126-1 QUALITY CHARACTERISTICS</span>
+            <div class="stage-item-list">
+              <div class="stage-item accent-emerald">
+                <h4>1. Functionality &bull; 2. Reliability &bull; 3. Usability</h4>
+                <p><strong>Functionality</strong> (does required job—prerequisite for all other 5) &bull; <strong>Reliability</strong> (fault tolerance &amp; recovery) &bull; <strong>Usability</strong> (UI clarity &amp; learnability).</p>
+              </div>
+              <div class="stage-item">
+                <h4>4. Efficiency &bull; 5. Maintainability &bull; 6. Portability</h4>
+                <p><strong>Efficiency</strong> (speed/resource use) &bull; <strong>Maintainability</strong> (ease of fixes/updates) &bull; <strong>Portability</strong> (runs across environments).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel">
+            <span class="stat-agency">HOW WE MEASURE QUALITY (BHURU + ISO)</span>
+            <div class="stage-item-list">
+              <div class="stage-item">
+                <h4>1. Defect Density</h4>
+                <p>Number of confirmed defects per <strong>1,000 lines of code (1 KLOC)</strong>.</p>
+              </div>
+              <div class="stage-item">
+                <h4>2. Algorithmic Efficiency</h4>
+                <p>Measures runtime responsiveness, latency &amp; resource throughput.</p>
+              </div>
+              <div class="stage-item">
+                <h4>3. Test Coverage &amp; Reviews</h4>
+                <p>Percentage of code/requirements verified by test cases &amp; peer code inspections (Sommerville Ch 24).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" data-slide-index="3">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot"></span><span>8.3 QA vs. QC, Cost of Quality &amp; Change Control</span></div>
+        <h1 class="slide-title">Proactive <span class="highlight">QA</span> vs. Reactive <span class="highlight-rose">QC</span></h1>
+
+        <div class="stats-grid">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">QUALITY ASSURANCE</span><span class="stat-tag">PROACTIVE</span></div>
+              <div class="stat-big-number">QA</div>
+              <div class="stat-big-label">Prevent Defects (Process Focus)</div>
+              <ul class="stat-details-list">
+                <li>Assures standards, processes, and procedures are appropriate and followed.</li>
+                <li><strong>Examples:</strong> Process audits, ISO 9001 quality manuals, peer design reviews, coding standards.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-rose);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">QUALITY CONTROL</span><span class="stat-tag">REACTIVE</span></div>
+              <div class="stat-big-number">QC</div>
+              <div class="stat-big-label">Detect &amp; Correct Defects (Product)</div>
+              <ul class="stat-details-list">
+                <li>Tests finished or intermediate artifacts to catch bugs before release.</li>
+                <li><strong>Test Pyramid:</strong> Many fast Unit Tests (base) &rarr; Integration Tests &rarr; fewer End-to-End UI Tests (top).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">COST &amp; CHANGE CTRL</span><span class="stat-tag">GOVERNANCE</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Cost of Conformance:</strong> Prevention (training, reviews) + Appraisal (testing, audits).</li>
+                <li><strong>Cost of Non-Conformance:</strong> Internal rework + external customer failures.</li>
+                <li><strong>Change Management:</strong> Never allow undocumented changes—log them as <em>future work</em> unless inevitable!</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" data-slide-index="4">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span class="pulse-dot live"></span><span>8.4 Root Cause Analysis — Mr Bhuru Nov 10 Lecture</span></div>
+        <h1 class="slide-title">Ishikawa (Fishbone): <span class="highlight-rose">Why Projects Fail (6Ms)</span></h1>
+
+        <div class="stats-grid cols-2" style="margin-bottom: 12px;">
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">TOP BONES (3 BRANCHES)</span><span class="stat-tag">3+ CAUSES EACH</span></div>
+              <ul class="stat-details-list">
+                <li><strong>1. Technology:</strong> Immature/new tools, legacy integration incompatibility, wrong tech stack choice.</li>
+                <li><strong>2. Resources:</strong> Insufficient funding/budget, weak dev hardware/environments, missing server infra.</li>
+                <li><strong>3. Measurements:</strong> Unrealistic SWAG estimates, missing EVM tracking (SPI/CPI), zero quality/defect metrics.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-amber);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">BOTTOM BONES (3 BRANCHES)</span><span class="stat-tag">3+ CAUSES EACH</span></div>
+              <ul class="stat-details-list">
+                <li><strong>4. Environment:</strong> Shifting regulations/laws, organizational politics / low exec support, power/network outages.</li>
+                <li><strong>5. Methods:</strong> Scope creep / unclear SRS, skipping Change Control, wrong SDLC or missing WBS.</li>
+                <li><strong>6. Manpower:</strong> Staff turnover/shortfalls, skill gaps/inexperience, poor team communication.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner rose">
+          <div>
+            <h3>Spine &rarr; PROJECT FAILURE | Exam Instruction from Mr Bhuru</h3>
+            <p><em>"Keep fish simple: Technology, Resources, Measurements (top) &bull; Environment, Methods, Manpower (bottom) &mdash; HAVE AT LEAST 3 CAUSES FOR EACH!"</em></p>
+          </div>
+          <span class="badge-rose">GUARANTEED TEST TOPIC</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide" data-slide-index="5">
+      <div class="slide-content">
+        <div class="slide-eyebrow"><span>8.5 Quality &amp; Configuration Revision Check</span></div>
+        <h1 class="slide-title">Quality <span class="highlight">Summary</span></h1>
+
+        <div class="stats-grid cols-2">
+          <article class="stat-card" style="--card-accent: var(--accent-emerald);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">CONFIGURATION MGMT (SOMMERVILLE CH 25)</span></div>
+              <ul class="stat-details-list">
+                <li><strong>Version Management:</strong> Tracking component versions cleanly (Git).</li>
+                <li><strong>System Building:</strong> Compiling &amp; linking exact tested versions into executables.</li>
+                <li><strong>Change Management:</strong> Evaluating cost/impact before approving modifications.</li>
+                <li><strong>Release Management:</strong> Packaging verified builds &amp; docs for users.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="stat-card" style="--card-accent: var(--accent-cyan);">
+            <div>
+              <div class="stat-card-header"><span class="stat-agency">FINAL CONCEPT AHEAD</span></div>
+              <ul class="stat-details-list">
+                <li>You've covered all core SCS 2211 topics from Lecture 1 through Quality &amp; Ishikawa!</li>
+                <li>Open Concept 9 for the <strong>Master Formula Sheet, Exam Difficulty Tiers &amp; Top 8 Exam Traps</strong>.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout-banner">
+          <div>
+            <h3>Completed Concept 8: Quality &amp; Ishikawa 6Ms</h3>
+            <p>Final Deck: Exam Blueprint, Unified Mathematical Formulas &amp; Top 8 Traps.</p>
+          </div>
+          <a href="concept9.html" class="next-concept-btn">Next: Concept 9 (Exam Blueprint) &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="slide-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+      <button class="dot" aria-label="Slide 5"></button>
+    </div>
+    <div class="nav-key-hints">
+      <span>Next:</span> <span class="kbd">Enter</span> <span class="kbd">&rarr;</span>
+      <span>|</span>
+      <span>Prev:</span> <span class="kbd">&larr;</span>
+      <span>|</span>
+      <span>Full:</span> <span class="kbd">F</span>
+    </div>
+    <div class="nav-buttons">
+      <button id="btnPrev" class="nav-btn">&larr; Prev</button>
+      <button id="btnNext" class="nav-btn">Next &rarr;</button>
+    </div>
+  </footer>
+
+  <script src="assets/js/spm.js"></script>
+</body>
+</html>
+
